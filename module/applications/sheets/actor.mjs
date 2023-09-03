@@ -1,6 +1,4 @@
 export default class CabinetActorSheet extends ActorSheet {
-    
-
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
@@ -10,8 +8,8 @@ export default class CabinetActorSheet extends ActorSheet {
       classes: [SYSTEM.id, "sheet", "actor", this.actorType],
       template: `systems/${SYSTEM.id}/templates/sheets/${this.actorType}.hbs`,
       resizable: false,
-      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "qualites"}],
-      scrollY: []
+      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "qualites" }],
+      scrollY: [],
     });
   }
 
@@ -20,5 +18,4 @@ export default class CabinetActorSheet extends ActorSheet {
     const context = super.getData(options);
     return context;
   }
-
 }

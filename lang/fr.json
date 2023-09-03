@@ -25,6 +25,24 @@
         "label": "Nefesh",
         "traduction": "Action"
       }
+    },
+    "SPHERE": {
+      "binah": {
+        "label": "Binah",
+        "qualite": "Intelligent"
+      },
+      "chesed": {
+        "label": "Chesed",
+        "qualite": "Ouvert"
+      },
+      "chokmah": {
+        "label": "Chokmah",
+        "qualite": "Sensible"
+      },
+      "malkuth": {
+        "label": "Malkuth",
+        "qualite": "Coordonné"
+      }
     }
   }
 }
