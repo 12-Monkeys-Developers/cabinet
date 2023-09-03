@@ -31,6 +31,20 @@
         "path": "lang/fr.json"
       }
     ],
+    "media": [
+      {
+        "type": "cover",
+        "thumbnail": "systems/cabinet/assets/thumb_cdm.webp",
+        "loop": false,
+        "flags": {}
+      },
+      {
+        "type": "setup",
+        "loop": false,
+        "thumbnail": "systems/cabinet/assets/thumb_cdm.webp",
+        "flags": {}
+      }
+    ],
     "gridDistance": 1.5,
     "gridUnits": "m",
     "primaryTokenAttribute": "",
