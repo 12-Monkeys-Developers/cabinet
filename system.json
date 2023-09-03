@@ -1,0 +1,42 @@
+{
+    "id": "cabinet",
+    "title": "Cabinet des murmures",
+    "description": "Cabinet des murmures",
+    "version": "0.1.0",
+    "compatibility": {
+      "minimum": "11",
+      "verified": "11"
+    },
+    "authors": [
+      {
+        "name": "Khaali"
+      },
+      {
+        "name": "Kristov"
+      }
+    ],
+    "esmodules": ["cdm.mjs"],
+    "scripts": [],
+    "styles": ["css/cdm.css"],
+    "packs": [],
+    "languages": [
+       {
+        "lang": "fr",
+        "name": "French",
+        "path": "lang/fr.json"
+      },
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/fr.json"
+      }
+    ],
+    "gridDistance": 1.5,
+    "gridUnits": "m",
+    "primaryTokenAttribute": "",
+    "initiative": "",
+    "url": "",
+    "manifest": "",
+    "download": "",
+    "license": ""
+  }

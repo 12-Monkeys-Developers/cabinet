@@ -1,0 +1,44 @@
+<form class="{{cssClass}} flexrow" autocomplete="off">
+
+{{log 'esprit' this}}
+    {{!-- Main Content --}}
+    <section class="sheet-body flexcol">
+    
+        <header class="sheet-header flexcol">            
+        </header>
+
+        {{!-- Sheet Navigation --}}
+        <nav class="sheet-navigation tabs" data-group="primary">
+            <a class="item badge qualites" data-tab="qualites">Qualités et Défauts</a>
+        </nav>
+    
+        {{!-- Qualites Tab --}}
+        <div class="tab qualites flexcol" data-group="primary" data-tab="qualites">
+
+            {{!-- Character Resources --}}
+            <section class="resources flexrow">
+                <h2 class="section-header divider">
+                    <span></span><label>Qualités</label><span></span>
+                </h2>
+                {{#each qualites as |qualite|}}
+                    {{log 'qualite' qualite}}
+                    <div class="qualite {{qualite.id}}">
+                        <h3 class="category-header divider">
+                            <span></span>
+                            <label>{{qualite.label}}</label>
+                            <span></span>
+                        </h3>
+                        <div class="resource-values flexrow">
+                            <input type="number" name="system.qualites.{{qualite.id}}.valeur" value="{{qualite.valeur}}" placeholder="0">
+                        </div>
+                        {{qualite.defautLabel}}
+                        <div class="resource-values flexrow">
+                            <input type="number" name="system.qualites.{{qualite.id}}.defaut.valeur" value="{{qualite.defautValeur}}" placeholder="0">
+                        </div>
+                    </div>
+                {{/each}}
+            </section>
+
+    </section>
+
+</form>

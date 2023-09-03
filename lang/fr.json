@@ -1,0 +1,30 @@
+{
+  "CDM": {
+    "QUALITE": {
+      "courage": "Courage",
+      "intellect": "Intellect",
+      "sensibilite": "Sensibilité",
+      "autorite": "Autorité"
+    },
+    "DEFAUT": {
+      "imprudence": "Imprudence",
+      "froideur": "Froideur",
+      "superstition": "Superstition",
+      "intolerance": "Intolerance"
+    },
+    "ASPECT": {
+      "neshama": {
+        "label": "Neshama",
+        "traduction": "Raison"
+      },
+      "rouah": {
+        "label": "Roua'h",
+        "traduction": "Intuition"
+      },
+      "nefesh": {
+        "label": "Nefesh",
+        "traduction": "Action"
+      }
+    }
+  }
+}

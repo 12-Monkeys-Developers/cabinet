@@ -1,0 +1,15 @@
+{
+  "Actor": {
+    "types": ["esprit", "corps", "cabinet", "pnj"],
+    "esprit": {},
+    "corps": {},
+    "cabinet": {},
+    "pnj": {}
+  },
+  "Item": {
+    "types": ["arme", "pouvoir", "corruption"],
+    "arme": {},
+    "pouvoir" : {},
+    "corruption" : {}
+  }
+}

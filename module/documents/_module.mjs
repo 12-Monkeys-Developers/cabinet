@@ -1,0 +1,1 @@
+export {default as CabinetActor} from "./actor.mjs";
