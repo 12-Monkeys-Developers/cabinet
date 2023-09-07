@@ -16,7 +16,8 @@ Hooks.once("init", async function () {
 
     CONFIG.Actor.dataModels = {
         esprit: models.CabinetEsprit,
-        corps: models.CabinetCorps
+        corps: models.CabinetCorps,
+        cabinet: models.CabinetCabinet
     };
    
     Actors.unregisterSheet("core", ActorSheet);
