@@ -7,51 +7,50 @@ import * as documents from "./module/documents/_module.mjs";
 import * as models from "./module/data/_module.mjs";
 
 Hooks.once("init", async function () {
+  console.log(`Initialisation du système Cabinet des murmures...`);
+  game.system.CONST = SYSTEM;
 
-    console.log(`Initialisation du système Cabinet des murmures...`);
-    game.system.CONST = SYSTEM;
+  // Actor document configuration
+  CONFIG.Actor.documentClass = documents.CabinetActor;
 
-    // Actor document configuration
-    CONFIG.Actor.documentClass = documents.CabinetActor;
+  CONFIG.Actor.dataModels = {
+    esprit: models.CabinetEsprit,
+    corps: models.CabinetCorps,
+    cabinet: models.CabinetCabinet,
+    pnj: models.CabinetPnj
+  };
 
-    CONFIG.Actor.dataModels = {
-        esprit: models.CabinetEsprit,
-        corps: models.CabinetCorps,
-        cabinet: models.CabinetCabinet
-    };
-   
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet(SYSTEM.id, applications.EspritSheet, {types: ["esprit"], makeDefault: true});
+  Actors.unregisterSheet("core", ActorSheet);
+  Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
 
-    // Item document configuration
-    CONFIG.Item.documentClass = documents.CabinetItem;
+  // Item document configuration
+  CONFIG.Item.documentClass = documents.CabinetItem;
 
-    CONFIG.Item.dataModels = {
-        pouvoir: models.CabinetPouvoir
-    }
+  CONFIG.Item.dataModels = {
+    pouvoir: models.CabinetPouvoir
+  };
 
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, {types: ["pouvoir"], makeDefault: true});
+  Items.unregisterSheet("core", ItemSheet);
+  Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
 });
 
-Hooks.once("i18nInit", function() {
-
+Hooks.once("i18nInit", function () {
   // Prélocalisation des objets de configuration
   preLocalizeConfig();
 });
 
-Hooks.once("ready", async function () {   
-    console.debug("Initialisation du système fini");
+Hooks.once("ready", async function () {
+  console.debug("Initialisation du système fini");
 });
 
 function preLocalizeConfig() {
-    const localizeConfigObject = (obj, keys) => {
-      for ( let o of Object.values(obj) ) {
-        for ( let k of keys ) {
-          o[k] = game.i18n.localize(o[k]);
-        }
+  const localizeConfigObject = (obj, keys) => {
+    for (let o of Object.values(obj)) {
+      for (let k of keys) {
+        o[k] = game.i18n.localize(o[k]);
       }
     }
-  
-    localizeConfigObject(SYSTEM.SPHERES, ["label"]);
+  };
+
+  localizeConfigObject(SYSTEM.SPHERES, ["label"]);
 }

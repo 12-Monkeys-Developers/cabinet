@@ -74,6 +74,11 @@
       "torse": "Torse",
       "jambeDroite": "Jambe droite",
       "jambeGauche": "Jambe gauche"
+    },
+    "OPINION":{
+      "favorable": "Opinion favorable",
+      "neutre": "Opinion neutre",
+      "negative": "Opinion négative"
     }
   }
 }

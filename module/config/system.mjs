@@ -1,5 +1,6 @@
 import * as ESPRIT from "./esprit.mjs";
 import * as CORPS from "./corps.mjs"
+import * as PNJ from "./pnj.mjs";
 
 export const SYSTEM_ID = "cabinet";
 
@@ -36,5 +37,6 @@ export const SYSTEM = {
   ASPECTS: ESPRIT.ASPECTS,
   SPHERES,
   ATTRIBUTS: CORPS.ATTRIBUTS,
-  SANTE: CORPS.SANTE
+  SANTE: CORPS.SANTE,
+  OPINION: PNJ.OPINION
 };
