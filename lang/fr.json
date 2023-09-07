@@ -4,13 +4,25 @@
       "courage": "Courage",
       "intellect": "Intellect",
       "sensibilite": "Sensibilité",
-      "autorite": "Autorité"
+      "autorite": "Autorité",
+      "serenite": "Sérénité",
+      "ouverture": "Ouverture",
+      "savoir": "Savoir",
+      "attention": "Attention",
+      "charisme": "Charisme",
+      "coordination": "Coordination"
     },
     "DEFAUT": {
       "imprudence": "Imprudence",
       "froideur": "Froideur",
       "superstition": "Superstition",
-      "intolerance": "Intolerance"
+      "intolerance": "Intolerance",
+      "indifference": "Indifférence",
+      "jalousie": "Jalousie",
+      "orgueil": "Orgueil",
+      "manie": "Manie",
+      "manipulation": "Manipulation",
+      "avidite": "Avidité"
     },
     "ASPECT": {
       "neshama": {
@@ -43,6 +55,25 @@
         "label": "Malkuth",
         "qualite": "Coordonné"
       }
+    },
+    "ATTRIBUT": {
+      "acuite": "Acuité",
+      "agilite": "Agilité",
+      "anonymat": "Anonymat",
+      "beaute": "Beauté",
+      "etrangete": "Etrangeté",
+      "habilite": "Habilité",
+      "innocence": "Innocence",
+      "puissance": "Puissance",
+      "robustesse": "Robustesse"
+    },
+    "SANTE": {
+      "tete": "Tête",
+      "brasDroit": "Bras droit",
+      "brasGauche": "Bras gauche",
+      "torse": "Torse",
+      "jambeDroite": "Jambe droite",
+      "jambeGauche": "Jambe gauche"
     }
   }
 }

@@ -15,7 +15,8 @@ Hooks.once("init", async function () {
     CONFIG.Actor.documentClass = documents.CabinetActor;
 
     CONFIG.Actor.dataModels = {
-        esprit: models.CabinetEsprit
+        esprit: models.CabinetEsprit,
+        corps: models.CabinetCorps
     };
    
     Actors.unregisterSheet("core", ActorSheet);

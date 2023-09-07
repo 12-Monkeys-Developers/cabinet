@@ -18,15 +18,37 @@ export const QUALITES = Object.freeze({
         id: "autorite",
         label: "CDM.QUALITE.autorite",
         defaut: "CDM.DEFAUT.intolerance"
+    },
+    serenite: {
+        id: "serenite",
+        label: "CDM.QUALITE.serenite",
+        defaut: "CDM.DEFAUT.indifference"
+    },
+    ouverture: {
+        id: "ouverture",
+        label: "CDM.QUALITE.ouverture",
+        defaut: "CDM.DEFAUT.jalousie"
+    },
+    savoir: {
+        id: "savoir",
+        label: "CDM.QUALITE.savoir",
+        defaut: "CDM.DEFAUT.orgueil"
+    },
+    attention: {
+        id: "attention",
+        label: "CDM.QUALITE.attention",
+        defaut: "CDM.DEFAUT.manie"
+    },
+    charisme: {
+        id: "charisme",
+        label: "CDM.QUALITE.charisme",
+        defaut: "CDM.DEFAUT.manipulation"
+    },
+    coordination: {
+        id: "coordination",
+        label: "CDM.QUALITE.coordination",
+        defaut: "CDM.DEFAUT.avidite"
     }
-    /*
-    serenite
-    ouverture
-    savoir
-    attention
-    charisme
-    coordination
-    */
 });
 
 export const ASPECTS =  Object.freeze({

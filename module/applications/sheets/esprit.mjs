@@ -10,11 +10,10 @@ export default class EspritSheet extends CabinetActorSheet {
   /** @override */
   async getData(options) {
     const context = await super.getData(options);
-    const actor = context.actor;
 
     // Qualités
-    context.qualites = this.#formatQualites(actor.system.qualites);
-    context.aspects = this.#formatAspects(actor.system.aspects);
+    context.qualites = this.#formatQualites(context.actor.system.qualites);
+    context.aspects = this.#formatAspects(context.actor.system.aspects);
 
     return context;
   }

@@ -1,4 +1,6 @@
 import * as ESPRIT from "./esprit.mjs";
+import * as CORPS from "./corps.mjs"
+
 export const SYSTEM_ID = "cabinet";
 
 /**
@@ -32,5 +34,7 @@ export const SYSTEM = {
   id: SYSTEM_ID,
   QUALITES: ESPRIT.QUALITES,
   ASPECTS: ESPRIT.ASPECTS,
-  SPHERES
+  SPHERES,
+  ATTRIBUTS: CORPS.ATTRIBUTS,
+  SANTE: CORPS.SANTE
 };

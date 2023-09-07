@@ -9,15 +9,21 @@ export default class CabinetItemSheet extends ItemSheet {
       template: `systems/${SYSTEM.id}/templates/sheets/${this.itemType}.hbs`,
       resizable: false,
       tabs: [],
-      scrollY: [],
+      scrollY: []
     });
   }
 
   /** @override */
   async getData(options) {
-    const context = super.getData(options);
-    context.source = context.data;
-    context.item = context.document;
+    const context = {};
+
+    const isEditable = this.isEditable;
+    context.cssClass = isEditable ? "editable" : "locked";
+    context.editable = isEditable;
+
+    context.item = this.document;
+    context.system = this.document.system;
+
     return context;
   }
 }
