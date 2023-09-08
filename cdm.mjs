@@ -27,9 +27,10 @@ Hooks.once("init", async function () {
   CONFIG.Item.documentClass = documents.CabinetItem;
 
   CONFIG.Item.dataModels = {
-    pouvoir: models.CabinetPouvoir,
+    arme: models.CabinetArme,
+    armure: models.CabinetArmure,
     corruption: models.CabinetCorruption,
-    arme: models.CabinetArme
+    pouvoir: models.CabinetPouvoir
   };
 
   Items.unregisterSheet("core", ItemSheet);

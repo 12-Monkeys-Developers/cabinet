@@ -4,6 +4,7 @@ export default class CabinetArme extends foundry.abstract.DataModel {
     const requiredNullableInteger = { required: true, nullable: true, integer: true, initial: null };
     const schema = {};
 
+    schema.description = new fields.HTMLField({ required: true, blank: true });
     schema.precision = new fields.NumberField({ ...requiredNullableInteger, min: 1, max: 3 });
     schema.portee = new fields.NumberField({ ...requiredNullableInteger });
     schema.munitions = new fields.NumberField({ ...requiredNullableInteger });
