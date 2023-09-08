@@ -10,7 +10,7 @@ Hooks.once("init", async function () {
   console.log(`Initialisation du système Cabinet des murmures...`);
   game.system.CONST = SYSTEM;
 
-  // Actor document configuration
+  // Configuration document Actor
   CONFIG.Actor.documentClass = documents.CabinetActor;
 
   CONFIG.Actor.dataModels = {
@@ -23,11 +23,13 @@ Hooks.once("init", async function () {
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
 
-  // Item document configuration
+  // Configuration document Item
   CONFIG.Item.documentClass = documents.CabinetItem;
 
   CONFIG.Item.dataModels = {
-    pouvoir: models.CabinetPouvoir
+    pouvoir: models.CabinetPouvoir,
+    corruption: models.CabinetCorruption,
+    arme: models.CabinetArme
   };
 
   Items.unregisterSheet("core", ItemSheet);

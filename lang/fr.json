@@ -75,10 +75,28 @@
       "jambeDroite": "Jambe droite",
       "jambeGauche": "Jambe gauche"
     },
-    "OPINION":{
+    "OPINION": {
       "favorable": "Opinion favorable",
       "neutre": "Opinion neutre",
       "negative": "Opinion négative"
+    },
+    "ARME": {
+      "soustype": {
+        "naturelle": "Armes naturelles et armes blanches",
+        "grosCalibre": "Armement de poing ( gros calibre, fantassins, cavaliers )",
+        "moyenCalibre": "armement de poing ( calibre moyen, armée de l’air, marine, police )",
+        "epaule": "Armement d’épaule ( armée, police )",
+        "civil": "Armement civil"
+      },
+      "categorie": {
+        "poing": "Poing, pied, coup de tête, morsure",
+        "canne": "Canne, casse-tête, matraque, poing américain",
+        "couteau": "Canne-épée, couteau , baïonnette, dague, poignard",
+        "epee": "Sabre, épée",
+        "pistolet": "Pistolet",
+        "pistoletSemi": "Pistolet semi-automatique",
+        "revolver": "Reevolver"
+      }
     }
   }
 }

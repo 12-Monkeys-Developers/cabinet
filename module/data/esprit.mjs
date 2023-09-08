@@ -72,7 +72,7 @@ export default class CabinetEsprit extends foundry.abstract.DataModel {
 
     schema.experience = new fields.SchemaField({
       actuelle: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
-      totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+      totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
     });
 
     return schema;
