@@ -15,9 +15,9 @@
         "name": "Kristov"
       }
     ],
-    "esmodules": ["cdm.mjs"],
+    "esmodules": ["cabinet.mjs"],
     "scripts": [],
-    "styles": ["css/cdm.css"],
+    "styles": ["css/cabinet.css"],
     "packs": [],
     "languages": [
        {
