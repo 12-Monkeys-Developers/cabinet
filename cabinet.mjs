@@ -1,4 +1,5 @@
 import { SYSTEM } from "./module/config/system.mjs";
+import { setupTextEnrichers } from "./module/config/textenrichers.mjs";
 globalThis.SYSTEM = SYSTEM;
 
 // Import modules
@@ -35,6 +36,9 @@ Hooks.once("init", async function () {
 
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
+
+  // Configuration text enrichers
+  setupTextEnrichers();
 });
 
 Hooks.once("i18nInit", function () {
