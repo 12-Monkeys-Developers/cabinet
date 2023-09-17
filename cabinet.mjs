@@ -1,5 +1,5 @@
 import { SYSTEM } from "./module/config/system.mjs";
-import { setupTextEnrichers } from "./module/config/textenrichers.mjs";
+import setupTextEnrichers from "./module/config/textenrichers.mjs";
 globalThis.SYSTEM = SYSTEM;
 
 // Import modules
@@ -18,11 +18,12 @@ Hooks.once("init", async function () {
     esprit: models.CabinetEsprit,
     corps: models.CabinetCorps,
     cabinet: models.CabinetCabinet,
-    pnj: models.CabinetPnj
+    pnj: models.CabinetPnj,
   };
 
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
+  console.log("actors  ", Actors);
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.CabinetItem;
@@ -31,14 +32,25 @@ Hooks.once("init", async function () {
     arme: models.CabinetArme,
     armure: models.CabinetArmure,
     corruption: models.CabinetCorruption,
-    pouvoir: models.CabinetPouvoir
+    pouvoir: models.CabinetPouvoir,
   };
 
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
 
+  loadTemplates(["systems/cabinet/templates/partials/actor/qualites.hbs", "systems/cabinet/templates/partials/actor/qualite-group.hbs"]);
+
   // Configuration text enrichers
   setupTextEnrichers();
+
+  //configuration Handlebars
+  Handlebars.registerHelper("getQualiteProperty", function (actor, qualite, prop) {
+    return foundry.utils.getProperty(actor.system.qualites, `${qualite}.${prop}`);
+  });
+
+  Handlebars.registerHelper("getDefautProperty", function (actor, qualite, prop) {
+    return foundry.utils.getProperty(actor.system.qualites, `${qualite}.defaut.${prop}`);
+  });
 });
 
 Hooks.once("i18nInit", function () {

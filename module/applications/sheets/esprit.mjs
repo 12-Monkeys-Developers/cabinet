@@ -26,10 +26,6 @@ export default class EspritSheet extends CabinetActorSheet {
   #formatQualites(qualites) {
     return Object.values(SYSTEM.QUALITES).map((cfg) => {
       const qualite = foundry.utils.deepClone(cfg);
-      qualite.label = game.i18n.localize(qualite.label);
-      qualite.valeur = qualites[qualite.id].valeur;
-      qualite.defautLabel = qualites[qualite.id].defaut.label;
-      qualite.defautValeur = qualites[qualite.id].defaut.valeur;
       return qualite;
     });
   }

@@ -1,0 +1,8 @@
+      <div class="qualite-name">{{getQualiteProperty actor qualite 'label'}}</div>
+      <div class="qualite-value">
+        <input type="number" name="system.qualites.{{qualite}}.valeur" value="{{getQualiteProperty actor qualite 'valeur'}}" placeholder="0" />
+      </div>
+      <div class="defaut-value">
+        <input type="number" name="system.qualites.{{qualite}}.defaut.valeur" value="{{getDefautProperty actor qualite 'valeur'}}" placeholder="0" />
+      </div>
+      <div class="defaut-name">{{getDefautProperty actor qualite 'label'}}</div>

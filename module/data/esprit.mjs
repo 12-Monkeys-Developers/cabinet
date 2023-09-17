@@ -11,6 +11,7 @@ export default class CabinetEsprit extends foundry.abstract.DataModel {
     const qualiteField = (label, defaut) => {
       const schema = {
         valeur: new fields.NumberField({ ...requiredInteger, initial: 1, min: 1, max: 5 }),
+        label: new fields.StringField({ required: true, initial: game.i18n.localize(label), blank: false }),
         defaut: new fields.SchemaField({
           label: new fields.StringField({ required: true, initial: game.i18n.localize(defaut), blank: false }),
           valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 5 }),
