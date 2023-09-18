@@ -4,7 +4,10 @@
   {{! Main Content }}
   <section class="sheet-body">
     <header class="esprit-header">
-      <div class="titre_feuille">Esprit</div>
+      <div class="titre_feuille">Esprit 
+    <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
+          {{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
+      </span></div>
       <div class="charname"><input name="name" type="text" value="{{actor.name}}" /></div>
       <div class="esprit-portrait">
         <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />

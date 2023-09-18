@@ -97,6 +97,9 @@
         "pistoletSemi": "Pistolet semi-automatique",
         "revolver": "Reevolver"
       }
+    },
+    "TOOLTIP": {
+      "unlockSheet": "Verrouiller/Déverrouiller la feuille"
     }
   }
 }
