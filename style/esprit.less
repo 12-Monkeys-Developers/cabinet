@@ -57,118 +57,135 @@
 }
 
 .grid-tab-qualites {
-    display: grid;
-    grid-template-columns: 350px 300px 300px;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    padding-left: 50px;
+  display: grid;
+  grid-template-columns: 350px 300px 300px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  padding-left: 30px;
 }
 .grid-arbre-qualites {
-    grid-row: 1 / 6;
-    grid-column: 1 / 2;
+  grid-row: 1 / 6;
+  grid-column: 1 / 2;
   display: grid;
-  margin-top:9px;
-  grid-template-columns: 120px 110px 120px;
-  grid-template-rows: 150px 150px 120px 120px 120px;}
-  .intellect-group{
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 1;
-    grid-column: 1 / 2;
+  margin-top: 9px;
+  grid-template-columns: 90px 100px 120px;
+  grid-template-rows: 120px 120px 120px 120px 120px;
+}
+.intellect-group {
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+  grid-row: 1;
+  grid-column: 1 / 2;
+}
+.courage-group {
+  grid-row: 1;
+  grid-column: 2 / 3;
+}
+.sensibilite-group {
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+  grid-row: 1;
+  grid-column: 3 / 4;
+}
+.autorite-group {
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+  grid-row: 2;
+  grid-column: 1 / 2;
+}
+.ouverture-group {
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+  grid-row: 2;
+  grid-column: 3 / 4;
+}
+.savoir-group {
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+  grid-row: 3;
+  grid-column: 1 / 2;
+}
+.serenite-group {
+  grid-row: 3;
+  grid-column: 2 / 3;
+}
+.charisme-group {
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+  grid-row: 3;
+  grid-column: 3 / 4;
+}
+.attention-group {
+  grid-row: 4;
+  grid-column: 2 / 3;
+}
+.coordination-group {
+  grid-row: 5;
+  grid-column: 2 / 3;
+}
+.qualite-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 30px 30px 30px;
+  .qualite-name {
+    font-family: "arrusbt";
+    font-weight: bold;
+    font-size: 1em;
+    color: #497180;
+    text-transform: uppercase;
+    margin-top: 10px;
+    padding-left: 12px;
   }
-  .courage-group{
-    grid-row: 1;
-    grid-column: 2 / 3;
-  }
-  .sensibilite-group{
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 1;
-    grid-column: 3 / 4;
-  }
-  .autorite-group{
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 2;
-    grid-column: 1 / 2;
-  }
-  .ouverture-group{
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 2;
-    grid-column: 3 / 4;
-  }
-  .savoir-group{
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 3;
-    grid-column: 1 / 2;
-  }
-  .serenite-group{
-    grid-row: 3;
-    grid-column: 2 / 3;
-  }
-  .charisme-group{
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 3;
-    grid-column: 3 / 4;
-  }
-  .attention-group{
-    grid-row: 4;
-    grid-column: 2 / 3;
-  }
-  .coordination-group{
-    grid-row: 5;
-    grid-column: 2 / 3;
-  }
-  .qualite-group {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 40px 50px 30px 30px;
-    .qualite-name {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 1em;
-      color: #497180;
-      text-transform: uppercase;
-      margin-top: 10px;
+  .qualite-value {
+    font-family: "arrusbt";
+    font-weight: bold;
+    font-size: 2em;
+    color: #497180;
+    text-transform: uppercase;
+    input {
+      text-align: center;
+      width: 1em;
     }
-    .qualite-value {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 2em;
-      color: #497180;
-      text-transform: uppercase;
-      padding-left: 15px;
-      input {
-          text-align: center;
-          width: 2em;
-      }
+  }
+  .qvdroite{
+    padding-left: 48px;
+  }
+  .qvgauche{
+    padding-left: 42px;
+  }
+  .defaut-value {
+    font-family: "arrusbt";
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #7b3135;
+    text-transform: uppercase;
+    input {
+      text-align: center;
+      width: 0.9em;
     }
-    .defaut-value {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 1.5em;
-      color: #7b3135;
-      text-transform: uppercase;
-      padding-left: 42px;
-      input {                
-          text-align: center;
-          width: 1.5em;
-      }
-    }
-    .defaut-name {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 1em;
-      color: #7b3135;
-      text-transform: uppercase;
-      padding-left: 10px;
-    }
+  }
+  .dvdroite{
+    padding-left: 66px;
+  }
+  .dvgauche{
+    padding-left: 33px;
+  }
+  .defaut-name {
+    font-family: "arrusbt";
+    font-weight: bold;
+    font-size: 0.7em;
+    color: #7b3135;
+    text-transform: uppercase;
+  }
+  .dndroite{
+    padding-left: 45px;
+  }
+  .dngauche{
+    padding-left: 0px;
+  }
 }

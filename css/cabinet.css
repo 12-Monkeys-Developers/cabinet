@@ -146,15 +146,15 @@
   display: grid;
   grid-template-columns: 350px 300px 300px;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  padding-left: 50px;
+  padding-left: 30px;
 }
 .grid-arbre-qualites {
   grid-row: 1 / 6;
   grid-column: 1 / 2;
   display: grid;
   margin-top: 9px;
-  grid-template-columns: 120px 110px 120px;
-  grid-template-rows: 150px 150px 120px 120px 120px;
+  grid-template-columns: 90px 100px 120px;
+  grid-template-rows: 120px 120px 120px 120px 120px;
 }
 .intellect-group {
   position: relative;
@@ -217,7 +217,7 @@
 .qualite-group {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 40px 50px 30px 30px;
+  grid-template-rows: 40px 30px 30px 30px;
 }
 .qualite-group .qualite-name {
   font-family: "arrusbt";
@@ -226,6 +226,7 @@
   color: #497180;
   text-transform: uppercase;
   margin-top: 10px;
+  padding-left: 12px;
 }
 .qualite-group .qualite-value {
   font-family: "arrusbt";
@@ -233,29 +234,44 @@
   font-size: 2em;
   color: #497180;
   text-transform: uppercase;
-  padding-left: 15px;
 }
 .qualite-group .qualite-value input {
   text-align: center;
-  width: 2em;
+  width: 1em;
+}
+.qualite-group .qvdroite {
+  padding-left: 48px;
+}
+.qualite-group .qvgauche {
+  padding-left: 42px;
 }
 .qualite-group .defaut-value {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #7b3135;
   text-transform: uppercase;
-  padding-left: 42px;
 }
 .qualite-group .defaut-value input {
   text-align: center;
-  width: 1.5em;
+  width: 0.9em;
+}
+.qualite-group .dvdroite {
+  padding-left: 66px;
+}
+.qualite-group .dvgauche {
+  padding-left: 33px;
 }
 .qualite-group .defaut-name {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1em;
+  font-size: 0.7em;
   color: #7b3135;
   text-transform: uppercase;
-  padding-left: 10px;
+}
+.qualite-group .dndroite {
+  padding-left: 45px;
+}
+.qualite-group .dngauche {
+  padding-left: 0px;
 }

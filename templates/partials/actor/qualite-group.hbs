@@ -1,8 +1,18 @@
       <div class="qualite-name">{{getQualiteProperty actor qualite 'label'}}</div>
-      <div class="qualite-value">
+      {{#if gauche}}
+      <div class="qualite-value qvgauche">
         <input type="number" name="system.qualites.{{qualite}}.valeur" value="{{getQualiteProperty actor qualite 'valeur'}}" placeholder="0" />
       </div>
-      <div class="defaut-value">
+      <div class="defaut-value dvgauche">
         <input type="number" name="system.qualites.{{qualite}}.defaut.valeur" value="{{getDefautProperty actor qualite 'valeur'}}" placeholder="0" />
       </div>
-      <div class="defaut-name">{{getDefautProperty actor qualite 'label'}}</div>
+      <div class="defaut-name dngauche">{{getDefautProperty actor qualite 'label'}}</div>
+      {{else}}
+      <div class="qualite-value qvdroite">
+        <input type="number" name="system.qualites.{{qualite}}.valeur" value="{{getQualiteProperty actor qualite 'valeur'}}" placeholder="0" />
+      </div>
+      <div class="defaut-value dvdroite">
+        <input type="number" name="system.qualites.{{qualite}}.defaut.valeur" value="{{getDefautProperty actor qualite 'valeur'}}" placeholder="0" />
+      </div>
+      <div class="defaut-name dndroite">{{getDefautProperty actor qualite 'label'}}</div>
+      {{/if}}
