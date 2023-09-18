@@ -99,7 +99,10 @@
       }
     },
     "TOOLTIP": {
-      "unlockSheet": "Verrouiller/Déverrouiller la feuille"
+      "unlockSheet": "Verrouiller/Déverrouiller la feuille",
+      "ajouterAcquis": "Ajouter un nouvel Acquis",
+      "modifier": "Modifier",
+      "supprimer": "Supprimer"
     }
   }
 }

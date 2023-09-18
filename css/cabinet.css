@@ -120,17 +120,34 @@
 }
 .esprit-header .esprit-portrait {
   border: none;
-  text-align: right;
-  width: 90px;
+  justify-self: end;
+  width: 133px;
   height: 90px;
 }
+.esprit-header .esprit-portrait img {
+  border-radius: 50%;
+}
 .choix_tab {
-  grid-column: 1 / 3;
   font-family: "posterbodoni";
   font-size: 1.5em;
-  color: white;
-  text-align: center;
+  color: #f0eae1;
   text-transform: uppercase;
+  border: 1px solid #f0eae1;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  text-align: center;
+  padding: 0.5em 0.5em 0.3em 0.5em;
+}
+.choix_tab.active {
+  border: 2px solid white;
+  color: white;
+  border-bottom-width: 0;
+}
+.sheet-navigation {
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: row;
+  font-size: 1, 5em;
 }
 .titre2 {
   font-family: "posterbodoni";

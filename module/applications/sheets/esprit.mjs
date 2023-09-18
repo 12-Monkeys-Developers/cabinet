@@ -44,4 +44,20 @@ export default class EspritSheet extends CabinetActorSheet {
       return aspect;
     });
   }
+
+  activateListeners(html) {
+    super.activateListeners(html);
+
+    html.find(".ajout-acquis").click(this._onAjoutAcquis.bind(this));
+  }
+  async _onAjoutAcquis(event) {
+    event.preventDefault();
+    let updateData = duplicate(this.actor.system.acquis);
+    updateData.push({
+      nom: "Nouvel Acquis",
+      valeur: "1",
+    });
+    await this.actor.update({ ["system.acquis"]: updateData });
+
+  }
 }

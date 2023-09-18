@@ -32,7 +32,7 @@
       </div>
   </div>
   <div class="col-droite-qualites">
-    <div class="titre2">Profil et concept</div>
+    <div class="titre2">Profil</div>
     <div class="concept">
         {{#if editable}}
           <input type="text" name="system.profil.private" value="{{system.profil.private}}" placeholder="profil et concept" />
@@ -40,7 +40,7 @@
           {{system.profil.private}}
         {{/if}}
     </div>
-    <div class="titre2">Aspects</div>
+    <div class="titre2" style="margin-top:10px;">Aspects</div>
     <div class="aspects-grid">
       <div class="aspects-ligne" style="grid-row: 1; grid-column: 1;">
       <span class="nom-aspect">NESHAMA</span><span class="aspect-desc">(RAISON)</span>
@@ -73,6 +73,19 @@
           {{/if}}
         </div>
     </div>
-    <div class="titre2">Acquis</div>
+    <div class="titre2" style="margin-top:10px;">Acquis
+      {{#if editable}}&nbsp;&nbsp;
+        <a class="ajout-acquis" title="{{localize 'CDM.TOOLTIP.ajouterAcquis'}}">
+        <i class="fa-solid fa-books-medical"></i></a>
+      {{/if}}
+    </div>
+    {{#each system.acquis as |acquis|}}
+    <div class="ligne-acquis">
+      <span class="acquis-nom">{{acquis.nom}}</span><span class="acquis-valeur">{{acquis.valeur}}</span>
+      {{#if editable}}&nbsp;&nbsp;
+        <a class="acquis-delete" title="{{localize 'CDM.TOOLTIP.supprimer'}}"><i class="fas fa-trash"></i></a>
+      {{/if}}
+    </div>
+    {{/each}}
   </div>
 </div>
