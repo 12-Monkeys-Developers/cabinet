@@ -7,7 +7,7 @@ export default class CabinetActorSheet extends ActorSheet {
       height: 750,
       classes: [SYSTEM.id, "sheet", "actor", this.actorType],
       template: `systems/${SYSTEM.id}/templates/sheets/${this.actorType}.hbs`,
-      resizable: true,
+      resizable: false,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "qualites" }],
       scrollY: []
     });

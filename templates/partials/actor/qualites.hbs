@@ -1,37 +1,78 @@
 <div class="grid-tab-qualites">
-<div class="grid-arbre-qualites">
-    <div class="qualite-group intellect-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='intellect' gauche="1"}}
+  <div class="grid-arbre-qualites">
+      <div class="qualite-group intellect-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='intellect' gauche="1"}}
+      </div>
+      <div class="qualite-group courage-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='courage' }}
+      </div>
+      <div class="qualite-group sensibilite-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='sensibilite' }}
+      </div>
+      <div class="qualite-group autorite-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='autorite' gauche="1" }}
+      </div>
+      <div class="qualite-group ouverture-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='ouverture' }}
+      </div>
+      <div class="qualite-group savoir-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='savoir' gauche="1" }}
+      </div>
+      <div class="qualite-group serenite-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='serenite' }}
+      </div>
+      <div class="qualite-group charisme-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='charisme' }}
+      </div>
+      <div class="qualite-group attention-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='attention' }}
+      </div>
+      <div class="qualite-group coordination-group">
+        {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='coordination' }}
+      </div>
+  </div>
+  <div class="col-droite-qualites">
+    <div class="titre2">Profil et concept</div>
+    <div class="concept">
+        {{#if editable}}
+          <input type="text" name="system.profil.private" value="{{system.profil.private}}" placeholder="profil et concept" />
+        {{else}}
+          {{system.profil.private}}
+        {{/if}}
     </div>
-    <div class="qualite-group courage-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='courage' }}
+    <div class="titre2">Aspects</div>
+    <div class="aspects-grid">
+      <div class="aspects-ligne" style="grid-row: 1; grid-column: 1;">
+      <span class="nom-aspect">NESHAMA</span><span class="aspect-desc">(RAISON)</span>
+        </div>
+        <div class="aspectcircle" style="grid-row: 1; grid-column: 2;">
+        {{#if editable}}
+          <input type="number" name="system.aspects.neshama.valeur" value="{{system.aspects.neshama.valeur}}" />
+        {{else}}
+          +{{system.aspects.neshama.valeur}}
+        {{/if}}
+      </div>
+      <div class="aspects-ligne" style="grid-row: 2; grid-column: 1;">
+        <span class="nom-aspect">ROUA'H</span><span class="aspect-desc">(INTUITION)</span>
+        </div>
+        <div class="aspectcircle" style="grid-row: 2; grid-column: 2;">
+          {{#if editable}}
+             <input type="number" name="system.aspects.rouah.valeur" value="{{system.aspects.rouah.valeur}}" />
+          {{else}}
+            +{{system.aspects.rouah.valeur}}
+          {{/if}}
+      </div>
+      <div class="aspects-ligne" style="grid-row: 3; grid-column: 1;">
+        <span class="nom-aspect">NEFESH</span><span class="aspect-desc">(ACTION)</span>
+        </div>
+        <div class="aspectcircle" style="grid-row: 3; grid-column: 2;">
+          {{#if editable}}
+            <input type="number" name="system.aspects.nefesh.valeur" value="{{system.aspects.nefesh.valeur}}" />
+          {{else}}
+            +{{system.aspects.nefesh.valeur}}
+          {{/if}}
+        </div>
     </div>
-    <div class="qualite-group sensibilite-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='sensibilite' }}
-    </div>
-    <div class="qualite-group autorite-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='autorite' gauche="1" }}
-    </div>
-    <div class="qualite-group ouverture-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='ouverture' }}
-    </div>
-    <div class="qualite-group savoir-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='savoir' gauche="1" }}
-    </div>
-    <div class="qualite-group serenite-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='serenite' }}
-    </div>
-    <div class="qualite-group charisme-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='charisme' }}
-    </div>
-    <div class="qualite-group attention-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='attention' }}
-    </div>
-    <div class="qualite-group coordination-group">
-      {{> "systems/cabinet/templates/partials/actor/qualite-group.hbs" qualite='coordination' }}
-    </div>
-
-
-</div>
-
+    <div class="titre2">Acquis</div>
+  </div>
 </div>

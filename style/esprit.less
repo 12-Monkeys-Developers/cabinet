@@ -58,8 +58,7 @@
 
 .grid-tab-qualites {
   display: grid;
-  grid-template-columns: 350px 300px 300px;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 350px 600px;
   padding-left: 30px;
 }
 .grid-arbre-qualites {
@@ -131,15 +130,15 @@
 .qualite-group {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 40px 30px 30px 30px;
+  grid-template-rows: 40px 30px 23px 30px;
   .qualite-name {
     font-family: "arrusbt";
     font-weight: bold;
     font-size: 1em;
     color: #497180;
     text-transform: uppercase;
-    margin-top: 10px;
-    padding-left: 12px;
+    margin-top: 15px;
+    padding-left: 24px;
   }
   .qualite-value {
     font-family: "arrusbt";
@@ -148,15 +147,16 @@
     color: #497180;
     text-transform: uppercase;
     input {
+      margin-left: -6px;
       text-align: center;
       width: 1em;
     }
   }
-  .qvdroite{
-    padding-left: 48px;
+  .qvdroite {
+    padding-left: 55px;
   }
-  .qvgauche{
-    padding-left: 42px;
+  .qvgauche {
+    padding-left: 47px;
   }
   .defaut-value {
     font-family: "arrusbt";
@@ -167,13 +167,15 @@
     input {
       text-align: center;
       width: 0.9em;
+      margin-left: -4px;
     }
   }
-  .dvdroite{
-    padding-left: 66px;
+  .dvdroite {
+    padding-left: 70px;
   }
-  .dvgauche{
-    padding-left: 33px;
+  .dvgauche {
+    text-align: left;
+    padding-left: 38px;
   }
   .defaut-name {
     font-family: "arrusbt";
@@ -182,10 +184,66 @@
     color: #7b3135;
     text-transform: uppercase;
   }
-  .dndroite{
+  .dndroite {
     padding-left: 45px;
   }
-  .dngauche{
+  .dngauche {
     padding-left: 0px;
+  }
+}
+.col-droite-qualites {
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+  margin-top: 25px;
+  .concept {
+    text-align: justify;
+    margin-left: 10px;
+    font-family: "garedechambord";
+    font-size: 2em;
+    color: black;
+    margin-left: 5px;
+    margin-top: 10px;
+    input {
+      color: black;
+    }
+    input {
+      text-align: justify;
+    }
+  }
+  .aspects-grid {
+    display: grid;
+    grid-template-columns: 180px 40px;
+    grid-template-rows: 34px 34px 34px;
+    .aspects-ligne {
+      display: flex;
+      flex-direction: row;
+      margin-top: 10px;
+      .nom-aspect {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: #497180;
+        text-transform: uppercase;
+        padding-left: 10px;
+      }
+      .aspect-desc {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: #685a4e;
+        text-transform: uppercase;
+        padding-left: 6px;
+      }
+    }
+    .aspectcircle {
+      border-radius: 50%;
+      padding: 7px 8px;
+      border: 2px solid #497180;
+      color: #497180;
+      text-align: center;
+      font-size: 1em;
+      font-weight: bold;
+    }
   }
 }
