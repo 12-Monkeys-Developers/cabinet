@@ -29,6 +29,7 @@ Hooks.once("init", async function () {
   CONFIG.Item.documentClass = documents.CabinetItem;
 
   CONFIG.Item.dataModels = {
+    acquis: models.CabinetAcquis,
     arme: models.CabinetArme,
     armure: models.CabinetArmure,
     corruption: models.CabinetCorruption,
@@ -36,6 +37,7 @@ Hooks.once("init", async function () {
   };
 
   Items.unregisterSheet("core", ItemSheet);
+  Items.registerSheet(SYSTEM.id, applications.AcquisSheet, { types: ["acquis"], makeDefault: true });
   Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
 
   loadTemplates(["systems/cabinet/templates/partials/actor/qualites.hbs", "systems/cabinet/templates/partials/actor/qualite-group.hbs"]);

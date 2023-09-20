@@ -33,6 +33,9 @@ export default class CabinetActorSheet extends ActorSheet {
 
     // Lock/Unlock la fiche
     html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
+    html.find(".item-create").click(this._onItemCreate.bind(this));
+    html.find(".item-edit").click((ev) => this._onItemEdit(ev));
+    html.find(".item-delete").click((ev) => this._onItemDelete(ev));
   }
 
   /**
@@ -48,5 +51,56 @@ export default class CabinetActorSheet extends ActorSheet {
     if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
     else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
     this.actor.sheet.render(true);
+  }
+  
+  /**
+   * Créer un embedded item
+   *
+   * @name _onItemCreate
+   * @param {*} event
+   */
+  _onItemCreate(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let itemData = {
+      type: element.dataset.type,
+    };
+    switch (element.dataset.type) {
+      case "acquis":
+        itemData.name = game.i18n.localize("CDM.NOUVEAU.acquis");
+        break;
+    }
+    return this.actor.createEmbeddedDocuments("Item", [itemData]);
+  }
+
+  /**
+   * Editer un embedded item
+   *
+   * @name _onItemEdit
+   * @param {*} event
+   */
+  _onItemEdit(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let itemId = element.dataset.field;
+    let item = this.actor.items.get(itemId);
+    if (item) item.sheet.render(true);
+  }
+
+  /**
+   * Supprimer un embedded item
+   *
+   * @name _onItemDelete
+   * @param {*} event
+   */
+  _onItemDelete(event) {
+    event.preventDefault();
+    let element = event.currentTarget;
+    let itemId = element.dataset.field;
+    let item = this.actor.items.get(itemId);
+    if (item === null) {
+      return;
+    }
+    this.actor.deleteEmbeddedDocuments("Item", [item.id], { render: true });
   }
 }

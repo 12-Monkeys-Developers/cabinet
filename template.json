@@ -7,7 +7,8 @@
     "pnj": {}
   },
   "Item": {
-    "types": ["arme", "armure", "corruption", "pouvoir"],
+    "types": ["acquis", "arme", "armure", "corruption", "pouvoir"],
+    "acquis": {},
     "arme": {},
     "armure": {},
     "corruption" : {},

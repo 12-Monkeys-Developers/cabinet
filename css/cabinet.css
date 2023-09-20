@@ -89,11 +89,27 @@
   display: flex;
   flex-direction: row;
 }
+.editor {
+  height: 100%;
+  width: 100%;
+  background: repeat url("../assets/images/sheets/background.webp");
+  box-shadow: inset 0 0 6px black;
+  font-family: "garamondpro";
+  font-size: 1.2em;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  min-height: 5em;
+}
+.editor-content {
+  min-height: 5em;
+}
 .esprit-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-  margin: 3px;
 }
 .esprit-header .titre_feuille {
   font-family: "arrusbt";
@@ -122,14 +138,14 @@
   border: none;
   justify-self: end;
   width: 133px;
-  height: 90px;
+  height: 80px;
 }
 .esprit-header .esprit-portrait img {
   border-radius: 50%;
 }
 .choix_tab {
   font-family: "posterbodoni";
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #f0eae1;
   text-transform: uppercase;
   border: 1px solid #f0eae1;
@@ -349,4 +365,26 @@
   text-align: center;
   font-size: 1em;
   font-weight: bold;
+}
+.col-droite-qualites .acquis-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.col-droite-qualites .acquis-col .ligne-acquis {
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr;
+  justify-content: left;
+  margin: 0.5em 0.5em 0px 0.5em;
+  border-bottom: 1px solid black;
+}
+.col-droite-qualites .acquis-col .acquis-nom {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: #497180;
+  padding-left: 0.5em;
+  align-self: center;
+}
+.col-droite-qualites .acquis-col .icon-group {
+  margin-left: auto;
 }

@@ -15,11 +15,21 @@ export default class EspritSheet extends CabinetActorSheet {
     context.qualites = this.#formatQualites(context.actor.system.qualites);
     context.aspects = this.#formatAspects(context.actor.system.aspects);
 
+    // Acquis par ordre alpha et mise en forme de la description
+    context.acquis = this.actor.items
+      .filter((item) => item.type == "acquis")
+      .sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      });
+    context.acquis.forEach((element) => {
+      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    });
+
     return context;
   }
 
   /**
-   * Format les qualités por les afficher sur la fiche
+   * Format les qualités pour les afficher sur la fiche
    * @param {object} qualites
    * @return {object[]}
    */
@@ -52,12 +62,12 @@ export default class EspritSheet extends CabinetActorSheet {
   }
   async _onAjoutAcquis(event) {
     event.preventDefault();
-    let updateData = duplicate(this.actor.system.acquis);
+    /*let updateData = duplicate(this.actor.system.acquis);
     updateData.push({
       nom: "Nouvel Acquis",
       valeur: "1",
     });
-    await this.actor.update({ ["system.acquis"]: updateData });
+    await this.actor.update({ ["system.acquis"]: updateData });*/
 
   }
 }

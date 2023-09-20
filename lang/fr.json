@@ -103,6 +103,9 @@
       "ajouterAcquis": "Ajouter un nouvel Acquis",
       "modifier": "Modifier",
       "supprimer": "Supprimer"
+    },
+    "NOUVEAU": {
+      "acquis": "Nouvel acquis"
     }
   }
 }

@@ -49,15 +49,7 @@ export default class CabinetEsprit extends foundry.abstract.DataModel {
       }, {})
     );
 
-    // Acquis : Nom, valeur de +1 à +3, description optionnelle, milieu (oui/non)
-    schema.acquis = new fields.ArrayField(
-      new fields.SchemaField({
-        nom: new fields.StringField({ required: true, blank: true, initial: "" }),
-        valeur: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 1, min: 1, max: 3 }),
-        description: new fields.StringField({ required: false, blank: true }),
-        milieu: new fields.BooleanField({ initial: false }),
-      })
-    );
+    // Acquis : Embedded items de type acquis
 
     schema.perisprit = new fields.NumberField({ ...requiredInteger, initial: 9, min: 0, max: 9 });
     schema.routine = new fields.HTMLField();
