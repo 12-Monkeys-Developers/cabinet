@@ -58,16 +58,17 @@ export default class EspritSheet extends CabinetActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".ajout-acquis").click(this._onAjoutAcquis.bind(this));
+    html.find(".qualite-group").click(this._onProgramRoll.bind(this));
   }
-  async _onAjoutAcquis(event) {
-    event.preventDefault();
-    /*let updateData = duplicate(this.actor.system.acquis);
-    updateData.push({
-      nom: "Nouvel Acquis",
-      valeur: "1",
-    });
-    await this.actor.update({ ["system.acquis"]: updateData });*/
 
+  async _onProgramRoll(event) {
+    event.preventDefault();
+    // ne pas déclencher de jet si la feuille est déverrouillée
+    if(this.actor.isUnlocked) return;
+    
+    let element = event.currentTarget;
+    let field = element.dataset.field;
+    console.log("jet de ", field);
+//à compléter quand le code des jets d'action sera fait
   }
 }

@@ -333,7 +333,7 @@
 }
 .col-droite-qualites .aspects-grid {
   display: grid;
-  grid-template-columns: 180px 40px;
+  grid-template-columns: 180px 40px 1fr;
   grid-template-rows: 34px 34px 34px;
 }
 .col-droite-qualites .aspects-grid .aspects-ligne {
@@ -365,6 +365,24 @@
   text-align: center;
   font-size: 1em;
   font-weight: bold;
+}
+.col-droite-qualites .aspects-grid .encart-exp {
+  background: no-repeat url("../assets/images/sheets/encart_exp.webp");
+  background-size: cover;
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #497180;
+  text-transform: uppercase;
+  text-align: center;
+  justify-self: right;
+  width: 199px;
+}
+.col-droite-qualites .aspects-grid .encart-exp .text-exp {
+  margin-top: 50px;
+}
+.col-droite-qualites .aspects-grid .encart-exp input {
+  width: 1em;
 }
 .col-droite-qualites .acquis-col {
   display: grid;

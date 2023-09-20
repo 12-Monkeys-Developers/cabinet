@@ -227,7 +227,7 @@
   }
   .aspects-grid {
     display: grid;
-    grid-template-columns: 180px 40px;
+    grid-template-columns: 180px 40px 1fr;
     grid-template-rows: 34px 34px 34px;
     .aspects-ligne {
       display: flex;
@@ -259,6 +259,24 @@
       font-size: 1em;
       font-weight: bold;
     }
+    .encart-exp {
+      background: no-repeat url("../assets/images/sheets/encart_exp.webp");
+      background-size: cover;
+      font-family: "arrusbt";
+      font-weight: bold;
+      font-size: 1.5em;
+      color: #497180;
+      text-transform: uppercase;
+      text-align: center;
+      justify-self: right;
+      width: 199px;
+      .text-exp {
+        margin-top: 50px;
+      }
+      input {
+        width: 1em;
+      }
+    }
   }
   .acquis-col {
     display: grid;
@@ -270,16 +288,16 @@
       margin: 0.5em 0.5em 0px 0.5em;
       border-bottom: 1px solid black;
     }
-    .acquis-nom{
+    .acquis-nom {
       font-family: "arrusbt";
       font-weight: bold;
       font-size: 1em;
       color: #497180;
-        padding-left: 0.5em;
-        align-self: center;
+      padding-left: 0.5em;
+      align-self: center;
     }
-    .icon-group{
-        margin-left: auto;
+    .icon-group {
+      margin-left: auto;
     }
   }
 }
