@@ -7,3 +7,4 @@ export {default as CabinetCorruption} from "./corruption.mjs";
 export {default as CabinetAcquis} from "./acquis.mjs";
 export {default as CabinetArme} from "./arme.mjs";
 export {default as CabinetArmure} from "./armure.mjs";
+export {default as CabinetAction} from "./action.mjs";

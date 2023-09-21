@@ -1,7 +1,7 @@
 /**
  * Qualités, Aspects, Acquis, Profil, Périsprit, Contacts, Routine, Adversaires, Pouvoirs, Objets, Corruption et expérience
  */
-export default class CabinetEsprit extends foundry.abstract.DataModel {
+export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const requiredInteger = { required: true, nullable: false, integer: true };
@@ -71,6 +71,10 @@ export default class CabinetEsprit extends foundry.abstract.DataModel {
       totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
     });
 
+    schema.comedien = new fields.BooleanField({ initial: false });
+    schema.jardin = new fields.BooleanField({ initial: false });
+
     return schema;
   }
+
 }

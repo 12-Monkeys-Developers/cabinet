@@ -89,45 +89,11 @@
   display: flex;
   flex-direction: row;
 }
-.editor {
-  height: 100%;
-  width: 100%;
-  background: repeat url("../assets/images/sheets/background.webp");
-  box-shadow: inset 0 0 6px black;
-  font-family: "garamondpro";
-  font-size: 1.2em;
-  text-align: justify;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  min-height: 5em;
-}
-.editor-content {
-  min-height: 5em;
-}
-i.logo_comportement {
-  width: 30px;
-  height: 30px;
-  background-image: url("../assets/icones/comportement.png");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-}
-i.logo_defaut {
-  width: 30px;
-  height: 30px;
-  background-image: url("../assets/icones/defaut.png");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-}
 .esprit-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
+  margin: 3px;
 }
 .esprit-header .titre_feuille {
   font-family: "arrusbt";
@@ -156,14 +122,14 @@ i.logo_defaut {
   border: none;
   justify-self: end;
   width: 133px;
-  height: 80px;
+  height: 90px;
 }
 .esprit-header .esprit-portrait img {
   border-radius: 50%;
 }
 .choix_tab {
   font-family: "posterbodoni";
-  font-size: 1.2em;
+  font-size: 1.5em;
   color: #f0eae1;
   text-transform: uppercase;
   border: 1px solid #f0eae1;
@@ -351,7 +317,7 @@ i.logo_defaut {
 }
 .col-droite-qualites .aspects-grid {
   display: grid;
-  grid-template-columns: 180px 40px 1fr;
+  grid-template-columns: 180px 40px;
   grid-template-rows: 34px 34px 34px;
 }
 .col-droite-qualites .aspects-grid .aspects-ligne {
@@ -384,89 +350,17 @@ i.logo_defaut {
   font-size: 1em;
   font-weight: bold;
 }
-.col-droite-qualites .aspects-grid .encart-exp {
-  background: no-repeat url("../assets/images/sheets/encart_exp.webp");
-  background-size: cover;
-  font-family: "arrusbt";
-  font-weight: bold;
-  font-size: 1.5em;
-  color: #497180;
-  text-transform: uppercase;
-  text-align: center;
-  justify-self: right;
-  width: 199px;
-}
-.col-droite-qualites .aspects-grid .encart-exp .text-exp {
-  margin-top: 50px;
-}
-.col-droite-qualites .aspects-grid .encart-exp input {
-  width: 1em;
-}
-.col-droite-qualites .acquis-col {
+.action-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 180px 40px;
+  grid-template-rows: 34px 34px 34px;
 }
-.col-droite-qualites .acquis-col .ligne-acquis {
-  display: grid;
-  grid-template-columns: 5fr 1fr 1fr;
-  justify-content: left;
-  margin: 0.5em 0.5em 0px 0.5em;
-  border-bottom: 1px solid black;
-}
-.col-droite-qualites .acquis-col .acquis-nom {
-  font-family: "arrusbt";
-  font-weight: bold;
-  font-size: 1em;
-  color: #497180;
-  padding-left: 0.5em;
-  align-self: center;
-}
-.col-droite-qualites .acquis-col .icon-group {
-  margin-left: auto;
-}
-.cabinet-membres {
-  background: repeat url("../assets/images/sheets/fond_gestion.webp");
-  min-width: 200px;
-  min-height: 200px;
-  border: 2px solid black;
-  display: grid;
-  grid-template-columns: 90px 90px 200px 120px 120px 120px;
-  align-items: center;
-  font-family: "arrusbt";
-}
-.cabinet-membres .membre-img {
-  padding: 5px;
-  justify-self: end;
-  width: 80px;
-  height: 80px;
-}
-.cabinet-membres .membre-img img {
-  max-height: 90%;
-}
-.cabinet-membres .membre-icone {
-  width: 40px;
-  margin: auto;
-}
-.cabinet-membres .titre_col {
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-.arbre-de-vie {
-  background: repeat url("../assets/images/sheets/arbre_vie.webp");
-  width: 500px;
-  height: 727px;
-}
-.actions-grid {
-  display: grid;
-  grid-template-columns: 1060px;
-}
-.actions-grid .actions-ligne {
-  display: grid;
-  grid-template-columns: 150px 250px 150px 450px 10px 50px;
+.action-grid .action-ligne {
+  display: flex;
+  flex-direction: row;
   margin-top: 10px;
 }
-.actions-grid .actions-ligne .nom-action {
+.action-grid .action-ligne .nom-action {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -475,10 +369,10 @@ i.logo_defaut {
   padding-left: 10px;
 }
 
-#players ol .menu-comedien {
-  flex: 0 0 8px;
-  height: 8px;
-  border: 1px solid var(--color-border-dark);
-  border-radius: 50%;
-  margin: 5px 8px 0 0;
+.back-black {
+  background-color: black;
+}
+
+.back-white {
+  background-color: white;
 }

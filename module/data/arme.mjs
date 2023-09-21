@@ -1,4 +1,4 @@
-export default class CabinetArme extends foundry.abstract.DataModel {
+export default class CabinetArme extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const requiredNullableInteger = { required: true, nullable: true, integer: true, initial: null };
@@ -11,8 +11,8 @@ export default class CabinetArme extends foundry.abstract.DataModel {
     schema.degats = new fields.StringField({ required: true, nullable: false, initial: "" });
     schema.puissance = new fields.BooleanField({ initial: false });
     schema.cadence = new fields.NumberField({ ...requiredNullableInteger });
-    schema.sousType = new fields.StringField({ required: true, choices: SYSTEM.SOUSTYPES, initial: "naturelle" });
-    schema.categorie = new fields.StringField({ required: true, choices: SYSTEM.CATEGORIES, initial: "poing" });
+    schema.sousType = new fields.StringField({ required: true, choices: SYSTEM.ARME_SOUSTYPES, initial: "naturelle" });
+    schema.categorie = new fields.StringField({ required: true, choices: SYSTEM.ARME_CATEGORIES, initial: "poing" });
 
     return schema;
   }

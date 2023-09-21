@@ -1,4 +1,4 @@
-export default class CabinetArmure extends foundry.abstract.DataModel {
+export default class CabinetArmure extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const requiredInteger = { required: true, nullable: false, integer: true };

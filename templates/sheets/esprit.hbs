@@ -1,9 +1,9 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} {{backgroundColor}}" autocomplete="off">
 
   {{log "esprit" this}}
   {{! Main Content }}
   <section class="sheet-body">
-    <header class="esprit-header" {{#if estComedien}} style='background: repeat url("systems/cabinet/assets/images/sheets/esprit-header-comedien.webp");' {{else if dansJardin}} style='background: repeat url("systems/cabinet/assets/images/sheets/esprit-header-jardin.webp");'{{/if}}>
+    <header class="esprit-header" style='background: repeat url("systems/cabinet/assets/images/sheets/{{getBackgroundImage actor}}");'>
       <div class="titre_feuille">Esprit&nbsp;&nbsp;&nbsp;
     <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
           {{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
@@ -26,6 +26,11 @@
     {{! Qualites Tab }}
     <div class="tab tab-qualites flexcol" data-group="primary" data-tab="qualites">
         {{> "systems/cabinet/templates/partials/actor/qualites.hbs"}}
+    </div>
+
+    {{! Actions Tab }}
+    <div class="tab tab-actions flexcol" data-group="primary" data-tab="actions">
+       {{> "systems/cabinet/templates/partials/actor/actions.hbs"}}
     </div>
 
   </section>

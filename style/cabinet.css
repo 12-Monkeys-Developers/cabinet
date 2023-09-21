@@ -106,24 +106,6 @@
 .editor-content {
   min-height: 5em;
 }
-i.logo_comportement {
-  width: 30px;
-  height: 30px;
-  background-image: url("../assets/icones/comportement.png");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-}
-i.logo_defaut {
-  width: 30px;
-  height: 30px;
-  background-image: url("../assets/icones/defaut.png");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-}
 .esprit-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
   display: grid;
@@ -424,46 +406,14 @@ i.logo_defaut {
 .col-droite-qualites .acquis-col .icon-group {
   margin-left: auto;
 }
-.cabinet-membres {
-  background: repeat url("../assets/images/sheets/fond_gestion.webp");
-  min-width: 200px;
-  min-height: 200px;
-  border: 2px solid black;
-  display: grid;
-  grid-template-columns: 90px 90px 200px 120px 120px 120px;
-  align-items: center;
-  font-family: "arrusbt";
-}
-.cabinet-membres .membre-img {
-  padding: 5px;
-  justify-self: end;
-  width: 80px;
-  height: 80px;
-}
-.cabinet-membres .membre-img img {
-  max-height: 90%;
-}
-.cabinet-membres .membre-icone {
-  width: 40px;
-  margin: auto;
-}
-.cabinet-membres .titre_col {
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-.arbre-de-vie {
-  background: repeat url("../assets/images/sheets/arbre_vie.webp");
-  width: 500px;
-  height: 727px;
-}
 .actions-grid {
   display: grid;
-  grid-template-columns: 1060px;
+  grid-template-columns: 180px 40px;
+  grid-template-rows: 34px 34px 34px;
 }
 .actions-grid .actions-ligne {
-  display: grid;
-  grid-template-columns: 150px 250px 150px 450px 10px 50px;
+  display: flex;
+  flex-direction: row;
   margin-top: 10px;
 }
 .actions-grid .actions-ligne .nom-action {
@@ -473,12 +423,4 @@ i.logo_defaut {
   color: #497180;
   text-transform: uppercase;
   padding-left: 10px;
-}
-
-#players ol .menu-comedien {
-  flex: 0 0 8px;
-  height: 8px;
-  border: 1px solid var(--color-border-dark);
-  border-radius: 50%;
-  margin: 5px 8px 0 0;
 }

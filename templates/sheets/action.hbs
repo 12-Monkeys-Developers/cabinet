@@ -1,0 +1,65 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{log "action" this}}
+
+  {{! Sheet Body }}
+  <section class="sheet-body flexcol">
+    <h3>{{item.name}}</h3>
+    <div class="form-group">
+      <label>Qualité</label>
+      <div class="form-fields">
+        <select name="system.qualite">
+          {{selectOptions qualites selected=system.qualite labelAttr="label" sort=true}}
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Aspect</label>
+      <div class="form-fields">
+        <select name="system.aspect">
+          {{selectOptions aspects selected=system.aspect labelAttr="label" sort=true}}
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Attribut</label>
+      <div class="form-fields">
+        <select name="system.attribut">
+          {{selectOptions attributs selected=system.attribut labelAttr="label" sort=true blank=""}}
+        </select>
+      </div>
+    </div>
+    <label class="checkbox">
+      <input type="checkbox" name="system.controle" {{checked system.controle}} />
+      Contrôle
+    </label>
+    {{#unless system.controle}}
+      Votre Esprit n'a pas besoin d'avoir le contrôle pour tenter cette action.{{/unless}}<label class="checkbox">
+      <input type="checkbox" name="system.opposition" {{checked system.opposition}} />
+      Opposition
+    </label>
+    {{#if system.opposition}}
+      <div class="form-group">
+        <label>Opposition : Aspect</label>
+        <div class="form-fields">
+          <select name="system.oppositionAspect">
+            {{selectOptions aspects selected=system.oppositionAspect labelAttr="label" sort=true}}
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Opposition : Attribut</label>
+        <div class="form-fields">
+          <select name="system.oppositionAttribut">
+            {{selectOptions attributs selected=system.oppositionAttribut labelAttr="label" blank="" sort=true}}
+          </select>
+        </div>
+      </div>
+    {{/if}}
+        <div class="form-group">
+        <label>Circonstances</label>
+        <div class="form-fields">
+            {{editor system.circonstances target="system.circonstances" button=true owner=owner editable=editable}}
+        </div>        
+    </div>
+  </section>
+</form>

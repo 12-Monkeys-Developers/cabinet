@@ -1,7 +1,8 @@
 import { SYSTEM } from "./module/config/system.mjs";
-import setupTextEnrichers from "./module/config/textenrichers.mjs";
-import initControlButtons from "./module/config/control-buttons.mjs";
-import { registerForms } from "./module/config/forms.js";
+import setupTextEnrichers from "./module/config/text-enrichers.mjs";
+import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
+import registerForms from "./module/applications/forms.mjs";
+
 globalThis.SYSTEM = SYSTEM;
 
 // Import modules
@@ -12,6 +13,8 @@ import * as models from "./module/data/_module.mjs";
 Hooks.once("init", async function () {
   console.log(`Initialisation du système Cabinet des murmures...`);
   game.system.CONST = SYSTEM;
+
+  CONFIG.ui.players = applications.PlayersList;
 
   // Configuration document Actor
   CONFIG.Actor.documentClass = documents.CabinetActor;
@@ -25,7 +28,6 @@ Hooks.once("init", async function () {
 
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
-  console.log("actors  ", Actors);
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.CabinetItem;
@@ -36,17 +38,20 @@ Hooks.once("init", async function () {
     armure: models.CabinetArmure,
     corruption: models.CabinetCorruption,
     pouvoir: models.CabinetPouvoir,
+    action: models.CabinetAction,
   };
 
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(SYSTEM.id, applications.AcquisSheet, { types: ["acquis"], makeDefault: true });
   Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
+  Items.registerSheet(SYSTEM.id, applications.ActionSheet, { types: ["action"], makeDefault: true });
 
   loadTemplates([
     "systems/cabinet/templates/partials/actor/qualites.hbs",
     "systems/cabinet/templates/partials/actor/qualite-group.hbs",
-    "systems/cabinet/templates/forms/arbre_vie.hbs",
-    "systems/cabinet/templates/forms/gestion_cabinet.hbs"
+    "systems/cabinet/templates/partials/actor/actions.hbs",
+    "systems/cabinet/templates/forms/arbre-vie.hbs",
+    "systems/cabinet/templates/forms/gestion-cabinet.hbs"
   ]);
 
   // Configuration text enrichers
@@ -66,6 +71,22 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("getDefautProperty", function (actor, qualite, prop) {
     return foundry.utils.getProperty(actor.system.qualites, `${qualite}.defaut.${prop}`);
   });
+
+  Handlebars.registerHelper("getBackgroundImage", function (actor) {
+    if (actor.system.comedien && !actor.system.jardin) return "esprit-header-comedien.webp";
+    if (!actor.system.comedien && actor.system.jardin) return "esprit-header-jardin.webp";
+    return "esprit-header.webp";
+  }); 
+
+  // Register settings
+  game.settings.register("cabinet", "comedien", {
+    name: "Comédien",
+    hint: "Id de l'esprit qui a le contrôle du corps.",
+    scope: "world",
+    config: true,
+    type: String
+  });
+
 });
 
 Hooks.once("i18nInit", function () {
@@ -74,7 +95,7 @@ Hooks.once("i18nInit", function () {
 });
 
 Hooks.once("ready", async function () {
-  console.debug("Initialisation du système fini");
+  console.log("Initialisation du système fini");
 });
 
 function preLocalizeConfig() {
@@ -87,4 +108,7 @@ function preLocalizeConfig() {
   };
 
   localizeConfigObject(SYSTEM.SPHERES, ["label"]);
+  localizeConfigObject(SYSTEM.QUALITES, ["label"]);
+  localizeConfigObject(SYSTEM.ASPECTS, ["label"]);
+  localizeConfigObject(SYSTEM.ATTRIBUTS, ["label"]);
 }

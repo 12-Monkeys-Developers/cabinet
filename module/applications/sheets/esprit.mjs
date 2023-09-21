@@ -10,13 +10,11 @@ export default class EspritSheet extends CabinetActorSheet {
   /** @override */
   async getData(options) {
     const context = await super.getData(options);
-
-    context.estComedien = this.actor.estComedien;
-    context.dansJardin = this.actor.dansJardin;
     
     // Qualités
     context.qualites = this.#formatQualites(context.actor.system.qualites);
     context.aspects = this.#formatAspects(context.actor.system.aspects);
+    context.actions = this.actor.items.filter(i=>i.type === "action");
 
     // Acquis par ordre alpha et mise en forme de la description
     context.acquis = this.actor.items
@@ -27,6 +25,11 @@ export default class EspritSheet extends CabinetActorSheet {
     context.acquis.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
+
+    context.backgroundColor = this.actor.system.backgroundColor;
+
+    context.comedien = this.actor.system.comedien;
+    context.jardin = this.actor.system.jardin;
 
     return context;
   }
@@ -74,4 +77,6 @@ export default class EspritSheet extends CabinetActorSheet {
     console.log("jet de ", field);
     //à compléter quand le code des jets d'action sera fait
   }
+
+
 }

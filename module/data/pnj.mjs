@@ -1,4 +1,4 @@
-export default class CabinetPnj extends foundry.abstract.DataModel {
+export default class CabinetPnj extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const requiredInteger = { required: true, nullable: false, integer: true };
@@ -6,11 +6,11 @@ export default class CabinetPnj extends foundry.abstract.DataModel {
 
     schema.opinion = new fields.StringField({choices: SYSTEM.OPINION, initial: "neutre"});
 
-    // Aspects : Nom hébreux, nom français, valeur de +1 à +3
+    // Aspects : Valeur de +1 à +9, un PNJ surnaturel peut dépasser 9
     const aspectField = (label) =>
       new fields.SchemaField(
         {
-          valeur: new fields.NumberField({ ...requiredInteger, initial: 1, min: 1 , max: 9}),
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 1, min: 1 }),
         },
         { label }
       );
@@ -26,7 +26,7 @@ export default class CabinetPnj extends foundry.abstract.DataModel {
     const attributField = (label) =>
       new fields.SchemaField(
         {
-          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0}),
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         },
         { label }
       );
