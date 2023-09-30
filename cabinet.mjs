@@ -1,5 +1,7 @@
 import { SYSTEM } from "./module/config/system.mjs";
 import setupTextEnrichers from "./module/config/textenrichers.mjs";
+import initControlButtons from "./module/config/control-buttons.mjs";
+import { registerForms } from "./module/config/forms.js";
 globalThis.SYSTEM = SYSTEM;
 
 // Import modules
@@ -40,10 +42,21 @@ Hooks.once("init", async function () {
   Items.registerSheet(SYSTEM.id, applications.AcquisSheet, { types: ["acquis"], makeDefault: true });
   Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
 
-  loadTemplates(["systems/cabinet/templates/partials/actor/qualites.hbs", "systems/cabinet/templates/partials/actor/qualite-group.hbs"]);
+  loadTemplates([
+    "systems/cabinet/templates/partials/actor/qualites.hbs",
+    "systems/cabinet/templates/partials/actor/qualite-group.hbs",
+    "systems/cabinet/templates/forms/arbre_vie.hbs",
+    "systems/cabinet/templates/forms/gestion_cabinet.hbs"
+  ]);
 
   // Configuration text enrichers
   setupTextEnrichers();
+
+  //formulaires
+  registerForms();
+
+  // menu de gauche
+  initControlButtons();
 
   //configuration Handlebars
   Handlebars.registerHelper("getQualiteProperty", function (actor, qualite, prop) {

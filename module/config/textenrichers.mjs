@@ -29,6 +29,18 @@ export default function setupTextEnrichers() {
         logodoc.innerHTML = `<a class="content-link" data-hash="${match[2]}" data-uuid="${match[1]}" data-id="e0i63rT70ABXllKT" data-type="JournalEntryPage" data-tooltip="Texte Page"><i class="fas fa-file-lines"></i>discorde</a>`;
         return logodoc;
       }
-    }
+    },
+    {
+        pattern: /@contenu\[(.+?)\]/gm,
+        enricher: async (match, options) => {
+            const myData = await $.ajax({
+                url: match[1],
+                type: 'GET',
+            });
+            const doc = document.createElement("span");
+            doc.innerHTML = myData;
+            return doc;
+        }
+    },
   ]);
 }

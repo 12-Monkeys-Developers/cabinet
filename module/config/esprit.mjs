@@ -2,52 +2,62 @@ export const QUALITES = Object.freeze({
     courage: {
         id: "courage",
         label: "CDM.QUALITE.courage",
-        defaut: "CDM.DEFAUT.imprudence"
+        defaut: "CDM.DEFAUT.imprudence",
+        position: 1
     },
     intellect: {
         id: "intellect",
         label: "CDM.QUALITE.intellect",
-        defaut: "CDM.DEFAUT.froideur"
+        defaut: "CDM.DEFAUT.froideur",
+        position: 2
     },
     sensibilite: {
         id: "sensibilite",
         label: "CDM.QUALITE.sensibilite",
-        defaut: "CDM.DEFAUT.superstition"
+        defaut: "CDM.DEFAUT.superstition",
+        position: 3
     },
     autorite: {
         id: "autorite",
         label: "CDM.QUALITE.autorite",
-        defaut: "CDM.DEFAUT.intolerance"
+        defaut: "CDM.DEFAUT.intolerance",
+        position: 4
     },
     serenite: {
         id: "serenite",
         label: "CDM.QUALITE.serenite",
-        defaut: "CDM.DEFAUT.indifference"
+        defaut: "CDM.DEFAUT.indifference",
+        position: 5
     },
     ouverture: {
         id: "ouverture",
         label: "CDM.QUALITE.ouverture",
-        defaut: "CDM.DEFAUT.jalousie"
+        defaut: "CDM.DEFAUT.jalousie",
+        position: 6
     },
     savoir: {
         id: "savoir",
         label: "CDM.QUALITE.savoir",
-        defaut: "CDM.DEFAUT.orgueil"
+        defaut: "CDM.DEFAUT.orgueil",
+        position: 7
     },
     attention: {
         id: "attention",
         label: "CDM.QUALITE.attention",
-        defaut: "CDM.DEFAUT.manie"
+        defaut: "CDM.DEFAUT.manie",
+        position: 8
     },
     charisme: {
         id: "charisme",
         label: "CDM.QUALITE.charisme",
-        defaut: "CDM.DEFAUT.manipulation"
+        defaut: "CDM.DEFAUT.manipulation",
+        position: 9
     },
     coordination: {
         id: "coordination",
         label: "CDM.QUALITE.coordination",
-        defaut: "CDM.DEFAUT.avidite"
+        defaut: "CDM.DEFAUT.avidite",
+        position: 10
     }
 });
 

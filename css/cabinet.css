@@ -106,6 +106,24 @@
 .editor-content {
   min-height: 5em;
 }
+i.logo_comportement {
+  width: 30px;
+  height: 30px;
+  background-image: url("../assets/icones/comportement.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+i.logo_defaut {
+  width: 30px;
+  height: 30px;
+  background-image: url("../assets/icones/defaut.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
 .esprit-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
   display: grid;
@@ -405,4 +423,14 @@
 }
 .col-droite-qualites .acquis-col .icon-group {
   margin-left: auto;
+}
+.cabinet-membres {
+  min-width: 200px;
+  min-height: 200px;
+  border: 2px solid black;
+}
+.arbre-de-vie {
+  background: repeat url("../assets/images/sheets/arbre_vie.webp");
+  width: 500px;
+  height: 727px;
 }

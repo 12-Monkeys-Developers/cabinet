@@ -50,6 +50,9 @@ export default class CabinetEsprit extends foundry.abstract.DataModel {
     );
 
     // Acquis : Embedded items de type acquis
+    
+    //position sur l'Arbre de Vie : 0 = non positionné
+    schema.position = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 });
 
     schema.perisprit = new fields.NumberField({ ...requiredInteger, initial: 9, min: 0, max: 9 });
     schema.routine = new fields.HTMLField();
