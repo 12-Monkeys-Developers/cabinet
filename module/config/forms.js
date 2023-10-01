@@ -66,7 +66,7 @@ export class GestionForm extends FormApplication {
       title: "Gestion du Cabinet",
       id: "gestionform",
       template: "systems/cabinet/templates/forms/gestion_cabinet.hbs",
-      width: 700,
+      width: 800,
       height: 600,
       resizable: true,
       closeOnSubmit: false,
@@ -80,7 +80,13 @@ export class GestionForm extends FormApplication {
     };
     reference.membres.forEach((element) => {
       let actor = game.actors.get(element);
-      newData.membres.push({ nom: actor.name, img: actor.img });
+      newData.membres.push({
+        nom: actor.name,
+        img: actor.img,
+        id: actor.id,
+        estComedien: actor.estComedien,
+        token : actor.prototypeToken.texture.src,
+        dansJardin : actor.dansJardin});
     });
     return newData;
   }
@@ -98,6 +104,9 @@ export class GestionForm extends FormApplication {
   }
   activateListeners(html) {
     super.activateListeners(html);
+    html.find(".comedien").change(this._changerComedien.bind(this));
+    html.find(".jardin").change(this._allerJardin.bind(this));
+    html.find(".membre-enlever").click(this._enleverMembre.bind(this));
   }
 
   async _onDrop(event) {
@@ -114,6 +123,37 @@ export class GestionForm extends FormApplication {
     reference.membres.push(actorId);
     await game.settings.set("cabinet", "gestion", reference);
     
+    this.render();
+  }
+
+  //assigne le comédien
+  async _changerComedien(event) {
+    event.preventDefault();
+    const element  = event.currentTarget;
+    let actorId = element.dataset.field;
+    let reference = game.settings.get("cabinet", "gestion");
+    reference.comedien = actorId;
+    await game.settings.set("cabinet", "gestion", reference);
+    this.render();
+  }
+  async _allerJardin(event) {
+    event.preventDefault();
+    const element  = event.currentTarget;
+    let actorId = element.dataset.field;
+    let actor = game.actors.get(actorId);
+    let flagData = await actor.getFlag(game.system.id, "dansJardin");
+    if (flagData) await actor.unsetFlag(game.system.id, "dansJardin");
+    else await actor.setFlag(game.system.id, "dansJardin", true);
+    this.render();
+  }
+  async _enleverMembre(event) {
+    event.preventDefault();
+    const element  = event.currentTarget;
+    let indexArray = element.dataset.field;
+    console.log(element);
+    let reference = game.settings.get("cabinet", "gestion");
+    const x = reference.membres.splice(indexArray, 1);
+    await game.settings.set("cabinet", "gestion", reference);
     this.render();
   }
 }

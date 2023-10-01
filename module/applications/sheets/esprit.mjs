@@ -11,6 +11,9 @@ export default class EspritSheet extends CabinetActorSheet {
   async getData(options) {
     const context = await super.getData(options);
 
+    context.estComedien = this.actor.estComedien;
+    context.dansJardin = this.actor.dansJardin;
+    
     // Qualités
     context.qualites = this.#formatQualites(context.actor.system.qualites);
     context.aspects = this.#formatAspects(context.actor.system.aspects);
@@ -64,11 +67,11 @@ export default class EspritSheet extends CabinetActorSheet {
   async _onProgramRoll(event) {
     event.preventDefault();
     // ne pas déclencher de jet si la feuille est déverrouillée
-    if(this.actor.isUnlocked) return;
-    
+    if (this.actor.isUnlocked) return;
+
     let element = event.currentTarget;
     let field = element.dataset.field;
     console.log("jet de ", field);
-//à compléter quand le code des jets d'action sera fait
+    //à compléter quand le code des jets d'action sera fait
   }
 }

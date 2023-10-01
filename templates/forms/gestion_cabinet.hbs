@@ -1,7 +1,31 @@
 <form autocomplete="off">
-    <div class="cabinet-membres droppable">
-      {{#each membres as |membre index|}}
-        {{membre.nom}}
-      {{/each}}
-    </div>
+  <div class="cabinet-membres droppable">
+    <div class="titre_col">Icone</div>
+    <div class="titre_col">Portrait</div>
+    <div class="titre_col">Nom</div>
+    <div class="titre_col">Comédien</div>
+    <div class="titre_col">Jardin<br />secret</div>
+    <div class="titre_col">Enlever</div>
+    {{#each membres as |membre index|}}
+        <div class="membre-img">
+          <img src="{{membre.token}}" title="{{membre.nom}}" />
+        </div>
+        <div class="membre-img">
+          <img src="{{membre.img}}" title="{{membre.nom}}" />
+        </div>
+        <div class="membre-name">
+          {{membre.nom}}
+        </div>
+        <div class="membre-icone">
+          <input title="Comédien" class="checkbox comedien" data-field="{{membre.id}}" name="Comédien" type="checkbox" {{checked membre.estComedien}} />
+        </div>
+        <div class="membre-icone">
+          <input title="Dans son jardin secret" class="checkbox jardin" data-field="{{membre.id}}" name="Jardin secret" type="checkbox" {{checked membre.dansJardin}} />
+        </div>
+        <div class="membre-icone">
+          <a class="membre-enlever" data-field="{{index}}" data-tooltip="Enlever"><i class="fas fa-trash"></i></a>
+        
+      </div>
+    {{/each}}
+  </div>
 </form>

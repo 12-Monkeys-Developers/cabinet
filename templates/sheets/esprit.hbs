@@ -3,7 +3,7 @@
   {{log "esprit" this}}
   {{! Main Content }}
   <section class="sheet-body">
-    <header class="esprit-header">
+    <header class="esprit-header" {{#if estComedien}} style='background: repeat url("systems/cabinet/assets/images/sheets/esprit-header-comedien.webp");' {{else if dansJardin}} style='background: repeat url("systems/cabinet/assets/images/sheets/esprit-header-jardin.webp");'{{/if}}>
       <div class="titre_feuille">Esprit&nbsp;&nbsp;&nbsp;
     <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
           {{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>

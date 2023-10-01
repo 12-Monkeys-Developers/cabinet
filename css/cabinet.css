@@ -425,9 +425,32 @@ i.logo_defaut {
   margin-left: auto;
 }
 .cabinet-membres {
+  background: repeat url("../assets/images/sheets/fond_gestion.webp");
   min-width: 200px;
   min-height: 200px;
   border: 2px solid black;
+  display: grid;
+  grid-template-columns: 90px 90px 200px 120px 120px 120px;
+  align-items: center;
+  font-family: "arrusbt";
+}
+.cabinet-membres .membre-img {
+  padding: 5px;
+  justify-self: end;
+  width: 80px;
+  height: 80px;
+}
+.cabinet-membres .membre-img img {
+  max-height: 90%;
+}
+.cabinet-membres .membre-icone {
+  width: 40px;
+  margin: auto;
+}
+.cabinet-membres .titre_col {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 .arbre-de-vie {
   background: repeat url("../assets/images/sheets/arbre_vie.webp");
