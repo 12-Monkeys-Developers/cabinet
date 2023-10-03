@@ -465,8 +465,9 @@ i.logo_defaut {
   border: 0px;
 }
 .arbredevie .jardin {
-  height: 428;
+  height: 428px;
   display: flex;
+  flex-wrap: wrap;
 }
 .arbredevie .arbre {
   height: 628px;

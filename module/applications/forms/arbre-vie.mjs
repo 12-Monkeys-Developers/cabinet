@@ -28,7 +28,7 @@ export class ArbreVieForm extends FormApplication {
     console.log("contenuArbre : ", context.contenuArbre);
     membresSet.forEach((element) => {
       let actor = game.actors.get(element);
-      if (!actor.system.positionArbre) {
+      if (!actor.system.positionArbre.length) {
         context.membresJardin.push({
           nom: actor.name,
           id: actor.id,
@@ -44,58 +44,31 @@ export class ArbreVieForm extends FormApplication {
   activateListeners(html) {
     super.activateListeners(html);
   }
-  _onDeplacerToken(event) {
-    event.preventDefault();
-    let element = event.currentTarget;
-    console.log("dataset : ", element.dataset);
-
-    let actorId = element.dataset.field;
-    let actor = game.actors.get(actorId);
-    let newPosition = element.dataset.position;
-    let oldPosition = actor.system.positionArbre;
-    //tester user is gm ou bien user a les droits sur cet actor
-    console.log("ownership", actor.ownership);
-    // if(game.user.isGM || game.user)
-
-    // si la position est libre
-    if (this.validerDeplacement(oldPosition, newPosition)) {
-      actor.update({ "system.positionArbre": newPosition });
-
-      //ajouter un message de confirmation de déplacement dans le chat
-    } else ui.notifications.warn("Aucun chemin disponible vers la sphère " + newPosition + ".", { permanent: true });
-    this.render();
-  }
 
   /** @override */
   _onDragStart(event) {
     let actorId = event.originalTarget.dataset.field;
-
-    console.log("actorId", actorId);
     const actor = game.actors.get(actorId);
+    //tester user is gm ou bien user a les droits sur cet actor
+    console.log("ownership", actor.ownership);
+    // if(game.user.isGM || game.user)
     event.dataTransfer.setData("text/plain", JSON.stringify(actor.toDragData()));
   }
 
   async _onDrop(event) {
     event.preventDefault();
     const data = TextEditor.getDragEventData(event);
-    console.log("event : ", event);
-    console.log("data : ", data);
     if (data.type !== "Actor") return false;
     const actor = await Actor.implementation.fromDropData(data);
 
     if (actor.type !== "esprit") return false;
     let li = event.currentTarget.closest(".jardin");
-    console.log("li : ", li);
     if (li) {
-      //await actor.update({ "system.positionArbre": null });
-      await actor.update({ 'system.-=positionArbre' : null });
-      //actor.system.positionArbre = null;
-      console.log("actor3 : ", actor);
+      await actor.update({ "system.positionArbre": "" });
     } else {
       li = event.target.closest(".sphere");
       if (!li) return;
       if (!li.dataset.field) return;
-      console.log("actor2 : ", actor);
 
       let oldPosition = actor.system.positionArbre;
       let newPosition = li.dataset.field;
@@ -104,17 +77,6 @@ export class ArbreVieForm extends FormApplication {
         await actor.update({ "system.positionArbre": newPosition });
       }
     }
-    /*
-  const actorId = actor._id;
-
-  let membres = game.settings.get("cabinet", "membres");
-  if (!membres.includes(actorId))
-  {
-    membres.push(actorId);
-  await game.settings.set("cabinet", "membres", membres);
-  
-  }
-*/
     this.render();
   }
 
@@ -134,14 +96,13 @@ export class ArbreVieForm extends FormApplication {
     };
     membresSet.forEach((element) => {
       let actor = game.actors.get(element);
-      if (actor.system.positionArbre) {
+      if (actor.system.positionArbre.length) {
         contenuArbre[actor.system.positionArbre] = {
           id: actor.id,
           nom: actor.name,
           token: actor.prototypeToken.texture.src,
         };
       }
-      console.log("contenuArbresp : ", contenuArbre);
     });
     return contenuArbre;
   }
@@ -170,10 +131,9 @@ export class ArbreVieForm extends FormApplication {
     let positionsOccupees = {};
     membresSet.forEach((element) => {
       let actor = game.actors.get(element);
-      if (actor.system?.positionArbre) positionsOccupees[actor.system.positionArbre] = 1;
+      if (actor.system?.positionArbre.length) positionsOccupees[actor.system.positionArbre] = 1;
     });
 
-    console.log("positionsOccupees : ", positionsOccupees);
     return await this.trouverChemin(oldPosition, newPosition, graph, positionsOccupees);
   }
 
