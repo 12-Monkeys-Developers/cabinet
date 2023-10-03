@@ -10,11 +10,11 @@ export default class EspritSheet extends CabinetActorSheet {
   /** @override */
   async getData(options) {
     const context = await super.getData(options);
-    
+
     // Qualités
     context.qualites = this.#formatQualites(context.actor.system.qualites);
     context.aspects = this.#formatAspects(context.actor.system.aspects);
-    context.actions = this.actor.items.filter(i=>i.type === "action");
+    context.actions = this.actor.items.filter((i) => i.type === "action");
 
     // Acquis par ordre alpha et mise en forme de la description
     context.acquis = this.actor.items
@@ -78,5 +78,30 @@ export default class EspritSheet extends CabinetActorSheet {
     //à compléter quand le code des jets d'action sera fait
   }
 
+  async _devenirComedien() {
+    let comedienId = game.settings.get("cabinet", "comedien");
+    let comedien = game.actors.get(comedienId);
+    //inform the GM
+    const html = await renderTemplate("systems/cabinet/template/chat/demanderComedienButton.hbs", {
+      nomEsprit: this.actor.name,
+      nomComedien: comedien.name,
+    });
+    const chatData = {
+      speaker: ChatMessage.getSpeaker({
+        alias: game.user.name,
+        actor: this.actor.id,
+      }),
+      content: html,
+    };
+    ChatMessage.create(chatData);
+    //send data message to the player session
 
+    const emitData = {
+      espritDemandeur: this.actor.id,
+    };
+    game.cabinet.emit({
+      type: "demandeComedien",
+      data: emitData,
+    });
+  }
 }
