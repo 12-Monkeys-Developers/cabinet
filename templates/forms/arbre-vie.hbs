@@ -1,4 +1,17 @@
 <form autocomplete="off">
-    <div class="arbre-de-vie">
+  <div class="arbredevie">
+    <div class="jardin droppable draggable">
+      {{#each membresJardin as |membre index|}}
+        <div class="sphere">
+          <img src="{{membre.token}}" title="{{membre.nom}}" data-field="{{membre.id}}" />
+        </div>
+      {{/each}}
     </div>
+    <div class="arbre droppable draggable">
+      {{#each contenuArbre as |sphere index|}}
+        <div class="sphere {{index}}" data-field="{{index}}">
+          <img src="{{sphere.token}}" title="{{sphere.nom}}"  data-field="{{sphere.id}}"/>
+        </div>
+      {{/each}}
+    </div></div>
 </form>

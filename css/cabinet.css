@@ -452,10 +452,81 @@ i.logo_defaut {
   font-weight: bold;
   font-size: 1.5em;
 }
-.arbre-de-vie {
-  background: repeat url("../assets/images/sheets/arbre_vie.webp");
-  width: 500px;
-  height: 727px;
+.arbredevie {
+  background: no-repeat url("../assets/images/sheets/arbre_vie.webp");
+  width: 600px;
+  height: 628px;
+  display: grid;
+  grid-template-columns: 112px 304px;
+}
+.arbredevie img {
+  max-width: 61px;
+  max-height: 61px;
+  border: 0px;
+}
+.arbredevie .jardin {
+  height: 428;
+  display: flex;
+}
+.arbredevie .arbre {
+  height: 628px;
+}
+.arbredevie .arbre .sphere {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+}
+.arbredevie .arbre .kether {
+  position: relative;
+  top: 26px;
+  left: 212px;
+}
+.arbredevie .arbre .binah {
+  position: relative;
+  top: -23px;
+  left: 101px;
+}
+.arbredevie .arbre .chokmah {
+  position: relative;
+  top: -144px;
+  left: 322px;
+}
+.arbredevie .arbre .geburah {
+  position: relative;
+  top: -150px;
+  left: 101px;
+}
+.arbredevie .arbre .chesed {
+  position: relative;
+  top: -270px;
+  left: 322px;
+}
+.arbredevie .arbre .tiferet {
+  position: relative;
+  top: -335px;
+  left: 212px;
+}
+.arbredevie .arbre .hod {
+  position: relative;
+  top: -392px;
+  left: 101px;
+}
+.arbredevie .arbre .netzach {
+  position: relative;
+  top: -513px;
+  left: 322px;
+}
+.arbredevie .arbre .yesod {
+  position: relative;
+  top: -581px;
+  left: 212px;
+}
+.arbredevie .arbre .malkuth {
+  position: relative;
+  top: -585px;
+  left: 212px;
 }
 .actions-grid {
   display: grid;
@@ -473,12 +544,4 @@ i.logo_defaut {
   color: #497180;
   text-transform: uppercase;
   padding-left: 10px;
-}
-
-#players ol .menu-comedien {
-  flex: 0 0 8px;
-  height: 8px;
-  border: 1px solid var(--color-border-dark);
-  border-radius: 50%;
-  margin: 5px 8px 0 0;
 }

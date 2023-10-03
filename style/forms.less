@@ -26,8 +26,80 @@
     font-size: 1.5em;
   }
 }
-.arbre-de-vie {
-  background: repeat url("../assets/images/sheets/arbre_vie.webp");
-  width: 500px;
-  height: 727px;
+.arbredevie {
+  background: no-repeat url("../assets/images/sheets/arbre_vie.webp");
+  width: 600px;
+  height: 628px;
+  display: grid;
+  grid-template-columns: 112px 304px;
+  img {
+    max-width: 61px;
+    max-height: 61px;
+    border: 0px;
+  }
+
+  .jardin {
+    height: 428;
+    display: flex;
+  }
+  .arbre {
+    height: 628px;
+    .sphere {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 120px;
+    }
+    .kether {
+      position: relative;
+      top: 26px;
+      left: 212px;
+    }
+    .binah {
+      position: relative;
+      top: -23px;
+      left: 101px;
+    }
+    .chokmah {
+      position: relative;
+      top: -144px;
+      left: 322px;
+    }
+    .geburah {
+      position: relative;
+      top: -150px;
+      left: 101px;
+    }
+    .chesed {
+      position: relative;
+      top: -270px;
+      left: 322px;
+    }
+    .tiferet {
+      position: relative;
+      top: -335px;
+      left: 212px;
+    }
+    .hod {
+      position: relative;
+      top: -392px;
+      left: 101px;
+    }
+    .netzach {
+      position: relative;
+      top: -513px;
+      left: 322px;
+    }
+    .yesod {
+      position: relative;
+      top: -581px;
+      left: 212px;
+    }
+    .malkuth {
+      position: relative;
+      top: -585px;
+      left: 212px;
+    }
+  }
 }

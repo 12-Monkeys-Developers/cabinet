@@ -22,9 +22,33 @@ export const SPHERES = {
     label: "CDM.SPHERE.chesed.label",
     qualite: "CDM.SPHERE.chesed.qualite",
   },
+  geburah: {
+    label: "CDM.SPHERE.geburah.label",
+    qualite: "CDM.SPHERE.geburah.qualite",
+  },
+  hod: {
+    label: "CDM.SPHERE.hod.label",
+    qualite: "CDM.SPHERE.hod.qualite",
+  },
+  kether: {
+    label: "CDM.SPHERE.kether.label",
+    qualite: "CDM.SPHERE.kether.qualite",
+  },
   malkuth: {
     label: "CDM.SPHERE.malkuth.label",
     qualite: "CDM.SPHERE.malkuth.qualite",
+  },
+  netzach: {
+    label: "CDM.SPHERE.netzach.label",
+    qualite: "CDM.SPHERE.netzach.qualite",
+  },
+  tiferet: {
+    label: "CDM.SPHERE.tiferet.label",
+    qualite: "CDM.SPHERE.tiferet.qualite",
+  },
+  yesod: {
+    label: "CDM.SPHERE.yesod.label",
+    qualite: "CDM.SPHERE.yesod.qualite",
   }
 };
 
