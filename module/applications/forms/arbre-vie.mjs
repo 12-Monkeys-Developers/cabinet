@@ -47,7 +47,7 @@ export class ArbreVieForm extends FormApplication {
 
   /** @override */
   _onDragStart(event) {
-    let actorId = event.originalTarget.dataset.field;
+    let actorId = event.target.dataset.field;
     const actor = game.actors.get(actorId);
     //tester user is gm ou bien user a les droits sur cet actor
     console.log("ownership", actor.ownership);
@@ -139,9 +139,9 @@ export class ArbreVieForm extends FormApplication {
 
   async trouverChemin(startNode, endNode, graph, cheminsFermes) {
     //on parcourt tous les nodes adjacents
-    console.log("startNode", startNode);
+    //console.log("startNode", startNode);
     for (let node of graph[startNode]) {
-      console.log("current node : ", node);
+      //console.log("current node : ", node);
       //si le node est la destination, c'est gagné
       if (node === endNode) {
         console.log("chemin validé, node n-1 : ", startNode);
@@ -153,7 +153,7 @@ export class ArbreVieForm extends FormApplication {
 
         //ajoute le node actuel aux nodes visités ou fermés
         newCheminsFermes[startNode] = 1;
-        console.log("nouvelle boucle basée sur : ", node);
+        //console.log("nouvelle boucle basée sur : ", node);
 
         if (await this.trouverChemin(node, endNode, graph, newCheminsFermes)) {
           return true;
