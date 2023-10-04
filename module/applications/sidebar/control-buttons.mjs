@@ -24,8 +24,11 @@ export default function initControlButtons() {
           let calledForm = game.settings.get("cabinet", "arbreform");
           calledForm.render(true);
         },
-      },
-      {
+      }
+    );
+
+    if (game.user.isGM) {
+      menu.push({
         name: "gestion",
         title: "Gestion du Cabinet",
         icon: "logo_comportement",
@@ -34,8 +37,8 @@ export default function initControlButtons() {
           let calledForm = game.settings.get("cabinet", "gestionform");
           calledForm.render(true);
         },
-      }
-    );
+      });
+    }
     btns.push({
       name: "cabinet_menu",
       title: "Le cabinet des murmures",

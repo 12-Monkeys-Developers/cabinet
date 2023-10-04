@@ -44,6 +44,13 @@ export class ArbreVieForm extends FormApplication {
   activateListeners(html) {
     super.activateListeners(html);
   }
+  _canDragStart(selector) {
+    return true;
+  }
+
+  _canDragDrop(selector) {
+    return true;
+  }
 
   /** @override */
   _onDragStart(event) {
@@ -51,7 +58,7 @@ export class ArbreVieForm extends FormApplication {
     const actor = game.actors.get(actorId);
     //tester user is gm ou bien user a les droits sur cet actor
     console.log("ownership", actor.ownership);
-    // if(game.user.isGM || game.user)
+    if(!game.user.isGM && !actor.ownership[game.userId]) return;
     event.dataTransfer.setData("text/plain", JSON.stringify(actor.toDragData()));
   }
 
