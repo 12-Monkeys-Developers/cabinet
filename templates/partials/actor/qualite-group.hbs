@@ -1,5 +1,5 @@
       <div class="qualite-name">{{getQualiteProperty actor qualite 'label'}}</div>
-        <div class="qualite-value {{#if gauche}}qvgauche{{else}}qvdroite{{/if}}">
+        <div class="qualite-value {{#if gauche}}qvgauche{{else}}qvdroite{{/if}} {{positionArbre actor qualite}}">
           {{#if editable}}
             <input type="number" name="system.qualites.{{qualite}}.valeur" value="{{getQualiteProperty actor qualite 'valeur'}}" placeholder="0" />
           {{else}}

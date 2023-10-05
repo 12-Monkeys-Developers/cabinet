@@ -71,6 +71,11 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("getDefautProperty", function (actor, qualite, prop) {
     return foundry.utils.getProperty(actor.system.qualites, `${qualite}.defaut.${prop}`);
   });
+  
+  Handlebars.registerHelper("positionArbre", function (actor, qualite) {
+    if(actor.system.positionArbre === SYSTEM.QUALITES[qualite].sphere) return "position-arbre";
+    else return "";
+  });
 
   Handlebars.registerHelper("getBackgroundImage", function (actor) {
     if (actor.system.comedien && !actor.system.jardin) return "esprit-header-comedien.webp";
