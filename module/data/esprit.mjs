@@ -16,6 +16,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
           label: new fields.StringField({ required: true, initial: game.i18n.localize(defaut), blank: false }),
           valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 5 }),
         }),
+        qlipha: new fields.BooleanField({ initial: false })
       };
       return new fields.SchemaField(schema, { label });
     };
@@ -52,7 +53,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     // Acquis : Embedded items de type acquis
     
     //position sur l'Arbre de Vie : null = non positionné
-    schema.positionArbre = new fields.StringField({ required: false, blank: true, choices: SYSTEM.SPHERES, initial: "" });
+    schema.positionArbre = new fields.StringField({ required: false, blank: true, choices: SYSTEM.SPHERES, initial: undefined });
 
     schema.perisprit = new fields.NumberField({ ...requiredInteger, initial: 9, min: 0, max: 9 });
     schema.routine = new fields.HTMLField();
@@ -77,8 +78,10 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     return schema;
   }
 
-  // true si l'acteur est en Qlipath sur cette qualité
-  async qlipath(qualite) {
-    return (this.parent.system.qualites[qualite].valeur <= this.parent.system.qualites[qualite].defaut.valeur);
+  /** @override */
+  prepareBaseData() {
+    for (const qualite of Object.values(this.qualites)) {
+      qualite.qlipha = qualite.defaut.valeur > qualite.valeur ? true : false;     
+    }
   }
 }

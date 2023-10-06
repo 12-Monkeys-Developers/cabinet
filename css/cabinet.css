@@ -482,7 +482,7 @@ i.logo_defaut {
   width: 120px;
   height: 120px;
 }
-.arbredevie .arbre .qlipath {
+.arbredevie .arbre .qlipha {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -494,7 +494,7 @@ i.logo_defaut {
   top: 26px;
   left: 212px;
 }
-.arbredevie .arbre .qlipath-kether {
+.arbredevie .arbre .qlipha-kether {
   position: relative;
   top: -1099px;
   left: 300px;
@@ -504,7 +504,7 @@ i.logo_defaut {
   top: -23px;
   left: 101px;
 }
-.arbredevie .arbre .qlipath-binah {
+.arbredevie .arbre .qlipha-binah {
   position: relative;
   top: -1057px;
   left: 102px;
@@ -514,7 +514,7 @@ i.logo_defaut {
   top: -144px;
   left: 322px;
 }
-.arbredevie .arbre .qlipath-chokmah {
+.arbredevie .arbre .qlipha-chokmah {
   position: relative;
   top: -1088px;
   left: 411px;
@@ -524,7 +524,7 @@ i.logo_defaut {
   top: -150px;
   left: 101px;
 }
-.arbredevie .arbre .qlipath-geburah {
+.arbredevie .arbre .qlipha-geburah {
   position: relative;
   top: -1005px;
   left: 103px;
@@ -534,7 +534,7 @@ i.logo_defaut {
   top: -270px;
   left: 322px;
 }
-.arbredevie .arbre .qlipath-chesed {
+.arbredevie .arbre .qlipha-chesed {
   position: relative;
   top: -1037px;
   left: 411px;
@@ -544,7 +544,7 @@ i.logo_defaut {
   top: -335px;
   left: 212px;
 }
-.arbredevie .arbre .qlipath-tiferet {
+.arbredevie .arbre .qlipha-tiferet {
   position: relative;
   top: -1012px;
   left: 300px;
@@ -554,7 +554,7 @@ i.logo_defaut {
   top: -392px;
   left: 101px;
 }
-.arbredevie .arbre .qlipath-hod {
+.arbredevie .arbre .qlipha-hod {
   position: relative;
   top: -984px;
   left: 102px;
@@ -564,7 +564,7 @@ i.logo_defaut {
   top: -513px;
   left: 322px;
 }
-.arbredevie .arbre .qlipath-netzach {
+.arbredevie .arbre .qlipha-netzach {
   position: relative;
   top: -1013px;
   left: 411px;
@@ -574,7 +574,7 @@ i.logo_defaut {
   top: -581px;
   left: 212px;
 }
-.arbredevie .arbre .qlipath-yesod {
+.arbredevie .arbre .qlipha-yesod {
   position: relative;
   top: -991px;
   left: 300px;
@@ -584,7 +584,7 @@ i.logo_defaut {
   top: -585px;
   left: 212px;
 }
-.arbredevie .arbre .qlipath-malkuth {
+.arbredevie .arbre .qlipha-malkuth {
   position: relative;
   top: -905px;
   left: 300px;

@@ -7,7 +7,7 @@ export const SYSTEM_ID = "cabinet";
 
 /**
  * Les dix sphères
- * @enum {{label: string, qualite: string}}
+ * @enum {{label: string, qualite: string, qualiteSmall: string}}
  */
 export const SPHERES = {
   binah: {

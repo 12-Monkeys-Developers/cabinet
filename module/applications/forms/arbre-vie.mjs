@@ -1,4 +1,9 @@
 export class ArbreVieForm extends FormApplication {
+  constructor(options) {
+    super(options);
+    Hooks.on('updateActor', async (document, change, options, userId) => this.render());
+  }
+
   static get getDefaults() {
     return {};
   }
@@ -95,71 +100,71 @@ export class ArbreVieForm extends FormApplication {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       binah: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       chokmah: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       geburah: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       chesed: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       tiferet: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       hod: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       netzach: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       yesod: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
       malkuth: {
         id: null,
         nom: null,
         token: null,
-        qlipathToken: null,
-        qlipathNom: null,
+        qliphaToken: null,
+        qliphaNom: null,
       },
     };
     membresSet.forEach(async (element) => {
@@ -171,9 +176,9 @@ export class ArbreVieForm extends FormApplication {
       }
 
       for (const [qualite, value] of Object.entries(actor.system.qualites)) {
-        if (await actor.system.qlipath(qualite)) {
-          contenuArbre[SYSTEM.QUALITES[qualite].sphere].qlipathNom = actor.name;
-          contenuArbre[SYSTEM.QUALITES[qualite].sphere].qlipathToken = actor.prototypeToken.texture.src;
+        if (value.qlipha) {
+          contenuArbre[SYSTEM.QUALITES[qualite].sphere].qliphaNom = actor.name;
+          contenuArbre[SYSTEM.QUALITES[qualite].sphere].qliphaToken = actor.prototypeToken.texture.src;
         }
       }
     });
