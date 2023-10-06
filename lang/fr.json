@@ -41,23 +41,53 @@
     "SPHERE": {
       "binah": {
         "label": "Binah",
-        "qualite": "Intelligent"
+        "qualite": "Intelligent",
+        "qualiteSmall" : "intelligent"
       },
       "chesed": {
         "label": "Chesed",
-        "qualite": "Ouvert"
+        "qualite": "Ouvert",
+        "qualiteSmall" : "ouvert"
       },
       "chokmah": {
         "label": "Chokmah",
-        "qualite": "Sensible"
+        "qualite": "Sensible",
+        "qualiteSmall" : "sensible"
+      },
+      "geburah": {
+        "label": "Geburah",
+        "qualite": "Autoritaire",
+        "qualiteSmall" : "autoritaire"
+      },
+      "hod": {
+        "label": "Hod",
+        "qualite": "Savant",
+        "qualiteSmall" : "savant"
       },
       "kether": {
         "label": "Kether",
-        "qualite": "Courageux"
+        "qualite": "Courageux",
+        "qualiteSmall" : "courageux"
       },
       "malkuth": {
         "label": "Malkuth",
-        "qualite": "Coordonné"
+        "qualite": "Coordonné",
+        "qualiteSmall" : "coordonne"
+      },
+      "netzach": {
+        "label": "Netzach",
+        "qualite": "Charismatique",
+        "qualiteSmall" : "charismatique"
+      },
+      "tiferet": {
+        "label": "Tiferet",
+        "qualite": "Serein",
+        "qualiteSmall" : "serein"
+      },
+      "yesod": {
+        "label": "Yesod",
+        "qualite": "Attentif",
+        "qualiteSmall" : "attentif"
       }
     },
     "ATTRIBUT": {

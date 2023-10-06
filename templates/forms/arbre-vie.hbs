@@ -7,11 +7,17 @@
         </div>
       {{/each}}
     </div>
-    <div class="arbre droppable draggable">
+    <div class="arbre">
       {{#each contenuArbre as |sphere index|}}
-        <div class="sphere {{index}}" data-field="{{index}}">
-          <img src="{{sphere.token}}" title="{{sphere.nom}}"  data-field="{{sphere.id}}"/>
+        <div class="sphere {{index}} droppable draggable" data-field="{{index}}">
+          <img src="{{sphere.token}}" title="{{sphere.nom}}" data-field="{{sphere.id}}"/>
         </div>
       {{/each}}
-    </div></div>
+      {{#each contenuArbre as |qlipath index|}}
+        <div class="qlipath qlipath-{{index}}">
+          <img style="max-width: 30px; max-height: 30px;" src="{{qlipath.qlipathToken}}" title="{{qlipath.qlipathNom}}"/>
+        </div>
+      {{/each}}
+    </div>
+  </div>
 </form>

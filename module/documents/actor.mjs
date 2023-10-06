@@ -4,5 +4,4 @@ export default class CabinetActor extends Actor {
       if (this.getFlag(game.system.id, "SheetUnlocked")) return true;
       return false;
     }
-
 }

@@ -77,4 +77,8 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     return schema;
   }
 
+  // true si l'acteur est en Qlipath sur cette qualité
+  async qlipath(qualite) {
+    return (this.parent.system.qualites[qualite].valeur <= this.parent.system.qualites[qualite].defaut.valeur);
+  }
 }

@@ -19,12 +19,12 @@ export class ArbreVieForm extends FormApplication {
     });
   }
 
-  getData(options) {
+  async getData(options) {
     let membresSet = game.settings.get("cabinet", "membres");
     let context = {
       membresJardin: [],
     };
-    context.contenuArbre = this.remplirArbre();
+    context.contenuArbre = await this.remplirArbre();
     console.log("contenuArbre : ", context.contenuArbre);
     membresSet.forEach((element) => {
       let actor = game.actors.get(element);
@@ -56,9 +56,10 @@ export class ArbreVieForm extends FormApplication {
   _onDragStart(event) {
     let actorId = event.target.dataset.field;
     const actor = game.actors.get(actorId);
+    if (!actor) return;
     //tester user is gm ou bien user a les droits sur cet actor
     console.log("ownership", actor.ownership);
-    if(!game.user.isGM && !actor.ownership[game.userId]) return;
+    if (!game.user.isGM && !actor.ownership[game.userId]) return;
     event.dataTransfer.setData("text/plain", JSON.stringify(actor.toDragData()));
   }
 
@@ -87,28 +88,93 @@ export class ArbreVieForm extends FormApplication {
     this.render();
   }
 
-  remplirArbre() {
+  async remplirArbre() {
     let membresSet = game.settings.get("cabinet", "membres");
     let contenuArbre = {
-      kether: null,
-      binah: null,
-      chokmah: null,
-      geburah: null,
-      chesed: null,
-      tiferet: null,
-      hod: null,
-      netzach: null,
-      yesod: null,
-      malkuth: null,
+      kether: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      binah: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      chokmah: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      geburah: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      chesed: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      tiferet: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      hod: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      netzach: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      yesod: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
+      malkuth: {
+        id: null,
+        nom: null,
+        token: null,
+        qlipathToken: null,
+        qlipathNom: null,
+      },
     };
-    membresSet.forEach((element) => {
+    membresSet.forEach(async (element) => {
       let actor = game.actors.get(element);
       if (actor.system.positionArbre.length) {
-        contenuArbre[actor.system.positionArbre] = {
-          id: actor.id,
-          nom: actor.name,
-          token: actor.prototypeToken.texture.src,
-        };
+        contenuArbre[actor.system.positionArbre].id = actor.id;
+        contenuArbre[actor.system.positionArbre].nom = actor.name;
+        contenuArbre[actor.system.positionArbre].token = actor.prototypeToken.texture.src;
+      }
+
+      for (const [qualite, value] of Object.entries(actor.system.qualites)) {
+        if (await actor.system.qlipath(qualite)) {
+          contenuArbre[SYSTEM.QUALITES[qualite].sphere].qlipathNom = actor.name;
+          contenuArbre[SYSTEM.QUALITES[qualite].sphere].qlipathToken = actor.prototypeToken.texture.src;
+        }
       }
     });
     return contenuArbre;

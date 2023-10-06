@@ -81,7 +81,11 @@ Hooks.once("init", async function () {
     if (actor.system.comedien && !actor.system.jardin) return "esprit-header-comedien.webp";
     if (!actor.system.comedien && actor.system.jardin) return "esprit-header-jardin.webp";
     return "esprit-header.webp";
-  }); 
+  });
+
+  Handlebars.registerHelper("testlog", function (data) {
+    return console.log("Handlebars log : ", data);
+  });
 
   // Register settings
   game.settings.register("cabinet", "comedien", {

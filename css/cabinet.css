@@ -482,55 +482,112 @@ i.logo_defaut {
   width: 120px;
   height: 120px;
 }
+.arbredevie .arbre .qlipath {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 31px;
+  height: 31px;
+}
 .arbredevie .arbre .kether {
   position: relative;
   top: 26px;
   left: 212px;
+}
+.arbredevie .arbre .qlipath-kether {
+  position: relative;
+  top: -1099px;
+  left: 300px;
 }
 .arbredevie .arbre .binah {
   position: relative;
   top: -23px;
   left: 101px;
 }
+.arbredevie .arbre .qlipath-binah {
+  position: relative;
+  top: -1057px;
+  left: 102px;
+}
 .arbredevie .arbre .chokmah {
   position: relative;
   top: -144px;
   left: 322px;
+}
+.arbredevie .arbre .qlipath-chokmah {
+  position: relative;
+  top: -1088px;
+  left: 411px;
 }
 .arbredevie .arbre .geburah {
   position: relative;
   top: -150px;
   left: 101px;
 }
+.arbredevie .arbre .qlipath-geburah {
+  position: relative;
+  top: -1005px;
+  left: 103px;
+}
 .arbredevie .arbre .chesed {
   position: relative;
   top: -270px;
   left: 322px;
+}
+.arbredevie .arbre .qlipath-chesed {
+  position: relative;
+  top: -1037px;
+  left: 411px;
 }
 .arbredevie .arbre .tiferet {
   position: relative;
   top: -335px;
   left: 212px;
 }
+.arbredevie .arbre .qlipath-tiferet {
+  position: relative;
+  top: -1012px;
+  left: 300px;
+}
 .arbredevie .arbre .hod {
   position: relative;
   top: -392px;
   left: 101px;
+}
+.arbredevie .arbre .qlipath-hod {
+  position: relative;
+  top: -981x;
+  left: 102px;
 }
 .arbredevie .arbre .netzach {
   position: relative;
   top: -513px;
   left: 322px;
 }
+.arbredevie .arbre .qlipath-netzach {
+  position: relative;
+  top: -1013px;
+  left: 411px;
+}
 .arbredevie .arbre .yesod {
   position: relative;
   top: -581px;
   left: 212px;
 }
+.arbredevie .arbre .qlipath-yesod {
+  position: relative;
+  top: -991px;
+  left: 300px;
+}
 .arbredevie .arbre .malkuth {
   position: relative;
-  top: -585px;
+  top: -903px;
   left: 212px;
+}
+.arbredevie .arbre .qlipath-malkuth {
+  position: relative;
+  top: 1099px;
+  left: 300px;
 }
 .actions-grid {
   display: grid;
