@@ -180,9 +180,9 @@ export class ArbreVieForm extends FormApplication {
     return contenuArbre;
   }
   async validerDeplacement(oldPosition, newPosition) {
-    let contenuArbre = this.remplirArbre();
+    let contenuArbre = await this.remplirArbre();
     // si la position est occupée on sort
-    if (contenuArbre[newPosition]) return false;
+    if (contenuArbre[newPosition].id) return false;
     //si l'esprit etait dans son jardin on valide
     if (!oldPosition) return true;
 
