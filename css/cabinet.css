@@ -556,7 +556,7 @@ i.logo_defaut {
 }
 .arbredevie .arbre .qlipath-hod {
   position: relative;
-  top: -981x;
+  top: -984px;
   left: 102px;
 }
 .arbredevie .arbre .netzach {
@@ -581,12 +581,12 @@ i.logo_defaut {
 }
 .arbredevie .arbre .malkuth {
   position: relative;
-  top: -903px;
+  top: -585px;
   left: 212px;
 }
 .arbredevie .arbre .qlipath-malkuth {
   position: relative;
-  top: 1099px;
+  top: -905px;
   left: 300px;
 }
 .actions-grid {
