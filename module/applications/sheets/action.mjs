@@ -1,3 +1,4 @@
+import { SYSTEM } from "../../config/system.mjs";
 import CabinetItemSheet from "./item.mjs";
 
 export default class ActionSheet extends CabinetItemSheet {
@@ -22,6 +23,7 @@ export default class ActionSheet extends CabinetItemSheet {
     context.qualites = SYSTEM.QUALITES;
     context.aspects = SYSTEM.ASPECTS;
     context.attributs = SYSTEM.ATTRIBUTS;
+    context.categories = SYSTEM.ACTION_CATEGORIES;
 
     return context;
   }

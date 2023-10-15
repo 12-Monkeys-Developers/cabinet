@@ -101,6 +101,18 @@
       "puissance": "Puissance",
       "robustesse": "Robustesse"
     },
+    "ACTION": {
+      "categorie": {
+        "communiquer": "Communiquer",
+        "percevoir": "Percevoir",
+        "agir": "Agir",
+        "savoir": "Savoir",
+        "corpsacorps": "Attaquer au corps à corps",
+        "distance": "Attaquer à distance",
+        "sedefendre": "Se défendre",
+        "seproteger": "Se protéger"
+      }
+    },
     "SANTE": {
       "tete": "Tête",
       "brasDroit": "Bras droit",

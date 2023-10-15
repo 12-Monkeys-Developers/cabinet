@@ -120,4 +120,5 @@ function preLocalizeConfig() {
   localizeConfigObject(SYSTEM.QUALITES, ["label"]);
   localizeConfigObject(SYSTEM.ASPECTS, ["label"]);
   localizeConfigObject(SYSTEM.ATTRIBUTS, ["label"]);
+  localizeConfigObject(SYSTEM.ACTION_CATEGORIES, ["label"]);
 }

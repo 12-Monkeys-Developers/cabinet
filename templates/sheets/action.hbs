@@ -1,9 +1,20 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{log "action" this}}
 
+   <div class="action-image">
+        <img src="{{item.img}}" data-edit="img"/>
+   </div>
   {{! Sheet Body }}
   <section class="sheet-body flexcol">
     <h3>{{item.name}}</h3>
+    <div class="form-group">
+      <label>Catégorie</label>
+      <div class="form-fields">
+        <select name="system.categorie">
+          {{selectOptions categories selected=system.categorie labelAttr="label" sort=false}}
+        </select>
+      </div>
+    </div>    
     <div class="form-group">
       <label>Qualité</label>
       <div class="form-fields">
@@ -13,6 +24,14 @@
       </div>
     </div>
     <div class="form-group">
+      <label>Qualité alternative</label>
+      <div class="form-fields">
+        <select name="system.qualiteAlt">
+          {{selectOptions qualites selected=system.qualiteAlt labelAttr="label" sort=true blank=""}}
+        </select>
+      </div>
+    </div>    
+    <div class="form-group">
       <label>Aspect</label>
       <div class="form-fields">
         <select name="system.aspect">
@@ -21,6 +40,14 @@
       </div>
     </div>
     <div class="form-group">
+      <label>Aspect alternatif</label>
+      <div class="form-fields">
+        <select name="system.aspectAlt">
+          {{selectOptions aspects selected=system.aspectAlt labelAttr="label" sort=true blank=""}}
+        </select>
+      </div>
+    </div>    
+    <div class="form-group">
       <label>Attribut</label>
       <div class="form-fields">
         <select name="system.attribut">
@@ -28,6 +55,14 @@
         </select>
       </div>
     </div>
+    <div class="form-group">
+      <label>Attribut alternatif</label>
+      <div class="form-fields">
+        <select name="system.attributAlt">
+          {{selectOptions attributs selected=system.attributAlt labelAttr="label" sort=true blank=""}}
+        </select>
+      </div>
+    </div>    
     <label class="checkbox">
       <input type="checkbox" name="system.controle" {{checked system.controle}} />
       Contrôle

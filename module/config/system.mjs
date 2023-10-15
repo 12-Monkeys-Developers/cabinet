@@ -1,7 +1,8 @@
 import * as ESPRIT from "./esprit.mjs";
-import * as CORPS from "./corps.mjs"
+import * as CORPS from "./corps.mjs";
 import * as PNJ from "./pnj.mjs";
 import * as ARME from "./arme.mjs";
+import * as ACTION from "./action.mjs";
 
 export const SYSTEM_ID = "cabinet";
 
@@ -59,7 +60,7 @@ export const SPHERES = {
     label: "CDM.SPHERE.yesod.label",
     qualite: "CDM.SPHERE.yesod.qualite",
     qualiteSmall: "CDM.SPHERE.yesod.qualiteSmall",
-  }
+  },
 };
 
 /**
@@ -75,5 +76,6 @@ export const SYSTEM = {
   SANTE: CORPS.SANTE,
   OPINION: PNJ.OPINION,
   ARME_SOUSTYPES: ARME.SOUSTYPES,
-  ARME_CATEGORIES: ARME.CATEGORIES
+  ARME_CATEGORIES: ARME.CATEGORIES,
+  ACTION_CATEGORIES: ACTION.ACTION_CATEGORIES,
 };
