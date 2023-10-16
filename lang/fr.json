@@ -152,6 +152,18 @@
     },
     "NOUVEAU": {
       "acquis": "Nouvel acquis"
+    },
+    "DE":{
+      "total": "Total",
+      "qualite": "Qualité",      
+      "aspect": "Aspect",
+      "acquis": "Acquis",
+      "perisprit": "Perisprit",
+      "malus": "Malus",
+      "bonus": "Bonus",
+      "deQualite": "Dé conservé de la qualité",
+      "embellie": "Embellie",
+      "deEmbellie": "Total dés embellie"
     }
   }
 }

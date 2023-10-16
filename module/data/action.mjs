@@ -1,18 +1,37 @@
 import { SYSTEM } from "../config/system.mjs";
+/**
+ * @description Modèle de données d'un item de type Action
+ * @property {string} categorie               La catégorie dans SYSTEM.ACTION_CATEGORIES : Communiquer, Percevoir, Agir, Savoir, Attaque au Corps-à-Corps, Attaque à distance, Se défendre, Se protéger
+ * @property {string} qualite
+ * @property {string} qualiteAlt
+ * @property {string} aspect
+ * @property {string} aspectAlt
+ * @property {string} attribut
+ * @property {string} attributAlt
+ * @property {string} circonstances
+ * @property {string} desastre              Description du désastre éventuel          
+ * @property {boolean} controle
+ * @property {boolean} opposition
+ * @property {string} oppositionAspect
+ * @property {string} oppositionAttribut
+ */
 export default class CabinetAction extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const schema = {};
 
+    schema.parDefaut = new fields.BooleanField({ initial: false });
     schema.categorie = new fields.StringField({ required: false, choices: SYSTEM.ACTION_CATEGORIES, initial: undefined });
-    schema.qualite = new fields.StringField({ required: true, choices: SYSTEM.QUALITES, initial: "courage"});
+    schema.qualite = new fields.StringField({ required: true, choices: SYSTEM.QUALITES});
     schema.qualiteAlt = new fields.StringField({ required: false, blank: true, choices: SYSTEM.QUALITES, initial: undefined});
-    schema.aspect = new fields.StringField({ required: true, choices: SYSTEM.ASPECTS, initial: "nefesh" });
+    schema.aspect = new fields.StringField({ required: true, choices: SYSTEM.ASPECTS});
     schema.aspectAlt = new fields.StringField({ required: false, blank: true, choices: SYSTEM.ASPECTS, initial: undefined });
     schema.attribut = new fields.StringField({ required: false, blank: true, choices: SYSTEM.ATTRIBUTS});
     schema.attributAlt = new fields.StringField({ required: false, blank: true, choices: SYSTEM.ATTRIBUTS});
 
     schema.circonstances = new fields.HTMLField({ required: true, blank: true });
+    schema.desastre = new fields.HTMLField({ required: false, blank: true });
+
     schema.controle = new fields.BooleanField({ initial: true });
 
     schema.opposition = new fields.BooleanField({ initial: false });
@@ -33,7 +52,8 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
     const aspect = SYSTEM.ASPECTS[this.aspect].label;
     const aspectAlt = this.aspectAlt && SYSTEM.ASPECTS[this.aspectAlt]?.label || "";
 
-    const comedien = this.parent.actor.system.comedien;
+    // this.parent peut être un item ou un actor
+    const comedien = this.parent.actor?.system.comedien;
     let attribut = this.attribut && SYSTEM.ATTRIBUTS[this.attribut]?.label || "";
     let attributAlt = this.attributAlt && SYSTEM.ATTRIBUTS[this.attributAlt]?.label || "";
         
@@ -56,9 +76,10 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
       formulaTooltip = this.parent.actor.system.qualites[this.qualite].valeur + (this.qualiteAlt ? " / " + this.qualiteAlt + " ": "");
       formulaTooltip += "D6 + ";
       formulaTooltip += this.parent.actor.system.aspects[this.aspect].valeur;
-      if (comedien) {
+      //FIXME Erreur sur this.parent.actor.system.attributs
+      /*if (comedien) {
         formulaTooltip += attribut !== "" ? " (" + this.parent.actor.system.attributs[this.attribut].valeur + (this.attributAlt ? " OU " + this.attributAlt + " ": "") + ") " : "";
-      }
+      }*/
     }
     this.formulaTooltip = formulaTooltip;
   }

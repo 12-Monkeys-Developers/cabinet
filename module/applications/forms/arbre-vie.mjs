@@ -30,7 +30,6 @@ export class ArbreVieForm extends FormApplication {
       membresJardin: [],
     };
     context.contenuArbre = await this.remplirArbre();
-    console.log("contenuArbre : ", context.contenuArbre);
     membresSet.forEach((element) => {
       let actor = game.actors.get(element);
       if (!actor.system.positionArbre.length) {
@@ -222,7 +221,7 @@ export class ArbreVieForm extends FormApplication {
       //console.log("current node : ", node);
       //si le node est la destination, c'est gagné
       if (node === endNode) {
-        console.log("chemin validé, node n-1 : ", startNode);
+        //console.log("chemin validé, node n-1 : ", startNode);
         return true;
       }
       // si le node adjacent est squatté ou déjà visité, on n'y va pas

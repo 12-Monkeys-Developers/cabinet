@@ -1,0 +1,67 @@
+{{log 'standard check dialog' this}}
+<form class="standard-check flexcol">
+    <section class="content flexrow">
+        <section class="roller flexcol">
+           <div class="bonuses flexrow">
+                <div class="qualite">
+                    <label>Qualité</label>
+                    <select name="qualite" data-action="qualite-change">
+                        {{selectOptions qualites selected=qualite labelAttr="label" blank="Choisir une qualité" sort=true}}
+                    </select>
+                    {{numberInput qualiteValeur name="qualiteValeur" min=1}}
+                </div>
+                {{#if peutEmbellie}}
+                    <div class="aspect">
+                        <label>Embellie</label>
+                        <select name="embellie" data-action="embellie-change">
+                            {{selectOptions optionsEmbellie selected=embellie nameAttr="indice" labelAttr="label" blank="Choisir le nombre de dés"}}
+                        </select>
+                    </div>                    
+                {{/if}}
+                <div class="aspect">
+                    <label>Aspect</label>
+                    <select name="aspect" data-action="aspect-change">
+                        {{selectOptions aspects selected=aspect labelAttr="label" blank="Choisir un aspect"}}
+                    </select>
+                    {{numberInput aspectValeur name="aspectValeur" min=0}}
+                </div>
+                <div class="acquis">
+                    <label>Acquis</label>
+                    <select name="acquis" data-action="acquis-change">
+                        {{selectOptions listeAcquis selected=acquis nameAttr="indice" labelAttr="nom" blank="Choisir un acquis"}}
+                    </select>
+                    {{numberInput acquisValeur name="acquisValeur" min=0}}
+                </div>
+                <div class="attribut">
+                    <label>Attribut</label>
+                    {{numberInput attribut name="attribut" min=0}}
+                </div>
+                <div class="perisprit">
+                    <label>Perisprit</label>
+                    <select name="perisprit" data-action="perisprit-change">
+                        {{selectOptions optionsPerisprit selected=perisprit nameAttr="indice" labelAttr="label" blank="Choisir le nombre de points de périsprit"}}
+                    </select>
+                </div>                      
+                <div class="malus">
+                    <label>Malus total</label>
+                    {{numberInput malus name="malus" min=0}} 
+                </div>
+                <div class="bonus">
+                    <label data-action="bonus-change">Bonus</label>
+                    <input type="number" value="{{bonus}}" name="bonus" min="0" data-action="bonus-change"> 
+                </div>                
+            </div>
+        </section> 
+
+    <footer class="buttons flexrow">
+        {{#unless isGM}}
+        <select name="rollMode">
+            {{selectOptions rollModes selected=rollMode localize=true}}
+        </select>
+        {{/unless}}
+        <button type="button" class="dialog-button frame-brown" data-button="ok">
+            <i class="fas fa-dice"></i>
+            <label>Lancer</label>
+        </button>
+    </footer>
+</form>

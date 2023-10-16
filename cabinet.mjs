@@ -7,6 +7,7 @@ globalThis.SYSTEM = SYSTEM;
 
 // Import modules
 import * as applications from "./module/applications/_module.mjs";
+import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as models from "./module/data/_module.mjs";
 
@@ -46,12 +47,16 @@ Hooks.once("init", async function () {
   Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
   Items.registerSheet(SYSTEM.id, applications.ActionSheet, { types: ["action"], makeDefault: true });
 
+  // Dice system configuration
+  CONFIG.Dice.rolls.push(dice.StandardCheck);
+
   loadTemplates([
-    "systems/cabinet/templates/partials/actor/qualites.hbs",
-    "systems/cabinet/templates/partials/actor/qualite-group.hbs",
-    "systems/cabinet/templates/partials/actor/actions.hbs",
-    "systems/cabinet/templates/forms/arbre-vie.hbs",
-    "systems/cabinet/templates/forms/gestion-cabinet.hbs"
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-qualites.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-qualite-group.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-actions.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-perisprit.hbs`,
+    `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
+    `systems/${SYSTEM.id}/templates/forms/gestion-cabinet.hbs`
   ]);
 
   // Configuration text enrichers

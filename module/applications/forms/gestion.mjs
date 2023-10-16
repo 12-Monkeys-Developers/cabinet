@@ -109,7 +109,7 @@ export class GestionForm extends FormApplication {
     event.preventDefault();
     const element = event.currentTarget;
     let indexArray = element.dataset.field;
-    console.log(element);
+    //console.log(element);
     let membres = game.settings.get("cabinet", "membres");
     const x = membres.splice(indexArray, 1);
     await game.settings.set("cabinet", "membres", membres);

@@ -64,18 +64,20 @@ export default class EspritSheet extends CabinetActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".qualite-group").click(this._onProgramRoll.bind(this));
+    html.find(".qualite-group").click(this._onQualiteRoll.bind(this));
   }
 
-  async _onProgramRoll(event) {
+  async _onQualiteRoll(event) {
     event.preventDefault();
-    // ne pas déclencher de jet si la feuille est déverrouillée
+    event.stopPropagation();
+    // Ne pas déclencher de jet si la feuille est déverrouillée
     if (this.actor.isUnlocked) return;
 
     let element = event.currentTarget;
-    let field = element.dataset.field;
-    console.log("jet de ", field);
-    //à compléter quand le code des jets d'action sera fait
+    let qualite = element.dataset.field;
+    //console.log("jet de ", qualite);
+
+    return this.actor.rollSkill(qualite, {dialog: true});
   }
 
   async _devenirComedien() {

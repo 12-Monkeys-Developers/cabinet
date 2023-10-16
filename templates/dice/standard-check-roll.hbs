@@ -1,0 +1,51 @@
+{{log 'chat standard check roll' this}}
+<div class="dice-roll {{cssClass}}">
+    <div class="dice-result">
+        <div class="dice-tooltip">
+            <div class="dice-formula">{{formula}}</div>
+            {{#unless data.estEmbellie}}
+            <div class="counter">
+                <label>{{localize "CDM.DE.qualite"}}</label>
+                <span>{{data.qualiteValeur}}</span>
+            </div>                 
+            {{/unless}}
+            <div class="counter">
+                <label>{{localize "CDM.DE.deQualite"}}</label>
+                <span>{{data.deQualite}}</span>
+            </div>            
+            {{#if data.estEmbellie}}       
+                <div class="counter">
+                    <label>{{localize "CDM.DE.embellie"}}</label>
+                    <span>{{data.embellieValeur}}</span>
+                </div>
+                <div class="counter">
+                    <label>{{localize "CDM.DE.deEmbellie"}}</label>
+                    <span>{{data.totalEmbellie}}</span>
+                </div>
+            {{/if}}
+            <div class="counter">
+                <label>{{localize "CDM.DE.aspect"}}</label>
+                <span>{{data.aspectValeur}}</span>
+            </div>
+            <div class="counter">
+                <label>{{localize "CDM.DE.acquis"}}</label>
+                <span>{{data.acquisValeur}}</span>
+            </div>
+            <div class="counter">
+                <label>{{localize "CDM.DE.perisprit"}}</label>
+                <span>{{data.perispritValeur}}</span>
+            </div>
+            <div class="counter">
+                <label>{{localize "CDM.DE.malus"}}</label>
+                <span>{{data.malus}}</span>
+            </div>
+            <div class="counter">
+                <label>{{localize "CDM.DE.bonus"}}</label>
+                <span>{{data.bonus}}</span>
+            </div>                        
+        </div>
+        <h4 class="dice-total check-result">
+                <span>{{total}}</span>
+        </h4>
+    </div>
+</div>

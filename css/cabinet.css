@@ -809,3 +809,170 @@ i.logo_action {
   border: 0px;
   max-height: 100px;
 }
+/* ----------------------------------------- */
+/*  Roll Dialog                              */
+/* ----------------------------------------- */
+.standard-check {
+  gap: 0.5rem;
+}
+.roller {
+  flex: 2;
+  gap: 0.5rem;
+  text-align: center;
+}
+.roller .bonuses {
+  gap: 0.5rem;
+}
+.roller .bonuses input {
+  line-height: 32px;
+}
+footer.buttons {
+  gap: 0.5rem;
+}
+footer.buttons button,
+footer.buttons select {
+  height: 32px;
+}
+.dice-roll.standard-check .dice-pool {
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.dice-roll.standard-check .die {
+  position: relative;
+  flex: 0 0 48px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 0 6px #EEE;
+  background-size: 48px 48px;
+  filter: drop-shadow(0px 0px 6px #EEE);
+}
+.dice-roll.standard-check .die.d4 {
+  background-image: url("/icons/svg/d4-grey.svg");
+}
+.dice-roll.standard-check .die.d6 {
+  background-image: url("/icons/svg/d6-grey.svg");
+}
+.dice-roll.standard-check .die.d8 {
+  background-image: url("/icons/svg/d8-grey.svg");
+}
+.dice-roll.standard-check .die.d10 {
+  background-image: url("/icons/svg/d10-grey.svg");
+}
+.dice-roll.standard-check .die.d12 {
+  background-image: url("/icons/svg/d12-grey.svg");
+}
+.dice-roll.standard-check .boons {
+  position: relative;
+  flex: 0 0 48px;
+  text-align: center;
+  padding: 8px 0;
+}
+.dice-roll.standard-check .boons i,
+.dice-roll.standard-check .boons span {
+  height: 16px;
+  line-height: 16px;
+  display: block;
+}
+.dice-roll.standard-check .dice-tooltip .counter {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+}
+.dice-roll.standard-check .dice-tooltip .counter label {
+  font-size: 16px;
+  font-family: var(--fontFamilySerif);
+}
+.dice-roll.standard-check .dice-tooltip .counter span {
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid red;
+  border-radius: 2px;
+  text-align: center;
+}
+.dice-roll.standard-check .dice-tooltip .boon-details,
+.dice-roll.standard-check .dice-tooltip .bane-details {
+  gap: 0.25rem;
+  padding: 0.25rem 0;
+  margin: 0.25rem 0;
+  border-bottom: 1px solid beige;
+}
+.dice-roll.standard-check .dice-tooltip .boon-details h4,
+.dice-roll.standard-check .dice-tooltip .bane-details h4 {
+  font-weight: bold;
+  margin: 0;
+}
+.dice-roll.standard-check .dice-tooltip .boon-details .boon span.label,
+.dice-roll.standard-check .dice-tooltip .bane-details .boon span.label,
+.dice-roll.standard-check .dice-tooltip .boon-details .bane span.label,
+.dice-roll.standard-check .dice-tooltip .bane-details .bane span.label {
+  order: 1;
+  font-size: 16px;
+  font-family: var(--fontFamilySerif);
+}
+.dice-roll.standard-check .dice-tooltip .boon-details .boon input,
+.dice-roll.standard-check .dice-tooltip .bane-details .boon input,
+.dice-roll.standard-check .dice-tooltip .boon-details .bane input,
+.dice-roll.standard-check .dice-tooltip .bane-details .bane input {
+  order: 2;
+  flex: 0 0 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid red;
+  border-radius: 2px;
+  text-align: center;
+}
+.dice-roll.standard-check .check-result,
+.dice-roll.standard-check .damage-result {
+  position: relative;
+  margin: 5px 0 0;
+}
+.dice-roll.standard-check .check-result .outcome,
+.dice-roll.standard-check .damage-result .outcome,
+.dice-roll.standard-check .check-result .target,
+.dice-roll.standard-check .damage-result .target {
+  position: absolute;
+  color: burlywood;
+  font-weight: normal;
+  font-size: 14px;
+}
+.dice-roll.standard-check .check-result .outcome,
+.dice-roll.standard-check .damage-result .outcome {
+  left: 5px;
+}
+.dice-roll.standard-check .check-result .target,
+.dice-roll.standard-check .damage-result .target {
+  right: 5px;
+}
+.dice-roll.standard-check .check-result .applied:before,
+.dice-roll.standard-check .damage-result .applied:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 3px;
+  content: "\f00c";
+}
+.dice-roll.standard-check.success .check-result {
+  background: rgba(0, 255, 0, 0.05);
+  border: 1px solid green;
+}
+.dice-roll.standard-check.failure .check-result {
+  background: rgba(255, 0, 0, 0.05);
+  border: 1px solid red;
+}
+.dice-roll.standard-check.glance .check-result {
+  background: rgba(255, 255, 0, 0.05);
+  border: 1px solid yellow;
+}
+.dice-roll.standard-check.failure.critical .check-result {
+  background: rgba(255, 0, 0, 0.05);
+  color: red;
+  border: 1px solid red;
+}
+.dice-roll.standard-check.success.critical .check-result {
+  background: rgba(0, 255, 0, 0.05);
+  color: green;
+  border: 1px solid green;
+}

@@ -26,6 +26,8 @@ export default class ActionSheet extends CabinetItemSheet {
     context.attributs = SYSTEM.ATTRIBUTS;
     context.categories = SYSTEM.ACTION_CATEGORIES;
     context.circonstanceshtml = await TextEditor.enrichHTML(this.item.system.circonstances, { async: false });
+    context.enrichedCirconstances = TextEditor.enrichHTML(this.item.system.circonstances, { async: false });
+    context.enrichedDesastre = TextEditor.enrichHTML(this.item.system.desastre, { async: false });
 
     return context;
   }

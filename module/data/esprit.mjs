@@ -84,4 +84,8 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
       qualite.qlipha = qualite.defaut.valeur > qualite.valeur ? true : false;     
     }
   }
+
+  get estComedien() {
+    return this.comedien;
+  }
 }
