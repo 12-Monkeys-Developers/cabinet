@@ -600,26 +600,84 @@ i.logo_defaut {
   top: -905px;
   left: 300px;
 }
-.actions-grid {
-  display: grid;
-  grid-template-columns: 1060px;
-}
-.actions-grid .actions-ligne {
-  display: grid;
-  grid-template-columns: 150px 400px 450px 50px;
-  margin-top: 10px;
-}
-.actions-grid .actions-ligne .nom-action {
+.action-sheet {
+  background: repeat url("../assets/images/sheets/fond-action.webp");
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1em;
-  color: #497180;
-  text-transform: uppercase;
-  padding-left: 10px;
+  color: black;
 }
-.action-image {
-  width: 30px;
-  height: 30px;
+.action-sheet .name-title input {
+  font-family: "trajan";
+  font-size: 2em;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+.action-sheet .action-grid {
+  display: grid;
+  grid-template-columns: 40px 120px 40px 100px 40px 100px 20px;
+  grid-template-rows: 40px 40px;
+  margin-top: 10px;
+  font-family: "imfellfrenchcanon";
+  font-size: 1em;
+  color: #605347;
+  align-items: center;
+}
+.action-sheet .action-grid .action-label {
+  align-self: center;
+  font-size: 3em;
+}
+.action-sheet .action-grid .action-val select {
+  font-family: "imfellfrenchcanon";
+  font-size: 1em;
+  color: #605347;
+}
+.action-sheet .opposition-grid {
+  display: grid;
+  grid-template-columns: 40px 80px 100px 40px 100px;
+  grid-template-rows: 40px;
+  font-family: "imfellfrenchcanon";
+  font-size: 1em;
+  color: #605347;
+  align-items: center;
+  margin-top: 15px;
+}
+.action-sheet .opposition-grid .opp-label {
+  align-self: center;
+  font-size: 1.2em;
+}
+.action-sheet .opposition-grid .action-label {
+  align-self: center;
+  font-size: 3em;
+}
+.action-sheet .opposition-grid .action-val select {
+  font-family: "imfellfrenchcanon";
+  font-size: 1em;
+  color: #605347;
+}
+.action-sheet .editor {
+  min-height: 300px;
+}
+.action-sheet .editor-content {
+  min-height: 300px;
+  font-weight: normal;
+}
+.action-sheet .action-grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.action-sheet .actions-vert {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.action-sheet .actions-vert .vert-name {
+  font-family: "arrusbt";
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
 }
 i.logo_action {
   width: 30px;
@@ -635,8 +693,6 @@ i.logo_action {
   background: repeat url("../assets/images/sheets/fond-pouvoir.webp");
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1em;
-  color: white;
 }
 .pouvoir-sheet .name-title input {
   font-size: 2em;
@@ -645,7 +701,7 @@ i.logo_action {
   border: 0px;
   margin-bottom: 0px;
   margin-top: 10px;
-  color: #AE9065;
+  color: #ae9065;
 }
 .pouvoir-sheet .ornementg {
   margin-bottom: -94px;
@@ -666,7 +722,7 @@ i.logo_action {
   background: repeat url("../assets/images/sheets/fond-ins-pouvoir.webp");
   color: #497180;
   border: 2px solid #685a4e;
-  min-height: 3cap;
+  min-height: 376px;
 }
 .pouvoir-sheet .pouvoir-content .niveau-name {
   text-transform: uppercase;
@@ -726,6 +782,7 @@ i.logo_action {
 }
 .pouvoir-sheet .pouvoir-content .description-group .editor-content {
   min-height: 300px;
+  font-weight: normal;
 }
 .pouvoir-sheet .pouvoir-content .controle-fields {
   grid-row: 3 / 4;

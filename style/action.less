@@ -1,25 +1,88 @@
-.actions-grid {
-    display: grid;
-    grid-template-columns: 1060px;
-
-    .actions-ligne {
-      display: grid;
-      grid-template-columns: 150px 400px 450px 50px;
+.action-sheet {
+  background: repeat url("../assets/images/sheets/fond-action.webp");
+  font-family: "arrusbt";
+  font-weight: bold;
+  color: black;
+  .name-title {
+    input {
+      font-family: "trajan";
+      font-size: 2em;
+      text-transform: uppercase;
+      text-align: center;
+      border: 0px;
+      margin-bottom: -0px;
       margin-top: 10px;
-      .nom-action {
-        font-family: "arrusbt";
-        font-weight: bold;
+    }
+  }
+  .action-grid {
+    display: grid;
+    grid-template-columns: 40px 120px 40px 100px 40px 100px 20px;
+    grid-template-rows: 40px 40px;
+    margin-top: 10px;
+    font-family: "imfellfrenchcanon";
+    font-size: 1em;
+    color: #605347;
+    align-items: center;
+    .action-label {
+      align-self: center;
+      font-size: 3em;
+    }
+    .action-val {
+      select {
+        font-family: "imfellfrenchcanon";
         font-size: 1em;
-        color: #497180;
-        text-transform: uppercase;
-        padding-left: 10px;
+        color: #605347;
       }
     }
   }
 
-.action-image {
-  width: 30px;
-  height: 30px;
+  .opposition-grid {
+    display: grid;
+    grid-template-columns: 40px 80px 100px 40px 100px;
+    grid-template-rows: 40px;
+    font-family: "imfellfrenchcanon";
+    font-size: 1em;
+    color: #605347;
+    align-items: center;
+    margin-top: 15px;
+    .opp-label {
+      align-self: center;
+      font-size: 1.2em;
+    }
+    .action-label {
+      align-self: center;
+      font-size: 3em;
+    }
+    .action-val {
+      select {
+        font-family: "imfellfrenchcanon";
+        font-size: 1em;
+        color: #605347;
+      }
+    }
+  }
+  .editor {
+    min-height: 300px;
+  }
+  .editor-content {
+    min-height: 300px;
+    font-weight: normal;
+  }
+  .action-grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .actions-vert{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    .vert-name {
+      font-family: "arrusbt";
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
 }
 
 i.logo_action {

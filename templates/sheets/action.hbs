@@ -1,100 +1,96 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{log "action" this}}
 
-   <div class="action-image">
-        <img src="{{item.img}}" data-edit="img"/>
-   </div>
-  {{! Sheet Body }}
-  <section class="sheet-body flexcol">
-    <h3>{{item.name}}</h3>
-    <div class="form-group">
-      <label>Catégorie</label>
-      <div class="form-fields">
-        <select name="system.categorie">
-          {{selectOptions categories selected=system.categorie labelAttr="label" sort=false}}
-        </select>
+  <div class="action-sheet">
+    {{! Sheet Body }}
+    <section class="sheet-body flexcol">
+      <div class="name-title">
+        <input name="name" type="text" value="{{item.name}}" />
       </div>
-    </div>    
-    <div class="form-group">
-      <label>Qualité</label>
-      <div class="form-fields">
-        <select name="system.qualite">
-          {{selectOptions qualites selected=system.qualite labelAttr="label" sort=true}}
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Qualité alternative</label>
-      <div class="form-fields">
-        <select name="system.qualiteAlt">
-          {{selectOptions qualites selected=system.qualiteAlt labelAttr="label" sort=true blank=""}}
-        </select>
-      </div>
-    </div>    
-    <div class="form-group">
-      <label>Aspect</label>
-      <div class="form-fields">
-        <select name="system.aspect">
-          {{selectOptions aspects selected=system.aspect labelAttr="label" sort=true}}
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Aspect alternatif</label>
-      <div class="form-fields">
-        <select name="system.aspectAlt">
-          {{selectOptions aspects selected=system.aspectAlt labelAttr="label" sort=true blank=""}}
-        </select>
-      </div>
-    </div>    
-    <div class="form-group">
-      <label>Attribut</label>
-      <div class="form-fields">
-        <select name="system.attribut">
-          {{selectOptions attributs selected=system.attribut labelAttr="label" sort=true blank=""}}
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Attribut alternatif</label>
-      <div class="form-fields">
-        <select name="system.attributAlt">
-          {{selectOptions attributs selected=system.attributAlt labelAttr="label" sort=true blank=""}}
-        </select>
-      </div>
-    </div>    
-    <label class="checkbox">
-      <input type="checkbox" name="system.controle" {{checked system.controle}} />
-      Contrôle
-    </label>
-    {{#unless system.controle}}
-      Votre Esprit n'a pas besoin d'avoir le contrôle pour tenter cette action.{{/unless}}<label class="checkbox">
-      <input type="checkbox" name="system.opposition" {{checked system.opposition}} />
-      Opposition
-    </label>
-    {{#if system.opposition}}
-      <div class="form-group">
-        <label>Opposition : Aspect</label>
-        <div class="form-fields">
-          <select name="system.oppositionAspect">
-            {{selectOptions aspects selected=system.oppositionAspect labelAttr="label" sort=true}}
+      <div class="action-grid">
+        <div class="action-label" style="grid-row: 1 / 3; grid-column: 1 / 2;"><i class="logo_action"></i></div>
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 2 / 3;">
+          <select name="system.qualite">
+            {{selectOptions qualites selected=system.qualite labelAttr="label" sort=true}}
           </select>
         </div>
-      </div>
-      <div class="form-group">
-        <label>Opposition : Attribut</label>
-        <div class="form-fields">
-          <select name="system.oppositionAttribut">
-            {{selectOptions attributs selected=system.oppositionAttribut labelAttr="label" blank="" sort=true}}
+        <div class="action-val" style="grid-row: 2 / 3; grid-column: 2 / 3;">
+          <select name="system.qualiteAlt">
+            {{selectOptions qualites selected=system.qualiteAlt labelAttr="label" sort=true blank=""}}
           </select>
         </div>
+        <div class="action-label" style="grid-row: 1 / 3; grid-column: 3 / 4;">+</div>
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 4 / 5;">
+          <select name="system.aspect">
+            {{selectOptions aspects selected=system.aspect labelAttr="label" sort=true}}
+          </select>
+        </div>
+        <div class="action-val" style="grid-row: 2 / 3; grid-column: 4 / 5;">
+          <select name="system.aspectAlt">
+            {{selectOptions aspects selected=system.aspectAlt labelAttr="label" sort=true blank=""}}
+          </select>
+        </div>
+        <div class="action-label" style="grid-row: 1 / 3; grid-column: 5 / 6;">(+</div>
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 6 / 7;">
+          <select name="system.attribut">
+            {{selectOptions attributs selected=system.attribut labelAttr="label" sort=true blank=""}}
+          </select>
+        </div>
+        <div class="action-val" style="grid-row: 2 / 3; grid-column: 6 / 7;">
+          <select name="system.attributAlt">
+            {{selectOptions attributs selected=system.attributAlt labelAttr="label" sort=true blank=""}}
+          </select>
+        </div>
+        <div class="action-label" style="grid-row: 1 / 3; grid-column: 7 / 8;">)</div>
       </div>
-    {{/if}}
-        <div class="form-group">
-        <label>Circonstances</label>
+      <div class="opposition-grid">
+        <div class="opp-label" style="grid-column: 1 / 2;">
+          <input type="checkbox" name="system.opposition" {{checked system.opposition}} />
+        </div>
+        <div class="opp-label" style="grid-column: 2 / 3;">
+          contre
+        </div>
+        {{#if system.opposition}}
+          <div class="action-val" style="grid-column: 3 / 4;">
+            <select name="system.oppositionAspect">
+              {{selectOptions aspects selected=system.oppositionAspect labelAttr="label" sort=true}}
+            </select>
+          </div>
+          <div class="action-label" style="grid-column: 4 / 5;">+</div>
+          <div class="action-val" style="grid-column: 5 / 6;">
+            <select name="system.oppositionAttribut">
+              {{selectOptions attributs selected=system.oppositionAttribut labelAttr="label" blank="" sort=true}}
+            </select>
+          </div>
+        {{/if}}
+      </div>
+      <div class="action-grid2">
+        <div class="actions-vert">
+          <div class="vert-name">Catégorie</div>
+          <div class="vert-name">
+            <select name="system.categorie">
+              {{selectOptions categories selected=system.categorie labelAttr="label" sort=false}}
+            </select>
+          </div>
+        </div>
+        <div class="actions-vert">
+          <div class="vert-name">Contrôle</div>
+          <div class="vert-name">
+            <input type="checkbox" name="system.controle" {{checked system.controle}} />
+          </div>
+          {{#unless system.controle}}
+            <div class="vert-name">
+              <br />Votre Esprit n'a pas besoin d'avoir le contrôle pour tenter cette action.
+            </div>
+          {{/unless}}
+        </div>
+      </div>
+      <div class="actions-vert">
+        <div class="vert-name">Circonstances</div>
         <div class="form-fields">
-            {{editor system.circonstances target="system.circonstances" button=true owner=owner editable=editable}}
-        </div>        
-    </div>
-  </section>
+          {{editor circonstanceshtml target="system.circonstances" button=true owner=owner editable=editable}}
+        </div>
+      </div>
+    </section>
+  </div>
 </form>
