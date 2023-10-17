@@ -1,54 +1,53 @@
 <form class="{{cssClass}} flexrow" autocomplete="off">
   {{log "pouvoir" this}}
-
-  {{! Sheet Header }}
-  <header class="sheet-header flexrow">
-  </header>
-
-  {{! Sheet Body }}
-  <section class="sheet-body flexcol">
-    <h3>{{item.name}}</h3>
-    <div class="form-group">
-      <label>Niveau</label>
-      <div class="form-fields">
-        <select name="system.niveau">
-          {{#select system.niveau}}
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          {{/select}}
-        </select>
+  <div class="pouvoir-sheet">
+    <section class="sheet-body flexcol">
+      <div class="name-title">
+        <input name="name" type="text" value="{{item.name}}" />
       </div>
-    </div>
-    <div class="form-group">
-      <label>Sphère</label>
-      <div class="form-fields">
-        <select name="system.sphere">
-          {{selectOptions spheres selected=system.sphere labelAttr="label"}}
-        </select>
+      <div class="ornementg">
+        <img src="systems/cabinet/assets/images/ornement_dore_feuille.webp" />
       </div>
-    </div>
-    <div class="form-group">
-        <div class="form-fields">
-            <label>Perisprit</label>
-            <input class="level" type="number" name="system.perisprit" value="{{system.perisprit}}" />
+      <div class="pouvoir-content">
+        <div class="niveau-name">Niveau</div>
+        <div class="niveau-val">
+          <select name="system.niveau">
+            {{#select system.niveau}}
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            {{/select}}
+          </select>
         </div>
-    </div> 
-     <div class="form-group">
-        <div class="form-fields">
-            <label class="checkbox">Contrôle
-                <input type="checkbox" name="system.controle" {{checked system.controle}}>
-            </label>
-            <label class="checkbox">Automatique
-                <input type="checkbox" name="system.automatique" {{checked system.automatique}}>
-            </label>
+        <div class="description-group">
+          <div class="description-name">Description</div>
+          <div class="description-val">
+            {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+          </div>
         </div>
-    </div>    
-    <div class="form-group">
-        <label>Description</label>
-        <div class="form-fields">
-            {{editor description target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
-        </div>        
-    </div>
-  </section>
+        <div class="sphere-name">Sphère</div>
+        <div class="sphere-val">
+          <select name="system.sphere">
+            {{selectOptions spheres selected=system.sphere labelAttr="label"}}
+          </select>
+        </div>
+        <div class="perisprit-name">Périsprit</div>
+        <div class="perisprit-val">
+          <input class="level" type="number" name="system.perisprit" value="{{system.perisprit}}" />
+        </div>
+        <div class="controle-fields">
+          <label class="checkbox">Contrôle
+            <input type="checkbox" name="system.controle" {{checked system.controle}} />
+          </label></div>
+        <div class="auto-fields">
+          <label class="checkbox">Auto
+            <input type="checkbox" name="system.automatique" {{checked system.automatique}} />
+          </label>
+        </div>
+        <div class="imgsphere">
+          <img src="{{imgsphere}}" title="{{system.sphere}}" />
+        </div>
+      </div>
+    </section>
+  </div>
 </form>
