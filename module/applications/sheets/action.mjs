@@ -6,7 +6,7 @@ export default class ActionSheet extends CabinetItemSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      height: 440,
+      height: 600,
       width:600,
       resizable: false,
     });
@@ -25,9 +25,8 @@ export default class ActionSheet extends CabinetItemSheet {
     context.aspects = SYSTEM.ASPECTS;
     context.attributs = SYSTEM.ATTRIBUTS;
     context.categories = SYSTEM.ACTION_CATEGORIES;
-    context.circonstanceshtml = await TextEditor.enrichHTML(this.item.system.circonstances, { async: false });
-    context.enrichedCirconstances = TextEditor.enrichHTML(this.item.system.circonstances, { async: false });
-    context.enrichedDesastre = TextEditor.enrichHTML(this.item.system.desastre, { async: false });
+    context.circonstancesHtml = TextEditor.enrichHTML(this.item.system.circonstances, { async: false });
+    context.desastreHtml = TextEditor.enrichHTML(this.item.system.desastre, { async: false });
 
     return context;
   }
