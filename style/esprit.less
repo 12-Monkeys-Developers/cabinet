@@ -173,7 +173,7 @@
   .qvgauche {
     padding-left: 47px;
   }
-  .position-arbre{
+  .position-arbre {
     text-shadow: 0 0 5px #3c36f4;
   }
   .defaut-value {
@@ -303,5 +303,38 @@
     .icon-group {
       margin-left: auto;
     }
+  }
+}
+.grid-tab-actions {
+  background: repeat url("../assets/images/sheets/esprit-tab-actions.webp");
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  .categorie {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5px 0px 5px;
+  }
+  .categorie_agir {
+    grid-row: 1 / 4;
+    grid-column: 1 / 2;
+  }
+  .categorie_communiquer {
+    grid-row: 1 / 4;
+    grid-column: 2 / 3;
+  }
+  .categorie_percevoir {
+    grid-row: 1 / 2;
+    grid-column: 3 / 4;
+  }
+  .categorie_savoir {
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+  }
+  .nom-action{
+    font-family: "trajan";
+    font-size: 1em;
+    color: #6a7980;
+    text-indent: 5px;
+    text-transform: uppercase;
   }
 }

@@ -1,0 +1,14 @@
+<div class="actions-ligne">
+  <div class="nom-action">{{action.name}}</div>
+  <div class="resolution" data-tooltip="{{action.system.formulaTooltip}}">
+    <i class="logo_action"></i>
+    {{{action.system.formulaHtml}}}
+  </div>
+  <div>{{{action.system.circonstances}}}</div>
+  <div class="icon-group">
+    {{#if @root.editable}}
+      <a class="item-control item-edit" data-field="{{action._id}}" data-tooltip="Modifier"><i class="fas fa-cog"></i></a>
+      <a class="item-control item-delete" data-field="{{action._id}}" data-tooltip="Supprimer"><i class="fas fa-trash"></i></a>
+    {{/if}}
+  </div>
+</div>

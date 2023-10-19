@@ -1,19 +1,34 @@
-<div class="actions-grid">
+<div class="grid-tab-actions">
+    <div class="categorie categorie_agir">
+        <div class="titre2">Agir</div>
     {{#each actions as |action|}}
-        {{log 'action' this}}
-        <div class="actions-ligne">
-            <div class="nom-action">{{action.name}}</div>
-            <div class="resolution" data-tooltip="{{action.system.formulaTooltip}}">
-                <i class="logo_action"></i>
-                {{action.system.formula}}
-            </div>
-            <div>{{{action.system.circonstances}}}</div>    
-            <div class="icon-group">
-                {{#if @root.editable}}
-                    <a class="item-control item-edit" data-field="{{action._id}}" data-tooltip="Modifier"><i class="fas fa-cog"></i></a>
-                    <a class="item-control item-delete" data-field="{{action._id}}" data-tooltip="Supprimer"><i class="fas fa-trash"></i></a>
-                {{/if}}
-            </div>     
-        </div>
+    {{#ife action.system.categorie "agir"}}
+       {{> "systems/cabinet/templates/sheets/partials/actor-actions-group.hbs" action=action}}
+    {{/ife}}
     {{/each}}
+    </div>
+    <div class="categorie categorie_communiquer">
+        <div class="titre2">Communiquer</div>
+    {{#each actions as |action|}}
+    {{#ife action.system.categorie "communiquer"}}
+       {{> "systems/cabinet/templates/sheets/partials/actor-actions-group.hbs" action=action}}
+    {{/ife}}
+    {{/each}}
+    </div>
+    <div class="categorie categorie_percevoir">
+        <div class="titre2">Percevoir</div>
+    {{#each actions as |action|}}
+    {{#ife action.system.categorie "percevoir"}}
+       {{> "systems/cabinet/templates/sheets/partials/actor-actions-group.hbs" action=action}}
+    {{/ife}}
+    {{/each}}
+    </div>
+    <div class="categorie categorie_savoir">
+        <div class="titre2">Savoir</div>
+    {{#each actions as |action|}}
+    {{#ife action.system.categorie "savoir"}}
+       {{> "systems/cabinet/templates/sheets/partials/actor-actions-group.hbs" action=action}}
+    {{/ife}}
+    {{/each}}
+    </div>
 </div>

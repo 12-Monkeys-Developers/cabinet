@@ -54,6 +54,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/actor-qualites.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/actor-qualite-group.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/actor-actions.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/actor-actions-group.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/actor-perisprit.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
     `systems/${SYSTEM.id}/templates/forms/gestion-cabinet.hbs`
