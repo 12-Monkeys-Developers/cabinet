@@ -3,7 +3,7 @@
         {{log 'action' this}}
         <div class="actions-ligne">
             <div class="nom-action">{{action.name}}</div>
-            <div class="resolution" data-tooltip="{{action.system.formulaTooltip}}">
+            <div class="resolution" data-tooltip="{{action.system.formulaTooltip}}" data-action-id="{{action.id}}">
                 <i class="logo_action"></i>
                 {{action.system.formula}}
             </div>

@@ -668,6 +668,10 @@ i.logo_defaut {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+.action-sheet .action-grid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
 .action-sheet .actions-vert {
   margin-top: 20px;
   display: flex;

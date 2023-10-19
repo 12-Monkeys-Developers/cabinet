@@ -61,12 +61,19 @@ export default class EspritSheet extends CabinetActorSheet {
     });
   }
 
+  /** @override */
   activateListeners(html) {
     super.activateListeners(html);
 
     html.find(".qualite-group").click(this._onQualiteRoll.bind(this));
+    html.find(".resolution").click(this._onActionRoll.bind(this));
   }
 
+  /**
+   *
+   * @param {*} event
+   * @returns
+   */
   async _onQualiteRoll(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -77,9 +84,41 @@ export default class EspritSheet extends CabinetActorSheet {
     let qualite = element.dataset.field;
     //console.log("jet de ", qualite);
 
-    return this.actor.rollSkill(qualite, {dialog: true});
+    return this.actor.rollSkill(qualite, { dialog: true });
   }
 
+  /**
+   *
+   * @param {*} event
+   * @returns
+   */
+  async _onActionRoll(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    // Ne pas déclencher de jet si la feuille est déverrouillée
+    if (this.actor.isUnlocked) return;
+
+    let element = event.currentTarget;
+    console.log("_onActionRoll", element);
+    const actionId = element.dataset.actionId;
+    const action = this.actor.items.get(actionId);
+    //let qualite = element.dataset.field;
+    console.log("jet de ", action.name);
+
+    const actionSystem = action.system;
+    let qualite = actionSystem.qualite;
+    /*let defaultValues = {
+      aspect: actionSystem.aspect
+    };*/
+    const keysToIgnore = ["formula", "formulaTooltip","circonstances"];
+    const defaultValues = Object.fromEntries(Object.entries(actionSystem).filter(([key, value]) => value !== undefined && !keysToIgnore.includes(key)));
+
+    return this.actor.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
+  }
+
+  /**
+   *
+   */
   async _devenirComedien() {
     let comedienId = game.settings.get("cabinet", "comedien");
     let comedien = game.actors.get(comedienId);

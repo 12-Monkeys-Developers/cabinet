@@ -52,10 +52,10 @@ export default class CabinetActor extends Actor {
    *
    * @return {StandardCheck}      The StandardCheck roll instance which was produced.
    */
-    async rollSkill(qualiteId, {diff, rollMode, dialog=false}={}) {
+    async rollSkill(qualiteId, {diff, rollMode, dialog=false, defaultValues=null}={}) {
  
       // Prepare check data
-      const rollData = {
+      let rollData = {
         actorId: this.id,
         actorData: this.system,
         qualite: qualiteId,
@@ -65,6 +65,10 @@ export default class CabinetActor extends Actor {
         rollMode: rollMode,
       };
         
+      if (defaultValues !== null) {
+        rollData = foundry.utils.mergeObject(rollData, defaultValues); 
+      }
+
       // Create the check roll
       let sc = new StandardCheck(rollData);
   
