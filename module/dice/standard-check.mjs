@@ -121,7 +121,7 @@ export default class StandardCheck extends Roll {
     if (data.perisprit !== "") data.perispritValeur = parseInt(data.perisprit);
     data.estEmbellie = data.peutEmbellie && data.embellie !== undefined && data.embellie !== "";
 
-    //TODO Ajouter aspectValeur si aspect est != undefined (pour une action par défaut)
+    if (data.aspect !== undefined && data.aspect !== "") data.aspectValeur = data.actorData.aspects[data.aspect].valeur;
 
     //TODO Idem attributValeur
   }
