@@ -4,29 +4,16 @@ export default function initControlButtons() {
   Hooks.on("getSceneControlButtons", (btns) => {
     let menu = [];
 
-    menu.push(
-      {
-        name: "aides",
-        title: "Règles",
-        icon: "fas fa-book-reader",
-        button: true,
-        onClick: () => {
-          let journal = game.journal.get("ffffffffffff");
-          if (journal) journal.sheet.render(true, { pageId: "ffffffffffff", sheetMode: "text" });
-        },
+    menu.push({
+      name: "arbre",
+      title: "Arbre de vie",
+      icon: "logo_defaut",
+      button: true,
+      onClick: () => {
+        let calledForm = game.settings.get("cabinet", "arbreform");
+        calledForm.render(true);
       },
-      {
-        name: "arbre",
-        title: "Arbre de vie",
-        icon: "logo_defaut",
-        button: true,
-        onClick: () => {
-          let calledForm = game.settings.get("cabinet", "arbreform");
-          calledForm.render(true);
-        },
-      }
-    );
-
+    });
     if (game.user.isGM) {
       menu.push({
         name: "gestion",

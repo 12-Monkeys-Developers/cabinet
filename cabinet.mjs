@@ -14,6 +14,9 @@ import * as models from "./module/data/_module.mjs";
 Hooks.once("init", async function () {
   console.log(`Initialisation du système Cabinet des murmures...`);
   game.system.CONST = SYSTEM;
+  if(!game.system.CABINET_MENU){
+    game.system.CABINET_MENU
+  }
 
   CONFIG.ui.players = applications.PlayersList;
 
