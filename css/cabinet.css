@@ -441,6 +441,10 @@ i.logo_defaut {
   display: flex;
   flex-direction: column;
   margin: 10px 5px 0px 5px;
+  min-height: 250px;
+}
+.grid-tab-actions .categorie .actions-ligne {
+  margin-top: 15px;
 }
 .grid-tab-actions .categorie_agir {
   grid-row: 1 / 4;

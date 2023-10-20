@@ -66,7 +66,7 @@ export default class EspritSheet extends CabinetActorSheet {
     super.activateListeners(html);
 
     html.find(".qualite-group").click(this._onQualiteRoll.bind(this));
-    html.find(".resolution").click(this._onActionRoll.bind(this));
+    html.find(".logo_action").click(this._onActionRoll.bind(this));
   }
 
   /**
@@ -100,7 +100,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
     let element = event.currentTarget;
     console.log("_onActionRoll", element);
-    const actionId = element.dataset.actionId;
+    const actionId = element.dataset.field;
     const action = this.actor.items.get(actionId);
     //let qualite = element.dataset.field;
     console.log("jet de ", action.name);
