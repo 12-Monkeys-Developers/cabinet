@@ -784,6 +784,7 @@ i.logo_defaut {
 .action-sheet .editor-content {
   min-height: 300px;
   font-weight: normal;
+  margin: 0px 5px;
 }
 .action-sheet .action-grid2 {
   display: grid;
@@ -810,6 +811,56 @@ i.logo_defaut {
   text-indent: 0px;
   text-align: justify;
 }
+.acquis-sheet {
+  background: repeat url("../assets/images/sheets/fond-acquis.webp");
+  font-family: "arrusbt";
+  font-weight: bold;
+}
+.acquis-sheet .name-title {
+  display: flex;
+  flex-direction: row;
+}
+.acquis-sheet .name-title input {
+  font-size: 2em;
+  text-transform: uppercase;
+  text-align: left;
+  border: 0px;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: #497180;
+}
+.acquis-sheet .name-title img {
+  border: 0px;
+  max-height: 100px;
+}
+.acquis-sheet .acquis-content {
+  width: 400px;
+  min-height: 260px;
+}
+.acquis-sheet .field-name {
+  text-transform: uppercase;
+  margin: 5px 10px;
+  text-align: center;
+  color: #497180;
+}
+.acquis-sheet .valeur-group {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 10px 15px 150px;
+}
+.acquis-sheet .description-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px 15px 10px;
+}
+.acquis-sheet .description-group .editor {
+  min-height: 150px;
+}
+.acquis-sheet .description-group .editor-content {
+  min-height: 150px;
+  margin: 0px 5px;
+  font-weight: normal;
+}
 .corruption-sheet {
   background: repeat url("../assets/images/sheets/fond-corruption.webp");
   font-family: "arrusbt";
@@ -829,6 +880,7 @@ i.logo_defaut {
 }
 .corruption-sheet .name-title img {
   border: 0px;
+  max-height: 100px;
 }
 .corruption-sheet .description-group {
   display: flex;
@@ -841,9 +893,13 @@ i.logo_defaut {
   text-align: center;
   color: #d0e4d1;
 }
+.corruption-sheet .description-group .editor {
+  min-height: 235px;
+}
 .corruption-sheet .description-group .editor-content {
   min-height: 235px;
   font-weight: normal;
+  margin: 0px 5px;
 }
 .pouvoir-sheet {
   background: repeat url("../assets/images/sheets/fond-pouvoir.webp");
