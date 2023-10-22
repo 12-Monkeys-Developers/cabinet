@@ -4,12 +4,19 @@
   {{! Main Content }}
   <section class="sheet-body">
     <header class="esprit-header" style='background: repeat url("systems/cabinet/assets/images/sheets/{{getBackgroundImage actor}}");'>
-      <div class="titre_feuille">Esprit&nbsp;&nbsp;&nbsp;
-    <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
+      <div class="titre_feuille">Esprit&nbsp;&nbsp;
+        <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
           {{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
-      </span></div>
+        </span>
+      </div>
       <div class="charname">
         {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}</div>
+      <div class="perisprit-bloc">
+        <div class="perisprit-label">Perisprit</div>
+        <div class="perisprit-value">
+            <input type="text" name="system.perisprit" value="{{system.perisprit}}" />
+        </div>
+      </div>
       <div class="esprit-portrait">
         <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
       </div>

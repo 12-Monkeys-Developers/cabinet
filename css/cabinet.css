@@ -131,7 +131,7 @@ i.logo_defaut {
 .esprit-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 180px 571px 100px 133px;
 }
 .esprit-header .titre_feuille {
   font-family: "arrusbt";
@@ -155,6 +155,30 @@ i.logo_defaut {
 }
 .esprit-header .charname input {
   color: white;
+}
+.esprit-header .perisprit-bloc {
+  display: flex;
+  flex-direction: column;
+}
+.esprit-header .perisprit-bloc .perisprit-label {
+  font-family: "arrusbt";
+  font-size: 1em;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0px;
+  margin-bottom: 5px;
+  margin-top: 16px;
+  color: #ae9065;
+}
+.esprit-header .perisprit-bloc .perisprit-value {
+  text-align: center;
+}
+.esprit-header .perisprit-bloc .perisprit-value input {
+  font-family: "arrusbt";
+  font-size: 2em;
+  width: 3em;
+  color: #ae9065;
+  border: 0px;
 }
 .esprit-header .esprit-portrait {
   border: none;
@@ -469,6 +493,66 @@ i.logo_defaut {
   text-indent: 5px;
   text-transform: uppercase;
 }
+.tab-perisprit {
+  background: repeat url("../assets/images/sheets/esprit-tab-perisprit.webp");
+  min-height: 600px;
+}
+.tab-perisprit .titre2 {
+  color: white;
+  max-height: 30px;
+}
+.tab-perisprit .grid-pouvoirs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.tab-perisprit .grid-pouvoirs .bloc-pouvoir {
+  padding: 0px 5px;
+}
+.tab-perisprit .grid-pouvoirs .nom {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  color: #ae9065;
+}
+.tab-perisprit .grid-pouvoirs .info-line {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1.1em;
+  border: 0px;
+  margin: 3px;
+  color: #ae9065;
+  text-align: center;
+}
+.tab-perisprit .grid-pouvoirs .neoclassic {
+  font-family: "neoclassic";
+  font-size: 1.3em;
+  text-align: center;
+  color: #ae9065;
+  text-indent: 0px;
+  margin: 0px;
+}
+.tab-perisprit .grid-pouvoirs .description {
+  font-size: 0.9em;
+  color: white;
+  text-align: justify;
+  border: 2px solid #886a3c;
+  width: 98%;
+  padding: 6px;
+  margin: 0 auto;
+  background: rgba(10, 9, 0, 0.5);
+}
+.tab-perisprit .grid-pouvoirs .inner-desc {
+  position: relative;
+  border: 2px solid #886a3c;
+  width: 100%;
+  margin: auto;
+  padding: 8px;
+}
 .cabinet-membres {
   background: repeat url("../assets/images/sheets/fond_gestion.webp");
   min-width: 200px;
@@ -720,16 +804,6 @@ i.logo_defaut {
   text-align: center;
   text-transform: uppercase;
 }
-i.logo_action {
-  width: 30px;
-  height: 30px;
-  background-image: url("../assets/icones/symbole_de_action.png");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-  vertical-align: middle;
-}
 .action-description {
   font-family: "garamondpro";
   font-size: 1em;
@@ -740,6 +814,10 @@ i.logo_action {
   background: repeat url("../assets/images/sheets/fond-pouvoir.webp");
   font-family: "arrusbt";
   font-weight: bold;
+}
+.pouvoir-sheet .name-title {
+  position: relative;
+  z-index: 2;
 }
 .pouvoir-sheet .name-title input {
   font-size: 2em;

@@ -1,7 +1,7 @@
 .esprit-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 180px 571px 100px 133px;
   .titre_feuille {
     font-family: "arrusbt";
     font-weight: bold;
@@ -24,6 +24,30 @@
     input {
       color: white;
     }
+  }
+  .perisprit-bloc {
+    display: flex;
+    flex-direction: column;
+    .perisprit-label{
+      font-family: "arrusbt";
+        font-size: 1em;
+        text-transform: uppercase;
+        text-align: center;
+        border: 0px;
+        margin-bottom: 5px;
+        margin-top: 16px;
+        color: #ae9065;
+      }
+      .perisprit-value{
+        text-align: center;
+        input{
+          font-family: "arrusbt";
+            font-size: 2em;
+            width: 3em;
+            color: #ae9065;
+            border:0px;
+        }
+      }
   }
   .esprit-portrait {
     border: none;
@@ -342,3 +366,64 @@
     text-transform: uppercase;
   }
 }
+.tab-perisprit {
+  background: repeat url("../assets/images/sheets/esprit-tab-perisprit.webp");
+  min-height: 600px;
+
+  .titre2{
+    color:white;
+    max-height: 30px;
+  }
+  .grid-pouvoirs{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    .bloc-pouvoir{
+      padding: 0px 5px;
+    }
+  .nom{
+    font-family: "arrusbt";
+    font-weight: bold;
+      font-size: 1.5em;
+      text-transform: uppercase;
+      text-align: center;
+      border: 0px;
+      margin-bottom: 5px;
+      margin-top: 10px;
+      color: #ae9065;
+    }
+    .info-line{
+      font-family: "arrusbt";
+      font-weight: bold;
+        font-size: 1.1em;
+      border: 0px;
+      margin: 3px;
+      color: #ae9065;
+      text-align: center;
+    }
+    
+  .neoclassic {
+    font-family: "neoclassic";
+    font-size: 1.3em;
+    text-align: center;
+    color: #ae9065;
+    text-indent: 0px;
+    margin: 0px;
+  }
+    .description{
+      font-size: 0.9em;
+      color:white;
+      text-align: justify;
+      border: 2px solid #886a3c;
+      width: 98%;
+      padding: 6px;
+      margin: 0 auto;
+      background: rgba(10,9,0, 0.5);
+    }
+    .inner-desc {
+    position: relative;
+    border: 2px solid #886a3c;
+    width: 100%;
+    margin: auto;
+    padding: 8px;
+}
+}}

@@ -26,6 +26,17 @@ export default class EspritSheet extends CabinetActorSheet {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
+    // Pouvoir par ordre niveau et mise en forme de la description
+    context.pouvoirs = this.actor.items
+      .filter((item) => item.type == "pouvoir")
+      .sort(function (a, b) {
+        return a.system.niveau > b.system.niveau;
+      });
+    context.pouvoirs.forEach((element) => {
+      element.system.shperelabel = SYSTEM.SPHERES[element.system.sphere].label;
+      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    });
+
     context.backgroundColor = this.actor.system.backgroundColor;
 
     context.comedien = this.actor.system.comedien;
