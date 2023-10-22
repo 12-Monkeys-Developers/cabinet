@@ -1,6 +1,17 @@
 import CabinetActorSheet from "./actor.mjs";
 
 export default class EspritSheet extends CabinetActorSheet {
+  /** @inheritdoc */
+  static get defaultOptions() {
+    const options = super.defaultOptions;
+    return Object.assign(options, {
+      width: 1000,
+      height: 770,
+      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "qualites" }],
+    });
+  }
+
+
   /**
    * Le type d'Actor qu'affiche cette Sheet
    * @type {string}
@@ -11,7 +22,6 @@ export default class EspritSheet extends CabinetActorSheet {
   async getData(options) {
     const context = await super.getData(options);
 
-    // Qualités
     context.qualites = this.#formatQualites(context.actor.system.qualites);
     context.aspects = this.#formatAspects(context.actor.system.aspects);
     context.actions = this.actor.items.filter((i) => i.type === "action");

@@ -3,12 +3,11 @@ export default class CabinetActorSheet extends ActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 1000,
-      height: 770,
+      width: 800,
+      height: 600,
       classes: [SYSTEM.id, "sheet", "actor", this.actorType],
       template: `systems/${SYSTEM.id}/templates/sheets/${this.actorType}.hbs`,
       resizable: false,
-      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "qualites" }],
       scrollY: []
     });
   }

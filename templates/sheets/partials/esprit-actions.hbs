@@ -3,7 +3,7 @@
         <div class="titre2">Agir</div>
     {{#each actions as |action|}}
     {{#ife action.system.categorie "agir"}}
-       {{> "systems/cabinet/templates/sheets/partials/actor-actions-group.hbs" action=action}}
+       {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
     {{/ife}}
     {{/each}}
     </div>
@@ -11,7 +11,7 @@
         <div class="titre2">Communiquer</div>
     {{#each actions as |action|}}
     {{#ife action.system.categorie "communiquer"}}
-       {{> "systems/cabinet/templates/sheets/partials/actor-actions-group.hbs" action=action}}
+       {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
     {{/ife}}
     {{/each}}
     </div>
@@ -19,7 +19,7 @@
         <div class="titre2">Percevoir</div>
     {{#each actions as |action|}}
     {{#ife action.system.categorie "percevoir"}}
-       {{> "systems/cabinet/templates/sheets/partials/actor-actions-group.hbs" action=action}}
+       {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
     {{/ife}}
     {{/each}}
     </div>
@@ -27,7 +27,7 @@
         <div class="titre2">Savoir</div>
     {{#each actions as |action|}}
     {{#ife action.system.categorie "savoir"}}
-       {{> "systems/cabinet/templates/sheets/partials/actor-actions-group.hbs" action=action}}
+       {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
     {{/ife}}
     {{/each}}
     </div>

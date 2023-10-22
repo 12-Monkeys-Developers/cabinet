@@ -32,6 +32,7 @@ Hooks.once("init", async function () {
 
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
+  Actors.registerSheet(SYSTEM.id, applications.CorpsSheet, { types: ["corps"], makeDefault: true });
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.CabinetItem;
@@ -56,11 +57,13 @@ Hooks.once("init", async function () {
   CONFIG.Dice.rolls.push(dice.StandardCheck);
 
   loadTemplates([
-    `systems/${SYSTEM.id}/templates/sheets/partials/actor-qualites.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/actor-qualite-group.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/actor-actions.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/actor-actions-group.hbs`,
-    `systems/${SYSTEM.id}/templates/sheets/partials/actor-perisprit.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/esprit-qualites.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/esprit-qualite-group.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/esprit-actions.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/esprit-actions-group.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/esprit-perisprit.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/corps-details.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/corps-sante.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
     `systems/${SYSTEM.id}/templates/forms/gestion-cabinet.hbs`
   ]);
@@ -83,6 +86,10 @@ Hooks.once("init", async function () {
     return foundry.utils.getProperty(actor.system.qualites, `${qualite}.defaut.${prop}`);
   });
   
+  Handlebars.registerHelper("getAttributProperty", function (actor, attribut, prop) {
+    return foundry.utils.getProperty(actor.system.attributs, `${attribut}.${prop}`);
+  });
+
   Handlebars.registerHelper("positionArbre", function (actor, qualite) {
     if(actor.system.positionArbre === SYSTEM.QUALITES[qualite].sphere) return "position-arbre";
     else return "";
@@ -106,6 +113,14 @@ Hooks.once("init", async function () {
     config: true,
     type: String
   });
+
+  game.settings.register("cabinet", "corps", {
+    name: "Corps",
+    hint: "Id du corps.",
+    scope: "world",
+    config: true,
+    type: String
+  });  
 
 });
 

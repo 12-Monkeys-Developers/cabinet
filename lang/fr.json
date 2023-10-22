@@ -155,13 +155,14 @@
     },
     "DE":{
       "total": "Total",
-      "qualite": "Qualité",      
+      "qualite": "Nb dés de qualité",      
       "aspect": "Aspect",
       "acquis": "Acquis",
+      "attribut": "Attribut",
       "perisprit": "Perisprit",
       "malus": "Malus",
       "bonus": "Bonus",
-      "deQualite": "Dé conservé de la qualité",
+      "deQualite": "Dé conservé (qualité)",
       "embellie": "Embellie",
       "deEmbellie": "Total dés embellie"
     }

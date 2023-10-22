@@ -25,16 +25,21 @@
                     </select>
                     {{numberInput aspectValeur name="aspectValeur" min=0}}
                 </div>
+                {{#if estComedien}}
+                <div class="attribut">
+                    <label>Attribut</label>
+					<select name="attribut" data-action="attribut-change">
+                        {{selectOptions listeAttributs selected=attribut labelAttr="label" blank="Choisir un attribut" sort=true}}
+                    </select>
+                    {{numberInput attributValeur name="attributValeur" min=1}}
+                </div>
+                {{/if}}                
                 <div class="acquis">
                     <label>Acquis</label>
                     <select name="acquis" data-action="acquis-change">
                         {{selectOptions listeAcquis selected=acquis nameAttr="indice" labelAttr="nom" blank="Choisir un acquis"}}
                     </select>
                     {{numberInput acquisValeur name="acquisValeur" min=0}}
-                </div>
-                <div class="attribut">
-                    <label>Attribut</label>
-                    {{numberInput attribut name="attribut" min=0}}
                 </div>
                 <div class="perisprit">
                     <label>Perisprit</label>

@@ -35,19 +35,30 @@ export default class StandardCheckDialog extends Dialog {
     const data = this.roll.data;
 
     // Si comédien et positionné sur la qualité utilisée
-    const comedien = data.actorData.comedien;
-    const position = data.actorData.positionArbre; //tieferet
+    const estComedien = data.actorData.comedien;
+    const position = data.actorData.positionArbre; // tieferet
     const qualite = data.qualite;
     const sphere = SYSTEM.QUALITES[qualite].sphere;
     const jardin = data.actorData.jardin;
 
     let peutEmbellie = false;
-    if (comedien && !jardin && position === sphere) peutEmbellie = true;
-
+    if (estComedien && !jardin && position === sphere) peutEmbellie = true;
     data.peutEmbellie = peutEmbellie;
-
     const optionsEmbellie = Array.from({ length: data.qualiteValeur }, (_, index) => ({ indice: index + 1, label: index + 1 }));
+
     const optionsPerisprit = Array.from({ length: data.actorData.perisprit }, (_, index) => ({ indice: index + 1, label: index + 1 }));
+
+    data.estComedien = estComedien;
+    
+    data.attributs = [];
+    // Attribut ?
+    if (estComedien) {
+      const corpsId = game.settings.get("cabinet", "corps");
+      const corps = game.actors.get(corpsId);
+      if (corps) {
+        data.attributs = corps.system.attributs;
+      }
+    }
 
     return Object.assign({}, data, {
       //dice: this.roll.dice.map(d => `d${d.faces}`),
@@ -58,6 +69,7 @@ export default class StandardCheckDialog extends Dialog {
       rollModes: CONFIG.Dice.rollModes,
       aspects: SYSTEM.ASPECTS,
       qualites: SYSTEM.QUALITES,
+      listeAttributs: SYSTEM.ATTRIBUTS,
       listeAcquis: data.listeAcquis,
       optionsEmbellie: optionsEmbellie,
       optionsPerisprit: optionsPerisprit,
@@ -90,9 +102,10 @@ export default class StandardCheckDialog extends Dialog {
     html.find('select[name="qualite"]').change(this._onChangeAction.bind(this));
     html.find('select[name="aspect"]').change(this._onChangeAction.bind(this));
     html.find('select[name="acquis"]').change(this._onChangeAction.bind(this));
+    html.find('select[name="attribut"]').change(this._onChangeAction.bind(this));
     html.find('select[name="perisprit"]').change(this._onChangeAction.bind(this));
     html.find('select[name="embellie"]').change(this._onChangeAction.bind(this));
-    html.find('input[name="bonus"]').change(this._onChangeAction.bind(this));  
+    html.find('input[name="bonus"]').change(this._onChangeAction.bind(this));
     super.activateListeners(html);
   }
 
@@ -116,17 +129,21 @@ export default class StandardCheckDialog extends Dialog {
         const newAcquis = event.currentTarget.value;
         this.roll.initialize({ acquis: newAcquis, acquisValeur: this.roll.data.listeAcquis[newAcquis].valeur });
         return this.render(false, { height: "auto" });
+      case "attribut-change":
+        const newAttribut = event.currentTarget.value;
+        this.roll.initialize({ attribut: newAttribut, attributValeur: this.roll.data.attributs[newAttribut].valeur });
+        return this.render(false, { height: "auto" });
       case "perisprit-change":
         const newPerisprit = event.currentTarget.value;
         this.roll.initialize({ perisprit: newPerisprit });
         return this.render(false, { height: "auto" });
       case "embellie-change":
         const newEmbellie = event.currentTarget.value;
-        this.roll.initialize({ embellie: newEmbellie, embellieValeur: newEmbellie});
+        this.roll.initialize({ embellie: newEmbellie, embellieValeur: newEmbellie });
         return this.render(false, { height: "auto" });
       case "bonus-change":
         const newBonus = event.currentTarget.value;
-        this.roll.initialize({ bonus: newBonus});
+        this.roll.initialize({ bonus: newBonus });
         return this.render(false, { height: "auto" });
     }
   }

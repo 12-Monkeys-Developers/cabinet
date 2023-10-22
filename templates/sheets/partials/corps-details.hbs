@@ -1,0 +1,15 @@
+{{log "corps-details" this}}
+<h1>Comedien</h1>
+Le comedien est : {{comedien}}
+<h1>Description</h1>
+<h1>Attributs</h1>
+{{#each attributs as |attribut|}}
+  {{log "corps-details attribut" this}}
+  {{attribut.label}}
+  :
+ {{attribut.valeur}}
+ 
+{{/each}}
+<h1>Equipement</h1>
+<h1>Armes</h1>
+<h1>Notes</h1>
