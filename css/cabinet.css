@@ -805,6 +805,16 @@ i.logo_defaut {
   text-align: center;
   text-transform: uppercase;
 }
+i.logo_action {
+  width: 30px;
+  height: 30px;
+  background-image: url("../assets/icones/symbole_de_action.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+}
 .action-description {
   font-family: "garamondpro";
   font-size: 1em;

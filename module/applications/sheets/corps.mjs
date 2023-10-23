@@ -1,6 +1,6 @@
 import CabinetActorSheet from "./actor.mjs";
 
-export default class EspritSheet extends CabinetActorSheet {
+export default class CorpsSheet extends CabinetActorSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
@@ -23,9 +23,13 @@ export default class EspritSheet extends CabinetActorSheet {
 
     context.attributs = this.#formatAttributs(context.actor.system.attributs);
     
-    const comedienId = context.actor.system.comedien;
-    const comedienName = game.actors.get(comedienId).name;    
-    context.comedien = comedienName;
+    let comedienId = context.actor.system.comedien;
+    if (!comedienId) comedienId = game.settings.get("cabinet","comedien");
+    let comedienName = "";
+    if (comedienId)  {
+      comedienName = game.actors.get(comedienId).name;    
+      context.comedien = comedienName;
+    }
 
     context.malus = context.actor.system.malus;
 

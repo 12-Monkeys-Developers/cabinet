@@ -26,13 +26,13 @@
                     {{numberInput aspectValeur name="aspectValeur" min=0}}
                 </div>
                 {{#if estComedien}}
-                <div class="attribut">
-                    <label>Attribut</label>
-					<select name="attribut" data-action="attribut-change">
-                        {{selectOptions listeAttributs selected=attribut labelAttr="label" blank="Choisir un attribut" sort=true}}
-                    </select>
-                    {{numberInput attributValeur name="attributValeur" min=1}}
-                </div>
+                    <div class="attribut">
+                        <label>Attribut</label>
+                        <select name="attribut" data-action="attribut-change">
+                            {{selectOptions listeAttributs selected=attribut labelAttr="label" blank="Choisir un attribut" sort=true}}
+                        </select>
+                        {{numberInput attributValeur name="attributValeur" min=1}}
+                    </div>
                 {{/if}}                
                 <div class="acquis">
                     <label>Acquis</label>
@@ -46,11 +46,13 @@
                     <select name="perisprit" data-action="perisprit-change">
                         {{selectOptions optionsPerisprit selected=perisprit nameAttr="indice" labelAttr="label" blank="Choisir le nombre de points de périsprit"}}
                     </select>
-                </div>                      
-                <div class="malus">
-                    <label>Malus total</label>
-                    {{numberInput malus name="malus" min=0}} 
-                </div>
+                </div>     
+                {{#if estComedien}}                 
+                    <div class="malus">
+                        <label>Malus total</label>
+                        {{numberInput malus name="malus" min=0}} 
+                    </div>
+                {{/if}}                      
                 <div class="bonus">
                     <label data-action="bonus-change">Bonus</label>
                     <input type="number" value="{{bonus}}" name="bonus" min="0" data-action="bonus-change"> 

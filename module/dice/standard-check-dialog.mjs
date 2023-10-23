@@ -49,14 +49,19 @@ export default class StandardCheckDialog extends Dialog {
     const optionsPerisprit = Array.from({ length: data.actorData.perisprit }, (_, index) => ({ indice: index + 1, label: index + 1 }));
 
     data.estComedien = estComedien;
-    
+
     data.attributs = [];
-    // Attribut ?
-    if (estComedien) {
-      const corpsId = game.settings.get("cabinet", "corps");
-      const corps = game.actors.get(corpsId);
-      if (corps) {
+    data.malus = 0;
+    const corpsId = game.settings.get("cabinet", "corps");
+    const corps = game.actors.get(corpsId);
+    if (corps) {
+      // Attribut ?
+      if (estComedien) {
         data.attributs = corps.system.attributs;
+        data.malus = corps.system.malus;
+      }
+      else {
+        
       }
     }
 

@@ -32,7 +32,7 @@ export class ArbreVieForm extends FormApplication {
     context.contenuArbre = await this.remplirArbre();
     membresSet.forEach((element) => {
       let actor = game.actors.get(element);
-      if (!actor.system.positionArbre.length) {
+      if (!actor.system.positionArbre) {
         context.membresJardin.push({
           nom: actor.name,
           id: actor.id,
@@ -168,7 +168,7 @@ export class ArbreVieForm extends FormApplication {
     };
     membresSet.forEach(async (element) => {
       let actor = game.actors.get(element);
-      if (actor.system.positionArbre.length) {
+      if (actor.system.positionArbre) {
         contenuArbre[actor.system.positionArbre].id = actor.id;
         contenuArbre[actor.system.positionArbre].nom = actor.name;
         contenuArbre[actor.system.positionArbre].token = actor.prototypeToken.texture.src;
