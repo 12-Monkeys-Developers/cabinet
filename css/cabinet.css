@@ -861,6 +861,59 @@ i.logo_defaut {
   margin: 0px 5px;
   font-weight: normal;
 }
+.arme-sheet {
+  background: repeat url("../assets/images/sheets/fond-arme.webp");
+  font-family: "arrusbt";
+  font-weight: bold;
+}
+.arme-sheet .name-title {
+  display: flex;
+  flex-direction: row;
+}
+.arme-sheet .name-title input {
+  font-size: 2em;
+  text-transform: uppercase;
+  text-align: left;
+  border: 0px;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: #497180;
+}
+.arme-sheet .name-title img {
+  border: 0px;
+  max-height: 100px;
+}
+.arme-sheet .arme-content {
+  width: 400px;
+  min-height: 260px;
+}
+.arme-sheet .field-name {
+  text-transform: uppercase;
+  margin: 5px 10px;
+  text-align: center;
+  color: #497180;
+}
+.arme-sheet .data-group {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 10px 15px 10px;
+}
+.arme-sheet .data-group input {
+  width: 3em;
+}
+.arme-sheet .description-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px 15px 10px;
+}
+.arme-sheet .description-group .editor {
+  min-height: 150px;
+}
+.arme-sheet .description-group .editor-content {
+  min-height: 150px;
+  margin: 0px 5px;
+  font-weight: normal;
+}
 .corruption-sheet {
   background: repeat url("../assets/images/sheets/fond-corruption.webp");
   font-family: "arrusbt";

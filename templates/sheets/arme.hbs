@@ -1,0 +1,57 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{log "arme" this}}
+  <div class="arme-sheet">
+    <div class="name-title">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+      <input name="name" type="text" value="{{item.name}}" />
+    </div>
+    <div class="arme-content">
+      <div class="data-group">
+        <div class="field-name">Précision</div>
+        <select name="system.precision">
+            {{#select system.precision}}
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            {{/select}}
+        </select>
+      </div>
+      <div class="data-group">
+        <div class="field-name">Portée</div>
+        <input name="system.portee" type="number" value="{{item.system.portee}}" />
+        <div> mètres</div>
+      </div>
+      <div class="data-group">
+        <div class="field-name">Munitions</div>
+        <input name="system.munitions" type="number" value="{{item.system.munitions}}" />
+      </div>
+      <div class="data-group">
+          <div class="field-name">Dégâts</div>
+        <input name="system.degats" type="text" value="{{item.system.degats}}" />
+      </div>
+        <div class="data-group">
+          <div class="field-name">Puissance</div>
+            <input type="checkbox" name="system.puissance" {{checked system.puissance}} />
+          </div>
+      <div class="data-group">
+          <div class="field-name">Cadence</div>
+        <input name="system.cadence" type="number" value="{{item.system.cadence}}" />
+      </div>
+        <div class="data-group">
+          <select name="system.sousType">
+            {{selectOptions arme_soustypes selected=system.sousType labelAttr="label"}}
+          </select>
+        </div>
+        <div class="data-group">
+          <select name="system.categorie">
+            {{selectOptions arme_categories selected=system.categorie labelAttr="label"}}
+          </select>
+        </div>
+        <div class="description-group">
+          <div class="field-name">Description</div>
+          <div class="description-val">
+            {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+          </div>
+        </div>
+  </div></div>
+</form>
