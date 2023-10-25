@@ -1,0 +1,48 @@
+<div class="concept-grid">
+  <div class="concept-col1">
+  <div class="outer-border">
+  <div class="inner-border">
+    <div class="titre2">Profil</div>
+    <div class = "script profil">
+        {{#if editable}}
+            {{editor profilprivatehtml target="system.profil.private" button=true engine="prosemirror" owner=owner editable=editable}}
+        {{else}}
+          {{{profilprivatehtml}}}
+        {{/if}}
+    </div></div></div>
+  </div>
+  <div class="concept-col2">
+    <div class="titre2">Routine</div>
+    <div class = "script routine">
+        {{#if editable}}
+            {{editor routinehtml target="system.routine" button=true engine="prosemirror" owner=owner editable=editable}}
+        {{else}}
+          {{{routinehtml}}}
+        {{/if}}
+    </div>
+    <div class="titre2">Objets</div>
+    <div class = "script objets">
+        {{#if editable}}
+            {{editor objetshtml target="system.objets" button=true engine="prosemirror" owner=owner editable=editable}}
+        {{else}}
+          {{{objetshtml}}}
+        {{/if}}
+    </div>
+    <div class="titre2">Contacts</div>
+    <div class = "script contacts">
+        {{#if editable}}
+            {{editor contactshtml target="system.contacts" button=true engine="prosemirror" owner=owner editable=editable}}
+        {{else}}
+          {{{contactshtml}}}
+        {{/if}}
+    </div>
+    <div class="titre2">Adversaires</div>
+    <div class = "script adversaires">
+        {{#if editable}}
+            {{editor adversaireshtml target="system.adversaires" button=true engine="prosemirror" owner=owner editable=editable}}
+        {{else}}
+          {{{adversaireshtml}}}
+        {{/if}}
+    </div>
+  </div>
+</div>

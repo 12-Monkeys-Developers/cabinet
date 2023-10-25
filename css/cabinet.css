@@ -86,6 +86,10 @@
   src: url("../assets/fonts/gare_de_chambord.ttf") format("truetype");
 }
 @font-face {
+  font-family: "alexbrush";
+  src: url("../assets/fonts/alexbrush.ttf") format("truetype");
+}
+@font-face {
   font-family: "suezone";
   src: url("../assets/fonts/suezone-regular.ttf") format("truetype");
 }
@@ -128,12 +132,12 @@ i.logo_defaut {
   background-repeat: no-repeat;
   display: inline-block;
 }
-.esprit-header {
+.esprit-sheet .esprit-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
   display: grid;
   grid-template-columns: 180px 571px 100px 133px;
 }
-.esprit-header .titre_feuille {
+.esprit-sheet .esprit-header .titre_feuille {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1.5em;
@@ -143,24 +147,24 @@ i.logo_defaut {
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
-.esprit-header .titre_feuille::first-letter {
+.esprit-sheet .esprit-header .titre_feuille::first-letter {
   font-size: 2rem;
 }
-.esprit-header .charname {
-  font-family: "garedechambord";
+.esprit-sheet .esprit-header .charname {
+  font-family: "alexbrush";
   font-size: 3em;
   color: white;
   margin-left: 5px;
   margin-top: 10px;
 }
-.esprit-header .charname input {
+.esprit-sheet .esprit-header .charname input {
   color: white;
 }
-.esprit-header .perisprit-bloc {
+.esprit-sheet .esprit-header .perisprit-bloc {
   display: flex;
   flex-direction: column;
 }
-.esprit-header .perisprit-bloc .perisprit-label {
+.esprit-sheet .esprit-header .perisprit-bloc .perisprit-label {
   font-family: "arrusbt";
   font-size: 1em;
   text-transform: uppercase;
@@ -170,27 +174,27 @@ i.logo_defaut {
   margin-top: 16px;
   color: #ae9065;
 }
-.esprit-header .perisprit-bloc .perisprit-value {
+.esprit-sheet .esprit-header .perisprit-bloc .perisprit-value {
   text-align: center;
 }
-.esprit-header .perisprit-bloc .perisprit-value input {
+.esprit-sheet .esprit-header .perisprit-bloc .perisprit-value input {
   font-family: "arrusbt";
   font-size: 2em;
   width: 3em;
   color: #ae9065;
   border: 0px;
 }
-.esprit-header .esprit-portrait {
+.esprit-sheet .esprit-header .esprit-portrait {
   border: none;
   margin: 2px 10px 0px 0px;
   justify-self: end;
   width: 133px;
   height: 80px;
 }
-.esprit-header .esprit-portrait img {
+.esprit-sheet .esprit-header .esprit-portrait img {
   border-radius: 50%;
 }
-.choix_tab {
+.esprit-sheet .choix_tab {
   font-family: "posterbodoni";
   font-size: 1.2em;
   color: #f0eae1;
@@ -201,33 +205,33 @@ i.logo_defaut {
   text-align: center;
   padding: 0.5em 0.5em 0.3em 0.5em;
 }
-.choix_tab.active {
+.esprit-sheet .choix_tab.active {
   border: 2px solid white;
   color: white;
   border-bottom-width: 0;
 }
-.sheet-navigation {
+.esprit-sheet .sheet-navigation {
   grid-column: 1 / 3;
   display: flex;
   flex-direction: row;
   font-size: 1, 5em;
 }
-.titre2 {
+.esprit-sheet .titre2 {
   font-family: "posterbodoni";
   font-size: 1.5em;
   color: #497180;
   text-align: center;
   text-transform: uppercase;
 }
-.tab-qualites {
+.esprit-sheet .tab-qualites {
   background: repeat url("../assets/images/sheets/esprit-tab-qualites.webp");
 }
-.grid-tab-qualites {
+.esprit-sheet .grid-tab-qualites {
   display: grid;
   grid-template-columns: 350px 600px;
   padding-left: 30px;
 }
-.grid-arbre-qualites {
+.esprit-sheet .grid-arbre-qualites {
   grid-row: 1 / 6;
   grid-column: 1 / 2;
   display: grid;
@@ -235,70 +239,70 @@ i.logo_defaut {
   grid-template-columns: 90px 100px 120px;
   grid-template-rows: 120px 120px 120px 120px 120px;
 }
-.intellect-group {
+.esprit-sheet .intellect-group {
   position: relative;
   z-index: 1;
   margin-top: 48px;
   grid-row: 1;
   grid-column: 1 / 2;
 }
-.courage-group {
+.esprit-sheet .courage-group {
   grid-row: 1;
   grid-column: 2 / 3;
 }
-.sensibilite-group {
+.esprit-sheet .sensibilite-group {
   position: relative;
   z-index: 1;
   margin-top: 48px;
   grid-row: 1;
   grid-column: 3 / 4;
 }
-.autorite-group {
+.esprit-sheet .autorite-group {
   position: relative;
   z-index: 1;
   margin-top: 48px;
   grid-row: 2;
   grid-column: 1 / 2;
 }
-.ouverture-group {
+.esprit-sheet .ouverture-group {
   position: relative;
   z-index: 1;
   margin-top: 48px;
   grid-row: 2;
   grid-column: 3 / 4;
 }
-.savoir-group {
+.esprit-sheet .savoir-group {
   position: relative;
   z-index: 1;
   margin-top: 48px;
   grid-row: 3;
   grid-column: 1 / 2;
 }
-.serenite-group {
+.esprit-sheet .serenite-group {
   grid-row: 3;
   grid-column: 2 / 3;
 }
-.charisme-group {
+.esprit-sheet .charisme-group {
   position: relative;
   z-index: 1;
   margin-top: 48px;
   grid-row: 3;
   grid-column: 3 / 4;
 }
-.attention-group {
+.esprit-sheet .attention-group {
   grid-row: 4;
   grid-column: 2 / 3;
 }
-.coordination-group {
+.esprit-sheet .coordination-group {
   grid-row: 5;
   grid-column: 2 / 3;
 }
-.qualite-group {
+.esprit-sheet .qualite-group {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 40px 30px 23px 30px;
 }
-.qualite-group .qualite-name {
+.esprit-sheet .qualite-group .qualite-name {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -307,91 +311,85 @@ i.logo_defaut {
   margin-top: 15px;
   padding-left: 24px;
 }
-.qualite-group .qualite-value {
+.esprit-sheet .qualite-group .qualite-value {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 2em;
   color: #497180;
   text-transform: uppercase;
 }
-.qualite-group .qualite-value input {
+.esprit-sheet .qualite-group .qualite-value input {
   margin-left: -6px;
   text-align: center;
   width: 1em;
 }
-.qualite-group .qvdroite {
+.esprit-sheet .qualite-group .qvdroite {
   padding-left: 55px;
 }
-.qualite-group .qvgauche {
+.esprit-sheet .qualite-group .qvgauche {
   padding-left: 47px;
 }
-.qualite-group .position-arbre {
+.esprit-sheet .qualite-group .position-arbre {
   text-shadow: 0 0 5px #3c36f4;
 }
-.qualite-group .defaut-value {
+.esprit-sheet .qualite-group .defaut-value {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1.2em;
   color: #7b3135;
   text-transform: uppercase;
 }
-.qualite-group .defaut-value input {
+.esprit-sheet .qualite-group .defaut-value input {
   text-align: center;
   width: 0.9em;
   margin-left: -4px;
 }
-.qualite-group .dvdroite {
+.esprit-sheet .qualite-group .dvdroite {
   padding-left: 70px;
 }
-.qualite-group .dvgauche {
+.esprit-sheet .qualite-group .dvgauche {
   text-align: left;
   padding-left: 38px;
 }
-.qualite-group .defaut-name {
+.esprit-sheet .qualite-group .defaut-name {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 0.7em;
   color: #7b3135;
   text-transform: uppercase;
 }
-.qualite-group .dndroite {
+.esprit-sheet .qualite-group .dndroite {
   padding-left: 45px;
 }
-.qualite-group .dngauche {
+.esprit-sheet .qualite-group .dngauche {
   padding-left: 0px;
 }
-.col-droite-qualites {
+.esprit-sheet .col-droite-qualites {
   display: flex;
   flex-direction: column;
   padding-left: 50px;
   margin-top: 25px;
 }
-.col-droite-qualites .concept {
-  text-align: justify;
-  margin-left: 10px;
-  font-family: "garedechambord";
-  font-size: 2em;
-  color: black;
-  margin-left: 5px;
-  margin-top: 10px;
+.esprit-sheet .col-droite-qualites .medaillon_cab {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 22px;
 }
-.col-droite-qualites .concept input {
-  color: black;
+.esprit-sheet .col-droite-qualites .medaillon_cab img {
+  border: 0px;
 }
-.col-droite-qualites .concept input {
-  text-align: justify;
-}
-.col-droite-qualites .aspects-grid {
+.esprit-sheet .col-droite-qualites .aspects-grid {
   display: grid;
   grid-template-columns: 180px 40px 1fr;
   grid-template-rows: 34px 34px 34px;
 }
-.col-droite-qualites .aspects-grid .aspects-ligne {
+.esprit-sheet .col-droite-qualites .aspects-grid .aspects-ligne {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
 }
-.col-droite-qualites .aspects-grid .aspects-ligne .nom-aspect {
+.esprit-sheet .col-droite-qualites .aspects-grid .aspects-ligne .nom-aspect {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -399,7 +397,7 @@ i.logo_defaut {
   text-transform: uppercase;
   padding-left: 10px;
 }
-.col-droite-qualites .aspects-grid .aspects-ligne .aspect-desc {
+.esprit-sheet .col-droite-qualites .aspects-grid .aspects-ligne .aspect-desc {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -407,7 +405,7 @@ i.logo_defaut {
   text-transform: uppercase;
   padding-left: 6px;
 }
-.col-droite-qualites .aspects-grid .aspectcircle {
+.esprit-sheet .col-droite-qualites .aspects-grid .aspectcircle {
   border-radius: 50%;
   padding: 7px 8px;
   border: 2px solid #497180;
@@ -416,7 +414,7 @@ i.logo_defaut {
   font-size: 1em;
   font-weight: bold;
 }
-.col-droite-qualites .aspects-grid .encart-exp {
+.esprit-sheet .col-droite-qualites .aspects-grid .encart-exp {
   background: no-repeat url("../assets/images/sheets/encart_exp.webp");
   background-size: cover;
   font-family: "arrusbt";
@@ -428,24 +426,24 @@ i.logo_defaut {
   justify-self: right;
   width: 199px;
 }
-.col-droite-qualites .aspects-grid .encart-exp .text-exp {
+.esprit-sheet .col-droite-qualites .aspects-grid .encart-exp .text-exp {
   margin-top: 50px;
 }
-.col-droite-qualites .aspects-grid .encart-exp input {
+.esprit-sheet .col-droite-qualites .aspects-grid .encart-exp input {
   width: 1em;
 }
-.col-droite-qualites .acquis-col {
+.esprit-sheet .col-droite-qualites .acquis-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.col-droite-qualites .acquis-col .ligne-acquis {
+.esprit-sheet .col-droite-qualites .acquis-col .ligne-acquis {
   display: grid;
   grid-template-columns: 5fr 1fr 1fr;
   justify-content: left;
   margin: 0.5em 0.5em 0px 0.5em;
   border-bottom: 1px solid black;
 }
-.col-droite-qualites .acquis-col .acquis-nom {
+.esprit-sheet .col-droite-qualites .acquis-col .acquis-nom {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -453,62 +451,62 @@ i.logo_defaut {
   padding-left: 0.5em;
   align-self: center;
 }
-.col-droite-qualites .acquis-col .icon-group {
+.esprit-sheet .col-droite-qualites .acquis-col .icon-group {
   margin-left: auto;
 }
-.grid-tab-actions {
+.esprit-sheet .grid-tab-actions {
   background: repeat url("../assets/images/sheets/esprit-tab-actions.webp");
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.grid-tab-actions .categorie {
+.esprit-sheet .grid-tab-actions .categorie {
   display: flex;
   flex-direction: column;
   margin: 10px 5px 0px 5px;
   min-height: 250px;
 }
-.grid-tab-actions .categorie .actions-ligne {
+.esprit-sheet .grid-tab-actions .categorie .actions-ligne {
   margin-top: 15px;
 }
-.grid-tab-actions .categorie_agir {
+.esprit-sheet .grid-tab-actions .categorie_agir {
   grid-row: 1 / 4;
   grid-column: 1 / 2;
 }
-.grid-tab-actions .categorie_communiquer {
+.esprit-sheet .grid-tab-actions .categorie_communiquer {
   grid-row: 1 / 4;
   grid-column: 2 / 3;
 }
-.grid-tab-actions .categorie_percevoir {
+.esprit-sheet .grid-tab-actions .categorie_percevoir {
   grid-row: 1 / 2;
   grid-column: 3 / 4;
 }
-.grid-tab-actions .categorie_savoir {
+.esprit-sheet .grid-tab-actions .categorie_savoir {
   grid-row: 2 / 3;
   grid-column: 3 / 4;
 }
-.grid-tab-actions .nom-action {
+.esprit-sheet .grid-tab-actions .nom-action {
   font-family: "trajan";
   font-size: 1em;
   color: #6a7980;
   text-indent: 5px;
   text-transform: uppercase;
 }
-.tab-perisprit {
+.esprit-sheet .tab-perisprit {
   background: repeat url("../assets/images/sheets/esprit-tab-perisprit.webp");
   min-height: 600px;
 }
-.tab-perisprit .titre2 {
+.esprit-sheet .tab-perisprit .titre2 {
   color: white;
   max-height: 30px;
 }
-.tab-perisprit .grid-pouvoirs {
+.esprit-sheet .tab-perisprit .grid-pouvoirs {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.tab-perisprit .grid-pouvoirs .bloc-pouvoir {
+.esprit-sheet .tab-perisprit .grid-pouvoirs .bloc-pouvoir {
   padding: 0px 5px;
 }
-.tab-perisprit .grid-pouvoirs .nom {
+.esprit-sheet .tab-perisprit .grid-pouvoirs .nom {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1.5em;
@@ -519,7 +517,7 @@ i.logo_defaut {
   margin-top: 10px;
   color: #ae9065;
 }
-.tab-perisprit .grid-pouvoirs .info-line {
+.esprit-sheet .tab-perisprit .grid-pouvoirs .info-line {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1.1em;
@@ -528,7 +526,7 @@ i.logo_defaut {
   color: #ae9065;
   text-align: center;
 }
-.tab-perisprit .grid-pouvoirs .neoclassic {
+.esprit-sheet .tab-perisprit .grid-pouvoirs .neoclassic {
   font-family: "neoclassic";
   font-size: 1.3em;
   text-align: center;
@@ -536,7 +534,7 @@ i.logo_defaut {
   text-indent: 0px;
   margin: 0px;
 }
-.tab-perisprit .grid-pouvoirs .description {
+.esprit-sheet .tab-perisprit .grid-pouvoirs .description {
   font-size: 0.9em;
   color: white;
   text-align: justify;
@@ -546,12 +544,50 @@ i.logo_defaut {
   margin: 0 auto;
   background: rgba(10, 9, 0, 0.5);
 }
-.tab-perisprit .grid-pouvoirs .inner-desc {
+.esprit-sheet .tab-perisprit .grid-pouvoirs .inner-desc {
   position: relative;
   border: 2px solid #886a3c;
   width: 100%;
   margin: auto;
   padding: 8px;
+}
+.esprit-sheet .tab-concept {
+  background: repeat url("../assets/images/sheets/esprit-tab-profil.webp");
+  min-height: 600px;
+}
+.esprit-sheet .tab-concept .concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.esprit-sheet .tab-concept .concept-grid .concept-col1 {
+  margin: 20px;
+}
+.esprit-sheet .tab-concept .concept-grid .concept-col1 .outer-border {
+  border: 6px solid #685649;
+  height: 99%;
+  width: 98%;
+  padding: 6px;
+  margin: 0 auto;
+}
+.esprit-sheet .tab-concept .concept-grid .concept-col1 .inner-border {
+  border: 2px solid #685649;
+  height: 100%;
+  width: 100%;
+  padding: 6px;
+  margin: auto;
+}
+.esprit-sheet .tab-concept .concept-grid .concept-col2 {
+  margin: 20px;
+}
+.esprit-sheet .tab-concept .script {
+  text-align: justify;
+  margin-left: 10px;
+  font-family: "alexbrush";
+  font-size: 1.5em;
+  color: black;
+  margin-left: 5px;
+  margin-top: 10px;
+  min-height: 80px;
 }
 .cabinet-membres {
   background: repeat url("../assets/images/sheets/fond_gestion.webp");

@@ -2,7 +2,7 @@
 
   {{log "esprit" this}}
   {{! Main Content }}
-  <section class="sheet-body">
+  <section class="sheet-body esprit-sheet">
     <header class="esprit-header" style='background: repeat url("systems/cabinet/assets/images/sheets/{{getBackgroundImage actor}}");'>
       <div class="titre_feuille">Esprit&nbsp;&nbsp;
         <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
@@ -33,6 +33,10 @@
     {{! Qualites Tab }}
     <div class="tab tab-qualites flexcol" data-group="primary" data-tab="qualites">
         {{> "systems/cabinet/templates/sheets/partials/esprit-qualites.hbs"}}
+    </div>
+    {{! Concept Tab }}
+    <div class="tab tab-concept flexcol" data-group="primary" data-tab="concept">
+       {{> "systems/cabinet/templates/sheets/partials/esprit-concept.hbs"}}
     </div>
 
     {{! Périsprit Tab }}

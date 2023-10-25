@@ -11,7 +11,6 @@ export default class EspritSheet extends CabinetActorSheet {
     });
   }
 
-
   /**
    * Le type d'Actor qu'affiche cette Sheet
    * @type {string}
@@ -46,6 +45,12 @@ export default class EspritSheet extends CabinetActorSheet {
       element.system.shperelabel = SYSTEM.SPHERES[element.system.sphere].label;
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
+
+    context.profilprivatehtml = TextEditor.enrichHTML(this.actor.system.profil.private, { async: false });
+    context.routinehtml = TextEditor.enrichHTML(this.actor.system.routine, { async: false });
+    context.contactshtml = TextEditor.enrichHTML(this.actor.system.contacts, { async: false });
+    context.adversaireshtml = TextEditor.enrichHTML(this.actor.system.adversaires, { async: false });
+    context.objetshtml = TextEditor.enrichHTML(this.actor.system.objets, { async: false });
 
     context.backgroundColor = this.actor.system.backgroundColor;
 
@@ -88,6 +93,55 @@ export default class EspritSheet extends CabinetActorSheet {
 
     html.find(".qualite-group").click(this._onQualiteRoll.bind(this));
     html.find(".logo_action").click(this._onActionRoll.bind(this));
+
+    // menu clic droit
+    const cabinetContextMenu = [
+      {
+        name: `Aller dans mon Jardin Secret`,
+        icon: `<i class="fa-regular fa-face-clouds"></i>`,
+        isVisible: !this.actor.system.jardin,
+        callback: () => this._onAllerJardin(),
+      },
+      {
+        name: `Revenir dans le cabinet`,
+        icon: `<i class="fa-regular fa-loveseat"></i>`,
+        isVisible: this.actor.system.jardin,
+        callback: () => this._onQuitterJardin(),
+      },
+      {
+        name: `Demander le contrôle`,
+        icon: `<i class="fa-solid fa-person-simple"></i>`,
+        isVisible: !this.actor.system.comedien,
+        callback: () => this._devenirComedien(),
+      },
+    ];
+    class CMPowerMenu extends ContextMenu {
+      constructor(html, selector, menuItems, { eventName = "contextmenu", onOpen, onClose, parent } = {}) {
+        super(html, selector, menuItems, {
+          eventName: eventName,
+          onOpen: onOpen,
+          onClose: onClose,
+        });
+        this.myParent = parent;
+        this.originalMenuItems = [...menuItems];
+      }
+
+      activateListeners(html) {
+        super.activateListeners(html);
+        this.menu.css("top", "50px");
+        this.menu.css("left", "100px");
+      }
+      render(...args) {
+          this.menuItems = this.originalMenuItems.filter((elem) => {
+            return elem.isVisible;
+          });
+        super.render(...args);
+        // console.log($(args).find('nav#context-menu'));
+      }
+    }
+    new CMPowerMenu(html, ".cabinet-contextmenu", cabinetContextMenu, {
+      parent: this,
+    });
   }
 
   /**
@@ -131,12 +185,23 @@ export default class EspritSheet extends CabinetActorSheet {
     /*let defaultValues = {
       aspect: actionSystem.aspect
     };*/
-    const keysToIgnore = ["formula", "formulaTooltip","circonstances"];
+    const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];
     const defaultValues = Object.fromEntries(Object.entries(actionSystem).filter(([key, value]) => value !== undefined && !keysToIgnore.includes(key)));
 
     return this.actor.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
   }
 
+  async _onAllerJardin() {
+    if (this.actor.system.estComedien) {
+      return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
+    }
+    await this.actor.update({ "system.positionArbre": "", "system.jardin": true  });
+    this.render();
+  }
+  async _onQuitterJardin() {
+    await this.actor.quitterJardin();
+    this.render();
+  }
   /**
    *
    */
@@ -144,7 +209,7 @@ export default class EspritSheet extends CabinetActorSheet {
     let comedienId = game.settings.get("cabinet", "comedien");
     let comedien = game.actors.get(comedienId);
     //inform the GM
-    const html = await renderTemplate("systems/cabinet/template/chat/demanderComedienButton.hbs", {
+    const html = await renderTemplate("systems/cabinet/templates/chat/demanderComedienButton.hbs", {
       nomEsprit: this.actor.name,
       nomComedien: comedien.name,
     });

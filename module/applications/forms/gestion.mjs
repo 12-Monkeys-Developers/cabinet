@@ -1,8 +1,7 @@
 export class GestionForm extends FormApplication {
-  
   constructor(options) {
     super(options);
-    Hooks.on('cabinet.changerComedien', async (actorId, newValue) => this.render());
+    Hooks.on("cabinet.changerComedien", async (actorId, newValue) => this.render());
   }
 
   static get getDefaults() {
@@ -80,12 +79,23 @@ export class GestionForm extends FormApplication {
     event.preventDefault();
     const element = event.currentTarget;
     let actorId = element.dataset.field;
-    let actor = game.actors.get(actorId);
-
-    await game.settings.set("cabinet", "comedien", actorId);
-    
-    const currentValueComedien = actor.system.comedien;
-    await actor.update({ "system.comedien": !currentValueComedien, "system.jardin": false });
+    let newActor = game.actors.get(actorId);
+    const currentValueComedien = newActor.system.comedien;
+    //si il est déjà le comedien, il quitte le controle qui devient null
+    if (currentValueComedien) {
+      await game.settings.set("cabinet", "comedien", null);
+    } else {
+      if (newActor.system.jardin) {
+        await newActor.quitterJardin();
+      }
+      let oldActorId = await game.settings.get("cabinet", "comedien");
+      if (oldActorId) {
+        let oldActor = game.actors.get(oldActorId);
+        await oldActor.update({ "system.comedien": false });
+      }
+      await game.settings.set("cabinet", "comedien", actorId);
+    }
+    await newActor.update({ "system.comedien": !currentValueComedien });
     this.render();
   }
 
@@ -95,13 +105,12 @@ export class GestionForm extends FormApplication {
     let actorId = element.dataset.field;
     let actor = game.actors.get(actorId);
 
-    /*
-    let flagData = await actor.getFlag(game.system.id, "dansJardin");
-    if (flagData) await actor.unsetFlag(game.system.id, "dansJardin");
-    else await actor.setFlag(game.system.id, "dansJardin", true);
-    */
     const currentValue = actor.system.jardin;
-    await actor.update({ "system.jardin": !currentValue, "system.comedien": false });
+    if (actor.system.jardin) {
+      await actor.quitterJardin();
+    } else {
+      await actor.update({ "system.positionArbre": "", "system.comedien": false, "system.jardin": true });
+    }
     this.render();
   }
 

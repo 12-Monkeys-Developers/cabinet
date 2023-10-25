@@ -1,4 +1,6 @@
 import StandardCheck from "../dice/standard-check.mjs";
+import { remplirArbre } from "../applications/forms/arbre-vie.mjs";
+
 export default class CabinetActor extends Actor {
   get isUnlocked() {
     if (this.getFlag(game.system.id, "SheetUnlocked")) return true;
@@ -11,11 +13,13 @@ export default class CabinetActor extends Actor {
   get listeAcquis() {
     if (this.type === "esprit") {
       let indice = 0;
-      return this.items.filter(i => i.type === "acquis").map(acquis=> ({
-        indice: indice++,
-        nom: acquis.name,
-        valeur: acquis.system.valeur
-      }));
+      return this.items
+        .filter((i) => i.type === "acquis")
+        .map((acquis) => ({
+          indice: indice++,
+          nom: acquis.name,
+          valeur: acquis.system.valeur,
+        }));
     }
     return undefined;
   }
@@ -31,18 +35,18 @@ export default class CabinetActor extends Actor {
         //const pack = game.packs.get('world.actions');
         //if (!pack) return;
         //const index = await pack.getIndex();
-        const actionsParDefaut = game.items.filter(item => item.type === "action" && item.system.parDefaut);
+        const actionsParDefaut = game.items.filter((item) => item.type === "action" && item.system.parDefaut);
         let actions = [];
         for (const action of actionsParDefaut) {
           const item = await fromUuid(action.uuid);
           actions.push(item.toObject());
         }
-        this.updateSource({items: actions});
+        this.updateSource({ items: actions });
         break;
     }
   }
 
-    /**
+  /**
    * Roll a skill check for a given skill ID.
    *
    * @param {string} qualiteId      The ID of the skill to roll a check for, for example "courage"
@@ -52,54 +56,75 @@ export default class CabinetActor extends Actor {
    *
    * @return {StandardCheck}      The StandardCheck roll instance which was produced.
    */
-    async rollSkill(qualiteId, {diff, rollMode, dialog=false, defaultValues=null}={}) {
- 
-      // Prepare check data
-      let rollData = {
-        actorId: this.id,
-        actorData: this.system,
-        qualite: qualiteId,
-        listeAcquis: this.listeAcquis,
-        diff: diff,
-        type: 'classique',
-        rollMode: rollMode,
-      };
-        
-      if (defaultValues !== null) {
-        rollData = foundry.utils.mergeObject(rollData, defaultValues); 
-      }
+  async rollSkill(qualiteId, { diff, rollMode, dialog = false, defaultValues = null } = {}) {
+    // Prepare check data
+    let rollData = {
+      actorId: this.id,
+      actorData: this.system,
+      qualite: qualiteId,
+      listeAcquis: this.listeAcquis,
+      diff: diff,
+      type: "classique",
+      rollMode: rollMode,
+    };
 
-      // Create the check roll
-      let sc = new StandardCheck(rollData);
-  
-      // Prompt the user with a roll dialog
-      //const flavor = game.i18n.format("SKILL.RollFlavor", {name: this.name, skill: SYSTEM.SKILLS[qualiteId].name});
-      const flavor = "Flavor";
-      if ( dialog ){
-        //const title = game.i18n.format("SKILL.RollTitle", {name: this.name, skill: SYSTEM.SKILLS[qualiteId].name});
-        const title = "Title";
-        const response = await sc.dialog({title, flavor, rollMode});
-        if ( response === null ) return null;
-      }
-
-      // Des points de perisprit ont été dépensés
-      if (sc.data.perispritValeur > 0) {
-        const valeurActuelle = this.system.perisprit;
-        let nouvelleValeur = valeurActuelle - sc.data.perispritValeur;
-        this.update({"system.perisprit": nouvelleValeur});
-      }
-  
-      sc = await sc.roll();
-      
-      // Execute the roll to chat
-      await sc.toMessage({
-        flavor,
-        flags: {
-          cabinet: {
-            skill: qualiteId
-          }
-        }
-      });
-      return sc;
+    if (defaultValues !== null) {
+      rollData = foundry.utils.mergeObject(rollData, defaultValues);
     }
+
+    // Create the check roll
+    let sc = new StandardCheck(rollData);
+
+    // Prompt the user with a roll dialog
+    //const flavor = game.i18n.format("SKILL.RollFlavor", {name: this.name, skill: SYSTEM.SKILLS[qualiteId].name});
+    const flavor = "Flavor";
+    if (dialog) {
+      //const title = game.i18n.format("SKILL.RollTitle", {name: this.name, skill: SYSTEM.SKILLS[qualiteId].name});
+      const title = "Title";
+      const response = await sc.dialog({ title, flavor, rollMode });
+      if (response === null) return null;
+    }
+
+    // Des points de perisprit ont été dépensés
+    if (sc.data.perispritValeur > 0) {
+      const valeurActuelle = this.system.perisprit;
+      let nouvelleValeur = valeurActuelle - sc.data.perispritValeur;
+      this.update({ "system.perisprit": nouvelleValeur });
+    }
+
+    sc = await sc.roll();
+
+    // Execute the roll to chat
+    await sc.toMessage({
+      flavor,
+      flags: {
+        cabinet: {
+          skill: qualiteId,
+        },
+      },
+    });
+    return sc;
+  }
+
+  async quitterJardin() {
+    if (this.type !== "esprit") return;
+    if(!this.system.jardin) return;
+    // Pouvoir par ordre niveau et mise en forme de la description
+    let qualites = [];
+    for (const [key, value] of Object.entries(this.system.qualites)) {
+      {
+        qualites.push({ nom: key, valeur: this.system.qualites[key].valeur });
+      }
+      qualites.sort(function (a, b) {
+        return a.valeur < b.valeur;
+      });
+    }
+    const contenuArbre = await remplirArbre();
+    for (let qualite of qualites) {
+      if (!contenuArbre[SYSTEM.QUALITES[qualite.nom].sphere].id) {
+        await this.update({ "system.positionArbre": SYSTEM.QUALITES[qualite.nom].sphere, "system.jardin": false });
+        return;
+      }
+    }
+  }
 }

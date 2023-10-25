@@ -32,14 +32,6 @@
       </div>
   </div>
   <div class="col-droite-qualites">
-    <div class="titre2">Profil</div>
-    <div class="concept">
-        {{#if editable}}
-          <input type="text" name="system.profil.private" value="{{system.profil.private}}" placeholder="profil et concept" />
-        {{else}}
-          {{system.profil.private}}
-        {{/if}}
-    </div>
     <div class="titre2" style="margin: 20px 330px 10px 0px;">Aspects</div>
     <div class="aspects-grid">
       <div class="aspects-ligne" style="grid-row: 1; grid-column: 1;">
@@ -107,6 +99,17 @@
           {{{acquisElement.system.descriptionhtml}}}
       </details></div>
     {{/each}}
+    </div>
+    <div class="medaillon_cab cabinet-contextmenu">
+      {{#if jardin}}
+        <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_jardin.webp" title="Clic droit pour menu du cabinet" />
+      {{else}}
+        {{#if comedien}}
+          <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_comedien.webp" title="Clic droit pour menu du cabinet" />
+        {{else}}
+          <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_cabinet.webp" title="Clic droit pour menu du cabinet" />
+        {{/if}}
+      {{/if}}
     </div>
   </div>
 </div>
