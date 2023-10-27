@@ -1,6 +1,14 @@
 import StandardCheck from "../dice/standard-check.mjs";
 
 export default class CabinetActor extends Actor {
+  /** @override */
+  constructor(object, options = {}) {
+    super(object, options);
+    if (this.type === "cabinet") {
+      Hooks.on("cabinet.changementComedien", async (id) => {await this.update({'system.comedien': id})});
+    }    
+  }
+
   get isUnlocked() {
     if (this.getFlag(game.system.id, "SheetUnlocked")) return true;
     return false;
@@ -127,7 +135,7 @@ export default class CabinetActor extends Actor {
 
     if (this.system.estComedien) {
       if (!forcer) return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
-      else foundry.utils.mergeObject(updates, {"system.comedien": false});
+      else foundry.utils.mergeObject(updates, { "system.comedien": false });
     }
     await this.update(updates);
   }
@@ -201,11 +209,17 @@ export default class CabinetActor extends Actor {
 
   /**
    * Remet à 0 une sphère de l'arbre
-   * @param {*} positionArbre 
-   * @returns 
+   * @param {*} positionArbre
+   * @returns
    */
   deplacerEspritVersJardin(positionArbre) {
     if (this.type !== "cabinet") return;
-    this.update({[`system.arbre.${positionArbre}.idEsprit`]: null})
+    this.update({ [`system.arbre.${positionArbre}.idEsprit`]: null });
+  }
+
+  majComedien(comedienId) {
+    if (this.type !== "cabinet") return;
+    if (comedienId === null) this.update({ "system.comedien": null });
+    else this.update({ "system.comedien": comedienId });
   }
 }

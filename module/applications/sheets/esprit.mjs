@@ -132,9 +132,9 @@ export default class EspritSheet extends CabinetActorSheet {
         this.menu.css("left", "100px");
       }
       render(...args) {
-          this.menuItems = this.originalMenuItems.filter((elem) => {
-            return elem.isVisible;
-          });
+        this.menuItems = this.originalMenuItems.filter((elem) => {
+          return elem.isVisible;
+        });
         super.render(...args);
         // console.log($(args).find('nav#context-menu'));
       }
@@ -179,7 +179,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
     const actionSystem = action.system;
     let qualite = actionSystem.qualite;
-    const keysToIgnore = ["formula", "formulaTooltip","circonstances"];
+    const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];
     const defaultValues = Object.fromEntries(Object.entries(actionSystem).filter(([key, value]) => value !== undefined && !keysToIgnore.includes(key)));
 
     return this.actor.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
@@ -201,28 +201,37 @@ export default class EspritSheet extends CabinetActorSheet {
   async _devenirComedien() {
     const cabinetId = game.settings.get("cabinet", "cabinet");
     const cabinet = game.actors.get(cabinetId);
-    let comedien = game.actors.get(cabinet.comedien);
-    //inform the GM
-    const html = await renderTemplate("systems/cabinet/templates/chat/demanderComedienButton.hbs", {
-      nomEsprit: this.actor.name,
-      nomComedien: comedien.name,
-    });
-    const chatData = {
-      speaker: ChatMessage.getSpeaker({
-        alias: game.user.name,
-        actor: this.actor.id,
-      }),
-      content: html,
-    };
-    ChatMessage.create(chatData);
-    //send data message to the player session
+    let comedien = game.actors.get(cabinet.system.comedien);
 
-    const emitData = {
-      espritDemandeur: this.actor.id,
-    };
-    game.cabinet.emit({
-      type: "demandeComedien",
-      data: emitData,
-    });
+    if (!comedien) {
+      await this.actor.update({"system.comedien": true});
+      await cabinet.majComedien(this.actor.id);
+      const allowed = Hooks.call("cabinet.changementComedien", this.actor.id);
+      if (allowed === false) return;
+    } else {
+      // Informer le MJ
+      const html = await renderTemplate("systems/cabinet/templates/chat/demanderComedienButton.hbs", {
+        nomEsprit: this.actor.name,
+        nomComedien: comedien.name,
+      });
+      const chatData = {
+        speaker: ChatMessage.getSpeaker({
+          alias: game.user.name,
+          actor: this.actor.id,
+        }),
+        content: html,
+      };
+      ChatMessage.create(chatData);
+
+      // send data message to the player session
+      /* const emitData = {
+        espritDemandeur: this.actor.id,
+      };
+      game.socket.emit({
+        type: "demandeComedien",
+        data: emitData,
+      });
+      */
+    }
   }
 }

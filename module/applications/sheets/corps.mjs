@@ -1,6 +1,14 @@
 import CabinetActorSheet from "./actor.mjs";
 
 export default class CorpsSheet extends CabinetActorSheet {
+  /** @override */
+  constructor(object, options = {}) {
+    super(object, options);
+    //Hooks.on("cabinet.changerComedienAvecGestion", () => this.render());
+    //Hooks.on("cabinet.changerComedienAvecPlayer", (id, valeur) => this.render());
+    Hooks.on("updateActor", async (document, change, options, userId) => this.render());
+  }
+
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
@@ -30,19 +38,18 @@ export default class CorpsSheet extends CabinetActorSheet {
     if (cabinet) {
       let comedienId = cabinet.system.comedien;
       let comedienName = "";
-      if (comedienId)  {
-        comedienName = game.actors.get(comedienId).name;    
+      if (comedienId) {
+        comedienName = game.actors.get(comedienId).name;
         comedien = comedienName;
       }
     }
-    
+
     context.comedien = comedien;
     context.malus = context.actor.system.malus;
 
     return context;
   }
 
-  
   /**
    * Format les attributs pour les afficher sur la fiche
    * @param {object} attributs
