@@ -1,5 +1,5 @@
 <form autocomplete="off">
-  {{log 'cabinet' this}}
+  {{log "cabinet" this}}
   <div class="cabinet-membres droppable">
     <div class="titre_col">Icône</div>
     <div class="titre_col">Portrait</div>
@@ -8,7 +8,7 @@
     <div class="titre_col">Jardin<br />secret</div>
     <div class="titre_col">Enlever</div>
     {{#each membres as |membre index|}}
-    {{log 'membre' this}}
+      {{log "membre" this}}
       <div class="membre-img">
         <img style="border:0px;" src="{{membre.token}}" title="{{membre.nom}}" />
       </div>
@@ -19,14 +19,18 @@
         {{membre.nom}}
       </div>
       <div class="membre-icone">
-        <input title="Comédien" class="checkbox comedien" data-field="{{membre.id}}" type="checkbox" {{checked membre.estComedien}} />
+        <input title="Comédien" class="checkbox comedien" name="{{membre.id}}.comedien" data-field="{{membre.id}}" type="checkbox" {{checked membre.estComedien}} />
       </div>
       <div class="membre-icone">
-        <input title="Dans son jardin secret" class="checkbox jardin" data-field="{{membre.id}}" type="checkbox" {{checked membre.dansJardin}} />
+        <input title="Dans son jardin secret" class="checkbox jardin" name="{{membre.id}}.jardin" data-field="{{membre.id}}" type="checkbox" {{checked membre.dansJardin}} />
       </div>
       <div class="membre-icone">
         <a class="membre-enlever" data-field="{{index}}" data-tooltip="Enlever"><i class="fas fa-trash"></i></a>
       </div>
     {{/each}}
   </div>
+<div>Corps : {{corps.name}}</div>
+<div class="corps-icone">
+        <a class="corps-enlever" data-field="{{index}}" data-tooltip="Enlever"><i class="fas fa-trash"></i></a>
+      </div>
 </form>

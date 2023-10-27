@@ -1,3 +1,6 @@
+import { ArbreVieForm } from "../forms/arbre-vie.mjs";
+import { GestionForm } from "../forms/gestion.mjs";
+
 export default function initControlButtons() {
   CONFIG.Canvas.layers.cabinet = { layerClass: ControlsLayer, group: "primary" };
 
@@ -10,8 +13,14 @@ export default function initControlButtons() {
       icon: "logo_defaut",
       button: true,
       onClick: () => {
-        let calledForm = game.settings.get("cabinet", "arbreform");
-        calledForm.render(true);
+          const cabinetId = game.settings.get("cabinet", "cabinet");
+          if (foundry.utils.isEmpty(cabinetId)) {
+            return ui.notifications.warn("Il faut créer un cabinet et le choisir comme actif !");
+          }
+          else {
+            const cabinet = game.actors.get(cabinetId);
+            if (cabinet) new ArbreVieForm(cabinet).render(true);
+          }
       },
     });
     if (game.user.isGM) {
@@ -21,8 +30,14 @@ export default function initControlButtons() {
         icon: "logo_comportement",
         button: true,
         onClick: () => {
-          let calledForm = game.settings.get("cabinet", "gestionform");
-          calledForm.render(true);
+          const cabinetId = game.settings.get("cabinet", "cabinet");
+          if (foundry.utils.isEmpty(cabinetId)) {
+            return ui.notifications.warn("Il faut créer un cabinet et le choisir comme actif !");
+          }
+          else {
+            const cabinet = game.actors.get(cabinetId);
+            if (cabinet) new GestionForm(cabinet).render(true);
+          }          
         },
       });
     }

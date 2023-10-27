@@ -12,51 +12,61 @@ export const SYSTEM_ID = "cabinet";
  */
 export const SPHERES = {
   binah: {
+    id: "binah",
     label: "CDM.SPHERE.binah.label",
     qualite: "CDM.SPHERE.binah.qualite",
     qualiteSmall: "CDM.SPHERE.binah.qualiteSmall",
   },
   chokmah: {
+    id: "chokmah",
     label: "CDM.SPHERE.chokmah.label",
     qualite: "CDM.SPHERE.chokmah.qualite",
     qualiteSmall: "CDM.SPHERE.chokmah.qualiteSmall",
   },
   chesed: {
+    id: "chesed",
     label: "CDM.SPHERE.chesed.label",
     qualite: "CDM.SPHERE.chesed.qualite",
     qualiteSmall: "CDM.SPHERE.chesed.qualiteSmall",
   },
   geburah: {
+    id: "geburah",
     label: "CDM.SPHERE.geburah.label",
     qualite: "CDM.SPHERE.geburah.qualite",
     qualiteSmall: "CDM.SPHERE.geburah.qualiteSmall",
   },
   hod: {
+    id: "hod",
     label: "CDM.SPHERE.hod.label",
     qualite: "CDM.SPHERE.hod.qualite",
     qualiteSmall: "CDM.SPHERE.hod.qualiteSmall",
   },
   kether: {
+    id: "kether",
     label: "CDM.SPHERE.kether.label",
     qualite: "CDM.SPHERE.kether.qualite",
     qualiteSmall: "CDM.SPHERE.kether.qualiteSmall",
   },
   malkuth: {
+    id: "malkuth",
     label: "CDM.SPHERE.malkuth.label",
     qualite: "CDM.SPHERE.malkuth.qualite",
     qualiteSmall: "CDM.SPHERE.malkuth.qualiteSmall",
   },
   netzach: {
+    id: "netzach",
     label: "CDM.SPHERE.netzach.label",
     qualite: "CDM.SPHERE.netzach.qualite",
     qualiteSmall: "CDM.SPHERE.netzach.qualiteSmall",
   },
   tiferet: {
+    id: "tiferet",
     label: "CDM.SPHERE.tiferet.label",
     qualite: "CDM.SPHERE.tiferet.qualite",
     qualiteSmall: "CDM.SPHERE.tiferet.qualiteSmall",
   },
   yesod: {
+    id: "yesod",
     label: "CDM.SPHERE.yesod.label",
     qualite: "CDM.SPHERE.yesod.qualite",
     qualiteSmall: "CDM.SPHERE.yesod.qualiteSmall",

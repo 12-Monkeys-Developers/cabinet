@@ -22,9 +22,9 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
 
     schema.parDefaut = new fields.BooleanField({ initial: false });
     schema.categorie = new fields.StringField({ required: false, choices: SYSTEM.ACTION_CATEGORIES, initial: undefined });
-    schema.qualite = new fields.StringField({ required: true, choices: SYSTEM.QUALITES });
+    schema.qualite = new fields.StringField({ required: true, choices: SYSTEM.QUALITES, initial: "courage" });
     schema.qualiteAlt = new fields.StringField({ required: false, blank: true, choices: SYSTEM.QUALITES, initial: undefined });
-    schema.aspect = new fields.StringField({ required: true, choices: SYSTEM.ASPECTS });
+    schema.aspect = new fields.StringField({ required: true, choices: SYSTEM.ASPECTS, initial: "neshama" });
     schema.aspectAlt = new fields.StringField({ required: false, blank: true, choices: SYSTEM.ASPECTS, initial: undefined });
     schema.attribut = new fields.StringField({ required: false, blank: true, choices: SYSTEM.ATTRIBUTS });
     schema.attributAlt = new fields.StringField({ required: false, blank: true, choices: SYSTEM.ATTRIBUTS });
@@ -90,33 +90,41 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
 
     const attributFormula = attribut && attributAlt ? `(${attribut} OU ${attributAlt})` : attribut || attributAlt;
     formula += attributFormula ? ` ( + ${attributFormula})` : "";
-    
 
     if (this.opposition) {
       const aspect = SYSTEM.ASPECTS[this.oppositionAspect].label;
       formula += " CONTRE " + aspect;
-      formulaHtml+=' contre <span class="qualite"><em><span class="qualite_first">'
-      + aspect.slice(0, 1).toUpperCase() + "</span>" + aspect.slice(1).toUpperCase() + "</em></span>"
-
-
+      formulaHtml +=
+        ' contre <span class="qualite"><em><span class="qualite_first">' + aspect.slice(0, 1).toUpperCase() + "</span>" + aspect.slice(1).toUpperCase() + "</em></span>";
 
       const attributOp = (this.oppositionAttribut && SYSTEM.ATTRIBUTS[this.oppositionAttribut]?.label) || "";
       formula += attributOp !== "" ? "+ (" + attribut + ") " : "";
-      formulaHtml += attributOp !== "" ? ' + ( <span class="qualite"><span class="qualite_first">' + attributOp.slice(0, 1).toUpperCase() + "</span>" + attributOp.slice(1).toUpperCase() + "</span> ) " : "";
+      formulaHtml +=
+        attributOp !== ""
+          ? ' + ( <span class="qualite"><span class="qualite_first">' + attributOp.slice(0, 1).toUpperCase() + "</span>" + attributOp.slice(1).toUpperCase() + "</span> ) "
+          : "";
     }
 
     this.formula = formula;
-    this.formulaHtml = formulaHtml+'</span>';
+    this.formulaHtml = formulaHtml + "</span>";
 
     let formulaTooltip = "";
     if (this.hasActor) {
       formulaTooltip = this.parent.actor.system.qualites[this.qualite].valeur + (this.qualiteAlt ? " / " + this.qualiteAlt + " " : "");
       formulaTooltip += "D6 + ";
       formulaTooltip += this.parent.actor.system.aspects[this.aspect].valeur;
-      //FIXME Erreur sur this.parent.actor.system.attributs
-      /*if (comedien) {
-        formulaTooltip += attribut !== "" ? " (" + this.parent.actor.system.attributs[this.attribut].valeur + (this.attributAlt ? " OU " + this.attributAlt + " ": "") + ") " : "";
-      }*/
+
+      const cabinetId = game.settings.get("cabinet", "cabinet");
+      const cabinet = game.actors.get(cabinetId);
+      if (cabinet) {
+        const corpsId = cabinet.system.corps;
+        const corps = game.actors.get(corpsId);
+        if (corps) {
+          formulaTooltip += attribut !== "" ? " (+ " + corps.system.attributs[this.attribut].valeur : "";
+          formulaTooltip += attributAlt !== "" ? " OU " + corps.system.attributs[this.attributAlt].valeur : "";
+          formulaTooltip += attribut !== "" ? " )" : "";
+        }
+      }
     }
     this.formulaTooltip = formulaTooltip;
   }

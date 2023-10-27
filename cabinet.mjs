@@ -1,7 +1,7 @@
 import { SYSTEM } from "./module/config/system.mjs";
 import setupTextEnrichers from "./module/config/text-enrichers.mjs";
 import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
-import registerForms from "./module/applications/forms.mjs";
+//import registerForms from "./module/applications/forms.mjs";
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -33,6 +33,7 @@ Hooks.once("init", async function () {
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
   Actors.registerSheet(SYSTEM.id, applications.CorpsSheet, { types: ["corps"], makeDefault: true });
+  Actors.registerSheet(SYSTEM.id, applications.CabinetSheet, { types: ["cabinet"], makeDefault: true });
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.CabinetItem;
@@ -65,6 +66,8 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-perisprit.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/corps-details.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/corps-sante.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/cabinet-details.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/cabinet-description.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
     `systems/${SYSTEM.id}/templates/forms/gestion-cabinet.hbs`
   ]);
@@ -72,8 +75,8 @@ Hooks.once("init", async function () {
   // Configuration text enrichers
   setupTextEnrichers();
 
-  //formulaires
-  registerForms();
+  // formulaires
+  // registerForms();
 
   // menu de gauche
   initControlButtons();
@@ -107,21 +110,29 @@ Hooks.once("init", async function () {
   });
 
   // Register settings
-  game.settings.register("cabinet", "comedien", {
+  /*game.settings.register("cabinet", "comedien", {
     name: "Comédien",
     hint: "Id de l'esprit qui a le contrôle du corps.",
     scope: "world",
     config: true,
     type: String
-  });
+  });*/
 
-  game.settings.register("cabinet", "corps", {
+  /*game.settings.register("cabinet", "corps", {
     name: "Corps",
     hint: "Id du corps.",
     scope: "world",
     config: true,
     type: String
-  });  
+  });  */
+
+  game.settings.register("cabinet", "cabinet", {
+    name: "Cabinet",
+    hint: "Id du cabinet.",
+    scope: "world",
+    config: true,
+    type: String
+  });
 
 });
 

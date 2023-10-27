@@ -22,15 +22,21 @@ export default class CorpsSheet extends CabinetActorSheet {
     const context = await super.getData(options);
 
     context.attributs = this.#formatAttributs(context.actor.system.attributs);
-    
-    let comedienId = context.actor.system.comedien;
-    if (!comedienId) comedienId = game.settings.get("cabinet","comedien");
-    let comedienName = "";
-    if (comedienId)  {
-      comedienName = game.actors.get(comedienId).name;    
-      context.comedien = comedienName;
-    }
 
+    let comedien = "";
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    const cabinet = game.actors.get(cabinetId);
+
+    if (cabinet) {
+      let comedienId = cabinet.system.comedien;
+      let comedienName = "";
+      if (comedienId)  {
+        comedienName = game.actors.get(comedienId).name;    
+        comedien = comedienName;
+      }
+    }
+    
+    context.comedien = comedien;
     context.malus = context.actor.system.malus;
 
     return context;

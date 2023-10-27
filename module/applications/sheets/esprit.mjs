@@ -145,7 +145,7 @@ export default class EspritSheet extends CabinetActorSheet {
   }
 
   /**
-   *
+   * @description Jet de compétence depuis une qualité dans l'onglet Qualités
    * @param {*} event
    * @returns
    */
@@ -157,13 +157,12 @@ export default class EspritSheet extends CabinetActorSheet {
 
     let element = event.currentTarget;
     let qualite = element.dataset.field;
-    //console.log("jet de ", qualite);
 
     return this.actor.rollSkill(qualite, { dialog: true });
   }
 
   /**
-   *
+   * @description Jet de compétence depuis une action dans l'onglet Actions
    * @param {*} event
    * @returns
    */
@@ -177,37 +176,32 @@ export default class EspritSheet extends CabinetActorSheet {
     console.log("_onActionRoll", element);
     const actionId = element.dataset.field;
     const action = this.actor.items.get(actionId);
-    //let qualite = element.dataset.field;
-    console.log("jet de ", action.name);
 
     const actionSystem = action.system;
     let qualite = actionSystem.qualite;
-    /*let defaultValues = {
-      aspect: actionSystem.aspect
-    };*/
-    const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];
+    const keysToIgnore = ["formula", "formulaTooltip","circonstances"];
     const defaultValues = Object.fromEntries(Object.entries(actionSystem).filter(([key, value]) => value !== undefined && !keysToIgnore.includes(key)));
 
     return this.actor.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
   }
 
   async _onAllerJardin() {
-    if (this.actor.system.estComedien) {
-      return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
-    }
-    await this.actor.update({ "system.positionArbre": "", "system.jardin": true  });
+    await this.actor.allerJardin();
     this.render();
   }
+
   async _onQuitterJardin() {
     await this.actor.quitterJardin();
     this.render();
   }
+
   /**
    *
    */
   async _devenirComedien() {
-    let comedienId = game.settings.get("cabinet", "comedien");
-    let comedien = game.actors.get(comedienId);
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    const cabinet = game.actors.get(cabinetId);
+    let comedien = game.actors.get(cabinet.comedien);
     //inform the GM
     const html = await renderTemplate("systems/cabinet/templates/chat/demanderComedienButton.hbs", {
       nomEsprit: this.actor.name,

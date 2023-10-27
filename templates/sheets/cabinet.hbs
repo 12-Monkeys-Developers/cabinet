@@ -1,12 +1,13 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-  {{log "corps" this}}
+  {{log "cabinet" this}}
   {{! Main Content }}
   <section class="sheet-body">
     <header class="corps-header">
-      <div class="titre_feuille">Corps&nbsp;&nbsp;&nbsp;
-    <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
-          {{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
+      <div class="titre_feuille">Cabinet&nbsp;&nbsp;&nbsp;
+      <span class="middle-size">
+        <a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">{{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
+        <a class="select-cabinet" title="Selectionner le cabinet" data-actor-id="{{actor.id}}">{{#if editable}}<i class="fa-solid fa-circle-chevron-down"></i>{{/if}}</a>
       </span></div>
       <div class="charname">
         {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}</div>
@@ -16,18 +17,18 @@
       {{! Sheet Navigation }}
       <nav class="sheet-navigation tabs" data-group="primary">
         <a class="choix_tab" data-tab="details">Détails</a>
-        <a class="choix_tab" data-tab="sante">Santé</a>
+        <a class="choix_tab" data-tab="sante">Description</a>
       </nav>
     </header>
 
     {{! Détails Tab }}
     <div class="tab tab-details flexcol" data-group="primary" data-tab="details">
-        {{> "systems/cabinet/templates/sheets/partials/corps-details.hbs"}}
+        {{> "systems/cabinet/templates/sheets/partials/cabinet-details.hbs"}}
     </div>
 
-    {{! Santé Tab }}
+    {{! Description Tab }}
     <div class="tab tab-sante flexcol" data-group="primary" data-tab="sante">
-        {{> "systems/cabinet/templates/sheets/partials/corps-sante.hbs"}}
+        {{> "systems/cabinet/templates/sheets/partials/cabinet-description.hbs"}}
     </div>
 
   </section>

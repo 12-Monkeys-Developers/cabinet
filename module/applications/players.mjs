@@ -42,7 +42,6 @@ export default class CabinetPlayerList extends PlayerList {
   getData(options = {}) {
     let context = super.getData((options = {}));
     context.isGM = game.user.isGM;
-    //context.hasEsprit = game.user.character !== null;
     return context;
   }
 }

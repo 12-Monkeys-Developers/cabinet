@@ -1,13 +1,11 @@
 export class GestionForm extends FormApplication {
-  constructor(options) {
-    super(options);
-    Hooks.on("cabinet.changerComedien", async (actorId, newValue) => this.render());
+  /** @override */
+  constructor(object, options = {}) {
+    super(object, options);
+    Hooks.on("updateActor", async (document, change, options, userId) => this.render());
   }
 
-  static get getDefaults() {
-    return {};
-  }
-
+  /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       title: "Gestion du Cabinet",
@@ -16,112 +14,102 @@ export class GestionForm extends FormApplication {
       width: 800,
       height: 600,
       resizable: true,
-      closeOnSubmit: false,
       dragDrop: [{ dragSelector: ".draggable", dropSelector: ".droppable" }],
+      submitOnChange: true,
+      submitOnClose: true,
+      closeOnSubmit: false,
     });
   }
 
-  getData(options) {
-    let listeMembres = game.settings.get("cabinet", "membres");
-    let context = {};
-    const membres = [];
-    listeMembres.forEach((element) => {
-      let actor = game.actors.get(element);
-      membres.push({
-        nom: actor.name,
-        img: actor.img,
-        id: actor.id,
-        estComedien: actor.system.comedien,
-        token: actor.prototypeToken.texture.src,
-        dansJardin: actor.system.jardin,
-      });
-    });
-    context.membres = membres;
-    return context;
+  /**
+   * Lien vers le Cabinet qui est configuré par ce formulaire
+   * @type {CabinetCabinet}
+   */
+  get cabinet() {
+    return this.object;
   }
 
-  static registerDefault() {
-    game.settings.register("cabinet", "membres", {
-      name: "Gestion du cabinet",
-      type: Object,
-      config: false,
-      scope: "world",
-      default: [],
-    });
+  /** @override */
+  async getData(options = {}) {
+    return {
+      membres: this.cabinet.listeEsprits,
+      corps: this.cabinet.corps,
+    };
   }
 
+  /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-    html.find(".comedien").change(this._changerComedien.bind(this));
-    html.find(".jardin").change(this._allerJardin.bind(this));
     html.find(".membre-enlever").click(this._enleverMembre.bind(this));
   }
 
+  /** @override */
   async _onDrop(event) {
     event.preventDefault();
+    // Récupère le type et l'uuid
     const data = TextEditor.getDragEventData(event);
     if (data.type !== "Actor") return false;
-    const actor = await Actor.implementation.fromDropData(data);
 
-    if (actor.type !== "esprit") return false;
+    const actor = await fromUuid(data.uuid);
+    if (actor.type !== "esprit" && actor.type !== "corps") return false;
+
     const actorId = actor._id;
 
-    let membres = game.settings.get("cabinet", "membres");
-    if (membres.includes(actorId)) return false;
-    membres.push(actorId);
-    await game.settings.set("cabinet", "membres", membres);
-
-    this.render();
-  }
-
-  //assigne le comédien
-  async _changerComedien(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    let actorId = element.dataset.field;
-    let newActor = game.actors.get(actorId);
-    const currentValueComedien = newActor.system.comedien;
-    //si il est déjà le comedien, il quitte le controle qui devient null
-    if (currentValueComedien) {
-      await game.settings.set("cabinet", "comedien", null);
-    } else {
-      if (newActor.system.jardin) {
-        await newActor.quitterJardin();
-      }
-      let oldActorId = await game.settings.get("cabinet", "comedien");
-      if (oldActorId) {
-        let oldActor = game.actors.get(oldActorId);
-        await oldActor.update({ "system.comedien": false });
-      }
-      await game.settings.set("cabinet", "comedien", actorId);
+    // Drop d'esprit
+    if (actor.type === "esprit") {
+      let esprits = this.cabinet.system.esprits;
+      if (esprits.includes(actorId)) return false;
+      esprits.push(actorId);
+      await this.cabinet.update({ "system.esprits": esprits });
+      await actor.update({ "system.jardin": true });
     }
-    await newActor.update({ "system.comedien": !currentValueComedien });
-    this.render();
-  }
 
-  async _allerJardin(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    let actorId = element.dataset.field;
-    let actor = game.actors.get(actorId);
-
-    const currentValue = actor.system.jardin;
-    if (actor.system.jardin) {
-      await actor.quitterJardin();
-    } else {
-      await actor.update({ "system.positionArbre": "", "system.comedien": false, "system.jardin": true });
+    // Drop de corps
+    if (actor.type === "corps") {
+      await this.cabinet.update({ "system.corps": actorId });
     }
+
     this.render();
   }
 
+  /* formData est de type {39qxtay7wn2WSIQC.comedien: false, 39qxtay7wn2WSIQC.jardin: true} */
+  /** @override */
+  async _updateObject(event, formData) {
+    console.log("Gestion - _updateObject - formData", formData);
+    const results = foundry.utils.expandObject(formData);
+    const esprits = Object.entries(results);
+
+    // {id [comedien, jardin]}
+    for (const esprit of esprits) {
+      let newEsprit = game.actors.get(esprit[0]);
+      const positionInitiale = newEsprit.system.positionArbre;
+      const jardinInitial = newEsprit.system.jardin;
+      
+      // Gestion de l'esprit
+      await newEsprit.update({ "system.comedien": esprit[1].comedien });
+      await newEsprit.modifierJardin(esprit[1].jardin, true);
+
+      // Gestion du cabinet
+      // Va au jardin
+      if (esprit[1].jardin && !jardinInitial) await this.cabinet.deplacerEspritVersJardin(positionInitiale);
+      // TODO Quitte le jardin
+      //else await this.cabinet.update({[`system.arbre.${newPosition}.idEsprit`]: actor.id});
+
+      await this.cabinet.update({"system.comedien": esprit[1].comedien ? newEsprit.id : null});
+    }
+  }
+
+  /**
+   * Retire un membre de cabinet
+   * @param {*} event 
+   */
   async _enleverMembre(event) {
     event.preventDefault();
     const element = event.currentTarget;
     let indexArray = element.dataset.field;
-    //console.log(element);
-    let membres = game.settings.get("cabinet", "membres");
-    const x = membres.splice(indexArray, 1);
-    await game.settings.set("cabinet", "membres", membres);
+    let esprits = this.cabinet.system.esprits;
+    const x = esprits.splice(indexArray, 1);
+    await this.cabinet.update({ "system.esprits": esprits });
     this.render();
   }
 }
