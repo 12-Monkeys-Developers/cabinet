@@ -8,7 +8,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     const schema = {};
 
     // Qualités : Nom, valeur de +1 à +5, un défaut (avec label et value)
-    const qualiteField = (label, defaut) => {
+    const qualiteField = (label, defaut, sphere) => {
       const schema = {
         valeur: new fields.NumberField({ ...requiredInteger, initial: 1, min: 1, max: 5 }),
         label: new fields.StringField({ required: true, initial: game.i18n.localize(label), blank: false }),
@@ -16,6 +16,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
           label: new fields.StringField({ required: true, initial: game.i18n.localize(defaut), blank: false }),
           valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 5 }),
         }),
+        sphere: new fields.StringField({ required: true, initial: sphere, blank: false }),
         qlipha: new fields.BooleanField({ initial: false })
       };
       return new fields.SchemaField(schema, { label });
@@ -23,7 +24,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
 
     schema.qualites = new fields.SchemaField(
       Object.values(SYSTEM.QUALITES).reduce((obj, qualite) => {
-        obj[qualite.id] = qualiteField(qualite.label, qualite.defaut);
+        obj[qualite.id] = qualiteField(qualite.label, qualite.defaut, qualite.sphere);
         return obj;
       }, {})
     );

@@ -21,16 +21,6 @@ export default class StandardCheckDialog extends Dialog {
     });
   }
 
-  //TODO
-  /** @override */
-  get title() {
-    if (this.options.title) return this.options.title;
-    const type = this.roll.data.type;
-    //const skill = SYSTEM.SKILLS[type];
-    //if ( skill ) return `${skill.name} Skill Check`;
-    return "Generic Dice Check";
-  }
-
   /** @override */
   async getData(options = {}) {
     const data = this.roll.data;

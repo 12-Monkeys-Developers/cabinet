@@ -85,17 +85,17 @@ export class GestionForm extends FormApplication {
       const positionInitiale = newEsprit.system.positionArbre;
       const jardinInitial = newEsprit.system.jardin;
       
-      // Gestion de l'esprit
+      // Déplacement de l'esprit
       await newEsprit.update({ "system.comedien": esprit[1].comedien });
-      await newEsprit.modifierJardin(esprit[1].jardin, true);
+      esprit[1].comedien ? await this.cabinet.majComedien(newEsprit.id) : await this.cabinet.majComedien("");  
 
-      // Gestion du cabinet
+      const sphere = await newEsprit.modifierJardin(esprit[1].jardin, true);     
+
+      // Mise à jour du cabinet
       // Va au jardin
       if (esprit[1].jardin && !jardinInitial) await this.cabinet.deplacerEspritVersJardin(positionInitiale);
-      // TODO Quitte le jardin
-      //else await this.cabinet.update({[`system.arbre.${newPosition}.idEsprit`]: actor.id});
-
-      esprit[1].comedien ? await this.cabinet.majComedien(newEsprit.id) : await this.cabinet.majComedien("");    
+      // Quitte le jardin vers une sphère disponible
+      if (!esprit[1].jardin && jardinInitial) await this.cabinet.deplacerEspritVersSphere(esprit[0], sphere);        
     }
   }
 

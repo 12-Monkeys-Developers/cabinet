@@ -5,8 +5,10 @@ export default class CabinetActor extends Actor {
   constructor(object, options = {}) {
     super(object, options);
     if (this.type === "cabinet") {
-      Hooks.on("cabinet.changementComedien", async (id) => {await this.update({'system.comedien': id})});
-    }    
+      Hooks.on("cabinet.changementComedien", async (id) => {
+        await this.update({ "system.comedien": id });
+      });
+    }
   }
 
   get isUnlocked() {
@@ -71,7 +73,7 @@ export default class CabinetActor extends Actor {
       const listeAcquisCollectifs = cabinet.getlisteAcquis(listeAcquis.length);
       listeAcquis = listeAcquis.concat(listeAcquisCollectifs);
     }
-    
+
     // Prepare check data
     let rollData = {
       actorId: this.id,
@@ -95,7 +97,7 @@ export default class CabinetActor extends Actor {
     const flavor = "Flavor";
     if (dialog) {
       const jet = defaultValues === null ? SYSTEM.QUALITES[qualiteId].label : defaultValues.action;
-      const title =  game.i18n.format("CDM.DIALOG.titreJet", {nom: this.name, jet: jet});
+      const title = game.i18n.format("CDM.DIALOG.titreJet", { nom: this.name, jet: jet });
       const response = await sc.dialog({ title, flavor, rollMode });
       if (response === null) return null;
     }
@@ -133,7 +135,7 @@ export default class CabinetActor extends Actor {
   async modifierJardin(valeur, forcer) {
     if (this.type !== "esprit") return;
     if (valeur && !this.system.jardin) this.allerJardin(forcer);
-    if (!valeur && this.system.jardin) this.quitterJardin(forcer);
+    if (!valeur && this.system.jardin) return this.quitterJardin(forcer);
   }
 
   /**
@@ -162,22 +164,28 @@ export default class CabinetActor extends Actor {
     let qualites = [];
     for (const [key, value] of Object.entries(this.system.qualites)) {
       {
-        qualites.push({ nom: key, valeur: this.system.qualites[key].valeur });
+        qualites.push({ nom: key, valeur: this.system.qualites[key].valeur, sphere:this.system.qualites[key].sphere });
       }
-      qualites.sort(function (a, b) {
-        return a.valeur < b.valeur;
-      });
+    }   
+    qualites.sort((a, b) => b.valeur - a.valeur);
+    
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    const cabinet = game.actors.get(cabinetId);
+    
+    let arbre = {};
+    if (cabinet) {
+      arbre = cabinet.system.arbre;
     }
-    // FIX ME
-    /*
-    const contenuArbre = await remplirArbre();
+
+    if (!arbre) return;
     for (let qualite of qualites) {
-      if (!contenuArbre[SYSTEM.QUALITES[qualite.nom].sphere].id) {
-        await this.update({ "system.positionArbre": SYSTEM.QUALITES[qualite.nom].sphere, "system.jardin": false });
-        return;
+      if (!arbre[qualite.sphere].idEsprit) {
+        const position = SYSTEM.QUALITES[qualite.nom].sphere;
+        await this.update({ "system.positionArbre": position, "system.jardin": false });
+        cabinet.deplacerEspritVersSphere(this.id, position);
+        return position;
       }
-    }*/
-    await this.update({ "system.jardin": true });
+    }
   }
 
   /** --------*/
@@ -226,6 +234,17 @@ export default class CabinetActor extends Actor {
   deplacerEspritVersJardin(positionArbre) {
     if (this.type !== "cabinet") return;
     this.update({ [`system.arbre.${positionArbre}.idEsprit`]: null });
+  }
+
+  /**
+   * Remet à 0 une sphère de l'arbre
+   * @param {string}} espritId
+   * @param {*} positionArbre
+   * @returns
+   */
+  deplacerEspritVersSphere(espritId, positionArbre) {
+    if (this.type !== "cabinet") return;
+    this.update({ [`system.arbre.${positionArbre}.idEsprit`]: espritId });
   }
 
   majComedien(comedienId) {

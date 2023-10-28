@@ -13,7 +13,7 @@ export default class CabinetCabinet extends foundry.abstract.TypeDataModel {
     schema.adversaires = new fields.HTMLField();
     schema.notes = new fields.HTMLField();
 
-    // TODO Graces : Embedded items de type grace ?
+    // TODO Graces : Embedded items de type grace : crééer l'objet avec Nom et Description
     schema.graces = new fields.HTMLField();
 
     schema.esprits = new fields.ArrayField(new fields.StringField({nullable: true}));
@@ -22,6 +22,7 @@ export default class CabinetCabinet extends foundry.abstract.TypeDataModel {
       idEsprit: new fields.StringField({nullable: true}),
       idQlipha: new fields.StringField({nullable: true})
     })
+    // {sphere: {idEsprit: x, idQlipha: y}}
     schema.arbre = new fields.SchemaField(Object.values(SYSTEM.SPHERES).reduce((obj, sphere) => {
       obj[sphere.id] = arbreField(sphere.label);
       return obj;
