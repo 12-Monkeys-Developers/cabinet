@@ -41,94 +41,6 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
     return schema;
   }
 
-  labels;
-
-  prepareBaseData() {
-    // Action
-    // Qualité (/ Qualité alternative) + Aspect OU Aspect alternatif (+ Attribut du corps OU Attribut alternatif) contre Aspect (+ Attribut)
-    const qualite = SYSTEM.QUALITES[this.qualite].label;
-    const qualiteAlt = (this.qualiteAlt && SYSTEM.QUALITES[this.qualiteAlt]?.label) || "";
-
-    const aspect = SYSTEM.ASPECTS[this.aspect].label;
-    const aspectAlt = (this.aspectAlt && SYSTEM.ASPECTS[this.aspectAlt]?.label) || "";
-
-    // this.parent peut être un item ou un actor
-    const comedien = this.parent.actor?.system.comedien;
-    let attribut = (this.attribut && SYSTEM.ATTRIBUTS[this.attribut]?.label) || "";
-    let attributAlt = (this.attributAlt && SYSTEM.ATTRIBUTS[this.attributAlt]?.label) || "";
-
-    let formula = "";
-    formula = qualite + (qualiteAlt !== "" ? " / " + qualiteAlt + " " : " ") + " + " + aspect + (aspectAlt ? " OU " + aspectAlt + " " : " ");
-    let formulaHtml =
-      '<span class="resolution"><span class="qualite"><span class="qualite_first">' +
-      qualite.slice(0, 1).toUpperCase() +
-      "</span>" +
-      qualite.slice(1).toUpperCase() +
-      "</span>" +
-      (qualiteAlt !== ""
-        ? ' / <span class="qualite"><span class="qualite_first">' + qualiteAlt.slice(0, 1).toUpperCase() + "</span>" + qualiteAlt.slice(1).toUpperCase() + "</span> "
-        : " ") +
-      '+ <span class="qualite"><em><span class="qualite_first">' +
-      aspect.slice(0, 1).toUpperCase() +
-      "</span>" +
-      aspect.slice(1).toUpperCase() +
-      "</em></span>" +
-      (aspectAlt !== ""
-        ? ' ou <span class="qualite"><em><span class="qualite_first">' + aspectAlt.slice(0, 1).toUpperCase() + "</span>" + aspectAlt.slice(1).toUpperCase() + "</em></span> "
-        : " ");
-
-    let attributHtml = attribut
-      ? '<span class="qualite"><span class="qualite_first">' + attribut.slice(0, 1).toUpperCase() + "</span>" + attribut.slice(1).toUpperCase() + "</span>"
-      : "";
-    let attributAltHtml = attributAlt
-      ? '<span class="qualite"><span class="qualite_first">' + attributAlt.slice(0, 1).toUpperCase() + "</span>" + attributAlt.slice(1).toUpperCase() + "</span>"
-      : "";
-
-    if (attribut && attributAlt) formulaHtml += " ( + " + attributHtml + " ou " + attributAltHtml + " )";
-    else if (attribut) formulaHtml += " ( + " + attributHtml + " )";
-    else if (attributAlt) formulaHtml += " ( + " + attributAltHtml + " )";
-
-    const attributFormula = attribut && attributAlt ? `(${attribut} OU ${attributAlt})` : attribut || attributAlt;
-    formula += attributFormula ? ` ( + ${attributFormula})` : "";
-
-    if (this.opposition) {
-      const aspect = SYSTEM.ASPECTS[this.oppositionAspect].label;
-      formula += " CONTRE " + aspect;
-      formulaHtml +=
-        ' contre <span class="qualite"><em><span class="qualite_first">' + aspect.slice(0, 1).toUpperCase() + "</span>" + aspect.slice(1).toUpperCase() + "</em></span>";
-
-      const attributOp = (this.oppositionAttribut && SYSTEM.ATTRIBUTS[this.oppositionAttribut]?.label) || "";
-      formula += attributOp !== "" ? "+ (" + attribut + ") " : "";
-      formulaHtml +=
-        attributOp !== ""
-          ? ' + ( <span class="qualite"><span class="qualite_first">' + attributOp.slice(0, 1).toUpperCase() + "</span>" + attributOp.slice(1).toUpperCase() + "</span> ) "
-          : "";
-    }
-
-    this.formula = formula;
-    this.formulaHtml = formulaHtml + "</span>";
-
-    let formulaTooltip = "";
-    if (this.hasActor) {
-      formulaTooltip = this.parent.actor.system.qualites[this.qualite].valeur + (this.qualiteAlt ? " / " + this.qualiteAlt + " " : "");
-      formulaTooltip += "D6 + ";
-      formulaTooltip += this.parent.actor.system.aspects[this.aspect].valeur;
-
-      const cabinetId = game.settings.get("cabinet", "cabinet");
-      const cabinet = game.actors.get(cabinetId);
-      if (cabinet) {
-        const corpsId = cabinet.system.corps;
-        const corps = game.actors.get(corpsId);
-        if (corps) {
-          formulaTooltip += attribut !== "" ? " (+ " + corps.system.attributs[this.attribut].valeur : "";
-          formulaTooltip += attributAlt !== "" ? " OU " + corps.system.attributs[this.attributAlt].valeur : "";
-          formulaTooltip += attribut !== "" ? " )" : "";
-        }
-      }
-    }
-    this.formulaTooltip = formulaTooltip;
-  }
-
   get hasActor() {
     return this.parent.actor !== null;
   }
@@ -137,4 +49,111 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
     if (this.hasActor) return this.parent.actor;
     return undefined;
   }
+
+  /**
+   * Retourne la fomrule HTML de l'action
+   */
+  get formulaHtml() {
+    const qualite = SYSTEM.QUALITES[this.qualite].label;
+    const qualiteAlt = (this.qualiteAlt && SYSTEM.QUALITES[this.qualiteAlt]?.label) || "";
+
+    const aspect = SYSTEM.ASPECTS[this.aspect].label;
+    const aspectAlt = (this.aspectAlt && SYSTEM.ASPECTS[this.aspectAlt]?.label) || "";
+
+    let formulaHtml =
+      `<span class="resolution">
+        <span class="qualite">
+          <span class="qualite_first">${qualite.charAt(0).toUpperCase()}
+          </span>
+          ${qualite.slice(1).toUpperCase()}
+        </span>` +
+      (qualiteAlt !== ""
+        ? ` / 
+      <span class="qualite">
+        <span class="qualite_first">${qualiteAlt.charAt(0).toUpperCase()}</span>${qualiteAlt.slice(1).toUpperCase()}
+      </span> `
+        : " ") +
+      `+ 
+    <span class="qualite">
+      <em>
+        <span class="qualite_first">${aspect.charAt(0).toUpperCase()}</span>${aspect.slice(1).toUpperCase()}
+      </em>
+    </span>` +
+      (aspectAlt !== ""
+        ? ` ou 
+      <span class="qualite">
+        <em>
+          <span class="qualite_first">${aspectAlt.charAt(0).toUpperCase()}</span>${aspectAlt.slice(1).toUpperCase()}
+        </em>
+      </span> `
+        : " ");
+
+    const attribut = (this.attribut && SYSTEM.ATTRIBUTS[this.attribut]?.label) || "";
+    const attributAlt = (this.attributAlt && SYSTEM.ATTRIBUTS[this.attributAlt]?.label) || "";
+
+    let attributHtml = attribut ? `<span class="qualite"><span class="qualite_first">${attribut.charAt(0).toUpperCase()}</span>${attribut.slice(1).toUpperCase()}</span>` : "";
+
+    let attributAltHtml = attributAlt
+      ? `<span class="qualite"><span class="qualite_first">${attributAlt.charAt(0).toUpperCase()}</span>${attributAlt.slice(1).toUpperCase()}</span>`
+      : "";
+
+    formulaHtml += attribut && attributAlt ? ` ( + ${attributHtml} ou ${attributAltHtml} )` : attribut ? ` ( + ${attributHtml} )` : attributAlt ? ` ( + ${attributAltHtml} )` : "";
+
+    if (this.opposition) {
+      const aspect = SYSTEM.ASPECTS[this.oppositionAspect].label;
+
+      formulaHtml += ` contre
+  <span class="qualite">
+    <em>
+      <span class="qualite_first">${aspect.charAt(0).toUpperCase()}</span>${aspect.slice(1).toUpperCase()}
+    </em>
+  </span>`;
+
+      const attributOp = (this.oppositionAttribut && SYSTEM.ATTRIBUTS[this.oppositionAttribut]?.label) || "";
+
+      formulaHtml +=
+        attributOp !== ""
+          ? ` + (
+            <span class="qualite">
+              <span class="qualite_first">${attributOp.charAt(0).toUpperCase()}</span>${attributOp.slice(1).toUpperCase()}
+            </span>
+          ) `
+          : "";
+    }
+    formulaHtml += "</span>";
+    return formulaHtml;
+  }
+
+  /**
+   * Retourne la fomrule HTML de l'action
+   * @param {CabinetEsprit} l'esprit
+   * @param {*} attributs les attributs du corps
+   */
+  /*getFormulatTooltip(espritSystem, attributs) {
+    let formulaTooltip = espritSystem.qualites[this.qualite].valeur + (this.qualiteAlt ? " / " + this.qualiteAlt + " " : "");
+    formulaTooltip += "D6 + ";
+    formulaTooltip += espritSystem.aspects[this.aspect].valeur;
+
+    formulaTooltip += this.attribut !== "" ? " (+ " + attributs[this.attribut].valeur : "";
+    formulaTooltip += this.attributAlt !== "" ? " OU " + attributs[this.attributAlt].valeur : "";
+    formulaTooltip += this.attribut !== "" ? " )" : "";
+
+    return formulaTooltip;
+  }*/
+
+
+  getFormulatTooltip(espritSystem, attributs) {
+    let formulaTooltip = `${espritSystem.qualites[this.qualite].valeur}${this.qualiteAlt ? ` / ${this.qualiteAlt} ` : ""}D6 + ${espritSystem.aspects[this.aspect].valeur}`;
+  
+    if (this.attribut !== "") {
+      formulaTooltip += ` (+ ${attributs[this.attribut].valeur}`;
+      if (this.attributAlt !== "") {
+        formulaTooltip += ` OU ${attributs[this.attributAlt].valeur}`;
+      }
+      formulaTooltip += " )";
+    }
+  
+    return formulaTooltip;
+  }
+  
 }

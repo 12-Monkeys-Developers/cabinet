@@ -1,7 +1,13 @@
 import { SYSTEM } from "../../config/system.mjs";
+import CabinetAction from "../../data/action.mjs";
 import CabinetActorSheet from "./actor.mjs";
 
 export default class EspritSheet extends CabinetActorSheet {
+  constructor(object, options = {}) {
+    super(object, options);
+    Hooks.on("cabinet.updateCorps", async (corpsId) => this.render());
+  }
+
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
@@ -24,7 +30,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
     context.qualites = this.#formatQualites(context.actor.system.qualites);
     context.aspects = this.#formatAspects(context.actor.system.aspects);
-    context.actions = this.actor.items.filter((i) => i.type === "action");
+    context.actions = this.#formatActions(this.actor.items.filter((i) => i.type === "action"));
 
     // Acquis par ordre alpha et mise en forme de la description
     context.acquis = this.actor.items
@@ -88,6 +94,30 @@ export default class EspritSheet extends CabinetActorSheet {
     });
   }
 
+  /**
+   * Format les actions por les afficher sur la fiche
+   * _id, name, formulaHtml, formulaTooltip, circonstances
+   * @param {object[]} les embedded items de type action
+   * @return {object[]}
+   */
+  #formatActions(actions) {
+    let corps;
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    const cabinet = game.actors.get(cabinetId);
+    if (cabinet) {
+      const corpsId = cabinet.system.corps;
+      corps = game.actors.get(corpsId);
+    }
+
+    return actions.map((cfg) => {
+      const action = foundry.utils.deepClone(cfg);
+      // formulaHtml
+      action.formulaHtml = action.system.formulaHtml;
+      action.formulaTooltip = action.system.getFormulatTooltip(this.actor.system, corps.system.attributs);
+      return action;
+    });
+  }
+
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
@@ -106,7 +136,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
   /**
    * Retourne les context options du menu Esprit
-   * @returns {object[]}   
+   * @returns {object[]}
    * @private
    */
   _getEntryContextOptions() {
@@ -114,19 +144,25 @@ export default class EspritSheet extends CabinetActorSheet {
       {
         name: `Aller dans mon Jardin Secret`,
         icon: `<i class="fa-regular fa-face-clouds"></i>`,
-        condition: () => { return !this.actor.system.jardin},
+        condition: () => {
+          return !this.actor.system.jardin;
+        },
         callback: () => this._onAllerJardin(),
       },
       {
         name: `Revenir dans le cabinet`,
         icon: `<i class="fa-regular fa-loveseat"></i>`,
-        condition: () => { return this.actor.system.jardin},
+        condition: () => {
+          return this.actor.system.jardin;
+        },
         callback: () => this._onQuitterJardin(),
       },
       {
         name: `Demander le contrôle`,
         icon: `<i class="fa-solid fa-person-simple"></i>`,
-        condition: () => { return !this.actor.system.comedien},
+        condition: () => {
+          return !this.actor.system.comedien;
+        },
         callback: () => this._devenirComedien(),
       },
     ];

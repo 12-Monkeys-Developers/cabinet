@@ -11,6 +11,14 @@ export default class CabinetActor extends Actor {
     }
   }
 
+  /** @override */
+  _onUpdate(data, options, userId) {
+    if (this.type === "corps") {
+      Hooks.callAll("cabinet.updateCorps", this.id);
+    }    
+    super._onUpdate(data, options, userId);
+  }
+
   get isUnlocked() {
     if (this.getFlag(game.system.id, "SheetUnlocked")) return true;
     return false;
