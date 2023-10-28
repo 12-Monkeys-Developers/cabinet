@@ -101,7 +101,7 @@ export class ArbreVieForm extends FormApplication {
       let oldPosition = actor.system.positionArbre;
       let newPosition = li.dataset.field;
 
-      if (this.validerDeplacement(oldPosition, newPosition)) {
+      if (await this.validerDeplacement(oldPosition, newPosition)) {
         await actor.update({ "system.positionArbre": newPosition, "system.jardin": false });
         await this.cabinet.update({[`system.arbre.${newPosition}.idEsprit`]: actor.id});
       }
