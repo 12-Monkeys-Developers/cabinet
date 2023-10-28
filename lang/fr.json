@@ -168,6 +168,9 @@
     },
     "DIALOG": {
       "titreJet": "{nom} : jet de {jet}"
+    },
+    "WARNING": {
+      "ActionReserveeComedie": "Votre esprit doit avoir le contrôle du corps pour réaliser cette action."
     }
   }
 }

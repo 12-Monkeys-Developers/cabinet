@@ -176,9 +176,12 @@ export default class EspritSheet extends CabinetActorSheet {
     let element = event.currentTarget;
     console.log("_onActionRoll", element);
     const actionId = element.dataset.field;
-    const action = this.actor.items.get(actionId);
-
+    const action = this.actor.items.get(actionId);    
     const actionSystem = action.system;
+
+    // Si l'action n'est possible que pour le comédient et que l'esprit n'est pas le comédien, message d'avertissement
+    if (actionSystem.controle && !this.actor.system.comedien) return ui.notifications.warn(game.i18n.localize('CDM.WARNING.ActionReserveeComedie'));;
+
     let qualite = actionSystem.qualite;
     const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];
     const defaultValues = Object.fromEntries(Object.entries(actionSystem).filter(([key, value]) => value !== undefined && !keysToIgnore.includes(key)));
