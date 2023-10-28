@@ -49,7 +49,7 @@ export default class StandardCheck extends Roll {
     deQualite: null,    
     diff: 6,
     type: "classique",
-    aspect: undefined,
+    aspect: "neshama",
     aspectValeur: 0,
     listeAcquis: [],
     acquis: undefined,
