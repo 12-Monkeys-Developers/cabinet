@@ -1,3 +1,4 @@
+import { SYSTEM } from "../../config/system.mjs";
 import CabinetActorSheet from "./actor.mjs";
 
 export default class EspritSheet extends CabinetActorSheet {
@@ -158,7 +159,7 @@ export default class EspritSheet extends CabinetActorSheet {
     let element = event.currentTarget;
     let qualite = element.dataset.field;
 
-    return this.actor.rollSkill(qualite, { dialog: true });
+    return this.actor.rollSkill(qualite, { dialog: true, title: SYSTEM.QUALITES[qualite].label });
   }
 
   /**
@@ -182,6 +183,21 @@ export default class EspritSheet extends CabinetActorSheet {
     const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];
     const defaultValues = Object.fromEntries(Object.entries(actionSystem).filter(([key, value]) => value !== undefined && !keysToIgnore.includes(key)));
 
+    defaultValues.action = action.name;
+
+    // Information du corps si l'esprit est le comédien
+    if (this.actor.system.comedien) {
+      const cabinetId = game.settings.get("cabinet", "cabinet");
+      const cabinet = game.actors.get(cabinetId);
+      if (cabinet) {
+        const corpsId = cabinet.system.corps;
+        const corps = game.actors.get(corpsId);
+        const attributs = corps.system.attributs;
+        defaultValues.attributs = attributs;
+      }
+    }
+
+    console.log("_onActionRoll defaultValues", defaultValues);
     return this.actor.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
   }
 
@@ -204,7 +220,7 @@ export default class EspritSheet extends CabinetActorSheet {
     let comedien = game.actors.get(cabinet.system.comedien);
 
     if (!comedien) {
-      await this.actor.update({"system.comedien": true});
+      await this.actor.update({ "system.comedien": true });
       await cabinet.majComedien(this.actor.id);
       const allowed = Hooks.call("cabinet.changementComedien", this.actor.id);
       if (allowed === false) return;

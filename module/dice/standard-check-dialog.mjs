@@ -21,6 +21,7 @@ export default class StandardCheckDialog extends Dialog {
     });
   }
 
+  //TODO
   /** @override */
   get title() {
     if (this.options.title) return this.options.title;
@@ -33,8 +34,7 @@ export default class StandardCheckDialog extends Dialog {
   /** @override */
   async getData(options = {}) {
     const data = this.roll.data;
-
-    // Si comédien et positionné sur la qualité utilisée
+    
     const estComedien = data.actorData.comedien;
     const position = data.actorData.positionArbre; // tieferet
     const qualite = data.qualite;
@@ -42,6 +42,7 @@ export default class StandardCheckDialog extends Dialog {
     const jardin = data.actorData.jardin;
 
     let peutEmbellie = false;
+    // Si comédien et positionné sur la qualité utilisée : embellie possible
     if (estComedien && !jardin && position === sphere) peutEmbellie = true;
     data.peutEmbellie = peutEmbellie;
     const optionsEmbellie = Array.from({ length: data.qualiteValeur }, (_, index) => ({ indice: index + 1, label: index + 1 }));
@@ -134,11 +135,13 @@ export default class StandardCheckDialog extends Dialog {
         return this.render(false, { height: "auto" });
       case "acquis-change":
         const newAcquis = event.currentTarget.value;
-        this.roll.initialize({ acquis: newAcquis, acquisValeur: this.roll.data.listeAcquis[newAcquis].valeur });
+        if (newAcquis !== "") this.roll.initialize({ acquis: newAcquis, acquisValeur: this.roll.data.listeAcquis[newAcquis].valeur });
+        else this.roll.initialize({ acquis: newAcquis, acquisValeur: 0 });
         return this.render(false, { height: "auto" });
       case "attribut-change":
         const newAttribut = event.currentTarget.value;
-        this.roll.initialize({ attribut: newAttribut, attributValeur: this.roll.data.attributs[newAttribut].valeur });
+        if (newAttribut !== "") this.roll.initialize({ attribut: newAttribut, attributValeur: this.roll.data.attributs[newAttribut].valeur });
+        else this.roll.initialize({ attribut: newAttribut, attributValeur: 0 });
         return this.render(false, { height: "auto" });
       case "perisprit-change":
         const newPerisprit = event.currentTarget.value;

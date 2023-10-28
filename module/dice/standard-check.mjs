@@ -55,6 +55,7 @@ export default class StandardCheck extends Roll {
     acquis: undefined,
     acquisValeur: 0,
     listeAttributs: [],
+    attributs: undefined,
     attribut: undefined,
     attributValeur: 0,
     perisprit: 0,
@@ -122,7 +123,10 @@ export default class StandardCheck extends Roll {
     data.perispritValeur = ((data.perisprit !== "" ) ? parseInt(data.perisprit) : 0);
     data.estEmbellie = data.peutEmbellie && data.embellie !== undefined && data.embellie !== "";
 
-    if (data.aspect !== undefined && data.aspect !== "") data.aspectValeur = data.actorData.aspects[data.aspect].valeur;
+    if (data.aspect) data.aspectValeur = data.actorData.aspects[data.aspect].valeur;
+
+    // Attribut pour le comédien
+    if (data.actorData.comedien && data.attribut) data.attributValeur = data.attributs[data.attribut].valeur;
   }
 
   /** @override */

@@ -58,6 +58,7 @@ export default class CabinetActor extends Actor {
    * @param {string} [rollMode]   The roll visibility mode to use, default is the current dropdown choice
    * @param {boolean} [dialog]    Display a dialog window to further configure the roll. Default is false.
    * @param {Object} [defaultValues]    Contient les valeurs par défaut, utilisées lors que c'est un item Action qui est à l'origine du jet
+   * action : nom de l'action, aspect, aspectAlt, attribut, attributAlt, categorie, controle, formulaHtml, opposition, parDefaut, qualite, qualiteAlt
    * @return {StandardCheck}      The StandardCheck roll instance which was produced.
    */
   async rollSkill(qualiteId, { diff, rollMode, dialog = false, defaultValues = null } = {}) {
@@ -83,8 +84,8 @@ export default class CabinetActor extends Actor {
     //const flavor = game.i18n.format("SKILL.RollFlavor", {name: this.name, skill: SYSTEM.SKILLS[qualiteId].name});
     const flavor = "Flavor";
     if (dialog) {
-      //const title = game.i18n.format("SKILL.RollTitle", {name: this.name, skill: SYSTEM.SKILLS[qualiteId].name});
-      const title = "Title";
+      const jet = defaultValues === null ? SYSTEM.QUALITES[qualiteId].label : defaultValues.action;
+      const title =  game.i18n.format("CDM.DIALOG.titreJet", {nom: this.name, jet: jet});
       const response = await sc.dialog({ title, flavor, rollMode });
       if (response === null) return null;
     }

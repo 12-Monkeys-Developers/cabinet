@@ -165,6 +165,9 @@
       "deQualite": "Dé conservé (qualité)",
       "embellie": "Embellie",
       "deEmbellie": "Total dés embellie"
+    },
+    "DIALOG": {
+      "titreJet": "{nom} : jet de {jet}"
     }
   }
 }
