@@ -21,6 +21,17 @@ export default class CabinetSheet extends CabinetActorSheet {
   async getData(options) {
     const context = await super.getData(options);
     context.esprits = this.actor.listeEsprits;
+
+    // Acquis par ordre alpha et mise en forme de la description
+    context.acquis = this.actor.items
+      .filter((item) => item.type == "acquis")
+      .sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      });
+    context.acquis.forEach((element) => {
+      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    });
+
     return context;
   }
 
@@ -29,7 +40,7 @@ export default class CabinetSheet extends CabinetActorSheet {
     super.activateListeners(html);
 
     html.find(".select-cabinet").click(this._onSelectCabinet.bind(this));
-  }  
+  }
 
   /**
    * @description Sélectionne le cabinet comme actif
@@ -43,7 +54,7 @@ export default class CabinetSheet extends CabinetActorSheet {
     event.stopPropagation();
 
     let cabinetId = event.currentTarget.dataset.actorId;
-    await game.settings.set("cabinet","cabinet",cabinetId);
-    await this.actor.update({"ownership.default": 3});
-  }  
+    await game.settings.set("cabinet", "cabinet", cabinetId);
+    await this.actor.update({ "ownership.default": 3 });
+  }
 }

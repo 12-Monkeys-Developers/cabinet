@@ -15,11 +15,12 @@ export default class CabinetActor extends Actor {
   }
 
   /**
-   * @description Tableau des aquis d'un esprit sous la forme [{nom, valeur}}]
+   * @description Tableau des aquis d'un esprit sous la forme [{nom, valeur}}] ou des acquis collectifs du cabinet
+   * @param indiceDepart : Indice de départ pour la numérotation
    */
-  get listeAcquis() {
-    if (this.type === "esprit") {
-      let indice = 0;
+  getlisteAcquis(indiceDepart = 0) {
+    if (this.type === "esprit" || this.type === "cabinet") {
+      let indice = indiceDepart;
       return this.items
         .filter((i) => i.type === "acquis")
         .map((acquis) => ({
@@ -62,12 +63,21 @@ export default class CabinetActor extends Actor {
    * @return {StandardCheck}      The StandardCheck roll instance which was produced.
    */
   async rollSkill(qualiteId, { diff, rollMode, dialog = false, defaultValues = null } = {}) {
+    // Acquis de l'acteur et acquis collectifs
+    let listeAcquis = this.getlisteAcquis();
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    const cabinet = game.actors.get(cabinetId);
+    if (cabinet) {
+      const listeAcquisCollectifs = cabinet.getlisteAcquis(listeAcquis.length);
+      listeAcquis = listeAcquis.concat(listeAcquisCollectifs);
+    }
+    
     // Prepare check data
     let rollData = {
       actorId: this.id,
       actorData: this.system,
       qualite: qualiteId,
-      listeAcquis: this.listeAcquis,
+      listeAcquis: listeAcquis,
       diff: diff,
       type: "classique",
       rollMode: rollMode,
