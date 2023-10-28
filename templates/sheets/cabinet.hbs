@@ -2,8 +2,8 @@
 
   {{log "cabinet" this}}
   {{! Main Content }}
-  <section class="sheet-body">
-    <header class="corps-header">
+  <section class="sheet-body cab-sheet">
+    <header class="cabinet-header">
       <div class="titre_feuille">Cabinet&nbsp;&nbsp;&nbsp;
       <span class="middle-size">
         <a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">{{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
@@ -11,7 +11,7 @@
       </span></div>
       <div class="charname">
         {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}</div>
-      <div class="corps-portrait">
+      <div class="cabinet-portrait">
         <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
       </div>
       {{! Sheet Navigation }}

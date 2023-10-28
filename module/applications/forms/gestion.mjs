@@ -95,11 +95,7 @@ export class GestionForm extends FormApplication {
       // TODO Quitte le jardin
       //else await this.cabinet.update({[`system.arbre.${newPosition}.idEsprit`]: actor.id});
 
-      //await this.cabinet.update({"system.comedien": esprit[1].comedien ? newEsprit.id : null});
-      esprit[1].comedien ? await this.cabinet.majComedien(newEsprit.id) : await this.cabinet.majComedien("");
-      
-      // const allowed = Hooks.call("cabinet.changerComedienAvecGestion");
-      // if ( allowed === false ) return;
+      esprit[1].comedien ? await this.cabinet.majComedien(newEsprit.id) : await this.cabinet.majComedien("");    
     }
   }
 

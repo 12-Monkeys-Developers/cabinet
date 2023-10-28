@@ -4,8 +4,6 @@ export default class CorpsSheet extends CabinetActorSheet {
   /** @override */
   constructor(object, options = {}) {
     super(object, options);
-    //Hooks.on("cabinet.changerComedienAvecGestion", () => this.render());
-    //Hooks.on("cabinet.changerComedienAvecPlayer", (id, valeur) => this.render());
     Hooks.on("updateActor", async (document, change, options, userId) => this.render());
   }
 

@@ -36,9 +36,6 @@ export default class CabinetPlayerList extends PlayerList {
         
         await cabinet.update({"system.comedien": character.id});
         await character.update({ "system.comedien": true, "system.jardin": false });
-  
-        const allowed = Hooks.call("cabinet.changerComedienAvecPlayer", id, true);
-        if ( allowed === false ) return;
       }
     }
   }
