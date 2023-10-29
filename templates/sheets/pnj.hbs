@@ -1,0 +1,35 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+  {{log "pnj" this}}
+  {{! Main Content }}
+  <section class="sheet-body pnj-sheet">
+    <header class="pnj-header">
+      <div class="titre_feuille">PNJ&nbsp;&nbsp;&nbsp;
+    <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
+          {{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
+      </span></div>
+      <div class="charname">
+        {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}</div>
+      <div class="pnj-portrait">
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      </div>
+      {{! Sheet Navigation }}
+      <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="choix_tab" data-tab="details">Détails</a>
+        <a class="choix_tab" data-tab="sante">Santé</a>
+      </nav>
+    </header>
+
+    {{! Détails Tab }}
+    <div class="tab tab-details flexcol" data-group="primary" data-tab="details">
+        {{> "systems/cabinet/templates/sheets/partials/pnj-details.hbs"}}
+    </div>
+
+    {{! Santé Tab }}
+    <div class="tab tab-sante flexcol" data-group="primary" data-tab="sante">
+        {{> "systems/cabinet/templates/sheets/partials/pnj-sante.hbs"}}
+    </div>
+
+  </section>
+
+</form>

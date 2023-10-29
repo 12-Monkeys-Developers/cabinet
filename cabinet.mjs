@@ -1,7 +1,6 @@
 import { SYSTEM } from "./module/config/system.mjs";
 import setupTextEnrichers from "./module/config/text-enrichers.mjs";
 import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
-//import registerForms from "./module/applications/forms.mjs";
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -34,6 +33,7 @@ Hooks.once("init", async function () {
   Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
   Actors.registerSheet(SYSTEM.id, applications.CorpsSheet, { types: ["corps"], makeDefault: true });
   Actors.registerSheet(SYSTEM.id, applications.CabinetSheet, { types: ["cabinet"], makeDefault: true });
+  Actors.registerSheet(SYSTEM.id, applications.PnjSheet, { types: ["pnj"], makeDefault: true });
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.CabinetItem;
@@ -68,6 +68,8 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/corps-sante.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/cabinet-details.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/cabinet-description.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/pnj-details.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/pnj-sante.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
     `systems/${SYSTEM.id}/templates/forms/gestion-cabinet.hbs`
   ]);
