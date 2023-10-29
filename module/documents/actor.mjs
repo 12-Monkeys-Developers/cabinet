@@ -101,8 +101,7 @@ export default class CabinetActor extends Actor {
     let sc = new StandardCheck(rollData);
 
     // Prompt the user with a roll dialog
-    //const flavor = game.i18n.format("SKILL.RollFlavor", {name: this.name, skill: SYSTEM.SKILLS[qualiteId].name});
-    const flavor = "Flavor";
+    const flavor = defaultValues === null ? `Jet de ${SYSTEM.QUALITES[qualiteId].label} de ${this.name}` : `Jet de ${defaultValues.action} de ${this.name}`;
     if (dialog) {
       const jet = defaultValues === null ? SYSTEM.QUALITES[qualiteId].label : defaultValues.action;
       const title = game.i18n.format("CDM.DIALOG.titreJet", { nom: this.name, jet: jet });

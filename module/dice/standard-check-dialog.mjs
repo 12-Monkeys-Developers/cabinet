@@ -24,7 +24,7 @@ export default class StandardCheckDialog extends Dialog {
   /** @override */
   async getData(options = {}) {
     const data = this.roll.data;
-    
+
     const estComedien = data.actorData.comedien;
     const position = data.actorData.positionArbre; // tieferet
     const qualite = data.qualite;
@@ -52,9 +52,7 @@ export default class StandardCheckDialog extends Dialog {
       if (estComedien) {
         data.attributs = corps.system.attributs;
         data.malus = corps.system.malus;
-      }
-      else {
-        
+      } else {
       }
     }
 
@@ -65,6 +63,7 @@ export default class StandardCheckDialog extends Dialog {
       isGM: game.user.isGM,
       rollMode: this.options.rollMode || game.settings.get("core", "rollMode"),
       rollModes: CONFIG.Dice.rollModes,
+      difficultes: SYSTEM.DIFFICULTES,
       aspects: SYSTEM.ASPECTS,
       qualites: SYSTEM.QUALITES,
       listeAttributs: SYSTEM.ATTRIBUTS,
@@ -104,6 +103,7 @@ export default class StandardCheckDialog extends Dialog {
     html.find('select[name="perisprit"]').change(this._onChangeAction.bind(this));
     html.find('select[name="embellie"]').change(this._onChangeAction.bind(this));
     html.find('input[name="bonus"]').change(this._onChangeAction.bind(this));
+    html.find('select[name="difficulte"]').change(this._onChangeDifficulte.bind(this));
     super.activateListeners(html);
   }
 
@@ -146,6 +146,19 @@ export default class StandardCheckDialog extends Dialog {
         this.roll.initialize({ bonus: newBonus });
         return this.render(false, { height: "auto" });
     }
+  }
+
+  /**
+   * Handle changes to the difficulty select input
+   * @param {Event} event           The event which triggers on select change
+   * @private
+   */
+  _onChangeDifficulte(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const newDifficulte = event.currentTarget.value;
+    this.roll.initialize({ difficulte: newDifficulte });
+    return this.render(false, { height: "auto" });
   }
 
   /*  Factory Methods                             */

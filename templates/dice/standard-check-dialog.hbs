@@ -56,7 +56,13 @@
                 <div class="bonus">
                     <label data-action="bonus-change">Bonus</label>
                     <input type="number" value="{{bonus}}" name="bonus" min="0" data-action="bonus-change"> 
-                </div>                
+                </div>        
+                <div class="difficulte">
+                    <label>Difficulté</label>
+                    <select name="difficulte" data-action="diff-change">
+                        {{selectOptions difficultes selected=difficulte labelAttr="label" blank=""}}
+                    </select>
+                </div>
             </div>
         </section> 
 

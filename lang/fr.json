@@ -113,6 +113,13 @@
         "seproteger": "Se protéger"
       }
     },
+    "DIFFICULTE": {
+      "aisee": "Aisée",
+      "moyenne": "Moyenne",
+      "ardue": "Ardue",
+      "extreme": "Extrême",
+      "impossible": "Impossible"
+    },
     "SANTE": {
       "tete": "Tête",
       "brasDroit": "Bras droit",

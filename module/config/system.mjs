@@ -74,6 +74,37 @@ export const SPHERES = {
 };
 
 /**
+ * Les dix sphères
+ * @enum {{label: string, qualite: string, qualiteSmall: string}}
+ */
+export const DIFFICULTES = {
+  aisee: {
+    id: "aisee",
+    label: "CDM.DIFFICULTE.aisee",  
+    seuil: 3  
+  },
+  moyenne: {
+    id: "moyenne",
+    label: "CDM.DIFFICULTE.moyenne",  
+    seuil: 6
+  },
+  ardue: {
+    id: "ardue",
+    label: "CDM.DIFFICULTE.ardue",  
+    seuil: 10
+  },
+  extreme: {
+    id: "extreme",
+    label: "CDM.DIFFICULTE.extreme",  
+    seuil: 15 
+  },
+  echec: {
+    id: "impossible",
+    label: "CDM.DIFFICULTE.impossible",  
+    seuil: 21 
+  },
+}
+/**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
  */
@@ -88,4 +119,5 @@ export const SYSTEM = {
   ARME_SOUSTYPES: ARME.SOUSTYPES,
   ARME_CATEGORIES: ARME.CATEGORIES,
   ACTION_CATEGORIES: ACTION.ACTION_CATEGORIES,
+  DIFFICULTES
 };
