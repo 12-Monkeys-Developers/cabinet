@@ -34,7 +34,7 @@ export default class StandardCheck extends Roll {
       data = formula;
       formula = "";
     }
-    super(formula, data);    
+    super(formula, data);
   }
 
   /**
@@ -46,7 +46,7 @@ export default class StandardCheck extends Roll {
     actorData: null,
     qualite: undefined,
     qualiteValeur: 0,
-    deQualite: null,    
+    deQualite: null,
     diff: 6,
     type: "classique",
     aspect: "neshama",
@@ -120,7 +120,7 @@ export default class StandardCheck extends Roll {
     const qualite = data.actorData.qualites[data.qualite];
     data.qualiteValeur = qualite.valeur;
 
-    data.perispritValeur = ((data.perisprit !== "" ) ? parseInt(data.perisprit) : 0);
+    data.perispritValeur = data.perisprit !== "" ? parseInt(data.perisprit) : 0;
     data.estEmbellie = data.peutEmbellie && data.embellie !== undefined && data.embellie !== "";
 
     if (data.aspect) data.aspectValeur = data.actorData.aspects[data.aspect].valeur;
@@ -177,7 +177,7 @@ export default class StandardCheck extends Roll {
       difficulty: this.data.diff,
       isGM: game.user.isGM,
       formula: this.formula,
-      total: this.total
+      total: this.total,
     };
 
     // Successes and Failures
@@ -192,8 +192,8 @@ export default class StandardCheck extends Roll {
     }
 
     if (this.isDesastre) {
-        cardData.outcome = "Failure";
-        cardData.css.push("failure");
+      cardData.outcome = "Failure";
+      cardData.css.push("failure");
     }
 
     cardData.cssClass = cardData.css.join(" ");
@@ -239,50 +239,70 @@ export default class StandardCheck extends Roll {
 
   /** @override */
   async evaluate({ minimize = false, maximize = false, async = true } = {}) {
-    // Jet d'embellie
+    /*
+     * Jet d'embellie
+     * Chaque 6 annule un 1
+     * S'il reste un 1 : désastre
+     * S'il ne reste plus d'autres dés : résultat = 0
+     * S'il reste des dés compris entre 2 et 5 : prendre le meilleur des résultats
+     * Si le meilleur dé restant est un 6 : Embelle ! Ajouter le meilleur dé suivant autre qu'un 6. S'il n'y en a pas. Lancer un dé explosif
+     */
     if (this.data.peutEmbellie && this.data.embellie !== "") {
+      console.log("Standard Roll - Evaluate : Tentative Embellie !");
+
       let deConserveQualite;
       let desEmbellie;
-      console.log("Standard Roll - Evaluate : Embellie !");
+
       await super.evaluate({ minimize, maximize, async });
 
       const des = this.terms[0].results.map((r) => r.result);
-      const nbDeUn = des.filter((d) => d === 1).length;
-      const nbDeSix = des.filter((d) => d === 6).length;
-      
+      const desUn = des.filter((d) => d === 1);
+      const desSix = des.filter((d) => d === 6);
+      const autreDes = des.filter((d) => d !== 1 && d !== 6);
+
+      const nbDeUn = desUn.length;
+      const nbDeSix = desSix.length;
+      const nbAutresDes = autreDes.length;
+
       console.log("Evaluate - des : ", des);
 
-      if (nbDeSix === nbDeUn) {
+      if (nbDeUn > nbDeSix) {
+        //TODO Désastre
+        console.log("desastre");
+        deConserveQualite = 1;
+        this.data.desastre = true;
+      } else if (nbDeSix > 0 && nbDeSix === nbDeUn) {
         console.log("egalite");
-        const tableau = des.filter((d) => d !== 1 && d !== 6);
-        if (tableau.length === 0) deConserveQualite = 0;
+        if (nbAutresDes === 0) deConserveQualite = 0;
         else {
-          deConserveQualite = Math.max(...tableau);
+          deConserveQualite = Math.max(...autreDes);
         }
       } else if (nbDeSix > nbDeUn) {
-        console.log("embellie possible");
-        // Suppression des 1
-        let tableau = des.filter((d) => d !== 1);
-        // Supprimer autant de "6" que d'éléments "1" supprimés
-        for (let i = 0; i < nbDeUn; i++) {
-          const index = tableau.indexOf(6);
-          if (index !== -1) {
-            tableau.splice(index, 1);
-          }
-        }
-        const max = Math.max(...tableau);
-        deConserveQualite = max;
-        if (max === 6) {
+        console.log("embellie !");
+        deConserveQualite = 6;
+        // Addition des 6 restants
+        let sixRestant = (nbDeSix - 1 - nbDeUn) * 6;
+
+        // Ajouter le meilleur des dés restants
+        if (nbAutresDes > 0) desEmbellie = sixRestant + Math.max(...autreDes);
+        // Si pas d'autres dés, jet explosif
+        else {
           const newRoll = await new Roll("1d6x").roll();
           console.log("Evaluate - newRoll", newRoll);
-          desEmbellie = newRoll.total;
+
+          // TODO
+          // display the roll in Dice So Nice if the module is active
+          //if (game.modules.get("dice-so-nice")?.active) {
+            //let synchro = actor.type === "player" || !game.user.isGM;   Vient de clé en main, actor n'est pas connu ici
+            //game.dice3d.showForRoll(newRoll, game.user);//, synchro);
+          //}
+          desEmbellie = sixRestant + newRoll.total;
         }
-      } else {
-        console.log("desastre");
-        this.data.desastre = true;
       }
-      console.log("Evaluate - deConserveQualite : ", deConserveQualite);
-      console.log("Evaluate - desEmbellie : ", desEmbellie);
+      // Il n'y a ni 1 ni 6
+      else {
+        deConserveQualite = Math.max(...autreDes);
+      }
       this.data.deQualite = deConserveQualite;
       this.data.totalEmbellie = desEmbellie;
 
@@ -290,21 +310,29 @@ export default class StandardCheck extends Roll {
       this._total = this._evaluateTotalEmbellie();
       return this;
     } else {
-        console.log("Evaluate - Jet normal");
-        await super.evaluate({minimize: false, maximize: false,async: true });
-        console.log("Evaluate - Jet normal", this);
-        this.data.deQualite = this.dice[0].total;
-        return this;
+      console.log("Evaluate - Jet normal");
+      await super.evaluate({ minimize: false, maximize: false, async: true });
+      console.log("Evaluate - Jet normal", this);
+      this.data.deQualite = this.dice[0].total;
+      return this;
     }
   }
 
-   /**
+  /**
    * Safely evaluate the final total result for the Roll using its component terms.
    * @returns {number}    The evaluated total
    * @private
    */
-    _evaluateTotalEmbellie() {
-      const total = this.data.deQualite + (this.data.totalEmbellie != null ? this.data.totalEmbellie : 0) + this.data.aspectValeur + this.data.acquisValeur + this.data.attributValeur + this.data.perispritValeur + this.data.bonus - this.data.malus;
-      return total;
-    }
+  _evaluateTotalEmbellie() {
+    const total =
+      this.data.deQualite +
+      (this.data.totalEmbellie != null ? this.data.totalEmbellie : 0) +
+      this.data.aspectValeur +
+      this.data.acquisValeur +
+      this.data.attributValeur +
+      this.data.perispritValeur +
+      this.data.bonus -
+      this.data.malus;
+    return total;
+  }
 }
