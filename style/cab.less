@@ -61,4 +61,43 @@
     flex-direction: row;
     font-size: 1, 5em;
   }
+
+  .cabinet-membres {
+    background: repeat url("../assets/images/sheets/fond_gestion.webp");
+    min-width: 200px;
+    min-height: 200px;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 90px 90px 200px 90px;
+    align-items: center;
+    font-family: "arrusbt";
+    .membre-img {
+      padding: 5px;
+      justify-self: end;
+      width: 80px;
+      height: 80px;
+      img {
+        max-height: 90%;
+      }
+    }
+    .medaillon_cab{
+      padding: 5px;
+      justify-self: end;
+      width: 80px;
+      height: 80px;
+      img {
+        max-height: 90%;
+        border:0px;
+      }
+    }
+    .membre-icone {
+      width: 40px;
+      margin: auto;
+    }
+    .titre_col {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+  }
 }

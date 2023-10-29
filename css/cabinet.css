@@ -1,35 +1,6 @@
 @font-face {
-  font-family: "garamondpro";
-  src: url("../assets/fonts/garamondpremrpro.otf") format("truetype");
-}
-@font-face {
-  font-family: "garamondpro";
-  src: url("../assets/fonts/garamondpremrpro-bld.otf") format("truetype");
-  font-weight: bold;
-}
-@font-face {
-  font-family: "garamondpro";
-  src: url("../assets/fonts/garamondpremrpro-it.otf") format("truetype");
-  font-style: italic;
-}
-@font-face {
-  font-family: "garamondpro";
-  src: url("../assets/fonts/garamondpremrpro-bldit.otf") format("truetype");
-  font-style: italic;
-  font-weight: bold;
-}
-@font-face {
-  font-family: "imfell";
-  src: url("../assets/fonts/feenrm2.ttf") format("truetype");
-}
-@font-face {
-  font-family: "imfell";
-  src: url("../assets/fonts/feenit2.ttf") format("truetype");
-  font-style: italic;
-}
-@font-face {
-  font-family: "posterbodoni";
-  src: url("../assets/fonts/posterbodoni.otf") format("truetype");
+  font-family: "alexbrush";
+  src: url("../assets/fonts/alexbrush.ttf") format("truetype");
 }
 @font-face {
   font-family: "arrusbt";
@@ -52,13 +23,45 @@
   font-weight: bold;
 }
 @font-face {
-  font-family: "trajan";
-  src: url("../assets/fonts/trajanpro-regular.otf") format("truetype");
+  font-family: "byron";
+  src: url("../assets/fonts/byron.ttf") format("truetype");
 }
 @font-face {
-  font-family: "trajan";
-  src: url("../assets/fonts/trajanpro-bold.otf") format("truetype");
+  font-family: "garamondpro";
+  src: url("../assets/fonts/garamondpremrpro.otf") format("truetype");
+}
+@font-face {
+  font-family: "garamondpro";
+  src: url("../assets/fonts/garamondpremrpro-bld.otf") format("truetype");
   font-weight: bold;
+}
+@font-face {
+  font-family: "garamondpro";
+  src: url("../assets/fonts/garamondpremrpro-it.otf") format("truetype");
+  font-style: italic;
+}
+@font-face {
+  font-family: "garamondpro";
+  src: url("../assets/fonts/garamondpremrpro-bldit.otf") format("truetype");
+  font-style: italic;
+  font-weight: bold;
+}
+@font-face {
+  font-family: "garedechambord";
+  src: url("../assets/fonts/gare_de_chambord.ttf") format("truetype");
+}
+@font-face {
+  font-family: "gorilla";
+  src: url("../assets/fonts/gorilla.ttf") format("truetype");
+}
+@font-face {
+  font-family: "imfell";
+  src: url("../assets/fonts/feenrm2.ttf") format("truetype");
+}
+@font-face {
+  font-family: "imfell";
+  src: url("../assets/fonts/feenit2.ttf") format("truetype");
+  font-style: italic;
 }
 @font-face {
   font-family: "imfellfrenchcanon";
@@ -70,28 +73,25 @@
   font-style: italic;
 }
 @font-face {
-  font-family: "gorilla";
-  src: url("../assets/fonts/gorilla.ttf") format("truetype");
-}
-@font-face {
   font-family: "neoclassic";
   src: url("../assets/fonts/neoclassicfleuronsfree.otf") format("truetype");
 }
 @font-face {
-  font-family: "byron";
-  src: url("../assets/fonts/byron.ttf") format("truetype");
-}
-@font-face {
-  font-family: "garedechambord";
-  src: url("../assets/fonts/gare_de_chambord.ttf") format("truetype");
-}
-@font-face {
-  font-family: "alexbrush";
-  src: url("../assets/fonts/alexbrush.ttf") format("truetype");
+  font-family: "posterbodoni";
+  src: url("../assets/fonts/posterbodoni.otf") format("truetype");
 }
 @font-face {
   font-family: "suezone";
   src: url("../assets/fonts/suezone-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "trajan";
+  src: url("../assets/fonts/trajanpro-regular.otf") format("truetype");
+}
+@font-face {
+  font-family: "trajan";
+  src: url("../assets/fonts/trajanpro-bold.otf") format("truetype");
+  font-weight: bold;
 }
 .flexrow {
   display: flex;
@@ -1410,6 +1410,44 @@ footer.buttons select {
   display: flex;
   flex-direction: row;
   font-size: 1, 5em;
+}
+.cab-sheet .cabinet-membres {
+  background: repeat url("../assets/images/sheets/fond_gestion.webp");
+  min-width: 200px;
+  min-height: 200px;
+  border: 2px solid black;
+  display: grid;
+  grid-template-columns: 90px 90px 200px 90px;
+  align-items: center;
+  font-family: "arrusbt";
+}
+.cab-sheet .cabinet-membres .membre-img {
+  padding: 5px;
+  justify-self: end;
+  width: 80px;
+  height: 80px;
+}
+.cab-sheet .cabinet-membres .membre-img img {
+  max-height: 90%;
+}
+.cab-sheet .cabinet-membres .medaillon_cab {
+  padding: 5px;
+  justify-self: end;
+  width: 80px;
+  height: 80px;
+}
+.cab-sheet .cabinet-membres .medaillon_cab img {
+  max-height: 90%;
+  border: 0px;
+}
+.cab-sheet .cabinet-membres .membre-icone {
+  width: 40px;
+  margin: auto;
+}
+.cab-sheet .cabinet-membres .titre_col {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 .resolution {
   font-family: "imfellfrenchcanon";
