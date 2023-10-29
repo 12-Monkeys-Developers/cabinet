@@ -47,7 +47,9 @@ export default class StandardCheck extends Roll {
     qualite: undefined,
     qualiteValeur: 0,
     deQualite: null,
-    diff: 6,
+    difficultes: [],
+    difficulte: undefined,
+    difficulteValeur: undefined,
     type: "classique",
     aspect: "neshama",
     aspectValeur: 0,
@@ -86,9 +88,10 @@ export default class StandardCheck extends Roll {
    * Did this check result in a success?
    * @returns {boolean}
    */
-  get isSuccess() {
+  get isSuccess() {    
     if (!this._evaluated) return undefined;
-    return this.total >= this.data.diff;
+    if (this.data.difficulteValeur === undefined) return undefined;
+    return this.total >= this.data.difficulteValeur;
   }
 
   get isDesastre() {
@@ -124,6 +127,7 @@ export default class StandardCheck extends Roll {
     data.estEmbellie = data.peutEmbellie && data.embellie !== undefined && data.embellie !== "";
 
     if (data.aspect) data.aspectValeur = data.actorData.aspects[data.aspect].valeur;
+    if (data.difficulte) data.difficulteValeur = SYSTEM.DIFFICULTES[data.difficulte].seuil;
 
     // Attribut pour le comédien
     if (data.actorData.comedien && data.attribut) data.attributValeur = data.attributs[data.attribut].valeur;
@@ -174,14 +178,14 @@ export default class StandardCheck extends Roll {
     const cardData = {
       css: [SYSTEM.id, "standard-check"],
       data: this.data,
-      difficulty: this.data.diff,
+      difficulty: this.data.difficulteValeur,
       isGM: game.user.isGM,
       formula: this.formula,
       total: this.total,
     };
 
     // Successes and Failures
-    if (this.data.diff) {
+    if (this.data.difficulteValeur != undefined) {
       if (this.isSuccess) {
         cardData.outcome = "Success";
         cardData.css.push("success");
@@ -254,6 +258,9 @@ export default class StandardCheck extends Roll {
       let desEmbellie;
 
       await super.evaluate({ minimize, maximize, async });
+
+      // Difficulte
+      if (this.data.difficulte) this.data.difficulteValeur = SYSTEM.DIFFICULTES[this.data.difficulte].seuil;
 
       const des = this.terms[0].results.map((r) => r.result);
       const desUn = des.filter((d) => d === 1);

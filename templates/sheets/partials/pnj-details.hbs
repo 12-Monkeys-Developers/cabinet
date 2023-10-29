@@ -1,0 +1,26 @@
+<h4>ASPECTS</h4>
+
+{{#each aspects as |aspect|}}
+  {{log "pnj-details aspect" this}}
+  {{aspect.label}}
+  :
+ {{aspect.valeur}}
+ 
+{{/each}}
+<h4>ATTRIBUTS</h4>
+{{#each attributs as |attribut|}}
+  {{log "pnj-details attribut" this}}
+  {{attribut.label}}
+  :
+ {{attribut.valeur}}
+ 
+{{/each}}
+
+<h4>ACQUIS</h4>
+{{#each acquis as |acq|}}
+  {{log "pnj-details acquis" this}}
+  {{acq.name}}
+  :
+ {{acq.system.valeur}}
+ 
+{{/each}}
