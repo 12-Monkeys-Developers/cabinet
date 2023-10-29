@@ -1,5 +1,8 @@
 {{log 'chat standard check roll' this}}
 <div class="dice-roll {{cssClass}}">
+    {{#if data.desastre}}
+    Désastre !
+    {{else}}
     <div class="dice-result">
         <div class="dice-tooltip">
             <div class="dice-formula">{{formula}}</div>
@@ -52,4 +55,5 @@
                 <span>{{total}}</span>
         </h4>
     </div>
+    {{/if}}
 </div>

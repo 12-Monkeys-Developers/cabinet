@@ -163,8 +163,8 @@
       "malus": "Malus",
       "bonus": "Bonus",
       "deQualite": "Dé conservé (qualité)",
-      "embellie": "Embellie",
-      "deEmbellie": "Total dés embellie"
+      "embellie": "Nb dés d'embellie",
+      "deEmbellie": "Total dés d'embellie"
     },
     "DIALOG": {
       "titreJet": "{nom} : jet de {jet}"

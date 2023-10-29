@@ -1,7 +1,13 @@
 import { SYSTEM } from "../../config/system.mjs";
+import CabinetAction from "../../data/action.mjs";
 import CabinetActorSheet from "./actor.mjs";
 
 export default class EspritSheet extends CabinetActorSheet {
+  constructor(object, options = {}) {
+    super(object, options);
+    Hooks.on("cabinet.updateCorps", async (corpsId) => this.render());
+  }
+
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
@@ -24,7 +30,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
     context.qualites = this.#formatQualites(context.actor.system.qualites);
     context.aspects = this.#formatAspects(context.actor.system.aspects);
-    context.actions = this.actor.items.filter((i) => i.type === "action");
+    context.actions = this.#formatActions(this.actor.items.filter((i) => i.type === "action"));
 
     // Acquis par ordre alpha et mise en forme de la description
     context.acquis = this.actor.items
@@ -88,6 +94,30 @@ export default class EspritSheet extends CabinetActorSheet {
     });
   }
 
+  /**
+   * Format les actions por les afficher sur la fiche
+   * _id, name, formulaHtml, formulaTooltip, circonstances
+   * @param {object[]} les embedded items de type action
+   * @return {object[]}
+   */
+  #formatActions(actions) {
+    let corps;
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    const cabinet = game.actors.get(cabinetId);
+    if (cabinet) {
+      const corpsId = cabinet.system.corps;
+      corps = game.actors.get(corpsId);
+    }
+
+    return actions.map((cfg) => {
+      const action = foundry.utils.deepClone(cfg);
+      // formulaHtml
+      action.formulaHtml = action.system.formulaHtml;
+      action.formulaTooltip = action.system.getFormulatTooltip(this.actor.system, corps.system.attributs);
+      return action;
+    });
+  }
+
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
@@ -95,54 +125,47 @@ export default class EspritSheet extends CabinetActorSheet {
     html.find(".qualite-group").click(this._onQualiteRoll.bind(this));
     html.find(".logo_action").click(this._onActionRoll.bind(this));
 
-    // menu clic droit
-    const cabinetContextMenu = [
+    // Activate context menu
+    this._contextMenu(html);
+  }
+
+  /** @inheritdoc */
+  _contextMenu(html) {
+    ContextMenu.create(this, html, ".cabinet-contextmenu", this._getEntryContextOptions());
+  }
+
+  /**
+   * Retourne les context options du menu Esprit
+   * @returns {object[]}
+   * @private
+   */
+  _getEntryContextOptions() {
+    return [
       {
         name: `Aller dans mon Jardin Secret`,
         icon: `<i class="fa-regular fa-face-clouds"></i>`,
-        isVisible: !this.actor.system.jardin,
+        condition: () => {
+          return !this.actor.system.jardin;
+        },
         callback: () => this._onAllerJardin(),
       },
       {
         name: `Revenir dans le cabinet`,
         icon: `<i class="fa-regular fa-loveseat"></i>`,
-        isVisible: this.actor.system.jardin,
+        condition: () => {
+          return this.actor.system.jardin;
+        },
         callback: () => this._onQuitterJardin(),
       },
       {
         name: `Demander le contrôle`,
         icon: `<i class="fa-solid fa-person-simple"></i>`,
-        isVisible: !this.actor.system.comedien,
+        condition: () => {
+          return !this.actor.system.comedien;
+        },
         callback: () => this._devenirComedien(),
       },
     ];
-    class CMPowerMenu extends ContextMenu {
-      constructor(html, selector, menuItems, { eventName = "contextmenu", onOpen, onClose, parent } = {}) {
-        super(html, selector, menuItems, {
-          eventName: eventName,
-          onOpen: onOpen,
-          onClose: onClose,
-        });
-        this.myParent = parent;
-        this.originalMenuItems = [...menuItems];
-      }
-
-      activateListeners(html) {
-        super.activateListeners(html);
-        this.menu.css("top", "50px");
-        this.menu.css("left", "100px");
-      }
-      render(...args) {
-        this.menuItems = this.originalMenuItems.filter((elem) => {
-          return elem.isVisible;
-        });
-        super.render(...args);
-        // console.log($(args).find('nav#context-menu'));
-      }
-    }
-    new CMPowerMenu(html, ".cabinet-contextmenu", cabinetContextMenu, {
-      parent: this,
-    });
   }
 
   /**
@@ -176,11 +199,11 @@ export default class EspritSheet extends CabinetActorSheet {
     let element = event.currentTarget;
     console.log("_onActionRoll", element);
     const actionId = element.dataset.field;
-    const action = this.actor.items.get(actionId);    
+    const action = this.actor.items.get(actionId);
     const actionSystem = action.system;
 
     // Si l'action n'est possible que pour le comédient et que l'esprit n'est pas le comédien, message d'avertissement
-    if (actionSystem.controle && !this.actor.system.comedien) return ui.notifications.warn(game.i18n.localize('CDM.WARNING.ActionReserveeComedie'));;
+    if (actionSystem.controle && !this.actor.system.comedien) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.ActionReserveeComedie"));
 
     let qualite = actionSystem.qualite;
     const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];
