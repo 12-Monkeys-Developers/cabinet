@@ -15,7 +15,7 @@ export default class CabinetActor extends Actor {
   _onUpdate(data, options, userId) {
     if (this.type === "corps") {
       Hooks.callAll("cabinet.updateCorps", this.id);
-    }    
+    }
     super._onUpdate(data, options, userId);
   }
 
@@ -136,64 +136,93 @@ export default class CabinetActor extends Actor {
   /** -------*/
 
   /**
+   * déplace l'esprit dans l'arbre ou vers/depuis le jardin secret
+   * Cette méthode est la méthode entrante à utiliser pour tout déplacement
+   * @param {*} newPosition (sphere ou null pour jardin ou "auto" pour attribution automatique selon la qualité la plus haute)
+   * @param {*} forcer    true si c'est le MJ qui force le déplacement
+   * @returns
+   */
+  async deplacerPosition(newPosition, forcer = false) {
+    if (this.type !== "esprit") return;
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    const cabinet = game.actors.get(cabinetId);
+    if (!cabinet) {
+      return ui.notifications.warn("Créez et attribuez d'abord un cabinet.");
+    }
+    let oldPosition = this.system.positionArbre;
+    let destPosition = "";
+    let updates;
+
+    //cas déplacement vers jardin
+    if (!newPosition) {
+      if (!this.system.comedien || forcer) {
+        this.update({ "system.positionArbre": "", "system.jardin": true, "system.comedien": false });
+        cabinet.deplacerEsprit(this.id, oldPosition, null);
+      } else if (this.system.estComedien) {
+        return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
+      }
+      if (this.system.comedien && forcer) cabinet.majComedien(null);
+    } else if (newPosition === "auto") {
+      //cas déplacement vers meilleure sphere dispo
+      destPosition = await this.plusHauteQualiteLibre();
+      if (!destPosition) return;
+    } else {
+      destPosition = newPosition;
+    }
+    cabinet.deplacerEsprit(this.id, oldPosition, destPosition);
+    await this.update({ "system.positionArbre": destPosition, "system.jardin": false });
+  }
+
+  /**
+   * renvoie la première sphère libre dont la qualité est la plus élevée pour l'esprit
+   * @returns
+   */
+  async plusHauteQualiteLibre() {
+    if (this.type !== "esprit") return;
+    let qualites = [];
+    for (const [key, value] of Object.entries(this.system.qualites)) {
+      {
+        qualites.push({ nom: key, valeur: this.system.qualites[key].valeur, sphere: this.system.qualites[key].sphere });
+      }
+    }
+    qualites.sort((a, b) => b.valeur - a.valeur);
+
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    const cabinet = game.actors.get(cabinetId);
+    let arbre;
+    if (cabinet) {
+      arbre = cabinet.system.arbre;
+    }
+    if (!arbre) return;
+    for (let qualite of qualites) {
+      if (!arbre[qualite.sphere].idEsprit) {
+        const position = SYSTEM.QUALITES[qualite.nom].sphere;
+        return position;
+      }
+    }
+  }
+
+  /**
+   * change le controle pour cet esprit
+   * !!! Agit uniquement sur l'objet esprit, ne pas appller directement.
+   * Pour eviter desynchro cabinet/esprits appellez uniquement cabinet.majComedien
+   * @param {*} valeur    true si prise de controle, false si liberation
+   * @returns
+   */
+  async changeControle(valeur) {
+    if (this.type !== "esprit") return;
+    await this.update({ "system.comedien": valeur });
+  }
+
+  /**  A SUPPRIMER -> deplacerPosition
    * Modifie la valeur du jardin
    * @param {*} valeur    true si l'esprit va dans le jardin, false si l'esprit le quitte
    * @param {*} forcer    true si c'est le MJ qui force le déplacement
    */
   async modifierJardin(valeur, forcer) {
     if (this.type !== "esprit") return;
-    if (valeur && !this.system.jardin) this.allerJardin(forcer);
-    if (!valeur && this.system.jardin) return this.quitterJardin(forcer);
-  }
-
-  /**
-   * Envoie un esprit du cabinet vers son jardin
-   * @param {*} forcer    true si c'est le MJ qui force le déplacement
-   * @returns
-   */
-  async allerJardin(forcer) {
-    let updates = { "system.positionArbre": "", "system.jardin": true };
-
-    if (this.system.estComedien) {
-      if (!forcer) return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
-      else foundry.utils.mergeObject(updates, { "system.comedien": false });
-    }
-    await this.update(updates);
-  }
-
-  /**
-   * Envoie un esprit du jardin vers le cabinet
-   * Il va dans la première sphère libre dont la qualité est la plus élevée pour l'esprit
-   * @param {*} forcer    true si c'est le MJ qui force le déplacement
-   * @returns
-   */
-  async quitterJardin(forcer) {
-    // Pouvoir par ordre niveau et mise en forme de la description
-    let qualites = [];
-    for (const [key, value] of Object.entries(this.system.qualites)) {
-      {
-        qualites.push({ nom: key, valeur: this.system.qualites[key].valeur, sphere:this.system.qualites[key].sphere });
-      }
-    }   
-    qualites.sort((a, b) => b.valeur - a.valeur);
-    
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
-    
-    let arbre = {};
-    if (cabinet) {
-      arbre = cabinet.system.arbre;
-    }
-
-    if (!arbre) return;
-    for (let qualite of qualites) {
-      if (!arbre[qualite.sphere].idEsprit) {
-        const position = SYSTEM.QUALITES[qualite.nom].sphere;
-        await this.update({ "system.positionArbre": position, "system.jardin": false });
-        cabinet.deplacerEspritVersSphere(this.id, position);
-        return position;
-      }
-    }
+    if (valeur && !this.system.jardin) this.deplacerPosition(null, forcer);
+    if (!valeur && this.system.jardin) return this.deplacerPosition("auto", forcer);
   }
 
   /** --------*/
@@ -235,29 +264,40 @@ export default class CabinetActor extends Actor {
   }
 
   /**
-   * Remet à 0 une sphère de l'arbre
-   * @param {*} positionArbre
+   * Deplace un esprit dans l'arbre
+   * !!! Agit uniquement sur l'objet cabinet, ne pas appller directement.
+   * Pour eviter desynchro cabinet/esprits appellez uniquement esprit.deplacerPosition
+   * @param {string}} espritId
+   * @param {*} oldPosition  Ancienne position (ou null si jardin)
+   * @param {*} oldPosition  nouvelle position (ou null si jardin)
    * @returns
    */
-  deplacerEspritVersJardin(positionArbre) {
+  async deplacerEsprit(espritId, oldPosition, newPosition) {
     if (this.type !== "cabinet") return;
-    this.update({ [`system.arbre.${positionArbre}.idEsprit`]: null });
+    if (newPosition) await this.update({ [`system.arbre.${newPosition}.idEsprit`]: espritId });
+    if (oldPosition) await this.update({ [`system.arbre.${oldPosition}.idEsprit`]: null });
   }
 
   /**
-   * Remet à 0 une sphère de l'arbre
-   * @param {string}} espritId
-   * @param {*} positionArbre
+   * change le comedien
+   * Pour eviter desynchro cabinet/esprits appellez uniquement cette methode
+   * @param {*} comedienId    l'Id du nouveau comedien, ou null si aucun comedien
    * @returns
    */
-  deplacerEspritVersSphere(espritId, positionArbre) {
+  async majComedien(comedienId) {
     if (this.type !== "cabinet") return;
-    this.update({ [`system.arbre.${positionArbre}.idEsprit`]: espritId });
-  }
-
-  majComedien(comedienId) {
-    if (this.type !== "cabinet") return;
-    if (comedienId === null) this.update({ "system.comedien": null });
-    else this.update({ "system.comedien": comedienId });
+    const newComedien = game.actors.get(comedienId);
+    // si l'esprit est dans son jardin, le remettre d'abord dans l'arbre
+    if (comedienId) {
+      if (!newComedien) return;
+      if (newComedien.system.jardin) await newComedien.deplacerPosition("auto", true);
+    }
+    let oldComedien = await game.actors.get(this.system.comedien);
+    if (oldComedien) oldComedien.changeControle(false);
+    if (!comedienId) this.update({ "system.comedien": null });
+    else if (newComedien) {
+      newComedien.changeControle(true);
+      this.update({ "system.comedien": comedienId });
+    }
   }
 }

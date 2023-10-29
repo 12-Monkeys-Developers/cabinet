@@ -1,6 +1,11 @@
 import CabinetActorSheet from "./actor.mjs";
 
 export default class CabinetSheet extends CabinetActorSheet {
+  /** @override */
+  constructor(object, options = {}) {
+    super(object, options);
+    Hooks.on("updateActor", async (document, change, options, userId) => this.render());
+  }
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
@@ -100,6 +105,16 @@ export default class CabinetSheet extends CabinetActorSheet {
           this._onNommerComedien(actorId);
         }
       },
+      {
+        name: `Enlever`,
+        icon: `<i class="fa-solid fa-trash"></i>`,
+        condition: true,
+        callback: li => {
+          const actorPosition=li.data("index");
+          const actorId=li.data("actorId");
+          this._enleverMembre(actorId, actorPosition);
+        }
+      },
     ];
   }
 
@@ -122,31 +137,61 @@ export default class CabinetSheet extends CabinetActorSheet {
   async _onAllerJardin(actorId) {
     const actor=game.actors.get(actorId);
     if(!actor)return;
-    await actor.allerJardin(true);
+    await actor.deplacerPosition(null, true);
     this.render();
   }
 
   async _onQuitterJardin(actorId) {
     const actor=game.actors.get(actorId);
     if(!actor)return;
-    await actor.quitterJardin();
+    await actor.deplacerPosition("auto", true);
     this.render();
   }
 
   async _onNommerComedien(actorId) {
-    const newComedien=game.actors.get(actorId);
-    if(!newComedien)return;
-    let oldComedien = await game.actors.get(this.actor.system.comedien);
-    if(oldComedien){
-      await oldComedien.update({ "system.comedien": false });
-    }
-    if(newComedien.system.jardin){
-      newComedien.quitterJardin();
-    }
-    await newComedien.update({ "system.comedien": true });
+    const actor=game.actors.get(actorId);
+    if(!actor)return;
     await this.actor.majComedien(actorId);
-    const allowed = Hooks.call("cabinet.changementComedien", actorId);
-    if (allowed === false) return;
+    this.render();
+  }
+
+  /**
+   * Retire un membre de cabinet
+   * @param {*} id 
+   */
+  async _enleverMembre(actorId, actorPosition) {
+    //remet d'abord l'esprit dans son jardin pour tout nettoyer
+    let esprit=game.actors.get(actorId);
+    await esprit.deplacerPosition(null, true);
+    //puis supprime l'esprit du cabinet
+    let esprits = this.actor.system.esprits;
+    const x = esprits.splice(actorPosition, 1);
+    await this.actor.update({ "system.esprits": esprits });
+    this.render();
+  }
+  
+  /** @override */
+  async _onDropActor(event, data) {
+    const actor = await fromUuid(data.uuid);
+    if (actor.type !== "esprit" && actor.type !== "corps") return false;
+
+    const actorId = actor._id;
+
+    // Drop d'esprit
+    if (actor.type === "esprit") {
+      let esprits = this.actor.system.esprits;
+      if (esprits.includes(actorId)) return false;
+      esprits.push(actorId);
+      await this.actor.update({ "system.esprits": esprits });
+      await actor.update({ "system.jardin": true });
+      await actor.update({ "system.comedien": false });
+    }
+
+    // Drop de corps
+    if (actor.type === "corps") {
+      await this.actor.update({ "system.corps": actorId });
+    }
+
     this.render();
   }
 }

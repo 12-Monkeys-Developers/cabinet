@@ -589,6 +589,10 @@ i.logo_defaut {
   margin-top: 10px;
   min-height: 80px;
 }
+.esprit-sheet .expand-up {
+  top: 50px;
+  left: 100px;
+}
 .cabinet-membres {
   background: repeat url("../assets/images/sheets/fond_gestion.webp");
   min-width: 200px;
@@ -1448,6 +1452,13 @@ footer.buttons select {
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
+}
+.cab-sheet .cabinet-membres .context-menu {
+  width: max-content;
+}
+.cab-sheet .cabinet-membres .expand-up {
+  top: 50px;
+  left: 100px;
 }
 .resolution {
   font-family: "imfellfrenchcanon";

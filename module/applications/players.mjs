@@ -30,12 +30,7 @@ export default class CabinetPlayerList extends PlayerList {
       let cabinet;
       if (cabinetId) cabinet = game.actors.get(cabinetId);
       if (cabinet) {
-        const idComedienActuel = cabinet.system.comedien;
-        const current = game.actors.get(idComedienActuel);
-        if (current) await current.update({ "system.comedien": false });
-        
-        await cabinet.update({"system.comedien": character.id});
-        await character.update({ "system.comedien": true, "system.jardin": false });
+        cabinet.majComedien(character.id);
       }
     }
   }

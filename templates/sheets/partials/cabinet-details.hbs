@@ -15,7 +15,7 @@
       <div class="membre-name">
         {{membre.nom}}
       </div>
-    <div class="medaillon_cab {{#if ../isgm}}membre-contextmenu{{/if}}" data-actor-id="{{membre.id}}">
+    <div class="medaillon_cab {{#if ../isgm}}membre-contextmenu{{/if}}" data-actor-id="{{membre.id}}" data-index="{{index}}">
       {{#if membre.dansJardin}}
         <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_jardin.webp" title="Clic droit pour menu du cabinet" />
       {{else}}

@@ -228,12 +228,12 @@ export default class EspritSheet extends CabinetActorSheet {
   }
 
   async _onAllerJardin() {
-    await this.actor.allerJardin();
+    await this.actor.deplacerPosition(null);
     this.render();
   }
 
   async _onQuitterJardin() {
-    await this.actor.quitterJardin();
+    await this.actor.deplacerPosition("auto");
     this.render();
   }
 
@@ -246,10 +246,7 @@ export default class EspritSheet extends CabinetActorSheet {
     let comedien = game.actors.get(cabinet.system.comedien);
 
     if (!comedien) {
-      await this.actor.update({ "system.comedien": true });
       await cabinet.majComedien(this.actor.id);
-      const allowed = Hooks.call("cabinet.changementComedien", this.actor.id);
-      if (allowed === false) return;
     } else {
       // Informer le MJ
       const html = await renderTemplate("systems/cabinet/templates/chat/demanderComedienButton.hbs", {

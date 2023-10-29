@@ -89,8 +89,7 @@ export class ArbreVieForm extends FormApplication {
     let li = event.currentTarget.closest(".jardin");
     // Dans le jardin
     if (li) {
-      await this.cabinet.update({[`system.arbre.${actor.system.positionArbre}.idEsprit`]: null});
-      await actor.update({ "system.positionArbre": "", "system.jardin": true });
+      await actor.deplacerPosition(null, false);
     }
     // Sur une sphère
     else {
@@ -102,8 +101,7 @@ export class ArbreVieForm extends FormApplication {
       let newPosition = li.dataset.field;
 
       if (await this.validerDeplacement(oldPosition, newPosition)) {
-        await actor.update({ "system.positionArbre": newPosition, "system.jardin": false });
-        await this.cabinet.update({[`system.arbre.${newPosition}.idEsprit`]: actor.id});
+        await actor.deplacerPosition(newPosition, false);
       }
     }
     this.render();
