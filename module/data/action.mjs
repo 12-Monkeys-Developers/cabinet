@@ -146,9 +146,9 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
     let formulaTooltip = `${espritSystem.qualites[this.qualite].valeur}${this.qualiteAlt ? ` / ${this.qualiteAlt} ` : ""}D6 + ${espritSystem.aspects[this.aspect].valeur}`;
   
     if (this.attribut !== "") {
-      formulaTooltip += ` (+ ${attributs[this.attribut].valeur}`;
+      formulaTooltip += ` (+ ${attributs ? attributs[this.attribut].valeur : 'x'}`;
       if (this.attributAlt !== "") {
-        formulaTooltip += ` OU ${attributs[this.attributAlt].valeur}`;
+        formulaTooltip += ` OU ${attributs ? attributs[this.attributAlt].valeur : 'x'}`;
       }
       formulaTooltip += " )";
     }

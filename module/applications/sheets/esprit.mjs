@@ -113,7 +113,7 @@ export default class EspritSheet extends CabinetActorSheet {
       const action = foundry.utils.deepClone(cfg);
       // formulaHtml
       action.formulaHtml = action.system.formulaHtml;
-      action.formulaTooltip = action.system.getFormulatTooltip(this.actor.system, corps.system.attributs);
+      action.formulaTooltip = action.system.getFormulatTooltip(this.actor.system, corps ? corps.system.attributs : null);
       return action;
     });
   }
