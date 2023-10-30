@@ -1004,6 +1004,46 @@ i.logo_action {
   font-weight: normal;
   margin: 0px 5px;
 }
+.grace-sheet {
+  background: repeat url("../../../modules/cabinet-livredebase/assets/images/aspect_systeme/fond-grace.webp");
+  font-family: "arrusbt";
+  font-weight: bold;
+}
+.grace-sheet .name-title {
+  display: flex;
+  flex-direction: row;
+}
+.grace-sheet .name-title input {
+  font-size: 2em;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0px;
+  margin-top: 20px;
+  color: #1d1c55;
+}
+.grace-sheet .name-title img {
+  border: 0px;
+  max-height: 100px;
+}
+.grace-sheet .description-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px 15px 10px;
+}
+.grace-sheet .description-group .description-name {
+  text-transform: uppercase;
+  margin: 5px 10px;
+  text-align: center;
+  color: #d0e4d1;
+}
+.grace-sheet .description-group .editor {
+  min-height: 235px;
+}
+.grace-sheet .description-group .editor-content {
+  min-height: 235px;
+  font-weight: normal;
+  margin: 0px 5px;
+}
 .pouvoir-sheet {
   background: repeat url("../assets/images/sheets/fond-pouvoir.webp");
   font-family: "arrusbt";
@@ -1476,7 +1516,7 @@ footer.buttons select {
   flex-direction: column;
 }
 .cab-sheet .cabinet-details .right-col .encart-exp {
-  background: no-repeat url("../assets/images/sheets/encart_exp.webp");
+  background: no-repeat url("../assets/images/sheets/encart_exp_col.webp");
   background-size: cover;
   font-family: "arrusbt";
   font-weight: bold;
