@@ -1374,7 +1374,7 @@ footer.buttons select {
   font-size: 2rem;
 }
 .cab-sheet .cabinet-header .charname {
-  font-family: "garedechambord";
+  font-family: "alexbrush";
   font-size: 3em;
   color: white;
   margin-left: 5px;
@@ -1415,8 +1415,10 @@ footer.buttons select {
   flex-direction: row;
   font-size: 1, 5em;
 }
-.cab-sheet .cabinet-membres {
+.cab-sheet .cabinet-details {
   background: repeat url("../assets/images/sheets/fond_gestion.webp");
+}
+.cab-sheet .cabinet-details .cabinet-membres {
   min-width: 200px;
   min-height: 200px;
   border: 2px solid black;
@@ -1425,40 +1427,106 @@ footer.buttons select {
   align-items: center;
   font-family: "arrusbt";
 }
-.cab-sheet .cabinet-membres .membre-img {
+.cab-sheet .cabinet-details .cabinet-membres .membre-name {
+  font-family: "alexbrush";
+  font-size: 1.8em;
+  text-align: center;
+}
+.cab-sheet .cabinet-details .cabinet-membres .membre-img {
   padding: 5px;
   justify-self: end;
   width: 80px;
   height: 80px;
 }
-.cab-sheet .cabinet-membres .membre-img img {
+.cab-sheet .cabinet-details .cabinet-membres .membre-img img {
   max-height: 90%;
 }
-.cab-sheet .cabinet-membres .medaillon_cab {
+.cab-sheet .cabinet-details .cabinet-membres .medaillon_cab {
   padding: 5px;
   justify-self: end;
   width: 80px;
   height: 80px;
 }
-.cab-sheet .cabinet-membres .medaillon_cab img {
+.cab-sheet .cabinet-details .cabinet-membres .medaillon_cab .context-menu {
+  width: max-content;
+}
+.cab-sheet .cabinet-details .cabinet-membres .medaillon_cab .expand-up {
+  top: 50px;
+  left: 100px;
+}
+.cab-sheet .cabinet-details .cabinet-membres .medaillon_cab img {
   max-height: 90%;
   border: 0px;
 }
-.cab-sheet .cabinet-membres .membre-icone {
+.cab-sheet .cabinet-details .cabinet-membres .membre-icone {
   width: 40px;
   margin: auto;
 }
-.cab-sheet .cabinet-membres .titre_col {
+.cab-sheet .cabinet-details .cabinet-membres .titre_col {
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
+  margin-bottom: 1en;
 }
-.cab-sheet .cabinet-membres .context-menu {
-  width: max-content;
+.pnj-sheet .pnj-header {
+  background: repeat url("../assets/images/sheets/esprit-header.webp");
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
 }
-.cab-sheet .cabinet-membres .expand-up {
-  top: 50px;
-  left: 100px;
+.pnj-sheet .pnj-header .titre_feuille {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1.5em;
+  color: white;
+  text-transform: uppercase;
+  padding-left: 10px;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+.pnj-sheet .pnj-header .titre_feuille::first-letter {
+  font-size: 2rem;
+}
+.pnj-sheet .pnj-header .charname {
+  font-family: "garedechambord";
+  font-size: 3em;
+  color: white;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+.pnj-sheet .pnj-header .charname input {
+  color: white;
+}
+.pnj-sheet .pnj-header .pnj-portrait {
+  border: none;
+  margin: 2px 10px 0px 0px;
+  justify-self: end;
+  width: 133px;
+  height: 80px;
+}
+.pnj-sheet .pnj-header .pnj-portrait img {
+  border-radius: 50%;
+}
+.pnj-sheet .choix_tab {
+  font-family: "posterbodoni";
+  font-size: 1.2em;
+  color: #f0eae1;
+  text-transform: uppercase;
+  border: 1px solid #f0eae1;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  text-align: center;
+  padding: 0.5em 0.5em 0.3em 0.5em;
+}
+.pnj-sheet .choix_tab.active {
+  border: 2px solid white;
+  color: white;
+  border-bottom-width: 0;
+}
+.pnj-sheet .sheet-navigation {
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: row;
+  font-size: 1, 5em;
 }
 .resolution {
   font-family: "imfellfrenchcanon";

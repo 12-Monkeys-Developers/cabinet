@@ -35,6 +35,7 @@ export default class CabinetSheet extends CabinetActorSheet {
     context.acquis.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
+    context.corps = game.actors.get(this.actor.system.corps);
     context.isgm=game.user.isGM;
 
     return context;
@@ -54,10 +55,11 @@ export default class CabinetSheet extends CabinetActorSheet {
   /** @inheritdoc */
   _contextMenu(html) {
     ContextMenu.create(this, html, ".membre-contextmenu", this._getEntryContextOptions());
+    ContextMenu.create(this, html, ".corps-contextmenu", this._getCorpsEntryContextOptions());
   }
 
   /**
-   * Retourne les context options du menu 
+   * Retourne les context options du menu membres
    * @returns {object[]}   
    * @private
    */
@@ -113,6 +115,34 @@ export default class CabinetSheet extends CabinetActorSheet {
           const actorPosition=li.data("index");
           const actorId=li.data("actorId");
           this._enleverMembre(actorId, actorPosition);
+        }
+      },
+    ];
+  }
+
+  /**
+   * Retourne les context options du menu membres
+   * @returns {object[]}   
+   * @private
+   */
+  _getCorpsEntryContextOptions() {
+    return [
+      {
+        name: `Inconscience`,
+        icon: `<i class="fa-regular fa-face-clouds"></i>`,
+        condition: li => {
+          return this.actor.system.corps ? true : false;
+        },
+        callback: li => {
+          this._endormirCorps();
+        }
+      },
+      {
+        name: `Enlever`,
+        icon: `<i class="fa-solid fa-trash"></i>`,
+        condition: true,
+        callback: li => {
+          this._enleverCorps();
         }
       },
     ];
@@ -192,6 +222,19 @@ export default class CabinetSheet extends CabinetActorSheet {
       await this.actor.update({ "system.corps": actorId });
     }
 
+    this.render();
+  }
+
+  async _endormirCorps() {
+    for(let membreId of this.actor.system.esprits){
+      const membre=game.actors.get(membreId);
+      await membre.deplacerPosition(null, true);
+    }
+    this.render();
+  }
+
+  async _enleverCorps() {
+    await this.actor.update({ "system.corps": null });
     this.render();
   }
 }

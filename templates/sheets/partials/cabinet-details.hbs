@@ -1,4 +1,5 @@
 {{log "cabinet-details" this}}
+<div class="cabinet-details">
   <div class="cabinet-membres droppable">
     <div class="titre_col">Icône</div>
     <div class="titre_col">Portrait</div>
@@ -27,21 +28,19 @@
       {{/if}}
     </div>
     {{/each}}
-  </div>
-<div>Corps : {{corps.name}}</div>
-<div class="corps-icone">
-        <a class="corps-enlever" data-field="{{index}}" data-tooltip="Enlever"><i class="fas fa-trash"></i></a>
+    {{#if corps}}
+    <div class="titre_col">Corps :</div>
+      <div class="membre-img">
+        <img src="{{corps.img}}" title="{{corps.name}}" />
       </div>
-
-
-
-
-<h1>Esprits</h1>
-{{#each esprits as |esprit|}}
-{{esprit.nom}}
-{{/each}}
-<h1>Comedien</h1>
-{{system.comedien}}
+      <div class="membre-name">
+        {{corps.name}}
+      </div>
+       <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}">
+          <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/corps.webp" title="Clic droit pour menu du cabinet" />
+       </div>
+      {{/if}}
+  </div>
 <h1>Acquis collectif</h1>
     {{#each acquis as |acquisElement id|}}<div>
       <details>

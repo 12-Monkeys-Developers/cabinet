@@ -17,7 +17,7 @@
       font-size: 2rem;
     }
     .charname {
-      font-family: "garedechambord";
+      font-family: "alexbrush";
       font-size: 3em;
       color: white;
       margin-left: 5px;
@@ -60,50 +60,58 @@
     flex-direction: row;
     font-size: 1, 5em;
   }
-
-  .cabinet-membres {
+  .cabinet-details {
     background: repeat url("../assets/images/sheets/fond_gestion.webp");
-    min-width: 200px;
-    min-height: 200px;
-    border: 2px solid black;
-    display: grid;
-    grid-template-columns: 90px 90px 200px 90px;
-    align-items: center;
-    font-family: "arrusbt";
-    .membre-img {
-      padding: 5px;
-      justify-self: end;
-      width: 80px;
-      height: 80px;
-      img {
-        max-height: 90%;
+    
+    .cabinet-membres {
+      min-width: 200px;
+      min-height: 200px;
+      border: 2px solid black;
+      display: grid;
+      grid-template-columns: 90px 90px 200px 90px;
+      align-items: center;
+      font-family: "arrusbt";
+      .membre-name {
+        font-family: "alexbrush";
+        font-size: 1.8em;
+        text-align: center;
       }
-    }
-    .medaillon_cab{
-      padding: 5px;
-      justify-self: end;
-      width: 80px;
-      height: 80px;
-      img {
-        max-height: 90%;
-        border:0px;
+      .membre-img {
+        padding: 5px;
+        justify-self: end;
+        width: 80px;
+        height: 80px;
+        img {
+          max-height: 90%;
+        }
       }
-    }
-    .membre-icone {
-      width: 40px;
-      margin: auto;
-    }
-    .titre_col {
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.5em;
-    }
-    .context-menu {
-      width: max-content;
-    }
-    .expand-up {
-      top: 50px;
-      left: 100px
+      .medaillon_cab {
+        padding: 5px;
+        justify-self: end;
+        width: 80px;
+        height: 80px;
+        .context-menu {
+          width: max-content;
+        }
+        .expand-up {
+          top: 50px;
+          left: 100px;
+        }
+        img {
+          max-height: 90%;
+          border: 0px;
+        }
+      }
+      .membre-icone {
+        width: 40px;
+        margin: auto;
+      }
+      .titre_col {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-bottom: 1en;
+      }
     }
   }
 }
