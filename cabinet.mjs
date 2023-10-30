@@ -11,10 +11,10 @@ import * as documents from "./module/documents/_module.mjs";
 import * as models from "./module/data/_module.mjs";
 
 Hooks.once("init", async function () {
-  console.log(`Initialisation du système Cabinet des murmures...`);
+  console.log(`CABINET DES MURMURES | Initialisation du système...`);
   game.system.CONST = SYSTEM;
-  if(!game.system.CABINET_MENU){
-    game.system.CABINET_MENU
+  if (!game.system.CABINET_MENU) {
+    game.system.CABINET_MENU;
   }
 
   CONFIG.ui.players = applications.PlayersList;
@@ -22,10 +22,10 @@ Hooks.once("init", async function () {
   // Configuration document Actor
   CONFIG.Actor.documentClass = documents.CabinetActor;
 
-  CONFIG.Actor.dataModels = {
-    esprit: models.CabinetEsprit,
-    corps: models.CabinetCorps,
+  CONFIG.Actor.dataModels = {    
     cabinet: models.CabinetCabinet,
+    corps: models.CabinetCorps,
+    esprit: models.CabinetEsprit,
     pnj: models.CabinetPnj,
   };
 
@@ -40,11 +40,11 @@ Hooks.once("init", async function () {
 
   CONFIG.Item.dataModels = {
     acquis: models.CabinetAcquis,
+    action: models.CabinetAction,
     arme: models.CabinetArme,
     armure: models.CabinetArmure,
     corruption: models.CabinetCorruption,
-    pouvoir: models.CabinetPouvoir,
-    action: models.CabinetAction,
+    pouvoir: models.CabinetPouvoir,    
   };
 
   Items.unregisterSheet("core", ItemSheet);
@@ -71,14 +71,10 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-details.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-sante.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
-    `systems/${SYSTEM.id}/templates/forms/gestion-cabinet.hbs`
   ]);
 
   // Configuration text enrichers
   setupTextEnrichers();
-
-  // formulaires
-  // registerForms();
 
   // menu de gauche
   initControlButtons();
@@ -91,13 +87,13 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("getDefautProperty", function (actor, qualite, prop) {
     return foundry.utils.getProperty(actor.system.qualites, `${qualite}.defaut.${prop}`);
   });
-  
+
   Handlebars.registerHelper("getAttributProperty", function (actor, attribut, prop) {
     return foundry.utils.getProperty(actor.system.attributs, `${attribut}.${prop}`);
   });
 
   Handlebars.registerHelper("positionArbre", function (actor, qualite) {
-    if(actor.system.positionArbre === SYSTEM.QUALITES[qualite].sphere) return "position-arbre";
+    if (actor.system.positionArbre === SYSTEM.QUALITES[qualite].sphere) return "position-arbre";
     else return "";
   });
 
@@ -111,31 +107,13 @@ Hooks.once("init", async function () {
     return console.log("Handlebars log : ", data);
   });
 
-  // Register settings
-  /*game.settings.register("cabinet", "comedien", {
-    name: "Comédien",
-    hint: "Id de l'esprit qui a le contrôle du corps.",
-    scope: "world",
-    config: true,
-    type: String
-  });*/
-
-  /*game.settings.register("cabinet", "corps", {
-    name: "Corps",
-    hint: "Id du corps.",
-    scope: "world",
-    config: true,
-    type: String
-  });  */
-
   game.settings.register("cabinet", "cabinet", {
     name: "Cabinet",
     hint: "Id du cabinet.",
     scope: "world",
     config: true,
-    type: String
+    type: String,
   });
-
 });
 
 Hooks.once("i18nInit", function () {
@@ -144,7 +122,7 @@ Hooks.once("i18nInit", function () {
 });
 
 Hooks.once("ready", async function () {
-  console.log("Initialisation du système fini");
+  console.log("CABINET DES MURMURES | Initialisation du système fini.");
 });
 
 function preLocalizeConfig() {
