@@ -1,57 +1,111 @@
 {{log "cabinet-details" this}}
 <div class="cabinet-details">
-  <div class="cabinet-membres droppable">
-    <div class="titre_col">Icône</div>
-    <div class="titre_col">Portrait</div>
-    <div class="titre_col">Nom</div>
-    <div class="titre_col">Statut</div>
-    {{#each esprits as |membre index|}}
-      {{log "membre" this}}
-      <div class="membre-img">
-        <img style="border:0px;" src="{{membre.token}}" title="{{membre.nom}}" />
+  <div class="grid-haut">
+    <div class="cabinet-membres droppable">
+      <div class="titre_col">Icône</div>
+      <div class="titre_col">Portrait</div>
+      <div class="titre_col">Nom</div>
+      <div class="titre_col">Statut</div>
+      {{#each esprits as |membre index|}}
+        {{log "membre" this}}
+        <div class="membre-img">
+          <img style="border:0px;" src="{{membre.token}}" title="{{membre.nom}}" />
+        </div>
+        <div class="membre-img">
+          <img src="{{membre.img}}" title="{{membre.nom}}" />
+        </div>
+        <div class="membre-name">
+          {{membre.nom}}
+        </div>
+      <div class="medaillon_cab {{#if ../isgm}}membre-contextmenu{{/if}}" data-actor-id="{{membre.id}}" data-index="{{index}}">
+        {{#if membre.dansJardin}}
+          <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_jardin.webp" title="Clic droit pour menu du cabinet" />
+        {{else}}
+          {{#if membre.estComedien}}
+            <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_comedien.webp" title="Clic droit pour menu du cabinet" />
+          {{else}}
+            <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_cabinet.webp" title="Clic droit pour menu du cabinet" />
+          {{/if}}
+        {{/if}}
       </div>
+      {{/each}}
+      {{#if corps}}
+      <div class="titre_col">Corps :</div>
       <div class="membre-img">
-        <img src="{{membre.img}}" title="{{membre.nom}}" />
+        <img src="{{corps.img}}" title="{{corps.name}}" />
       </div>
       <div class="membre-name">
-        {{membre.nom}}
+        {{corps.name}}
       </div>
-    <div class="medaillon_cab {{#if ../isgm}}membre-contextmenu{{/if}}" data-actor-id="{{membre.id}}" data-index="{{index}}">
-      {{#if membre.dansJardin}}
-        <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_jardin.webp" title="Clic droit pour menu du cabinet" />
-      {{else}}
-        {{#if membre.estComedien}}
-          <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_comedien.webp" title="Clic droit pour menu du cabinet" />
-        {{else}}
-          <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_cabinet.webp" title="Clic droit pour menu du cabinet" />
-        {{/if}}
+      <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}">
+        <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/corps.webp" title="Clic droit pour menu du cabinet" />
+      </div>
       {{/if}}
     </div>
-    {{/each}}
-    {{#if corps}}
-    <div class="titre_col">Corps :</div>
-    <div class="membre-img">
-      <img src="{{corps.img}}" title="{{corps.name}}" />
-    </div>
-    <div class="membre-name">
-      {{corps.name}}
-    </div>
-     <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}">
-      <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/corps.webp" title="Clic droit pour menu du cabinet" />
-    </div>
-    {{/if}}
-  </div>
-  <div class="right-col">
-    <div class="encart-exp">
-      <div class="text-exp">
-        {{#if editable}}
-        <input type="number" name="system.experience.actuelle" value="{{system.experience.actuelle}}" />
-            &nbsp;/&nbsp;
-        <input type="number" name="system.experience.totale" value="{{system.experience.totale}}" />
-        {{else}}
-          {{system.experience.actuelle}}&nbsp;/&nbsp;{{system.experience.totale}}
+    <div class="right-col">
+      <div class="encart-exp">
+        <div class="text-exp">
+          {{#if editable}}
+          <input type="number" name="system.experience.actuelle" value="{{system.experience.actuelle}}" />
+              &nbsp;/&nbsp;
+          <input type="number" name="system.experience.totale" value="{{system.experience.totale}}" />
+          {{else}}
+            {{system.experience.actuelle}}&nbsp;/&nbsp;{{system.experience.totale}}
+          {{/if}}
+        </div>
+      </div>
+        <div class="ornement">
+          <img src="systems/cabinet/assets/images/sheets/ornement_3.webp" />
+        </div>
+      <div class="titre3" style="margin:20px 0px 10px 0px;">Acquis collectifs
+        {{#if editable}}&nbsp;&nbsp;
+          <a class="item-create" data-type="acquis" title="{{localize 'CDM.TOOLTIP.ajouterAcquis'}}">
+          <i class="fa-solid fa-books-medical"></i></a>
         {{/if}}
       </div>
+      <div class="acquis-col">
+      {{#each acquis as |acquisElement id|}}<div>
+        <details>
+        <summary class="ligne-acquis">
+          <div class="acquis-nom">{{acquisElement.name}}</div><div class="acquis-valeur">+{{acquisElement.system.valeur}}</div>
+          <div class="icon-group">
+            {{#if ../editable}}
+            <a class="item-control item-edit" data-field="{{acquisElement._id}}" data-tooltip="Modifier"><i
+                    class="fas fa-cog"></i></a>
+            <a class="item-control item-delete" data-field="{{acquisElement._id}}" data-tooltip="Supprimer"><i
+                    class="fas fa-trash"></i></a>
+            {{/if}}
+          </div>
+        </summary>
+            {{{acquisElement.system.descriptionhtml}}}
+        </details></div>
+      {{/each}}
+      </div>
+        <div class="ornement">
+          <img src="systems/cabinet/assets/images/sheets/ornement_3.webp" />
+        </div>
+    </div>
+  </div>
+  <div class="zone-graces">
+    <div class="titre3">Grâces</div>
+    <div class="grid-graces">
+        {{#each graces as |grace|}}
+            <div class="bloc-graces {{#ifn @root.editable}}item-control item-edit{{/ifn}}" data-field="{{grace._id}}">
+            <div class="back">
+                <div class="description">
+                    <div class="inner-desc">
+                        <div class="nom">{{grace.name}}</div>
+                        <div class="info-line">
+                            {{#if @root.editable}}
+                            &nbsp;<a class="item-control item-edit" data-field="{{grace._id}}" data-tooltip="Modifier"><i class="fas fa-cog"></i></a>
+                            <a class="item-control item-delete" data-field="{{grace._id}}" data-tooltip="Supprimer"><i class="fas fa-trash"></i></a>
+                            {{/if}}
+                        </div>
+                        {{{grace.system.descriptionhtml}}}
+                    </div></div>
+                </div>
+            </div>
+        {{/each}}
     </div>
   </div>
 </div>

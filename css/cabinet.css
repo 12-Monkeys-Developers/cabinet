@@ -593,34 +593,6 @@ i.logo_defaut {
   top: 50px;
   left: 100px;
 }
-.cabinet-membres {
-  background: repeat url("../assets/images/sheets/fond_gestion.webp");
-  min-width: 200px;
-  min-height: 200px;
-  border: 2px solid black;
-  display: grid;
-  grid-template-columns: 90px 90px 200px 120px 120px 120px;
-  align-items: center;
-  font-family: "arrusbt";
-}
-.cabinet-membres .membre-img {
-  padding: 5px;
-  justify-self: end;
-  width: 80px;
-  height: 80px;
-}
-.cabinet-membres .membre-img img {
-  max-height: 90%;
-}
-.cabinet-membres .membre-icone {
-  width: 40px;
-  margin: auto;
-}
-.cabinet-membres .titre_col {
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.5em;
-}
 .arbredevie {
   background: no-repeat url("../assets/images/sheets/arbre_vie.webp");
   width: 600px;
@@ -1456,11 +1428,19 @@ footer.buttons select {
   font-size: 1, 5em;
 }
 .cab-sheet .cabinet-details {
-  background: repeat url("../assets/images/sheets/fond_gestion.webp");
+  background: repeat url("../assets/images/sheets/fond-cab-details.webp");
+}
+.cab-sheet .cabinet-details .titre3 {
+  text-align: center;
+  font-family: "posterbodoni";
+  font-size: 1em;
+  color: #497180;
+}
+.cab-sheet .cabinet-details .grid-haut {
   display: grid;
   grid-template-columns: 500px 1fr;
 }
-.cab-sheet .cabinet-details .cabinet-membres {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres {
   min-width: 200px;
   min-height: 200px;
   border: 2px solid black;
@@ -1469,53 +1449,54 @@ footer.buttons select {
   align-items: center;
   font-family: "arrusbt";
 }
-.cab-sheet .cabinet-details .cabinet-membres .membre-name {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .membre-name {
   font-family: "alexbrush";
   font-size: 1.8em;
   text-align: center;
 }
-.cab-sheet .cabinet-details .cabinet-membres .membre-img {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .membre-img {
   padding: 5px;
   justify-self: end;
   width: 80px;
   height: 80px;
 }
-.cab-sheet .cabinet-details .cabinet-membres .membre-img img {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .membre-img img {
   max-height: 90%;
 }
-.cab-sheet .cabinet-details .cabinet-membres .medaillon_cab {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab {
   padding: 5px;
   justify-self: end;
   width: 80px;
   height: 80px;
 }
-.cab-sheet .cabinet-details .cabinet-membres .medaillon_cab .context-menu {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab .context-menu {
   width: max-content;
 }
-.cab-sheet .cabinet-details .cabinet-membres .medaillon_cab .expand-up {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab .expand-up {
   top: 50px;
   left: 100px;
 }
-.cab-sheet .cabinet-details .cabinet-membres .medaillon_cab img {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab img {
   max-height: 90%;
   border: 0px;
 }
-.cab-sheet .cabinet-details .cabinet-membres .membre-icone {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .membre-icone {
   width: 40px;
   margin: auto;
 }
-.cab-sheet .cabinet-details .cabinet-membres .titre_col {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .titre_col {
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
   margin-bottom: 1en;
+  color: #497180;
 }
-.cab-sheet .cabinet-details .right-col {
+.cab-sheet .cabinet-details .grid-haut .right-col {
   width: auto;
   display: flex;
   flex-direction: column;
 }
-.cab-sheet .cabinet-details .right-col .encart-exp {
+.cab-sheet .cabinet-details .grid-haut .right-col .encart-exp {
   background: no-repeat url("../assets/images/sheets/encart_exp_col.webp");
   background-size: cover;
   font-family: "arrusbt";
@@ -1529,11 +1510,86 @@ footer.buttons select {
   align-self: center;
   margin-top: 20px;
 }
-.cab-sheet .cabinet-details .right-col .encart-exp .text-exp {
+.cab-sheet .cabinet-details .grid-haut .right-col .encart-exp .text-exp {
   margin-top: 50px;
 }
-.cab-sheet .cabinet-details .right-col .encart-exp input {
+.cab-sheet .cabinet-details .grid-haut .right-col .encart-exp input {
   width: 1em;
+}
+.cab-sheet .cabinet-details .grid-haut .right-col .acquis-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.cab-sheet .cabinet-details .grid-haut .right-col .acquis-col .ligne-acquis {
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr;
+  justify-content: left;
+  margin: 0.5em 0.5em 0px 0.5em;
+  border-bottom: 1px solid black;
+}
+.cab-sheet .cabinet-details .grid-haut .right-col .acquis-col .acquis-nom {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: #497180;
+  padding-left: 0.5em;
+  align-self: center;
+}
+.cab-sheet .cabinet-details .grid-haut .right-col .acquis-col .icon-group {
+  margin-left: auto;
+}
+.cab-sheet .cabinet-details .grid-haut .right-col .ornement {
+  width: 180px;
+  margin-top: 15px;
+  align-self: center;
+}
+.cab-sheet .cabinet-details .grid-haut .right-col .ornement img {
+  border: 0px;
+}
+.cab-sheet .cabinet-details .zone-graces {
+  display: flex;
+  flex-direction: column;
+}
+.cab-sheet .cabinet-details .zone-graces .titre3 {
+  font-size: 2em;
+  margin: 10px;
+}
+.cab-sheet .cabinet-details .zone-graces .grid-graces {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces {
+  padding: 0px 5px;
+}
+.cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces .back {
+  background: repeat url("../../../modules/cabinet-livredebase/assets/images/aspect_systeme/fond-grace.webp");
+  padding: 0px 5px;
+}
+.cab-sheet .cabinet-details .zone-graces .grid-graces .nom {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  color: #533e21;
+}
+.cab-sheet .cabinet-details .zone-graces .grid-graces .description {
+  font-size: 0.9em;
+  text-align: justify;
+  border: 2px solid #886a3c;
+  width: 98%;
+  padding: 6px;
+  margin: 0 auto;
+}
+.cab-sheet .cabinet-details .zone-graces .grid-graces .inner-desc {
+  position: relative;
+  border: 2px solid #886a3c;
+  width: 100%;
+  margin: auto;
+  padding: 8px;
 }
 .pnj-sheet .pnj-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");

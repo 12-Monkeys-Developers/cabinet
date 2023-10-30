@@ -61,82 +61,165 @@
     font-size: 1, 5em;
   }
   .cabinet-details {
-    background: repeat url("../assets/images/sheets/fond_gestion.webp");
-    display: grid;
-    grid-template-columns: 500px 1fr;
-
-    .cabinet-membres {
-      min-width: 200px;
-      min-height: 200px;
-      border: 2px solid black;
+    background: repeat url("../assets/images/sheets/fond-cab-details.webp");
+    .titre3 {
+      text-align: center;
+      font-family: "posterbodoni";
+      font-size: 1em;
+      color: #497180;
+    }
+    .grid-haut {
       display: grid;
-      grid-template-columns: 90px 90px 200px 90px;
-      align-items: center;
-      font-family: "arrusbt";
-      .membre-name {
-        font-family: "alexbrush";
-        font-size: 1.8em;
-        text-align: center;
-      }
-      .membre-img {
-        padding: 5px;
-        justify-self: end;
-        width: 80px;
-        height: 80px;
-        img {
-          max-height: 90%;
+      grid-template-columns: 500px 1fr;
+      .cabinet-membres {
+        min-width: 200px;
+        min-height: 200px;
+        border: 2px solid black;
+        display: grid;
+        grid-template-columns: 90px 90px 200px 90px;
+        align-items: center;
+        font-family: "arrusbt";
+        .membre-name {
+          font-family: "alexbrush";
+          font-size: 1.8em;
+          text-align: center;
+        }
+        .membre-img {
+          padding: 5px;
+          justify-self: end;
+          width: 80px;
+          height: 80px;
+          img {
+            max-height: 90%;
+          }
+        }
+        .medaillon_cab {
+          padding: 5px;
+          justify-self: end;
+          width: 80px;
+          height: 80px;
+          .context-menu {
+            width: max-content;
+          }
+          .expand-up {
+            top: 50px;
+            left: 100px;
+          }
+          img {
+            max-height: 90%;
+            border: 0px;
+          }
+        }
+        .membre-icone {
+          width: 40px;
+          margin: auto;
+        }
+        .titre_col {
+          text-align: center;
+          font-weight: bold;
+          font-size: 1.5em;
+          margin-bottom: 1en;
+          color: #497180;
         }
       }
-      .medaillon_cab {
-        padding: 5px;
-        justify-self: end;
-        width: 80px;
-        height: 80px;
-        .context-menu {
-          width: max-content;
+      .right-col {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        .encart-exp {
+          background: no-repeat url("../assets/images/sheets/encart_exp_col.webp");
+          background-size: cover;
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1.5em;
+          color: #497180;
+          text-transform: uppercase;
+          text-align: center;
+          height: 103px;
+          width: 199px;
+          align-self: center;
+          margin-top: 20px;
+          .text-exp {
+            margin-top: 50px;
+          }
+          input {
+            width: 1em;
+          }
         }
-        .expand-up {
-          top: 50px;
-          left: 100px;
+        .acquis-col {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          .ligne-acquis {
+            display: grid;
+            grid-template-columns: 5fr 1fr 1fr;
+            justify-content: left;
+            margin: 0.5em 0.5em 0px 0.5em;
+            border-bottom: 1px solid black;
+          }
+          .acquis-nom {
+            font-family: "arrusbt";
+            font-weight: bold;
+            font-size: 1em;
+            color: #497180;
+            padding-left: 0.5em;
+            align-self: center;
+          }
+          .icon-group {
+            margin-left: auto;
+          }
         }
-        img {
-          max-height: 90%;
-          border: 0px;
+        .ornement {
+          width: 180px;
+          margin-top: 15px;
+          align-self: center;
+          img {
+            border: 0px;
+          }
         }
-      }
-      .membre-icone {
-        width: 40px;
-        margin: auto;
-      }
-      .titre_col {
-        text-align: center;
-        font-weight: bold;
-        font-size: 1.5em;
-        margin-bottom: 1en;
       }
     }
-    .right-col {
-      width: auto;
+    .zone-graces {
       display: flex;
       flex-direction: column;
-      .encart-exp {
-        background: no-repeat url("../assets/images/sheets/encart_exp_col.webp");
-        background-size: cover;
-        font-family: "arrusbt";
-        font-weight: bold;
-        font-size: 1.5em;
-        color: #497180;
-        text-transform: uppercase;
-        text-align: center;
-        height:103px;
-        width: 199px;
-        align-self: center;
-        margin-top: 20px;
-        .text-exp {
-          margin-top: 50px;
+      .titre3 {
+        font-size: 2em;
+        margin: 10px;
+      }
+      .grid-graces {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        .bloc-graces {
+          padding: 0px 5px;
+          .back{
+          background: repeat url("../../../modules/cabinet-livredebase/assets/images/aspect_systeme/fond-grace.webp");
+          padding: 0px 5px;
+          }
         }
-        input {
-          width: 1em;
+        .nom {
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1.5em;
+          text-transform: uppercase;
+          text-align: center;
+          border: 0px;
+          margin-bottom: 5px;
+          margin-top: 10px;
+          color: #533e21;
+        }
+        .description {
+          font-size: 0.9em;
+          text-align: justify;
+          border: 2px solid #886a3c;
+          width: 98%;
+          padding: 6px;
+          margin: 0 auto;
+        }
+        .inner-desc {
+          position: relative;
+          border: 2px solid #886a3c;
+          width: 100%;
+          margin: auto;
+          padding: 8px;
         }
       }
     }

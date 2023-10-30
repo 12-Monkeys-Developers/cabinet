@@ -37,6 +37,15 @@ export default class CabinetSheet extends CabinetActorSheet {
     });
     context.corps = game.actors.get(this.actor.system.corps);
     context.isgm = game.user.isGM;
+    
+    context.graces = this.actor.items
+      .filter((item) => item.type == "grace")
+      .sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      });
+    context.graces.forEach((element) => {
+      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    });
 
     return context;
   }
