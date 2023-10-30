@@ -229,6 +229,28 @@ export default class CabinetActor extends Actor {
   /** --------*/
 
   /**
+   *
+   * @param {CabinetActor} esprit  l'item Esprit
+   * @returns
+   */
+  async ajouterEsprit(esprit) {
+    if (this.type !== "cabinet") return;
+
+    // Mise à jour du cabinet
+    let esprits = this.system.esprits;
+    if (esprits.includes(esprit.id)) return false;
+    esprits.push(esprit.id);
+    await this.update({ "system.esprits": esprits });
+
+    // Mise à jour de l'esprit
+    await actor.update({ "system.jardin": true });
+    await actor.update({ "system.comedien": false });
+
+    // FIXME si on veut utiliser await esprit.deplacerPosition(null); au lieu des 2 lignes au-dessus
+    // ca ne marche pas s'il n'y pas de cabinet de référence
+  }
+
+  /**
    * Liste des esprits d'un cabinet
    * id, nom, img, token, estComedien, dansJardin
    */
