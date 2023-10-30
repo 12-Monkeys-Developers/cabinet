@@ -62,7 +62,9 @@
   }
   .cabinet-details {
     background: repeat url("../assets/images/sheets/fond_gestion.webp");
-    
+    display: grid;
+    grid-template-columns: 500px 1fr;
+
     .cabinet-membres {
       min-width: 200px;
       min-height: 200px;
@@ -111,6 +113,31 @@
         font-weight: bold;
         font-size: 1.5em;
         margin-bottom: 1en;
+      }
+    }
+    .right-col {
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      .encart-exp {
+        background: no-repeat url("../assets/images/sheets/encart_exp.webp");
+        background-size: cover;
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1.5em;
+        color: #497180;
+        text-transform: uppercase;
+        text-align: center;
+        height:103px;
+        width: 199px;
+        align-self: center;
+        margin-top: 20px;
+        .text-exp {
+          margin-top: 50px;
+        }
+        input {
+          width: 1em;
+        }
       }
     }
   }

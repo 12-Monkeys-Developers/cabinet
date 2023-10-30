@@ -30,34 +30,28 @@
     {{/each}}
     {{#if corps}}
     <div class="titre_col">Corps :</div>
-      <div class="membre-img">
-        <img src="{{corps.img}}" title="{{corps.name}}" />
-      </div>
-      <div class="membre-name">
-        {{corps.name}}
-      </div>
-       <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}">
-          <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/corps.webp" title="Clic droit pour menu du cabinet" />
-       </div>
-      {{/if}}
+    <div class="membre-img">
+      <img src="{{corps.img}}" title="{{corps.name}}" />
+    </div>
+    <div class="membre-name">
+      {{corps.name}}
+    </div>
+     <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}">
+      <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/corps.webp" title="Clic droit pour menu du cabinet" />
+    </div>
+    {{/if}}
   </div>
-<h1>Acquis collectif</h1>
-    {{#each acquis as |acquisElement id|}}<div>
-      <details>
-      <summary class="ligne-acquis">
-        <div class="acquis-nom">{{acquisElement.name}}</div><div class="acquis-valeur">+{{acquisElement.system.valeur}}</div>
-        <div class="icon-group">
-          {{#if ../editable}}
-          <a class="item-control item-edit" data-field="{{acquisElement._id}}" data-tooltip="Modifier"><i
-                  class="fas fa-cog"></i></a>
-          <a class="item-control item-delete" data-field="{{acquisElement._id}}" data-tooltip="Supprimer"><i
-                  class="fas fa-trash"></i></a>
-          {{/if}}
-        </div>
-      </summary>
-          {{{acquisElement.system.descriptionhtml}}}
-      </details></div>
-    {{/each}}
-<h1>Contacts</h1>
-<h1>Adversaires</h1>
-<h1>Grâces</h1>
+  <div class="right-col">
+    <div class="encart-exp">
+      <div class="text-exp">
+        {{#if editable}}
+        <input type="number" name="system.experience.actuelle" value="{{system.experience.actuelle}}" />
+            &nbsp;/&nbsp;
+        <input type="number" name="system.experience.totale" value="{{system.experience.totale}}" />
+        {{else}}
+          {{system.experience.actuelle}}&nbsp;/&nbsp;{{system.experience.totale}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

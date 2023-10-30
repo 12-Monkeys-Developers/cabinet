@@ -30,7 +30,10 @@ export default class CabinetCabinet extends foundry.abstract.TypeDataModel {
 
     schema.corps = new fields.StringField({nullable: true});
     schema.comedien = new fields.StringField({nullable: true});
-    schema.experience = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
+    schema.experience = new fields.SchemaField({
+      actuelle: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+      totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+    });
 
     return schema;
   }

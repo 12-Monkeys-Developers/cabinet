@@ -2,3 +2,23 @@
 <h1>Description</h1>
 <h1>Notes</h1>
 <h1>Expérience collective</h1>
+<h1>Acquis collectif</h1>
+    {{#each acquis as |acquisElement id|}}<div>
+      <details>
+      <summary class="ligne-acquis">
+        <div class="acquis-nom">{{acquisElement.name}}</div><div class="acquis-valeur">+{{acquisElement.system.valeur}}</div>
+        <div class="icon-group">
+          {{#if ../editable}}
+          <a class="item-control item-edit" data-field="{{acquisElement._id}}" data-tooltip="Modifier"><i
+                  class="fas fa-cog"></i></a>
+          <a class="item-control item-delete" data-field="{{acquisElement._id}}" data-tooltip="Supprimer"><i
+                  class="fas fa-trash"></i></a>
+          {{/if}}
+        </div>
+      </summary>
+          {{{acquisElement.system.descriptionhtml}}}
+      </details></div>
+    {{/each}}
+<h1>Contacts</h1>
+<h1>Adversaires</h1>
+<h1>Grâces</h1>
