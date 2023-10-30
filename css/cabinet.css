@@ -1433,7 +1433,7 @@ footer.buttons select {
 .cab-sheet .cabinet-details .titre3 {
   text-align: center;
   font-family: "posterbodoni";
-  font-size: 1em;
+  font-size: 1.5em;
   color: #497180;
 }
 .cab-sheet .cabinet-details .grid-haut {
@@ -1469,7 +1469,7 @@ footer.buttons select {
   width: 80px;
   height: 80px;
 }
-.cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab .context-menu {
+.cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab #context-menu {
   width: max-content;
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab .expand-up {
@@ -1538,6 +1538,16 @@ footer.buttons select {
 .cab-sheet .cabinet-details .grid-haut .right-col .acquis-col .icon-group {
   margin-left: auto;
 }
+.cab-sheet .cabinet-details .grid-haut .right-col .acquis-col p {
+  font-family: "garamondpro";
+  font-size: 0.9em;
+  text-indent: 2em;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 .cab-sheet .cabinet-details .grid-haut .right-col .ornement {
   width: 180px;
   margin-top: 15px;
@@ -1577,12 +1587,19 @@ footer.buttons select {
   color: #533e21;
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces .description {
-  font-size: 0.9em;
-  text-align: justify;
   border: 2px solid #886a3c;
   width: 98%;
   padding: 6px;
   margin: 0 auto;
+}
+.cab-sheet .cabinet-details .zone-graces .grid-graces .description p {
+  font-family: "garamondpro";
+  text-indent: 2em;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces .inner-desc {
   position: relative;
