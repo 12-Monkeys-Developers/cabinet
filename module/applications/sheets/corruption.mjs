@@ -11,7 +11,7 @@ export default class CorruptionSheet extends CabinetItemSheet {
     const options = super.defaultOptions;
     return Object.assign(options, {
       width: 600,
-      height: 400,
+      height: 420,
       classes: [SYSTEM.id, "sheet", "item", this.itemType],
       template: `systems/${SYSTEM.id}/templates/sheets/${this.itemType}.hbs`,
       resizable: false,

@@ -142,4 +142,7 @@ function preLocalizeConfig() {
   localizeConfigObject(SYSTEM.ATTRIBUTS, ["label"]);
   localizeConfigObject(SYSTEM.ACTION_CATEGORIES, ["label"]);
   localizeConfigObject(SYSTEM.DIFFICULTES, ["label"]);
+  localizeConfigObject(SYSTEM.ARME_SOUSTYPES, ["label"]);
+  localizeConfigObject(SYSTEM.ARME_CATEGORIES, ["label"]);
 }
+
