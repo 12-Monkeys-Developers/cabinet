@@ -1,46 +1,50 @@
 {{log "cabinet-details" this}}
 <div class="cabinet-details">
   <div class="grid-haut">
-    <div class="cabinet-membres droppable">
-      <div class="titre_col">Icône</div>
-      <div class="titre_col">Portrait</div>
-      <div class="titre_col">Nom</div>
-      <div class="titre_col">Statut</div>
-      {{#each esprits as |membre index|}}
-        {{log "membre" this}}
-        <div class="membre-img">
-          <img style="border:0px;" src="{{membre.token}}" title="{{membre.nom}}" />
-        </div>
-        <div class="membre-img">
-          <img src="{{membre.img}}" title="{{membre.nom}}" />
-        </div>
-        <div class="membre-name">
-          {{membre.nom}}
-        </div>
-      <div class="medaillon_cab {{#if ../isgm}}membre-contextmenu{{/if}}" data-actor-id="{{membre.id}}" data-index="{{index}}">
-        {{#if membre.dansJardin}}
-          <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_jardin.webp" title="Clic droit pour menu du cabinet" />
-        {{else}}
-          {{#if membre.estComedien}}
-            <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_comedien.webp" title="Clic droit pour menu du cabinet" />
-          {{else}}
-            <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_cabinet.webp" title="Clic droit pour menu du cabinet" />
+    <div class="outer-border">
+      <div class="inner-border">
+        <div class="cabinet-membres droppable">
+          <div class="titre_col">Icône</div>
+          <div class="titre_col">Portrait</div>
+          <div class="titre_col">Nom</div>
+          <div class="titre_col">Statut</div>
+          {{#each esprits as |membre index|}}
+            {{log "membre" this}}
+            <div class="membre-img">
+              <img style="border:0px;" src="{{membre.token}}" title="{{membre.nom}}" />
+            </div>
+            <div class="membre-img">
+              <img src="{{membre.img}}" title="{{membre.nom}}" />
+            </div>
+            <div class="membre-name">
+              {{membre.nom}}
+            </div>
+          <div class="medaillon_cab {{#if ../isgm}}membre-contextmenu{{/if}}" data-actor-id="{{membre.id}}" data-index="{{index}}">
+            {{#if membre.dansJardin}}
+              <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_jardin.webp" title="Clic droit pour menu du cabinet" />
+            {{else}}
+              {{#if membre.estComedien}}
+                <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_comedien.webp" title="Clic droit pour menu du cabinet" />
+              {{else}}
+                <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/esprit_cabinet.webp" title="Clic droit pour menu du cabinet" />
+              {{/if}}
+            {{/if}}
+          </div>
+          {{/each}}
+          {{#if corps}}
+          <div class="titre_col">Corps :</div>
+          <div class="membre-img">
+            <img src="{{corps.img}}" title="{{corps.name}}" />
+          </div>
+          <div class="membre-name">
+            {{corps.name}}
+          </div>
+          <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}">
+            <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/corps.webp" title="Clic droit pour menu du cabinet" />
+          </div>
           {{/if}}
-        {{/if}}
+        </div>
       </div>
-      {{/each}}
-      {{#if corps}}
-      <div class="titre_col">Corps :</div>
-      <div class="membre-img">
-        <img src="{{corps.img}}" title="{{corps.name}}" />
-      </div>
-      <div class="membre-name">
-        {{corps.name}}
-      </div>
-      <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}">
-        <img src="/modules/cabinet-livredebase/assets/images/aspect_systeme/corps.webp" title="Clic droit pour menu du cabinet" />
-      </div>
-      {{/if}}
     </div>
     <div class="right-col">
       <div class="encart-exp">

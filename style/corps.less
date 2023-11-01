@@ -3,6 +3,13 @@
     background: repeat url("../assets/images/sheets/esprit-header.webp");
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
+    .titre2 {
+      text-align: center;
+      font-family: "posterbodoni";
+      font-size: 1.5em;
+      color: #497180;
+      text-transform: uppercase;
+    }
     .titre_feuille {
       font-family: "arrusbt";
       font-weight: bold;
@@ -32,6 +39,7 @@
       justify-self: end;
       width: 133px;
       height: 80px;
+      z-index:2;
       img {
         border-radius: 50%;
       }
@@ -61,8 +69,8 @@
     flex-direction: row;
     font-size: 1, 5em;
   }
-  
-  .tab-notes {
+
+  .ongletnotes {
     background: repeat url("../assets/images/sheets/corps-back.webp");
     min-height: 600px;
     .notes-zone {
@@ -90,6 +98,9 @@
         margin-left: 5px;
         margin-top: 10px;
         min-height: 80px;
+      }
+      .cdmnotes {
+        min-height: 500px;
       }
       .editor {
         min-height: 500px;

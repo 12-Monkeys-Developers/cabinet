@@ -1,5 +1,44 @@
-{{log "corps-details" this}}
-<h1>Description</h1>
-<h1>Notes</h1>
-<h1>Contacts</h1>
-<h1>Adversaires</h1>
+<div class="cabinet-description">
+  <div class="description-description">
+    <div class="outer-border">
+      <div class="inner-border">
+        <div class="titre2">Description</div>
+        <div class = "script description">
+            {{#if editable}}
+                {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+            {{else}}
+              {{{descriptionhtml}}}
+            {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="description-contacts">
+    <div class="outer-border">
+      <div class="inner-border">
+        <div class="titre2">Contacts</div>
+        <div class = "script contacts">
+            {{#if editable}}
+                {{editor contactshtml target="system.contacts" button=true engine="prosemirror" owner=owner editable=editable}}
+            {{else}}
+              {{{contactshtml}}}
+            {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="description-adversaires">
+    <div class="outer-border">
+      <div class="inner-border">
+        <div class="titre2">Adversaires</div>
+        <div class = "script adversaires">
+            {{#if editable}}
+                {{editor adversaireshtml target="system.adversaires" button=true engine="prosemirror" owner=owner editable=editable}}
+            {{else}}
+              {{{adversaireshtml}}}
+            {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

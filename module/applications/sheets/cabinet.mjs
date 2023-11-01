@@ -50,6 +50,7 @@ export default class CabinetSheet extends CabinetActorSheet {
     
     context.adversaireshtml = TextEditor.enrichHTML(this.actor.system.adversaires, { async: false });
     context.contactshtml = TextEditor.enrichHTML(this.actor.system.contacts, { async: false });
+    context.descriptionhtml = TextEditor.enrichHTML(this.actor.system.description, { async: false });
     context.noteshtml = TextEditor.enrichHTML(this.actor.system.notes, { async: false });
 
     return context;
