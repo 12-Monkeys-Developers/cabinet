@@ -14,8 +14,10 @@ export default class StandardCheckDialog extends Dialog {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: `systems/${SYSTEM.id}/templates/dice/standard-check-dialog.hbs`,
+      width: 1500,
+      height: 300,
       classes: ["cabinet", "roll"],
+      template: `systems/${SYSTEM.id}/templates/dice/standard-check-dialog.hbs`,
       submitOnChange: true,
       closeOnSubmit: false,
     });
