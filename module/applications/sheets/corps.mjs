@@ -11,7 +11,7 @@ export default class CorpsSheet extends CabinetActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 900,
+      width: 800,
       height: 800,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "details" }],
     });
@@ -46,6 +46,11 @@ export default class CorpsSheet extends CabinetActorSheet {
     context.malus = context.actor.system.malus;
 
     context.noteshtml = TextEditor.enrichHTML(this.actor.system.notes, { async: false });
+
+    context.armes = this.actor.items.filter((item) => item.type == "arme");
+    context.armes.forEach((element) => {
+      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    });
 
     return context;
   }

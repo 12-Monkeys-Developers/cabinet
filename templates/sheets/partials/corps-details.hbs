@@ -1,15 +1,50 @@
 {{log "corps-details" this}}
+<div class="corps-main">
+  <div class="attributs-bloc">
+    <div class="titre2">Attributs</div>
+      <div class="grid-attributs">
+        {{#each attributs as |attribut|}}
+          <div class="attribut-name">{{attribut.label}}</div>
+          <div class="attribut-value">+ {{attribut.valeur}}</div>
+        {{/each}}
+      </div>
+      
+      <div class="armes-col">
+        <div class="titre2" style="margin:0px 0px 10px 0px;">Armes
+          {{#if editable}}&nbsp;&nbsp;
+            <a class="item-create" data-type="acquis" title="{{localize 'CDM.TOOLTIP.ajouterAcquis'}}">
+            <i class="fa-solid fa-books-medical"></i></a>
+          {{/if}}
+        </div>
+        {{#each armes as |arme id|}}<div>
+          <details>
+          <summary class="ligne-cor">
+            <div class="nom-cor">{{arme.name}}</div>
+            <div class="icon-group">
+              {{#if ../editable}}
+              <a class="item-control item-edit" data-field="{{arme._id}}" data-tooltip="Modifier"><i
+                      class="fas fa-cog"></i></a>
+              <a class="item-control item-delete" data-field="{{arme._id}}" data-tooltip="Supprimer"><i
+                      class="fas fa-trash"></i></a>
+              {{/if}}
+            </div>
+          </summary>
+              <div class="desc">{{{arme.system.descriptionhtml}}}</div>
+          </details></div>
+        {{/each}}
+      </div>
+  </div>
+  <div class="img-bloc">
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+  </div>
+</div>
+
+
+
+
 <h1>Comedien</h1>
 Le comedien est : {{comedien}}
 <h1>Description</h1>
-<h1>Attributs</h1>
-{{#each attributs as |attribut|}}
-  {{log "corps-details attribut" this}}
-  {{attribut.label}}
-  :
- {{attribut.valeur}}
- 
-{{/each}}
 <h1>Equipement</h1>
 <h1>Armes</h1>
 <h1>Notes</h1>
