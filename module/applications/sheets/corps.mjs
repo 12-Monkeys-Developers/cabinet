@@ -50,6 +50,13 @@ export default class CorpsSheet extends CabinetActorSheet {
     return context;
   }
 
+  /** @override */
+  async _onDropItem(event, data) {
+    const item = await fromUuid(data.uuid);
+    if(["action", "acquis", "corruption", "grace", "pouvoir"].includes(item.type)) return false;
+    else return super._onDropItem(event, data);
+  }
+
   /**
    * Format les attributs pour les afficher sur la fiche
    * @param {object} attributs

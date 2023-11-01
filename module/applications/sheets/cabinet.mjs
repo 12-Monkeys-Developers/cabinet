@@ -234,6 +234,13 @@ export default class CabinetSheet extends CabinetActorSheet {
     this.render();
   }
 
+  /** @override */
+  async _onDropItem(event, data) {
+    const item = await fromUuid(data.uuid);
+    if(["action", "arme", "armure", "corruption", "pouvoir"].includes(item.type)) return false;
+    else return super._onDropItem(event, data);
+  }
+
   async _endormirCorps() {
     for (let membreId of this.actor.system.esprits) {
       const membre = game.actors.get(membreId);

@@ -38,6 +38,13 @@ export default class PnjSheet extends CabinetActorSheet {
     return context;
   }
 
+  /** @override */
+  async _onDropItem(event, data) {
+    const item = await fromUuid(data.uuid);
+    if(["action"].includes(item.type)) return false;
+    else return super._onDropItem(event, data);
+  }
+
   /**
    * Format les aspects por les afficher sur la fiche
    * @param {object} aspects

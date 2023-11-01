@@ -68,6 +68,13 @@ export default class EspritSheet extends CabinetActorSheet {
     return context;
   }
 
+  /** @override */
+  async _onDropItem(event, data) {
+    const item = await fromUuid(data.uuid);
+    if(["arme", "armure", "grace"].includes(item.type)) return false;
+    else return super._onDropItem(event, data);
+  }
+
   /**
    * Format les qualités pour les afficher sur la fiche
    * @param {object} qualites
