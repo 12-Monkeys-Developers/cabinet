@@ -368,29 +368,24 @@ i.logo_defaut {
 .esprit-sheet .col-droite-qualites {
   display: flex;
   flex-direction: column;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 {
+  display: grid;
+  grid-template-columns: 240px 1fr;
   padding-left: 50px;
-  margin-top: 25px;
+  margin-top: 50px;
 }
-.esprit-sheet .col-droite-qualites .medaillon_cab {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 22px;
-}
-.esprit-sheet .col-droite-qualites .medaillon_cab img {
-  border: 0px;
-}
-.esprit-sheet .col-droite-qualites .aspects-grid {
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid {
   display: grid;
   grid-template-columns: 180px 40px 1fr;
   grid-template-rows: 34px 34px 34px;
 }
-.esprit-sheet .col-droite-qualites .aspects-grid .aspects-ligne {
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid .aspects-ligne {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
 }
-.esprit-sheet .col-droite-qualites .aspects-grid .aspects-ligne .nom-aspect {
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid .aspects-ligne .nom-aspect {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -398,7 +393,7 @@ i.logo_defaut {
   text-transform: uppercase;
   padding-left: 10px;
 }
-.esprit-sheet .col-droite-qualites .aspects-grid .aspects-ligne .aspect-desc {
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid .aspects-ligne .aspect-desc {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -406,7 +401,7 @@ i.logo_defaut {
   text-transform: uppercase;
   padding-left: 6px;
 }
-.esprit-sheet .col-droite-qualites .aspects-grid .aspectcircle {
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid .aspectcircle {
   border-radius: 50%;
   padding: 7px 8px;
   border: 2px solid #497180;
@@ -415,27 +410,74 @@ i.logo_defaut {
   font-size: 1em;
   font-weight: bold;
 }
-.esprit-sheet .col-droite-qualites .aspects-grid .encart-exp {
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col {
+  display: flex;
+  flex-direction: column;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col .ligne-cor {
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr;
+  justify-content: left;
+  margin: 0.5em 0.5em 0px 0.5em;
+  border-bottom: 1px solid #724755;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col .nom-cor {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: #724755;
+  padding-left: 0.5em;
+  align-self: center;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col .icon-group {
+  margin-left: auto;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col .desc {
+  font-family: "garamondpro";
+  font-size: 0.9em;
+  text-indent: 0px;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-left: 50px;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc3 .medaillon_cab {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 22px;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc3 .medaillon_cab img {
+  border: 0px;
+}
+.esprit-sheet .col-droite-qualites .col-droite-bloc3 .encart-exp {
   background: no-repeat url("../assets/images/sheets/encart_exp.webp");
-  background-size: cover;
+  background-size: contain;
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1.5em;
   color: #497180;
   text-transform: uppercase;
   text-align: center;
-  justify-self: right;
-  width: 199px;
+  width: 250px;
+  margin-top: 60px;
 }
-.esprit-sheet .col-droite-qualites .aspects-grid .encart-exp .text-exp {
+.esprit-sheet .col-droite-qualites .col-droite-bloc3 .encart-exp .text-exp {
   margin-top: 50px;
 }
-.esprit-sheet .col-droite-qualites .aspects-grid .encart-exp input {
+.esprit-sheet .col-droite-qualites .col-droite-bloc3 .encart-exp input {
   width: 1em;
 }
 .esprit-sheet .col-droite-qualites .acquis-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding-left: 50px;
 }
 .esprit-sheet .col-droite-qualites .acquis-col .ligne-acquis {
   display: grid;
@@ -454,6 +496,16 @@ i.logo_defaut {
 }
 .esprit-sheet .col-droite-qualites .acquis-col .icon-group {
   margin-left: auto;
+}
+.esprit-sheet .col-droite-qualites .acquis-col .desc {
+  font-family: "garamondpro";
+  font-size: 0.9em;
+  text-indent: 0px;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .esprit-sheet .grid-tab-actions {
   background: repeat url("../assets/images/sheets/esprit-tab-actions.webp");
@@ -1683,7 +1735,7 @@ footer.buttons select {
 .cab-sheet .cabinet-details .grid-haut .right-col .acquis-col p {
   font-family: "garamondpro";
   font-size: 0.9em;
-  text-indent: 2em;
+  text-indent: 0px;
   text-align: justify;
   padding-left: 5px;
   padding-right: 5px;

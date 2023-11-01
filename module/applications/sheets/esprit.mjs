@@ -42,7 +42,7 @@ export default class EspritSheet extends CabinetActorSheet {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
-    // Pouvoir par ordre niveau et mise en forme de la description
+    // Pouvoirs par ordre niveau et mise en forme de la description
     context.pouvoirs = this.actor.items
       .filter((item) => item.type == "pouvoir")
       .sort(function (a, b) {
@@ -50,6 +50,12 @@ export default class EspritSheet extends CabinetActorSheet {
       });
     context.pouvoirs.forEach((element) => {
       element.system.shperelabel = SYSTEM.SPHERES[element.system.sphere].label;
+      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    });
+
+    // corruptions par ordre niveau et mise en forme de la description
+    context.corruptions = this.actor.items.filter((item) => item.type == "corruption");
+    context.corruptions.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
 

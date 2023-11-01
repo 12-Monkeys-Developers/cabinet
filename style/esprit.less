@@ -56,7 +56,7 @@
       justify-self: end;
       width: 133px;
       height: 80px;
-      z-index:2;
+      z-index: 2;
       img {
         border-radius: 50%;
       }
@@ -238,62 +238,106 @@
   .col-droite-qualites {
     display: flex;
     flex-direction: column;
-    padding-left: 50px;
-    margin-top: 25px;
-    .medaillon_cab {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      margin-top: 22px;
-      img {
-        border: 0px;
+    .col-droite-bloc1 {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      padding-left: 50px;
+      margin-top: 50px;
+      .aspects-grid {
+        display: grid;
+        grid-template-columns: 180px 40px 1fr;
+        grid-template-rows: 34px 34px 34px;
+        .aspects-ligne {
+          display: flex;
+          flex-direction: row;
+          margin-top: 10px;
+          .nom-aspect {
+            font-family: "arrusbt";
+            font-weight: bold;
+            font-size: 1em;
+            color: #497180;
+            text-transform: uppercase;
+            padding-left: 10px;
+          }
+          .aspect-desc {
+            font-family: "arrusbt";
+            font-weight: bold;
+            font-size: 1em;
+            color: #685a4e;
+            text-transform: uppercase;
+            padding-left: 6px;
+          }
+        }
+        .aspectcircle {
+          border-radius: 50%;
+          padding: 7px 8px;
+          border: 2px solid #497180;
+          color: #497180;
+          text-align: center;
+          font-size: 1em;
+          font-weight: bold;
+        }
+      }
+
+      .corruptions-col {
+        display: flex;
+        flex-direction: column;
+        .ligne-cor {
+          display: grid;
+          grid-template-columns: 5fr 1fr 1fr;
+          justify-content: left;
+          margin: 0.5em 0.5em 0px 0.5em;
+          border-bottom: 1px solid #724755;
+        }
+        .nom-cor {
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1em;
+          color: #724755;
+          padding-left: 0.5em;
+          align-self: center;
+        }
+        .icon-group {
+          margin-left: auto;
+        }
+        .desc {
+          font-family: "garamondpro";
+          font-size: 0.9em;
+          text-indent: 0px;
+          text-align: justify;
+          padding-left: 5px;
+          padding-right: 5px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
       }
     }
-    .aspects-grid {
+
+    .col-droite-bloc3 {
       display: grid;
-      grid-template-columns: 180px 40px 1fr;
-      grid-template-rows: 34px 34px 34px;
-      .aspects-ligne {
+      grid-template-columns: 1fr 1fr;
+      padding-left: 50px;
+      .medaillon_cab {
         display: flex;
         flex-direction: row;
-        margin-top: 10px;
-        .nom-aspect {
-          font-family: "arrusbt";
-          font-weight: bold;
-          font-size: 1em;
-          color: #497180;
-          text-transform: uppercase;
-          padding-left: 10px;
+        justify-content: center;
+        margin-top: 22px;
+        img {
+          border: 0px;
         }
-        .aspect-desc {
-          font-family: "arrusbt";
-          font-weight: bold;
-          font-size: 1em;
-          color: #685a4e;
-          text-transform: uppercase;
-          padding-left: 6px;
-        }
-      }
-      .aspectcircle {
-        border-radius: 50%;
-        padding: 7px 8px;
-        border: 2px solid #497180;
-        color: #497180;
-        text-align: center;
-        font-size: 1em;
-        font-weight: bold;
       }
       .encart-exp {
         background: no-repeat url("../assets/images/sheets/encart_exp.webp");
-        background-size: cover;
+        background-size: contain;
         font-family: "arrusbt";
         font-weight: bold;
         font-size: 1.5em;
         color: #497180;
         text-transform: uppercase;
         text-align: center;
-        justify-self: right;
-        width: 199px;
+        width: 250px;
+        margin-top: 60px;
+
         .text-exp {
           margin-top: 50px;
         }
@@ -305,6 +349,7 @@
     .acquis-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      padding-left: 50px;
       .ligne-acquis {
         display: grid;
         grid-template-columns: 5fr 1fr 1fr;
@@ -322,6 +367,16 @@
       }
       .icon-group {
         margin-left: auto;
+      }
+      .desc {
+        font-family: "garamondpro";
+        font-size: 0.9em;
+        text-indent: 0px;
+        text-align: justify;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 0px;
+        margin-bottom: 0px;
       }
     }
   }
