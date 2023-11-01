@@ -244,8 +244,8 @@
       flex-direction: row;
       justify-content: center;
       margin-top: 22px;
-      img{
-        border:0px;
+      img {
+        border: 0px;
       }
     }
     .aspects-grid {
@@ -451,6 +451,11 @@
         margin: 20px;
       }
     }
+    .editor-content {
+      font-weight: normal;
+      margin: 0px 5px;
+      font-size: 0.8em;
+    }
     .script {
       text-align: justify;
       margin-left: 10px;
@@ -462,9 +467,49 @@
       min-height: 80px;
     }
   }
+  .tab-notes {
+    background: repeat url("../assets/images/sheets/esprit-tab-profil.webp");
+    min-height: 600px;
+    .notes-zone {
+      padding: 10px;
+      .outer-border {
+        border: 6px solid #685649;
+        height: 99%;
+        width: 98%;
+        padding: 6px;
+        margin: 0 auto;
+      }
+      .inner-border {
+        border: 2px solid #685649;
+        height: 100%;
+        width: 100%;
+        padding: 6px;
+        margin: auto;
+      }
+      .script {
+        text-align: justify;
+        margin-left: 10px;
+        font-family: "alexbrush";
+        font-size: 1.5em;
+        color: black;
+        margin-left: 5px;
+        margin-top: 10px;
+        min-height: 80px;
+      }
+      .editor {
+        min-height: 500px;
+      }
+      .editor-content {
+        min-height: 500px;
+        font-weight: normal;
+        margin: 0px 5px;
+        font-size: 0.8em;
+      }
+    }
+  }
 
   .expand-up {
     top: 50px;
-    left: 100px
+    left: 100px;
   }
 }

@@ -61,6 +61,9 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
 
     schema.contacts = new fields.HTMLField();
     schema.adversaires = new fields.HTMLField();
+    
+    schema.notes = new fields.HTMLField();
+
 
     // pouvoirs : Embedded items de type pouvoir
 

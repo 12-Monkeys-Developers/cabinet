@@ -72,6 +72,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/cabinet-description.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-details.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-sante.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/tab-notes.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
   ]);
 

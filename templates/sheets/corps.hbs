@@ -17,6 +17,7 @@
       <nav class="sheet-navigation tabs" data-group="primary">
         <a class="choix_tab" data-tab="details">Détails</a>
         <a class="choix_tab" data-tab="sante">Santé</a>
+        <a class="choix_tab" data-tab="notes">Notes</a>
       </nav>
     </header>
 
@@ -28,6 +29,11 @@
     {{! Santé Tab }}
     <div class="tab tab-sante flexcol" data-group="primary" data-tab="sante">
         {{> "systems/cabinet/templates/sheets/partials/corps-sante.hbs"}}
+    </div>
+
+    {{! Notes Tab }}
+    <div class="tab tab-notes flexcol" data-group="primary" data-tab="notes">
+       {{> "systems/cabinet/templates/sheets/partials/tab-notes.hbs"}}
     </div>
 
   </section>

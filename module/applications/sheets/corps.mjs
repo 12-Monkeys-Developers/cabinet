@@ -45,6 +45,8 @@ export default class CorpsSheet extends CabinetActorSheet {
     context.comedien = comedien;
     context.malus = context.actor.system.malus;
 
+    context.noteshtml = TextEditor.enrichHTML(this.actor.system.notes, { async: false });
+
     return context;
   }
 

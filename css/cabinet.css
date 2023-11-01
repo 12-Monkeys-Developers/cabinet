@@ -579,6 +579,11 @@ i.logo_defaut {
 .esprit-sheet .tab-concept .concept-grid .concept-col2 {
   margin: 20px;
 }
+.esprit-sheet .tab-concept .editor-content {
+  font-weight: normal;
+  margin: 0px 5px;
+  font-size: 0.8em;
+}
 .esprit-sheet .tab-concept .script {
   text-align: justify;
   margin-left: 10px;
@@ -588,6 +593,46 @@ i.logo_defaut {
   margin-left: 5px;
   margin-top: 10px;
   min-height: 80px;
+}
+.esprit-sheet .tab-notes {
+  background: repeat url("../assets/images/sheets/esprit-tab-profil.webp");
+  min-height: 600px;
+}
+.esprit-sheet .tab-notes .notes-zone {
+  padding: 10px;
+}
+.esprit-sheet .tab-notes .notes-zone .outer-border {
+  border: 6px solid #685649;
+  height: 99%;
+  width: 98%;
+  padding: 6px;
+  margin: 0 auto;
+}
+.esprit-sheet .tab-notes .notes-zone .inner-border {
+  border: 2px solid #685649;
+  height: 100%;
+  width: 100%;
+  padding: 6px;
+  margin: auto;
+}
+.esprit-sheet .tab-notes .notes-zone .script {
+  text-align: justify;
+  margin-left: 10px;
+  font-family: "alexbrush";
+  font-size: 1.5em;
+  color: black;
+  margin-left: 5px;
+  margin-top: 10px;
+  min-height: 80px;
+}
+.esprit-sheet .tab-notes .notes-zone .editor {
+  min-height: 500px;
+}
+.esprit-sheet .tab-notes .notes-zone .editor-content {
+  min-height: 500px;
+  font-weight: normal;
+  margin: 0px 5px;
+  font-size: 0.8em;
 }
 .esprit-sheet .expand-up {
   top: 50px;
@@ -1367,6 +1412,46 @@ footer.buttons select {
   flex-direction: row;
   font-size: 1, 5em;
 }
+.corps-sheet .tab-notes {
+  background: repeat url("../assets/images/sheets/corps-back.webp");
+  min-height: 600px;
+}
+.corps-sheet .tab-notes .notes-zone {
+  padding: 10px;
+}
+.corps-sheet .tab-notes .notes-zone .outer-border {
+  border: 6px solid black;
+  height: 99%;
+  width: 98%;
+  padding: 6px;
+  margin: 0 auto;
+}
+.corps-sheet .tab-notes .notes-zone .inner-border {
+  border: 2px solid black;
+  height: 100%;
+  width: 100%;
+  padding: 6px;
+  margin: auto;
+}
+.corps-sheet .tab-notes .notes-zone .script {
+  text-align: justify;
+  margin-left: 10px;
+  font-family: "alexbrush";
+  font-size: 1.5em;
+  color: black;
+  margin-left: 5px;
+  margin-top: 10px;
+  min-height: 80px;
+}
+.corps-sheet .tab-notes .notes-zone .editor {
+  min-height: 500px;
+}
+.corps-sheet .tab-notes .notes-zone .editor-content {
+  min-height: 500px;
+  font-weight: normal;
+  margin: 0px 5px;
+  font-size: 0.8em;
+}
 .cab-sheet .cabinet-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
   display: grid;
@@ -1607,6 +1692,46 @@ footer.buttons select {
   width: 100%;
   margin: auto;
   padding: 8px;
+}
+.cab-sheet .tab-notes {
+  background: repeat url("../assets/images/sheets/fond-cab-details.webp");
+  min-height: 600px;
+}
+.cab-sheet .tab-notes .notes-zone {
+  padding: 10px;
+}
+.cab-sheet .tab-notes .notes-zone .outer-border {
+  border: 6px solid black;
+  height: 99%;
+  width: 98%;
+  padding: 6px;
+  margin: 0 auto;
+}
+.cab-sheet .tab-notes .notes-zone .inner-border {
+  border: 2px solid black;
+  height: 100%;
+  width: 100%;
+  padding: 6px;
+  margin: auto;
+}
+.cab-sheet .tab-notes .notes-zone .script {
+  text-align: justify;
+  margin-left: 10px;
+  font-family: "alexbrush";
+  font-size: 1.5em;
+  color: black;
+  margin-left: 5px;
+  margin-top: 10px;
+  min-height: 80px;
+}
+.cab-sheet .tab-notes .notes-zone .editor {
+  min-height: 500px;
+}
+.cab-sheet .tab-notes .notes-zone .editor-content {
+  min-height: 500px;
+  font-weight: normal;
+  margin: 0px 5px;
+  font-size: 0.8em;
 }
 .pnj-sheet .pnj-header {
   background: repeat url("../assets/images/sheets/esprit-header.webp");
