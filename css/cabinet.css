@@ -1,3 +1,17 @@
+:root {
+  --background_base: none;
+  --background_cabinet_graces: none;
+  --background_cabinet_grey: none;
+  --background_esprit_header: none;
+  --background_esprit_header: repeat url("/systems/cabinet/assets/images/sheets/esprit-header.webp");
+  --background_esprit_header_jardin: repeat url("/systems/cabinet/assets/images/sheets/esprit-header-jardin.webp");
+  --background_esprit_header_comedien: repeat url("/systems/cabinet/assets/images/sheets/esprit-header-comedien.webp");
+  --background_acquis: none;
+  --background_action: none;
+  --background_corruption: none;
+  --background_pouvoir: none;
+  --background_ins-pouvoir: none;
+}
 @font-face {
   font-family: "alexbrush";
   src: url("../assets/fonts/alexbrush.ttf") format("truetype");
@@ -100,7 +114,8 @@
 .editor {
   height: 100%;
   width: 100%;
-  background: repeat url("../assets/images/sheets/background.webp");
+  background-color: #f9f6f1;
+  background: var(--background_base);
   box-shadow: inset 0 0 6px black;
   font-family: "garamondpro";
   font-size: 1.2em;
@@ -133,7 +148,8 @@ i.logo_defaut {
   display: inline-block;
 }
 .esprit-sheet .esprit-header {
-  background: repeat url("../assets/images/sheets/esprit-header.webp");
+  background-color: #394e55;
+  background: var(--background_esprit_header);
   display: grid;
   grid-template-columns: 180px 571px 100px 133px;
 }
@@ -835,7 +851,8 @@ i.logo_defaut {
   left: 300px;
 }
 .action-sheet {
-  background: repeat url("../assets/images/sheets/fond-action.webp");
+  background-color: white;
+  background: var(--background_action);
   font-family: "arrusbt";
   font-weight: bold;
   color: black;
@@ -935,7 +952,8 @@ i.logo_action {
   text-align: justify;
 }
 .acquis-sheet {
-  background: repeat url("../assets/images/sheets/fond-acquis.webp");
+  background-color: white;
+  background: var(--background_acquis);
   font-family: "arrusbt";
   font-weight: bold;
 }
@@ -1038,7 +1056,8 @@ i.logo_action {
   font-weight: normal;
 }
 .corruption-sheet {
-  background: repeat url("../assets/images/sheets/fond-corruption.webp");
+  background-color: white;
+  background: var(--background_corruption);
   font-family: "arrusbt";
   font-weight: bold;
 }
@@ -1118,7 +1137,8 @@ i.logo_action {
   margin: 0px 5px;
 }
 .pouvoir-sheet {
-  background: repeat url("../assets/images/sheets/fond-pouvoir.webp");
+  background-color: #1e1c18;
+  background: var(--background_pouvoir);
   font-family: "arrusbt";
   font-weight: bold;
 }
@@ -1151,7 +1171,8 @@ i.logo_action {
   grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
   margin: 15px;
   padding-top: 10px;
-  background: repeat url("../assets/images/sheets/fond-ins-pouvoir.webp");
+  background-color: #f9f6f1;
+  background: var(--background_ins-pouvoir);
   color: #497180;
   border: 2px solid #685a4e;
   min-height: 376px;
@@ -1576,7 +1597,8 @@ i.logo_action {
   text-transform: uppercase;
 }
 .cab-sheet .cabinet-header {
-  background: repeat url("../assets/images/sheets/esprit-header.webp");
+  background-color: #394e55;
+  background: var(--background_esprit_header);
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
 }
@@ -1640,7 +1662,8 @@ i.logo_action {
   font-size: 1, 5em;
 }
 .cab-sheet .cabinet-details {
-  background: repeat url("../assets/images/sheets/fond-cab-details.webp");
+  background-color: #394e55;
+  background: var(--background_cabinet_grey);
 }
 .cab-sheet .cabinet-details .titre3 {
   text-align: center;
@@ -1775,7 +1798,8 @@ i.logo_action {
   flex-direction: column;
   min-height: 250px;
   margin-top: 5px;
-  background: repeat url("../../../modules/cabinet-livredebase/assets/images/aspect_systeme/fond-grace.webp");
+  background: var(--background_cabinet_graces);
+  background-color: white;
   border: 4px solid #886a3c;
 }
 .cab-sheet .cabinet-details .zone-graces .titre3 {
@@ -1826,7 +1850,8 @@ i.logo_action {
   padding: 8px;
 }
 .cab-sheet .cabinet-description {
-  background: repeat url("../assets/images/sheets/fond-cab-details.webp");
+  background-color: #394e55;
+  background: var(--background_cabinet_grey);
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -1867,7 +1892,8 @@ i.logo_action {
   min-height: 200px;
 }
 .cab-sheet .ongletnotes {
-  background: repeat url("../assets/images/sheets/fond-cab-details.webp");
+  background-color: #394e55;
+  background: var(--background_cabinet_grey);
   min-height: 700px;
 }
 .cab-sheet .ongletnotes .notes-zone {
@@ -1883,7 +1909,8 @@ i.logo_action {
   min-height: 500px;
 }
 .pnj-sheet .pnj-header {
-  background: repeat url("../assets/images/sheets/esprit-header.webp");
+  background-color: #394e55;
+  background: var(--background_esprit_header);
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
 }

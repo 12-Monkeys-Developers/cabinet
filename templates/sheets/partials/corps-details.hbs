@@ -3,9 +3,13 @@
   <div class="attributs-bloc">
     <div class="titre2">Attributs</div>
       <div class="grid-attributs">
-        {{#each attributs as |attribut|}}
+        {{#each attributs as |attribut id|}}
           <div class="attribut-name">{{attribut.label}}</div>
+            {{#if ../editable}}
+            <input type="number" name="system.attributs.{{attribut}}.valeur" value="system.attributs.{{attribut}}.valeur" placeholder="0" />
+            {{else}}
           <div class="attribut-value">+ {{attribut.valeur}}</div>
+           {{/if}}
         {{/each}}
       </div>
       
@@ -33,6 +37,18 @@
           </details></div>
         {{/each}}
       </div>
+      <div class="corruptions-col">
+        <div class="titre2" style="margin:0px 0px 10px 0px;">Corruptions
+        </div>
+        {{#each corruptions as |corruption id|}}<div>
+          <details>
+          <summary class="ligne-cor">
+            <div class="nom-cor">{{corruption.name}}</div>
+          </summary>
+            <div class="desc">{{{corruption.system.descriptionhtml}}}</div>
+          </details></div>
+        {{/each}}
+      </div>
   </div>
   <div class="img-bloc">
         <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
@@ -43,7 +59,7 @@
 
 
 <h1>Comedien</h1>
-Le comedien est : {{comedien}}
+Le comedien est : {{comedien.name}}
 <h1>Description</h1>
 <h1>Equipement</h1>
 <h1>Armes</h1>

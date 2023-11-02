@@ -29,20 +29,26 @@ export default class CorpsSheet extends CabinetActorSheet {
 
     context.attributs = this.#formatAttributs(context.actor.system.attributs);
 
-    let comedien = "";
+    context.comedien = {
+      name: "Pas de contrôle",
+      img:null,
+    };
     const cabinetId = game.settings.get("cabinet", "cabinet");
     const cabinet = game.actors.get(cabinetId);
 
     if (cabinet) {
       let comedienId = cabinet.system.comedien;
-      let comedienName = "";
       if (comedienId) {
-        comedienName = game.actors.get(comedienId).name;
-        comedien = comedienName;
+        let comedien=game.actors.get(comedienId);
+        context.comedien.name = comedien.name;
+        context.comedien.img = comedien.img;
+        context.corruptions = comedien.items.filter((item) => item.type == "corruption");
+        context.corruptions.forEach((element) => {
+          element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+        });
       }
     }
 
-    context.comedien = comedien;
     context.malus = context.actor.system.malus;
 
     context.noteshtml = TextEditor.enrichHTML(this.actor.system.notes, { async: false });

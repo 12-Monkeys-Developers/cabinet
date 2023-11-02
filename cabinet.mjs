@@ -100,10 +100,10 @@ Hooks.once("init", async function () {
     else return "";
   });
 
-  Handlebars.registerHelper("getBackgroundImage", function (actor) {
-    if (actor.system.comedien && !actor.system.jardin) return "esprit-header-comedien.webp";
-    if (!actor.system.comedien && actor.system.jardin) return "esprit-header-jardin.webp";
-    return "esprit-header.webp";
+  Handlebars.registerHelper("getBackgroundCss", function (actor) {
+    if (actor.system.comedien) return "var(--background_esprit_header_comedien)";
+    if (actor.system.jardin) return "var(--background_esprit_header_jardin)";
+    return "var(--background_esprit_header)";
   });
 
   Handlebars.registerHelper("testlog", function (data) {
