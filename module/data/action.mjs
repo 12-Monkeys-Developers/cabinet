@@ -51,7 +51,7 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
   }
 
   /**
-   * Retourne la fomrule HTML de l'action
+   * Retourne la formule HTML de l'action
    */
   get formulaHtml() {
     const qualite = SYSTEM.QUALITES[this.qualite].label;
@@ -125,29 +125,16 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
   }
 
   /**
-   * Retourne la fomrule HTML de l'action
+   * Retourne le tooltip de la formule de l'action
    * @param {CabinetEsprit} l'esprit
    * @param {*} attributs les attributs du corps
    */
-  /*getFormulatTooltip(espritSystem, attributs) {
-    let formulaTooltip = espritSystem.qualites[this.qualite].valeur + (this.qualiteAlt ? " / " + this.qualiteAlt + " " : "");
-    formulaTooltip += "D6 + ";
-    formulaTooltip += espritSystem.aspects[this.aspect].valeur;
-
-    formulaTooltip += this.attribut !== "" ? " (+ " + attributs[this.attribut].valeur : "";
-    formulaTooltip += this.attributAlt !== "" ? " OU " + attributs[this.attributAlt].valeur : "";
-    formulaTooltip += this.attribut !== "" ? " )" : "";
-
-    return formulaTooltip;
-  }*/
-
-
   getFormulatTooltip(espritSystem, attributs) {
     let formulaTooltip = `${espritSystem.qualites[this.qualite].valeur}${this.qualiteAlt ? ` / ${this.qualiteAlt} ` : ""}D6 + ${espritSystem.aspects[this.aspect].valeur}`;
   
-    if (this.attribut !== "") {
+    if (this.attribut !== undefined && this.attribut !== null && this.attribut !== "") {
       formulaTooltip += ` (+ ${attributs ? attributs[this.attribut].valeur : 'x'}`;
-      if (this.attributAlt !== "") {
+      if (this.attributAlt !== undefined && this.attributAlt !== null && this.attributAlt !== "") {
         formulaTooltip += ` OU ${attributs ? attributs[this.attributAlt].valeur : 'x'}`;
       }
       formulaTooltip += " )";
