@@ -314,6 +314,18 @@ export default class CabinetActor extends Actor {
     else if (newComedien) {
       newComedien.changeControle(true);
       this.update({ "system.comedien": comedienId });
-    }   
+    }
+  }
+
+  get spheresOccupees() {
+    if (this.type !== "cabinet") return;
+    const result = {};
+
+    for (const sphere in this.system.arbre) {
+      if (this.system.arbre[sphere].idEsprit !== null) {
+        result[sphere] = 1;
+      }
+    }
+    return result;
   }
 }

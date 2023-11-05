@@ -127,11 +127,14 @@ export class ArbreVieForm extends FormApplication {
 
     // Recencement des positions occupées
     // TO DO Vérifier si rien n'est cassé
+    /*
     let positionsOccupees = {};
     membresSet.forEach((element) => {
       let actor = game.actors.get(element);
       if (actor.system?.positionArbre.length) positionsOccupees[actor.system.positionArbre] = 1;
     });
+    */
+    let positionsOccupees = cabinet.spheresOccupees;
 
     return await this.trouverChemin(oldPosition, newPosition, positionsOccupees);
   }
