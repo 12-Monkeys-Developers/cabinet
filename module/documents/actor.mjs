@@ -238,8 +238,8 @@ export default class CabinetActor extends Actor {
     await this.update({ "system.esprits": esprits });
 
     // Mise à jour de l'esprit
-    await actor.update({ "system.jardin": true });
-    await actor.update({ "system.comedien": false });
+    await esprit.update({ "system.jardin": true });
+    await esprit.update({ "system.comedien": false });
 
     // FIXME si on veut utiliser await esprit.deplacerPosition(null); au lieu des 2 lignes au-dessus
     // ca ne marche pas s'il n'y pas de cabinet de référence
