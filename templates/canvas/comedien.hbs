@@ -1,0 +1,13 @@
+{{log "comedien-app" this}}
+<div id="comedien">
+  {{#if comedienDefini}}
+    <div class="comedien-img">
+      <img src="{{comedien.img}}" title="{{comedien.name}}" />
+    </div>
+    <div class="comedien-corruptions">
+      {{#each corruptions as |corruption|}}
+        {{corruption.name}}<br/>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

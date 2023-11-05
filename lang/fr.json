@@ -177,7 +177,14 @@
       "titreJet": "{nom} : jet de {jet}"
     },
     "WARNING": {
-      "ActionReserveeComedie": "Votre esprit doit avoir le contrôle du corps pour réaliser cette action."
+      "actionReserveeComedie": "Votre esprit doit avoir le contrôle du corps pour réaliser cette action."
+    },
+    "SETTINGS": {
+      "appComedien": {
+        "aucun": "Ne pas afficher le médaillon",
+        "haut": "Afficher le médaillon en haut à droite",
+        "bas": "Afficher le médaillon en bas à droite"
+      }
     }
   }
 }

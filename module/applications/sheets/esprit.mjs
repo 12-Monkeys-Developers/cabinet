@@ -78,7 +78,8 @@ export default class EspritSheet extends CabinetActorSheet {
   async _onDropItem(event, data) {
     const item = await fromUuid(data.uuid);
     if(["arme", "armure", "grace"].includes(item.type)) return false;
-    else return super._onDropItem(event, data);
+    else if (item.type === "corruption") Hooks.callAll("cabinet.dropCorruptionOnEsprit", item);
+    return super._onDropItem(event, data);
   }
 
   /**
@@ -217,7 +218,7 @@ export default class EspritSheet extends CabinetActorSheet {
     const actionSystem = action.system;
 
     // Si l'action n'est possible que pour le comédient et que l'esprit n'est pas le comédien, message d'avertissement
-    if (actionSystem.controle && !this.actor.system.comedien) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.ActionReserveeComedie"));
+    if (actionSystem.controle && !this.actor.system.comedien) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.actionReserveeComedie"));
 
     let qualite = actionSystem.qualite;
     const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];

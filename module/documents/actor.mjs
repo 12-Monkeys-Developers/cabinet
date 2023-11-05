@@ -2,16 +2,6 @@ import StandardCheck from "../dice/standard-check.mjs";
 
 export default class CabinetActor extends Actor {
   /** @override */
-  constructor(object, options = {}) {
-    super(object, options);
-    if (this.type === "cabinet") {
-      Hooks.on("cabinet.changementComedien", async (id) => {
-        await this.update({ "system.comedien": id });
-      });
-    }
-  }
-
-  /** @override */
   _onUpdate(data, options, userId) {
     if (this.type === "corps") {
       Hooks.callAll("cabinet.updateCorps", this.id);
@@ -203,7 +193,7 @@ export default class CabinetActor extends Actor {
 
   /**
    * change le controle pour cet esprit
-   * !!! Agit uniquement sur l'objet esprit, ne pas appller directement.
+   * !!! Agit uniquement sur l'objet esprit, ne pas appllquer directement.
    * Pour eviter desynchro cabinet/esprits appellez uniquement cabinet.majComedien
    * @param {*} valeur    true si prise de controle, false si liberation
    * @returns
@@ -222,6 +212,11 @@ export default class CabinetActor extends Actor {
     if (this.type !== "esprit") return;
     if (valeur && !this.system.jardin) this.deplacerPosition(null, forcer);
     if (!valeur && this.system.jardin) return this.deplacerPosition("auto", forcer);
+  }
+
+  get corruptions() {
+    if (this.type !== "esprit") return undefined;
+    return this.items.filter((i) => i.type === "corruption");
   }
 
   /** --------*/
@@ -319,6 +314,6 @@ export default class CabinetActor extends Actor {
     else if (newComedien) {
       newComedien.changeControle(true);
       this.update({ "system.comedien": comedienId });
-    }
+    }   
   }
 }

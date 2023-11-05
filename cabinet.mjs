@@ -1,6 +1,7 @@
 import { SYSTEM } from "./module/config/system.mjs";
 import setupTextEnrichers from "./module/config/text-enrichers.mjs";
 import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
+import ComedienApp from "./module/canvas/comedien.mjs";
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -22,7 +23,7 @@ Hooks.once("init", async function () {
   // Configuration document Actor
   CONFIG.Actor.documentClass = documents.CabinetActor;
 
-  CONFIG.Actor.dataModels = {    
+  CONFIG.Actor.dataModels = {
     cabinet: models.CabinetCabinet,
     corps: models.CabinetCorps,
     esprit: models.CabinetEsprit,
@@ -117,6 +118,20 @@ Hooks.once("init", async function () {
     config: true,
     type: String,
   });
+
+  game.settings.register("cabinet", "appComedien", {
+    name: "Comédien",
+    hint: "Utilisation du médaillon Comédien",
+    scope: "world",
+    config: true,
+    type: String,
+    choices: {
+      aucun: "CDM.SETTINGS.appComedien.aucun",
+      haut: "CDM.SETTINGS.appComedien.haut",
+      bas: "CDM.SETTINGS.appComedien.bas",
+    },
+    requiresReload: true,
+  });
 });
 
 Hooks.once("i18nInit", function () {
@@ -125,8 +140,16 @@ Hooks.once("i18nInit", function () {
 });
 
 Hooks.once("ready", async function () {
+  if (game.settings.get("cabinet", "appComedien") !== "aucun") {
+      const comedienApp = new ComedienApp();
+      comedienApp.render(true);
+      console.log("renderApplication - comedienApp", comedienApp);
+  }
+
   console.log("CABINET DES MURMURES | Initialisation du système fini.");
 });
+
+
 
 function preLocalizeConfig() {
   const localizeConfigObject = (obj, keys) => {
@@ -146,4 +169,3 @@ function preLocalizeConfig() {
   localizeConfigObject(SYSTEM.ARME_SOUSTYPES, ["label"]);
   localizeConfigObject(SYSTEM.ARME_CATEGORIES, ["label"]);
 }
-
