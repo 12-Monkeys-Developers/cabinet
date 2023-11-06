@@ -22,7 +22,7 @@ export class ArbreVieForm extends FormApplication {
   /**
    * Lien vers le Cabinet qui est configuré par ce formulaire
    * @type {CabinetCabinet}
-   */  
+   */
   get cabinet() {
     return this.object;
   }
@@ -100,7 +100,7 @@ export class ArbreVieForm extends FormApplication {
       let oldPosition = actor.system.positionArbre;
       let newPosition = li.dataset.field;
 
-      if (await this.validerDeplacement(oldPosition, newPosition)) {
+      if (await this.validerDeplacement(actor.id, oldPosition, newPosition)) {
         await actor.deplacerPosition(newPosition, false);
       }
     }
@@ -108,70 +108,63 @@ export class ArbreVieForm extends FormApplication {
   }
 
   /**
-   * Valide le déplacement entre les deux positions
-   * @param {*} oldPosition
-   * @param {*} newPosition
-   * @returns {boolean} true si le déplacement est possible
+   * Valide le déplacement entre 2 noeuds de l'arbre
+   * via une approche de parcours en largeur (BFS) du graphe 
+   * @param {uuid}  idEsprit
+   * @param {*} depart      Sphère de départ
+   * @param {*} arrivee     Sphère d'arrivée
+   * @returns {boolean}     true si c'est possible, false sinon
    */
-  async validerDeplacement(oldPosition, newPosition) {
-    let contenuArbre = await this.remplirArbre();
-    // si la position est occupée on sort
-    if (contenuArbre[newPosition].id) return false;
-    //si l'esprit etait dans son jardin on valide
-    if (!oldPosition) return true;
+  validerDeplacement(idEsprit, depart, arrivee) {
+    const spheresOccupees = this.cabinet.spheresOccupees;
+    const spheresReservees = this.cabinet.getSpheresReservees(idEsprit)
 
+    //const spheresInatteignables = new Set([...spheresOccupees, ...spheresReservees]);
+    const spheresInatteignables = new Set([...spheresOccupees]);
 
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
-    let membresSet = cabinet.system.esprits;
+    // Vérifier si la sphère d'arrivée est occupée
+    if (spheresInatteignables.has(arrivee)) {
+      console.log(`La sphère d'arrivée '${arrivee}' est occupée.`);
+      return false;
+    }
 
-    // Recencement des positions occupées
-    // TO DO Vérifier si rien n'est cassé
-    /*
-    let positionsOccupees = {};
-    membresSet.forEach((element) => {
-      let actor = game.actors.get(element);
-      if (actor.system?.positionArbre.length) positionsOccupees[actor.system.positionArbre] = 1;
-    });
-    */
-    let positionsOccupees = cabinet.spheresOccupees;
+    // Vérifier si la sphère d'arrivée n'est pas bloqué par la Qlipha d'un autre esprit
+    if (spheresReservees.has(arrivee)) {
+      console.log(`La sphère d'arrivée '${arrivee}' est bloquée par la Qlipha d'un autre esprit.`);
+      return false;
+    }
 
-    return await this.trouverChemin(oldPosition, newPosition, positionsOccupees);
-  }
+    // Vérifier si le déplacement est possible en parcourant le graphe
+    const queue = [depart];
+    const visited = new Set();
 
-  /**
-   * Le déplacement entre le noeud de départ et d'arrivée est-il autorisé ?
-   * @param {*} startNode
-   * @param {*} endNode
-   * @param {*} cheminsFermes
-   * @returns {boolean} true si le déplacement est possible
-   */
-  async trouverChemin(startNode, endNode, cheminsFermes) {
-    //on parcourt tous les nodes adjacents
-    //console.log("startNode", startNode);
-    for (let node of ArbreVieForm.GRAPH[startNode]) {
-      //console.log("current node : ", node);
-      //si le node est la destination, c'est gagné
-      if (node === endNode) {
-        //console.log("chemin validé, node n-1 : ", startNode);
-        return true;
+    while (queue.length > 0) {
+      const currentSphere = queue.shift();
+
+      if (currentSphere === arrivee) {
+        return true; // Déplacement possible
       }
-      // si le node adjacent est squatté ou déjà visité, on n'y va pas
-      else if (!cheminsFermes[node]) {
-        let newCheminsFermes = foundry.utils.deepClone(cheminsFermes);
 
-        //ajoute le node actuel aux nodes visités ou fermés
-        newCheminsFermes[startNode] = 1;
-        //console.log("nouvelle boucle basée sur : ", node);
+      if (!visited.has(currentSphere)) {
+        visited.add(currentSphere);
+        const adjacentSpheres = ArbreVieForm.GRAPH[currentSphere];
 
-        if (this.trouverChemin(node, endNode, newCheminsFermes)) {
-          return true;
+        for (const adjacent of adjacentSpheres) {
+          if (!spheresInatteignables.has(adjacent)) {
+            queue.push(adjacent);
+          }
         }
       }
     }
-    return false;
+
+    console.log(`Il n'y a pas de chemin de '${depart}' à '${arrivee}'.`);
+    return false; // Aucun chemin possible
   }
 
+  /**
+   * Crée l'arbre à afficher
+   * @returns 
+   */
   async remplirArbre() {
     // Création de l'arbre vierge
     let contenuArbre = this.creerArbre();
@@ -179,7 +172,7 @@ export class ArbreVieForm extends FormApplication {
     // Mise à jour de l'arbre avec les esprits
     this.cabinet.system.esprits.forEach(async (element) => {
       let actor = game.actors.get(element);
-      
+
       // L'esprit est sur une sphère
       if (actor.system.positionArbre) {
         contenuArbre[actor.system.positionArbre].id = actor.id;
@@ -187,11 +180,13 @@ export class ArbreVieForm extends FormApplication {
         contenuArbre[actor.system.positionArbre].token = actor.prototypeToken.texture.src;
       }
 
-      // Mise à jour des qliph
+      // Mise à jour des qliphoth
       for (const [qualite, value] of Object.entries(actor.system.qualites)) {
         if (value.qlipha) {
-          contenuArbre[SYSTEM.QUALITES[qualite].sphere].qliphaNom = actor.name;
-          contenuArbre[SYSTEM.QUALITES[qualite].sphere].qliphaToken = actor.prototypeToken.texture.src;
+          const sphere = SYSTEM.QUALITES[qualite].sphere;
+          contenuArbre[sphere].qliphaNom = actor.name;
+          contenuArbre[sphere].qliphaToken = actor.prototypeToken.texture.src;          
+          await this.cabinet.update({[`system.arbre.${sphere}.idQlipha`]: actor.id});
         }
       }
     });
@@ -231,3 +226,4 @@ export class ArbreVieForm extends FormApplication {
     };
   }
 }
+

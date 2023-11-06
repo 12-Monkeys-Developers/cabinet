@@ -317,13 +317,32 @@ export default class CabinetActor extends Actor {
     }
   }
 
+  /**
+   * Retourne les sphères occupées par un esprit
+   * @returns un Set des sphères occupées
+   */
   get spheresOccupees() {
     if (this.type !== "cabinet") return;
-    const result = {};
+    const result = new Set();
 
     for (const sphere in this.system.arbre) {
       if (this.system.arbre[sphere].idEsprit !== null) {
-        result[sphere] = 1;
+        result.add(sphere);;
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Retourne les sphères non accessibles pour un esprit, à cause des Qliphoth
+   * @returns un Set des sphères non accessibles
+   */
+  getSpheresReservees(idEsprit) {
+    if (this.type !== "cabinet") return;
+    const result = new Set();
+    for (const sphere in this.system.arbre) {
+      if (this.system.arbre[sphere].idQlipha !== undefined && this.system.arbre[sphere].idQlipha !== null && this.system.arbre[sphere].idQlipha !== idEsprit) { 
+        result.add(sphere);;
       }
     }
     return result;
