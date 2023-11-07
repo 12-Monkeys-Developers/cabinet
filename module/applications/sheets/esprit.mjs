@@ -77,9 +77,9 @@ export default class EspritSheet extends CabinetActorSheet {
   /** @override */
   async _onDropItem(event, data) {
     const item = await fromUuid(data.uuid);
-    if(["arme", "armure", "grace"].includes(item.type)) return false;
-    else if (item.type === "corruption") Hooks.callAll("cabinet.dropCorruptionOnEsprit", item);
-    return super._onDropItem(event, data);
+    if(["arme", "armure", "grace"].includes(item.type)) return false;    
+    await super._onDropItem(event, data);
+    if (item.type === "corruption") Hooks.callAll("cabinet.dropCorruptionOnEsprit", data.uuid);
   }
 
   /**

@@ -91,7 +91,7 @@ export default class CabinetActorSheet extends ActorSheet {
    * @name _onItemDelete
    * @param {*} event
    */
-  _onItemDelete(event) {
+  async _onItemDelete(event) {
     event.preventDefault();
     let element = event.currentTarget;
     let itemId = element.dataset.field;
@@ -99,6 +99,9 @@ export default class CabinetActorSheet extends ActorSheet {
     if (item === null) {
       return;
     }
-    this.actor.deleteEmbeddedDocuments("Item", [item.id], { render: true });
+    await this.actor.deleteEmbeddedDocuments("Item", [item.id], { render: true });
+    if (this.actor.type === "esprit" && item.type === "corruption") {
+      Hooks.callAll("cabinet.deleteCorruptionOnEsprit", item.uuid);
+    }
   }
 }

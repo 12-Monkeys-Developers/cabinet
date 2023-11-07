@@ -1,16 +1,21 @@
 export default class ComedienApp extends Application {
   constructor(options = {}) {
     super(options);
+    // Pour suivre le mouvement de la sidebar
     Hooks.on("collapseSidebar", async (sidebar, collapsed) => this.setPosition());
-    Hooks.on("updateActor", async (document, change, options, userId) => this.render());
-    //Hooks.on("dropActorSheetData", async (actor, sheet, data) => this.render());
-    Hooks.on("cabinet.dropCorruptionOnEsprit", async (item) => this.render(true));    
+    // Pour détecter un changement de comédien
+    Hooks.on("cabinet.majComedien", async (comedienId) => this.render());
+    // Pour détecter quand une corruption est retirée d'un esprit    
+    Hooks.on("cabinet.deleteCorruptionOnEsprit", async (uuid) => this.render());
+    // Pour détecter quand une corruption est ajoutée à un esprit
+    Hooks.on("cabinet.dropCorruptionOnEsprit", async (uuid) => this.render());
   }
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "comedien",
+      baseApplication: "ComedienApp",
       template: `systems/${SYSTEM.id}/templates/canvas/comedien.hbs`,
       popOut: true,
       minimizable: false,
@@ -21,14 +26,15 @@ export default class ComedienApp extends Application {
 
   _getCoord() {
     const sidebar = document.getElementById("sidebar");
-    const sidebarRect = sidebar.getBoundingClientRect();
-
+    const sidebarBounding= sidebar.getBoundingClientRect();
+    
     let top = 0;
     if (game.settings.get("cabinet", "appComedien") === "bas") {
-      top = 1000;
+      const hauteur = document.body.scrollHeight;
+      top = hauteur - 200;
     }
 
-    let left = sidebarRect.left - 172;
+    let left = sidebarBounding.left - 150;
     return { top, left };
   }
 
@@ -50,9 +56,8 @@ export default class ComedienApp extends Application {
       context.comedienDefini = true;
       context.comedien = comedien;
       //context.corruptions = comedien.corruptions;
-      context.corruptions = comedien.items.filter(i => i.type === "corruption")
-    }
-    else context.comedienDefini = false;
+      context.corruptions = comedien.items.filter((i) => i.type === "corruption");
+    } else context.comedienDefini = false;
 
     return context;
   }
@@ -61,9 +66,6 @@ export default class ComedienApp extends Application {
   _getHeaderButtons() {
     // Suppression du bouton Close
     const buttons = [];
-    for (let cls of this.constructor._getInheritanceChain()) {
-      Hooks.call(`get${cls.name}HeaderButtons`, this, buttons);
-    }
     return buttons;
   }
 

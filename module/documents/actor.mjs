@@ -203,17 +203,6 @@ export default class CabinetActor extends Actor {
     await this.update({ "system.comedien": valeur });
   }
 
-  /**  A SUPPRIMER -> deplacerPosition
-   * Modifie la valeur du jardin
-   * @param {*} valeur    true si l'esprit va dans le jardin, false si l'esprit le quitte
-   * @param {*} forcer    true si c'est le MJ qui force le déplacement
-   */
-  async modifierJardin(valeur, forcer) {
-    if (this.type !== "esprit") return;
-    if (valeur && !this.system.jardin) this.deplacerPosition(null, forcer);
-    if (!valeur && this.system.jardin) return this.deplacerPosition("auto", forcer);
-  }
-
   get corruptions() {
     if (this.type !== "esprit") return undefined;
     return this.items.filter((i) => i.type === "corruption");
@@ -308,13 +297,14 @@ export default class CabinetActor extends Actor {
       if (!newComedien) return;
       if (newComedien.system.jardin) await newComedien.deplacerPosition("auto", true);
     }
-    let oldComedien = await game.actors.get(this.system.comedien);
+    let oldComedien = game.actors.get(this.system.comedien);
     if (oldComedien) oldComedien.changeControle(false);
-    if (!comedienId) this.update({ "system.comedien": null });
+    if (!comedienId) await this.update({ "system.comedien": null });
     else if (newComedien) {
       newComedien.changeControle(true);
-      this.update({ "system.comedien": comedienId });
+      await this.update({ "system.comedien": comedienId });
     }
+    Hooks.callAll("cabinet.majComedien", comedienId);
   }
 
   /**
