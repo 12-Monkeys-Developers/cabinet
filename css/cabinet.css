@@ -560,22 +560,22 @@ i.logo_defaut {
   text-indent: 5px;
   text-transform: uppercase;
 }
-.esprit-sheet .tab-perisprit {
-  background: repeat url("../assets/images/sheets/esprit-tab-perisprit.webp");
+.esprit-sheet .tab-pouvoirs {
+  background: repeat url("../assets/images/sheets/esprit-tab-pouvoirs.webp");
   min-height: 600px;
 }
-.esprit-sheet .tab-perisprit .titre2 {
+.esprit-sheet .tab-pouvoirs .titre2 {
   color: white;
   max-height: 30px;
 }
-.esprit-sheet .tab-perisprit .grid-pouvoirs {
+.esprit-sheet .tab-pouvoirs .grid-pouvoirs {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.esprit-sheet .tab-perisprit .grid-pouvoirs .bloc-pouvoir {
+.esprit-sheet .tab-pouvoirs .grid-pouvoirs .bloc-pouvoir {
   padding: 0px 5px;
 }
-.esprit-sheet .tab-perisprit .grid-pouvoirs .nom {
+.esprit-sheet .tab-pouvoirs .grid-pouvoirs .nom {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1.5em;
@@ -586,7 +586,7 @@ i.logo_defaut {
   margin-top: 10px;
   color: #ae9065;
 }
-.esprit-sheet .tab-perisprit .grid-pouvoirs .info-line {
+.esprit-sheet .tab-pouvoirs .grid-pouvoirs .info-line {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1.1em;
@@ -595,7 +595,7 @@ i.logo_defaut {
   color: #ae9065;
   text-align: center;
 }
-.esprit-sheet .tab-perisprit .grid-pouvoirs .neoclassic {
+.esprit-sheet .tab-pouvoirs .grid-pouvoirs .neoclassic {
   font-family: "neoclassic";
   font-size: 1.3em;
   text-align: center;
@@ -603,7 +603,7 @@ i.logo_defaut {
   text-indent: 0px;
   margin: 0px;
 }
-.esprit-sheet .tab-perisprit .grid-pouvoirs .description {
+.esprit-sheet .tab-pouvoirs .grid-pouvoirs .description {
   font-size: 0.9em;
   color: white;
   text-align: justify;
@@ -613,7 +613,7 @@ i.logo_defaut {
   margin: 0 auto;
   background: rgba(10, 9, 0, 0.5);
 }
-.esprit-sheet .tab-perisprit .grid-pouvoirs .inner-desc {
+.esprit-sheet .tab-pouvoirs .grid-pouvoirs .inner-desc {
   position: relative;
   border: 2px solid #886a3c;
   width: 100%;
@@ -1995,6 +1995,7 @@ i.logo_action {
 }
 .resolution .qualite .qualite_first {
   font-size: 1.5em;
+  letter-spacing: -1px;
 }
 .resolution .difficulte {
   font-family: "garamondpro";
