@@ -85,7 +85,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
   /** @override */
   prepareBaseData() {
     for (const qualite of Object.values(this.qualites)) {
-      qualite.qlipha = qualite.defaut.valeur > qualite.valeur ? true : false;     
+      qualite.qlipha = qualite.defaut.valeur >= qualite.valeur ? true : false;     
     }
   }
 

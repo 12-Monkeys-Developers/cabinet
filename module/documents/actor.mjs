@@ -142,7 +142,7 @@ export default class CabinetActor extends Actor {
     let destPosition = "";
     let updates;
 
-    //cas déplacement vers jardin
+    // Déplacement vers le jardin
     if (!newPosition) {
       if (!this.system.comedien || forcer) {
         this.update({ "system.positionArbre": "", "system.jardin": true, "system.comedien": false });
@@ -150,7 +150,11 @@ export default class CabinetActor extends Actor {
       } else if (this.system.estComedien) {
         return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
       }
-      if (this.system.comedien && forcer) cabinet.majComedien(null);
+      // Le MJ peut forcer depuis le cabinet
+      if (this.system.comedien && forcer)  {
+        cabinet.majComedien(null);
+        Hooks.callAll("cabinet.majComedien", null);
+      }
     } else if (newPosition === "auto") {
       //cas déplacement vers meilleure sphere dispo
       destPosition = await this.plusHauteQualiteLibre();
@@ -304,7 +308,7 @@ export default class CabinetActor extends Actor {
       newComedien.changeControle(true);
       await this.update({ "system.comedien": comedienId });
     }
-    Hooks.callAll("cabinet.majComedien", comedienId);
+    Hooks.callAll("cabinet.majComedien", newComedien);
   }
 
   /**

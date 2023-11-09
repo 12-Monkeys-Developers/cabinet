@@ -18,6 +18,8 @@ Hooks.once("init", async function () {
     game.system.CABINET_MENU;
   }
 
+  //CONFIG.debug.hooks = true;
+
   CONFIG.ui.players = applications.PlayersList;
 
   // Configuration document Actor
@@ -141,7 +143,22 @@ Hooks.once("i18nInit", function () {
 
 Hooks.once("ready", async function () {
   if (game.settings.get("cabinet", "appComedien") !== "aucun") {
-      const comedienApp = new ComedienApp();
+    const cabinetId = game.settings.get("cabinet", "cabinet");
+    let cabinet = null;
+    let comedien = null;
+    
+    if (cabinetId) {
+      cabinet = await game.actors.get(cabinetId);
+    }
+    
+    if (cabinet) {
+      const comedienId = cabinet.system.comedien;
+      
+      if (comedienId) {
+        comedien = await game.actors.get(comedienId);
+      }
+    }
+      const comedienApp = new ComedienApp(comedien);
       comedienApp.render(true);
       console.log("renderApplication - comedienApp", comedienApp);
   }

@@ -1,14 +1,20 @@
+import CabinetActor from "../documents/actor.mjs";
 export default class ComedienApp extends Application {
-  constructor(options = {}) {
+  constructor(comedien, options = {}) {
     super(options);
     // Pour suivre le mouvement de la sidebar
     Hooks.on("collapseSidebar", async (sidebar, collapsed) => this.setPosition());
     // Pour détecter un changement de comédien
-    Hooks.on("cabinet.majComedien", async (comedienId) => this.render());
-    // Pour détecter quand une corruption est retirée d'un esprit    
+    Hooks.on("cabinet.majComedien", async (comedien) => {
+      this.comedien = comedien;
+      this.render(true);
+    });
+    // Pour détecter quand une corruption est retirée d'un esprit
     Hooks.on("cabinet.deleteCorruptionOnEsprit", async (uuid) => this.render());
     // Pour détecter quand une corruption est ajoutée à un esprit
     Hooks.on("cabinet.dropCorruptionOnEsprit", async (uuid) => this.render());
+
+    this.comedien = comedien;
   }
 
   /** @inheritdoc */
@@ -24,17 +30,22 @@ export default class ComedienApp extends Application {
     });
   }
 
+  /**
+   * Positionnement de la fenêtre en fonction du paramètrage et de l'état de la sidebar
+   * @returns {int, int} top et left en pixels
+   */
   _getCoord() {
-    const sidebar = document.getElementById("sidebar");
-    const sidebarBounding= sidebar.getBoundingClientRect();
-    
+    // Top
     let top = 0;
     if (game.settings.get("cabinet", "appComedien") === "bas") {
       const hauteur = document.body.scrollHeight;
-      top = hauteur - 200;
+      top = hauteur - (250 + 20 * this.infos.nbCorruptions);
     }
 
-    let left = sidebarBounding.left - 150;
+    // Left
+    const sidebar = document.getElementById("sidebar");
+    const sidebarBounding = sidebar.getBoundingClientRect();
+    let left = sidebarBounding.left - 160;
     return { top, left };
   }
 
@@ -42,22 +53,9 @@ export default class ComedienApp extends Application {
   async getData(options = {}) {
     let context = {};
 
-    let comedienId;
-    let comedien;
-
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    let cabinet;
-    if (cabinetId) cabinet = game.actors.get(cabinetId);
-    if (cabinet) {
-      comedienId = cabinet.system.comedien;
-    }
-    if (comedienId) comedien = await game.actors.get(comedienId);
-    if (comedien) {
-      context.comedienDefini = true;
-      context.comedien = comedien;
-      //context.corruptions = comedien.corruptions;
-      context.corruptions = comedien.items.filter((i) => i.type === "corruption");
-    } else context.comedienDefini = false;
+    context.comedienDefini = this.comedien === null ? false : true;
+    context.corruptions = context.comedienDefini ? this.infos.corruptions : [];
+    context.comedien = context.comedienDefini ? this.comedien : null;
 
     return context;
   }
@@ -76,5 +74,16 @@ export default class ComedienApp extends Application {
       top: this._getCoord().top,
     };
     this.element.css(position);
+  }
+
+  /**
+   * Nombre de corruptions et tableau des corruptions du comédien
+   * @returns {Object} {nbCorruptions, corruptions}
+   */
+  get infos() {
+    if (this.comedien) {
+      let corruptions = this.comedien.items.filter((i) => i.type === "corruption");
+      return { nbCorruptions: corruptions.length, corruptions };
+    } else return null;
   }
 }

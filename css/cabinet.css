@@ -1970,14 +1970,21 @@ i.logo_action {
   font-size: 1, 5em;
 }
 #comedien {
-  display: grid;
-  grid-template-columns: 1fr;
-  max-width: 150px;
-  max-height: 200px;
+  width: 160px;
 }
-#comedien .comedien-img .img {
-  width: 100%;
-  height: 100%;
+#comedien .window-content {
+  padding: 0;
+}
+#comedien .window-content img {
+  height: 200px;
+  width: 160px;
+  border: none;
+}
+#comedien .window-content .comedien-corruption {
+  font-family: "arrusbt";
+  margin-left: 5px;
+  font-weight: bold;
+  line-height: 20px;
 }
 .resolution {
   font-family: "imfellfrenchcanon";
