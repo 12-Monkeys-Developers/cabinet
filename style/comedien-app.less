@@ -1,20 +1,24 @@
 #comedien {
-  width: 160px;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 150px;
+  max-height: 200px;
 
   .window-content {
     padding: 0;
-
-    img {      
-      height: 200px;
-      width: 160px;
-      border: none;
+    border: solid 3px #605347;
+    .comedien-img
+    {
+      img {
+      border-bottom: solid 3px #605347;
     }
-
-    .comedien-corruption{
-      font-family: "arrusbt";
+  }
+    .comedien-corruption {
+      font-family: "imfell";
       margin-left: 5px;
       font-weight: bold;
       line-height: 20px;
+      text-align: center;
     }
   }
 }

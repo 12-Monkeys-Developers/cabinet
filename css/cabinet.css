@@ -1970,21 +1970,24 @@ i.logo_action {
   font-size: 1, 5em;
 }
 #comedien {
-  width: 160px;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 150px;
+  max-height: 200px;
 }
 #comedien .window-content {
   padding: 0;
+  border: solid 3px #605347;
 }
-#comedien .window-content img {
-  height: 200px;
-  width: 160px;
-  border: none;
+#comedien .window-content .comedien-img img {
+  border-bottom: solid 3px #605347;
 }
 #comedien .window-content .comedien-corruption {
-  font-family: "arrusbt";
+  font-family: "imfell";
   margin-left: 5px;
   font-weight: bold;
   line-height: 20px;
+  text-align: center;
 }
 .resolution {
   font-family: "imfellfrenchcanon";
