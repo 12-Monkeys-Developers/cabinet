@@ -1407,6 +1407,36 @@ i.logo_action {
 }
 .corps-sheet {
   background: repeat url("../../../modules/cabinet-livredebase/assets/images/aspect_systeme/fond-corps.webp");
+  min-height: 700px;
+}
+.corps-sheet .titre2 {
+  font-family: "posterbodoni";
+  font-size: 1.5em;
+  color: #497180;
+  text-align: center;
+  text-transform: uppercase;
+}
+.corps-sheet .script {
+  text-align: justify;
+  margin-left: 10px;
+  font-family: "alexbrush";
+  font-size: 1.3em;
+  color: black;
+  margin-left: 5px;
+  margin-top: 10px;
+  min-height: 80px;
+}
+.corps-sheet .cdmdsc {
+  min-height: 50px;
+}
+.corps-sheet .editor {
+  min-height: 100px;
+}
+.corps-sheet .editor-content {
+  min-height: 100px;
+  font-weight: normal;
+  margin: 0px 5px;
+  font-size: 1em;
 }
 .corps-sheet .corps-header {
   display: grid;
@@ -1473,13 +1503,6 @@ i.logo_action {
   display: grid;
   grid-template-columns: 400px 1fr;
 }
-.corps-sheet .sheet-cont .corps-main .titre2 {
-  font-family: "posterbodoni";
-  font-size: 1.5em;
-  color: #497180;
-  text-align: center;
-  text-transform: uppercase;
-}
 .corps-sheet .sheet-cont .corps-main .attributs-bloc {
   display: flex;
   flex-direction: column;
@@ -1517,28 +1540,76 @@ i.logo_action {
 .corps-sheet .sheet-cont .corps-main .img-bloc img {
   border-radius: 50%;
 }
-.corps-sheet .sheet-cont .ongletnotes {
-  background: repeat url("../assets/images/sheets/corps-back.webp");
-  min-height: 600px;
+.corps-sheet .sheet-cont .corps-main .grid-armes {
+  display: grid;
+  grid-template-columns: 135px 135px 135px;
+  margin: 15px 0px 15px 5px;
 }
-.corps-sheet .sheet-cont .ongletnotes .notes-zone {
+.corps-sheet .sheet-cont .corps-main .grid-armes .ligne-arme {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  padding-left: 0.5em;
+  align-self: center;
+  text-align: center;
+}
+.corps-sheet .sheet-cont .corps-main .grid-cor {
+  display: grid;
+  grid-template-columns: 210px 210px;
+  margin: 15px 0px 15px 5px;
+}
+.corps-sheet .sheet-cont .corps-main .grid-cor .ligne-cor {
+  display: grid;
+  text-align: center;
+  border-bottom: 1px solid #724755;
+}
+.corps-sheet .sheet-cont .corps-main .grid-cor .nom-cor {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: #724755;
+  padding-left: 0.5em;
+  align-self: center;
+}
+.corps-sheet .sheet-cont .corps-main .grid-cor .desc {
+  font-family: "garamondpro";
+  font-size: 0.9em;
+  text-indent: 0px;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.corps-sheet .sheet-cont .sstitre {
+  font: 0.9em "imfellfrenchcanon";
+  text-transform: uppercase;
+  color: #7b3135;
+  text-align: center;
+}
+.corps-sheet .ongletnotes {
+  min-height: 600px;
+  min-width: 710px;
+}
+.corps-sheet .ongletnotes .notes-zone {
   padding: 10px;
 }
-.corps-sheet .sheet-cont .ongletnotes .notes-zone .outer-border {
-  border: 6px solid black;
+.corps-sheet .ongletnotes .notes-zone .outer-border {
+  border: 6px solid #685649;
   height: 99%;
   width: 98%;
   padding: 6px;
   margin: 0 auto;
 }
-.corps-sheet .sheet-cont .ongletnotes .notes-zone .inner-border {
-  border: 2px solid black;
+.corps-sheet .ongletnotes .notes-zone .inner-border {
+  border: 2px solid #685649;
   height: 100%;
   width: 100%;
   padding: 6px;
   margin: auto;
 }
-.corps-sheet .sheet-cont .ongletnotes .notes-zone .script {
+.corps-sheet .ongletnotes .notes-zone .script {
   text-align: justify;
   margin-left: 10px;
   font-family: "alexbrush";
@@ -1548,13 +1619,13 @@ i.logo_action {
   margin-top: 10px;
   min-height: 80px;
 }
-.corps-sheet .sheet-cont .ongletnotes .notes-zone .cdmnotes {
+.corps-sheet .ongletnotes .notes-zone .cdmnotes {
   min-height: 500px;
 }
-.corps-sheet .sheet-cont .ongletnotes .notes-zone .editor {
+.corps-sheet .ongletnotes .notes-zone .editor {
   min-height: 500px;
 }
-.corps-sheet .sheet-cont .ongletnotes .notes-zone .editor-content {
+.corps-sheet .ongletnotes .notes-zone .editor-content {
   min-height: 500px;
   font-weight: normal;
   margin: 0px 5px;

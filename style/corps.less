@@ -1,5 +1,35 @@
 .corps-sheet {
   background: repeat url("../../../modules/cabinet-livredebase/assets/images/aspect_systeme/fond-corps.webp");
+  min-height: 700px;
+  .titre2 {
+    font-family: "posterbodoni";
+    font-size: 1.5em;
+    color: #497180;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .script {
+    text-align: justify;
+    margin-left: 10px;
+    font-family: "alexbrush";
+    font-size: 1.3em;
+    color: black;
+    margin-left: 5px;
+    margin-top: 10px;
+    min-height: 80px;
+  }
+  .cdmdsc {
+    min-height: 50px;
+  }
+  .editor {
+    min-height: 100px;
+  }
+  .editor-content {
+    min-height: 100px;
+    font-weight: normal;
+    margin: 0px 5px;
+    font-size: 1em;
+  }
   .corps-header {
     display: grid;
     grid-template-columns: 1fr 4fr;
@@ -65,13 +95,6 @@
     .corps-main {
       display: grid;
       grid-template-columns: 400px 1fr;
-      .titre2 {
-        font-family: "posterbodoni";
-        font-size: 1.5em;
-        color: #497180;
-        text-align: center;
-        text-transform: uppercase;
-      }
       .attributs-bloc {
         display: flex;
         flex-direction: column;
@@ -109,49 +132,97 @@
           border-radius: 50%;
         }
       }
-    }
-
-    .ongletnotes {
-      background: repeat url("../assets/images/sheets/corps-back.webp");
-      min-height: 600px;
-      .notes-zone {
-        padding: 10px;
-        .outer-border {
-          border: 6px solid black;
-          height: 99%;
-          width: 98%;
-          padding: 6px;
-          margin: 0 auto;
-        }
-        .inner-border {
-          border: 2px solid black;
-          height: 100%;
-          width: 100%;
-          padding: 6px;
-          margin: auto;
-        }
-        .script {
-          text-align: justify;
-          margin-left: 10px;
-          font-family: "alexbrush";
-          font-size: 1.5em;
+      .grid-armes {
+        display: grid;
+        grid-template-columns: 135px 135px 135px;
+        margin: 15px 0px 15px 5px;
+        .ligne-arme {
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1em;
           color: black;
-          margin-left: 5px;
-          margin-top: 10px;
-          min-height: 80px;
+          padding-left: 0.5em;
+          align-self: center;
+          text-align: center;
         }
-        .cdmnotes {
-          min-height: 500px;
+      }
+      .grid-cor {
+        display: grid;
+        grid-template-columns: 210px 210px;
+        margin: 15px 0px 15px 5px;
+        .ligne-cor {
+          display: grid;
+          text-align: center;
+          border-bottom: 1px solid #724755;
         }
-        .editor {
-          min-height: 500px;
+        .nom-cor {
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1em;
+          color: #724755;
+          padding-left: 0.5em;
+          align-self: center;
         }
-        .editor-content {
-          min-height: 500px;
-          font-weight: normal;
-          margin: 0px 5px;
-          font-size: 0.8em;
+        .desc {
+          font-family: "garamondpro";
+          font-size: 0.9em;
+          text-indent: 0px;
+          text-align: justify;
+          padding-left: 5px;
+          padding-right: 5px;
+          margin-top: 0px;
+          margin-bottom: 0px;
         }
+      }
+    }
+    .sstitre {
+      font: 0.9em "imfellfrenchcanon";
+      text-transform: uppercase;
+      color: #7b3135;
+      text-align: center;
+    }
+  }
+
+  .ongletnotes {
+    min-height: 600px;
+    min-width: 710px;
+    .notes-zone {
+      padding: 10px;
+      .outer-border {
+        border: 6px solid #685649;
+        height: 99%;
+        width: 98%;
+        padding: 6px;
+        margin: 0 auto;
+      }
+      .inner-border {
+        border: 2px solid #685649;
+        height: 100%;
+        width: 100%;
+        padding: 6px;
+        margin: auto;
+      }
+      .script {
+        text-align: justify;
+        margin-left: 10px;
+        font-family: "alexbrush";
+        font-size: 1.5em;
+        color: black;
+        margin-left: 5px;
+        margin-top: 10px;
+        min-height: 80px;
+      }
+      .cdmnotes {
+        min-height: 500px;
+      }
+      .editor {
+        min-height: 500px;
+      }
+      .editor-content {
+        min-height: 500px;
+        font-weight: normal;
+        margin: 0px 5px;
+        font-size: 0.8em;
       }
     }
   }

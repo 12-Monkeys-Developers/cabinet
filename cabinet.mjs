@@ -95,7 +95,7 @@ Hooks.once("init", async function () {
   });
 
   Handlebars.registerHelper("getAttributProperty", function (actor, attribut, prop) {
-    return foundry.utils.getProperty(actor.system.attributs, `${attribut}.${prop}`);
+    return actor.system.attributs[attribut.id][prop];
   });
 
   Handlebars.registerHelper("positionArbre", function (actor, qualite) {
