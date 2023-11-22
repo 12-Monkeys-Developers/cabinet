@@ -13,12 +13,14 @@
       <div class="pnj-portrait">
         <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
       </div>
+    </header>
+    <div class="sheet-cont">
       {{! Sheet Navigation }}
       <nav class="sheet-navigation tabs" data-group="primary">
-        <a class="choix_tab" data-tab="details">Détails</a>
-        <a class="choix_tab" data-tab="sante">Santé</a>
+        <a class="choix_tab" data-tab="details"><i class="fa-solid fa-chart-simple"></i></a>
+        <a class="choix_tab" data-tab="sante"><i class="fa-solid fa-heart-pulse"></i></a>
+        <a class="choix_tab" data-tab="notes"><i class="fa-regular fa-clipboard"></i></a>
       </nav>
-    </header>
 
     {{! Détails Tab }}
     <div class="tab tab-details flexcol" data-group="primary" data-tab="details">
@@ -28,6 +30,11 @@
     {{! Santé Tab }}
     <div class="tab tab-sante flexcol" data-group="primary" data-tab="sante">
         {{> "systems/cabinet/templates/sheets/partials/pnj-sante.hbs"}}
+    </div>
+
+    {{! Notes Tab }}
+    <div class="tab tab-notes flexcol" data-group="primary" data-tab="notes">
+       {{> "systems/cabinet/templates/sheets/partials/tab-notes.hbs"}}
     </div>
 
   </section>

@@ -5,7 +5,7 @@ export default class PnjSheet extends CabinetActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 1000,
+      width: 750,
       height: 770,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "details" }],
     });
