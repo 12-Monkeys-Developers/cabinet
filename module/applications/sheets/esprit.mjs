@@ -141,11 +141,11 @@ export default class EspritSheet extends CabinetActorSheet {
     html.find(".logo_action").click(this._onActionRoll.bind(this));
 
     // Activate context menu
-    this._contextMenu(html);
+    this._contextCabMenu(html);
   }
 
   /** @inheritdoc */
-  _contextMenu(html) {
+  _contextCabMenu(html) {
     ContextMenu.create(this, html, ".cabinet-contextmenu", this._getEntryContextOptions());
   }
 

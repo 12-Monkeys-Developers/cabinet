@@ -96,7 +96,7 @@
   }
   .aspects-grid {
     display: grid;
-    grid-template-columns: 180px 40px 180px 40px 180px 40px ;
+    grid-template-columns: 180px 40px 180px 40px 180px 40px;
     grid-template-rows: 34px;
     .aspects-ligne {
       display: flex;
@@ -152,6 +152,36 @@
       text-align: center;
       font-size: 1em;
       font-weight: bold;
+    }
+  }
+  .acquis-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 5px;
+    .ligne-acquis {
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      justify-content: left;
+      margin: 0.5em 0.5em 0px 0.5em;
+      border-bottom: 1px solid black;
+    }
+    .acquis-nom {
+      font-family: "arrusbt";
+      font-weight: bold;
+      font-size: 1em;
+      color: #497180;
+      padding-left: 0.5em;
+      align-self: center;
+    }
+    .desc {
+      font-family: "garamondpro";
+      font-size: 0.9em;
+      text-indent: 0px;
+      text-align: justify;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-top: 0px;
+      margin-bottom: 0px;
     }
   }
 }

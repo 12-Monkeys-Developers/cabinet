@@ -18,43 +18,6 @@ export default class CorpsSheet extends CabinetActorSheet {
   }
 
   /**
-   * Retourne les context options du menu Corps
-   * @returns {object[]}
-   * @private
-   */
-  _getArmeEntryContextOptions() {
-    return [
-      {
-        name: `Attaquer`,
-        icon: `<i class="fa-regular fa-hand-fist"></i>`,
-        condition: true,
-        callback: (li) => {
-          const armeId = li.data("armeId");
-          this._utiliserArme(armeId);
-        }
-      },
-      {
-        name: `Détails`,
-        icon: `<i class="fa-regular fa-cogs"></i>`,
-        condition: true,
-        callback: (li) => {
-          const armeId = li.data("armeId");
-          this._ouvrirArme(armeId);
-        }
-      },
-      {
-        name: `Supprimer`,
-        icon: `<i class="fa-solid fa-trash"></i>`,
-        condition: true,
-        callback: (li) => {
-          const armeId = li.data("armeId");
-          this._supprimerArme(armeId);
-        },
-      },
-    ];
-  }
-
-  /**
    * Le type d'Actor qu'affiche cette Sheet
    * @type {string}
    */
@@ -104,13 +67,6 @@ export default class CorpsSheet extends CabinetActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
-    // Activate context menu
-    this._contextMenu(html);
-  }
-
-  /** @inheritdoc */
-  _contextMenu(html) {
-    ContextMenu.create(this, html, ".arme-contextmenu", this._getArmeEntryContextOptions());
   }
 
   /** @override */
@@ -133,16 +89,4 @@ export default class CorpsSheet extends CabinetActorSheet {
       return attribut;
     });
   }
-
-  _ouvrirArme(armeId){
-    const item = this.actor.items.get(armeId);
-    if (item) item.sheet.render(true);
-  };
-  _supprimerArme(armeId){
-    this.actor.deleteEmbeddedDocuments("Item", [ armeId ]);
-    this.render(true);
-  }
-  _utiliserArme(armeId){
-    //jet d'attaque a évaluer
-  };
 }

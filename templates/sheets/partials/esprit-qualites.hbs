@@ -37,7 +37,7 @@
         <div class="titre2" style="margin: 0px 0px 10px 0px;">Aspects</div>
           <div class="aspects-grid">
             <div class="aspects-ligne" style="grid-row: 1; grid-column: 1;">
-            <span class="nom-aspect">NESHAMA</span><span class="aspect-desc">(RAISON)</span>
+            <span class="nom-aspect">NESHAMA</span>
             </div>
             <div class="aspectcircle" style="grid-row: 1; grid-column: 2;">
             {{#if editable}}
@@ -47,8 +47,8 @@
             {{/if}}
           </div>
           <div class="aspects-ligne" style="grid-row: 2; grid-column: 1;">
-            <span class="nom-aspect">ROUA'H</span><span class="aspect-desc">(INTUITION)</span>
-          </div>
+            <span class="nom-aspect">ROUA'H</span>
+            </div>
           <div class="aspectcircle" style="grid-row: 2; grid-column: 2;">
             {{#if editable}}
               <input type="number" name="system.aspects.rouah.valeur" value="{{system.aspects.rouah.valeur}}" />
@@ -57,7 +57,7 @@
             {{/if}}
           </div>
           <div class="aspects-ligne" style="grid-row: 3; grid-column: 1;">
-            <span class="nom-aspect">NEFESH</span><span class="aspect-desc">(ACTION)</span>
+            <span class="nom-aspect">NEFESH</span>
           </div>
           <div class="aspectcircle" style="grid-row: 3; grid-column: 2;">
             {{#if editable}}
@@ -75,9 +75,9 @@
             <i class="fa-solid fa-books-medical"></i></a>
           {{/if}}
         </div>
-        {{#each corruptions as |corruption id|}}<div>
+        {{#each corruptions as |corruption id|}}<div class="item-contextmenu" data-item-id="{{corruption._id}}">
           <details>
-          <summary class="ligne-cor">
+          <summary class="ligne-cor item-contextmenu" data-item-id="{{corruption._id}}">
             <div class="nom-cor">{{corruption.name}}</div>
             <div class="icon-group">
               {{#if ../editable}}
@@ -100,18 +100,10 @@
       {{/if}}
     </div>
     <div class="acquis-col">
-    {{#each acquis as |acquisElement id|}}<div>
+    {{#each acquis as |acquisElement id|}}<div class="item-contextmenu" data-item-id="{{acquisElement._id}}">
       <details>
       <summary class="ligne-acquis">
         <div class="acquis-nom">{{acquisElement.name}}</div><div class="acquis-valeur">+{{acquisElement.system.valeur}}</div>
-        <div class="icon-group">
-          {{#if ../editable}}
-          <a class="item-control item-edit" data-field="{{acquisElement._id}}" data-tooltip="Modifier"><i
-                  class="fas fa-cog"></i></a>
-          <a class="item-control item-delete" data-field="{{acquisElement._id}}" data-tooltip="Supprimer"><i
-                  class="fas fa-trash"></i></a>
-          {{/if}}
-        </div>
       </summary>
           <div class="desc">{{{acquisElement.system.descriptionhtml}}}</div>
       </details></div>

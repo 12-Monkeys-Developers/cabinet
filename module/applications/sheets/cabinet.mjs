@@ -63,11 +63,11 @@ export default class CabinetSheet extends CabinetActorSheet {
     html.find(".select-cabinet").click(this._onSelectCabinet.bind(this));
 
     // Activate context menu
-    this._contextMenu(html);
+    this._contextCabMenu(html);
   }
 
   /** @inheritdoc */
-  _contextMenu(html) {
+  _contextCabMenu(html) {
     ContextMenu.create(this, html, ".membre-contextmenu", this._getMembreEntryContextOptions());
     ContextMenu.create(this, html, ".corps-contextmenu", this._getCorpsEntryContextOptions());
   }

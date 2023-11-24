@@ -499,7 +499,7 @@ i.logo_defaut {
 }
 .esprit-sheet .col-droite-qualites .acquis-col .ligne-acquis {
   display: grid;
-  grid-template-columns: 5fr 1fr 1fr;
+  grid-template-columns: 5fr 1fr;
   justify-content: left;
   margin: 0.5em 0.5em 0px 0.5em;
   border-bottom: 1px solid black;
@@ -511,9 +511,6 @@ i.logo_defaut {
   color: #497180;
   padding-left: 0.5em;
   align-self: center;
-}
-.esprit-sheet .col-droite-qualites .acquis-col .icon-group {
-  margin-left: auto;
 }
 .esprit-sheet .col-droite-qualites .acquis-col .desc {
   font-family: "garamondpro";
@@ -1832,7 +1829,7 @@ i.logo_action {
 }
 .cab-sheet .cabinet-details .grid-haut .right-col .acquis-col .ligne-acquis {
   display: grid;
-  grid-template-columns: 5fr 1fr 1fr;
+  grid-template-columns: 5fr 1fr;
   justify-content: left;
   margin: 0.5em 0.5em 0px 0.5em;
   border-bottom: 1px solid black;
@@ -1844,9 +1841,6 @@ i.logo_action {
   color: #497180;
   padding-left: 0.5em;
   align-self: center;
-}
-.cab-sheet .cabinet-details .grid-haut .right-col .acquis-col .icon-group {
-  margin-left: auto;
 }
 .cab-sheet .cabinet-details .grid-haut .right-col .acquis-col p {
   font-family: "garamondpro";
@@ -2078,7 +2072,7 @@ i.logo_action {
 }
 .pnj-sheet .aspects-grid {
   display: grid;
-  grid-template-columns: 180px 40px 180px 40px 180px 40px ;
+  grid-template-columns: 180px 40px 180px 40px 180px 40px;
   grid-template-rows: 34px;
 }
 .pnj-sheet .aspects-grid .aspects-ligne {
@@ -2135,6 +2129,36 @@ i.logo_action {
   text-align: center;
   font-size: 1em;
   font-weight: bold;
+}
+.pnj-sheet .acquis-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 5px;
+}
+.pnj-sheet .acquis-col .ligne-acquis {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  justify-content: left;
+  margin: 0.5em 0.5em 0px 0.5em;
+  border-bottom: 1px solid black;
+}
+.pnj-sheet .acquis-col .acquis-nom {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: #497180;
+  padding-left: 0.5em;
+  align-self: center;
+}
+.pnj-sheet .acquis-col .desc {
+  font-family: "garamondpro";
+  font-size: 0.9em;
+  text-indent: 0px;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 #comedien {
   display: grid;
