@@ -5,7 +5,7 @@ export default class PnjSheet extends CabinetActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 750,
+      width: 550,
       height: 770,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "details" }],
     });
@@ -24,6 +24,7 @@ export default class PnjSheet extends CabinetActorSheet {
     context.aspects = this.#formatAspects(context.actor.system.aspects);
 
     context.attributs = this.#formatAttributs(context.actor.system.attributs);
+    context.descriptionhtml = TextEditor.enrichHTML(context.actor.system.description, { async: false });
 
     // Acquis par ordre alpha et mise en forme de la description
     context.acquis = this.actor.items

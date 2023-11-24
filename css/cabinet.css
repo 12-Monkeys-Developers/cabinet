@@ -1980,8 +1980,9 @@ i.logo_action {
   min-height: 700px;
 }
 .pnj-sheet .titre2 {
+  margin-top: 30px;
   font-family: "posterbodoni";
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #497180;
   text-align: center;
   text-transform: uppercase;
@@ -1990,27 +1991,28 @@ i.logo_action {
   text-align: justify;
   margin-left: 10px;
   font-family: "alexbrush";
-  font-size: 1.3em;
+  font-size: 0.8em;
   color: black;
   margin-left: 5px;
   margin-top: 10px;
   min-height: 80px;
 }
 .pnj-sheet .cdmdsc {
-  min-height: 50px;
+  min-height: 200px;
 }
 .pnj-sheet .editor {
-  min-height: 100px;
+  min-height: 200px;
 }
 .pnj-sheet .editor-content {
-  min-height: 100px;
+  min-height: 200px;
   font-weight: normal;
   margin: 0px 5px;
-  font-size: 1em;
+  font-size: 0.8em;
 }
 .pnj-sheet .pnj-header {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
+  height: 75px;
 }
 .pnj-sheet .pnj-header .titre_feuille {
   font-family: "arrusbt";
@@ -2026,11 +2028,11 @@ i.logo_action {
   font-size: 2rem;
 }
 .pnj-sheet .pnj-header .charname {
-  font-family: "garedechambord";
-  font-size: 3em;
+  font-family: "alexbrush";
+  font-size: 2em;
   color: black;
   margin-left: 5px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .pnj-sheet .pnj-header .charname input {
   color: black;
@@ -2039,40 +2041,68 @@ i.logo_action {
   border: none;
   margin: 2px 10px 0px 0px;
   justify-self: end;
-  width: 133px;
-  height: 80px;
+  width: 100px;
+  display: flex;
 }
 .pnj-sheet .pnj-header .pnj-portrait img {
+  flex: 0 0 100px;
   border-radius: 50%;
+  max-height: 100px;
+  object-position: 50% 0;
+  object-fit: cover;
 }
 .pnj-sheet .sheet-cont {
   display: flex;
   flex-direction: row;
 }
 .pnj-sheet .sheet-cont .sheet-navigation {
-  width: 70px;
+  width: 40px;
   flex-direction: column;
   justify-content: flex-start;
-  font-size: 1, 5em;
+  font-size: 1em;
 }
 .pnj-sheet .sheet-cont .choix_tab {
   font-family: "posterbodoni";
-  font-size: 1.8em;
+  font-size: 1em;
   color: black;
   text-transform: uppercase;
   border: 1px solid black;
   border-radius: 15px;
   text-align: center;
   padding: 0.5em 0.5em 0.3em 0.5em;
-  margin: 20px 0px 20px 10px;
+  margin: 20px 0px 20px 8px;
 }
 .pnj-sheet .sheet-cont .choix_tab.active {
   border: 2px solid #7b3135;
   color: #7b3135;
 }
+.pnj-sheet .pnj-details {
+  margin-left: 20px;
+}
+.pnj-sheet .conso-bloc {
+  display: grid;
+  grid-template-columns: 80px 40px 80px 20px 20px 20px;
+  grid-template-rows: 34px;
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: #497180;
+}
+.pnj-sheet .conso-bloc .perisprit-label {
+  margin-left: 15px;
+  align-self: center;
+}
+.pnj-sheet .conso-bloc input {
+  width: 3em;
+}
+.pnj-sheet .conso-bloc .perisprit-value {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
 .pnj-sheet .aspects-grid {
   display: grid;
-  grid-template-columns: 180px 40px 180px 40px 180px 40px;
+  grid-template-columns: 95px 40px 95px 40px 95px 40px;
   grid-template-rows: 34px;
 }
 .pnj-sheet .aspects-grid .aspects-ligne {
@@ -2083,24 +2113,16 @@ i.logo_action {
 .pnj-sheet .aspects-grid .aspects-ligne .nom-aspect {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1em;
-  color: #497180;
-  text-transform: uppercase;
-  padding-left: 10px;
-}
-.pnj-sheet .aspects-grid .aspects-ligne .aspect-desc {
-  font-family: "arrusbt";
-  font-weight: bold;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #685a4e;
   text-transform: uppercase;
-  padding-left: 6px;
+  padding-left: 10px;
 }
 .pnj-sheet .aspects-grid .aspectcircle {
   border-radius: 50%;
   padding: 7px 8px;
-  border: 2px solid #497180;
-  color: #497180;
+  border: 2px solid #685a4e;
+  color: #685a4e;
   text-align: center;
   font-size: 1em;
   font-weight: bold;

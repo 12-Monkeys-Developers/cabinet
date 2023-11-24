@@ -79,6 +79,7 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
     // Combat : dans preparedData
 
     schema.malus = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
+    schema.description = new fields.HTMLField();
     schema.notes = new fields.HTMLField();
 
     return schema;

@@ -1,57 +1,79 @@
 
-<div class="col-aspects">
-  <div class="titre2" style="margin: 0px 0px 10px 0px;">Aspects</div>
+<div class="pnj-details">
+  <div class="col-aspects">
+      <div class="conso-bloc">
+        <div class="perisprit-label">Perisprit</div>
+        <div class="perisprit-value">
+            <input type="text" name="system.perisprit" value="{{system.perisprit}}" />
+        </div>
+        <div class="perisprit-label">Énergie</div>
+        <div class="perisprit-value">
+          <input type="text" name="system.energie.actuelle" value="{{system.energie.actuelle}}" />
+        </div>
+        <div class="perisprit-label">/</div>
+          {{#if editable}}
+        <div class="perisprit-value">
+          <input type="text" name="system.energie.totale" value="{{system.energie.totale}}" />
+        </div>
+          {{else}}
+        <div class="perisprit-label">
+            {{system.aspects.neshama.valeur}}
+        </div>
+          {{/if}}
+      </div>
+  <div class="col-aspects">
+    <div class="titre2" style="margin-top: 0px;">Aspects</div>
     <div class="aspects-grid">
       <div class="aspects-ligne">
-      <span class="nom-aspect">NESHAMA</span><
+        <span class="nom-aspect">NESHAMA</span>
       </div>
-      <div class="aspectcircle">
       {{#if editable}}
         <input type="number" name="system.aspects.neshama.valeur" value="{{system.aspects.neshama.valeur}}" />
       {{else}}
+      <div class="aspectcircle">
         +{{system.aspects.neshama.valeur}}
+      </div>
       {{/if}}
-    </div>
-    <div class="aspects-ligne">
-      <span class="nom-aspect">ROUA'H</span>
-    </div>
-    <div class="aspectcircle">
+      <div class="aspects-ligne">
+        <span class="nom-aspect">ROUA'H</span>
+      </div>
       {{#if editable}}
         <input type="number" name="system.aspects.rouah.valeur" value="{{system.aspects.rouah.valeur}}" />
       {{else}}
+      <div class="aspectcircle">
         +{{system.aspects.rouah.valeur}}
+      </div>
       {{/if}}
-    </div>
-    <div class="aspects-ligne">
-      <span class="nom-aspect">NEFESH</span>
-    </div>
-    <div class="aspectcircle">
+      <div class="aspects-ligne">
+        <span class="nom-aspect">NEFESH</span>
+      </div>
       {{#if editable}}
         <input type="number" name="system.aspects.nefesh.valeur" value="{{system.aspects.nefesh.valeur}}" />
       {{else}}
+      <div class="aspectcircle">
         +{{system.aspects.nefesh.valeur}}
+      </div>
       {{/if}}
     </div>
   </div>
-</div>
-    <div class="titre2">Attributs</div>
-      <div class="grid-attributs">
-        {{#each attributs as |attribut id|}}
-          <div class="attribut-name">{{attribut.label}}</div>
-            {{#if ../editable}}
-            <input type="number" name="system.attributs.{{attribut.id}}.valeur" value="{{getAttributProperty ../actor attribut 'valeur'}}" placeholder="0" />
-            {{else}}
-          <div class="attribut-value">+ {{attribut.valeur}}</div>
-           {{/if}}
-        {{/each}}
-      </div>
-    <div class="titre2" style="margin:20px 0px 10px 50px;">Acquis
-      {{#if editable}}&nbsp;&nbsp;
-        <a class="item-create" data-type="acquis" title="{{localize 'CDM.TOOLTIP.ajouterAcquis'}}">
-        <i class="fa-solid fa-books-medical"></i></a>
+  <div class="titre2">Attributs</div>
+  <div class="grid-attributs">
+    {{#each attributs as |attribut id|}}
+      <div class="attribut-name">{{attribut.label}}</div>
+      {{#if ../editable}}
+      <input type="number" name="system.attributs.{{attribut.id}}.valeur" value="{{getAttributProperty ../actor attribut 'valeur'}}" placeholder="0" />
+      {{else}}
+      <div class="attribut-value">+ {{attribut.valeur}}</div>
       {{/if}}
-    </div>
-    <div class="acquis-col">
+    {{/each}}
+  </div>
+  <div class="titre2">Acquis
+    {{#if editable}}&nbsp;&nbsp;
+      <a class="item-create" data-type="acquis" title="{{localize 'CDM.TOOLTIP.ajouterAcquis'}}">
+      <i class="fa-solid fa-books-medical"></i></a>
+    {{/if}}
+  </div>
+  <div class="acquis-col">
     {{#each acquis as |acquisElement id|}}
     <div class="item-contextmenu" data-item-id="{{acquisElement._id}}">
       <details>
@@ -59,6 +81,16 @@
         <div class="acquis-nom">{{acquisElement.name}}</div><div class="acquis-valeur">+{{acquisElement.system.valeur}}</div>
       </summary>
           <div class="desc">{{{acquisElement.system.descriptionhtml}}}</div>
-      </details></div>
-    {{/each}}
+      </details>
     </div>
+    {{/each}}
+  </div>
+  <div class="titre2">Description</div>
+  <div style="margin:0px 0px 10px 15px;" class="script cdmdsc">
+  {{#if editable}}
+    {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+  {{else}}
+    {{{descriptionhtml}}}
+  {{/if}}
+  </div>
+</div>
