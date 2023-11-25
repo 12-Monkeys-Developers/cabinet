@@ -49,7 +49,7 @@ export default class EspritSheet extends CabinetActorSheet {
         return a.system.niveau > b.system.niveau;
       });
     context.pouvoirs.forEach((element) => {
-      element.system.shperelabel = SYSTEM.SPHERES[element.system.sphere].label;
+      element.system.spherelabel = SYSTEM.SPHERES[element.system.sphere].label;
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
 

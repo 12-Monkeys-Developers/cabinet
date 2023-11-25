@@ -8,7 +8,7 @@ export const SYSTEM_ID = "cabinet";
 
 /**
  * Les dix sphères
- * @enum {{label: string, qualite: string, qualiteSmall: string}}
+ * @enum {{label: string, qualite: string, qualiteSmall: string, logo: string}}
  */
 export const SPHERES = {
   binah: {
@@ -74,8 +74,8 @@ export const SPHERES = {
 };
 
 /**
- * Les dix sphères
- * @enum {{label: string, qualite: string, qualiteSmall: string}}
+ * Les difficultés
+ * @enum {{id: string, label: string, qualite: string, seuil: number}}
  */
 export const DIFFICULTES = {
   aisee: {
@@ -104,6 +104,23 @@ export const DIFFICULTES = {
     seuil: 21 
   },
 }
+export const IMAGES= {
+  ICONE_JARDIN: "icons/environment/wilderness/tomb-entrance.webp",
+  ICONE_CABINET: "icons/environment/settlement/wagon-black.webp",
+  ICONE_COMEDIEN: "icons/magic/control/control-influence-puppet.webp",
+  ICONE_CORPS: "icons/magic/control/control-influence-puppet.webp",
+  binah_logo: "",
+  chokmah_logo: "",
+  chesed_logo: "",
+  geburah_logo: "",
+  hod_logo: "",
+  kether_logo: "",
+  malkuth_logo: "",
+  netzach_logo: "",
+  tiferet_logo: "",
+  yesod_logo: ""
+}
+
 /**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
@@ -119,5 +136,7 @@ export const SYSTEM = {
   ARME_SOUSTYPES: ARME.SOUSTYPES,
   ARME_CATEGORIES: ARME.CATEGORIES,
   ACTION_CATEGORIES: ACTION.ACTION_CATEGORIES,
-  DIFFICULTES
+  DIFFICULTES,
+  IMAGES
 };
+

@@ -23,6 +23,8 @@ export default class CabinetActorSheet extends ActorSheet {
     context.actor = this.document;
     context.system = this.document.system;
 
+    context.images=SYSTEM.IMAGES;
+
     return context;
   }
 

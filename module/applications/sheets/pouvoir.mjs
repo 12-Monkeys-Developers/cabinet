@@ -26,10 +26,8 @@ export default class PouvoirSheet extends CabinetItemSheet {
 
     context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
     context.spheres = SYSTEM.SPHERES;
-    context.imgsphere = "";
-    if (game.modules.get("cabinet-livredebase")){
-      context.imgsphere = `modules/cabinet-livredebase/assets/images/illustrations/spheres/${this.item.system.sphere}.webp`;
-    }
+    context.imgsphere = SYSTEM.IMAGES[this.item.system.sphere+"_logo"];
+    
     return context;
   }
 }

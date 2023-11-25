@@ -1096,7 +1096,7 @@ i.logo_action {
   margin: 0px 5px;
 }
 .grace-sheet {
-  background: repeat url("../../../modules/cabinet-livredebase/assets/images/aspect_systeme/fond-grace.webp");
+  background: var(--background_cabinet_graces);
   font-family: "arrusbt";
   font-weight: bold;
 }
