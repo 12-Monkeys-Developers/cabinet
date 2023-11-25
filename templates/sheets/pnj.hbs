@@ -5,11 +5,13 @@
   <section class="sheet-body pnj-sheet">
     <header class="pnj-header">
       <div class="titre_feuille">PNJ&nbsp;
-    <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
+        <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
           {{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>
-      </span></div>
+        </span>
+      </div>
       <div class="charname">
-        {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}</div>
+        {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}
+      </div>
       <div class="pnj-portrait">
         <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
       </div>
@@ -22,21 +24,20 @@
         <a class="choix_tab" data-tab="notes"><i class="fa-regular fa-clipboard"></i></a>
       </nav>
 
-    {{! Détails Tab }}
-    <div class="tab tab-details flexcol" data-group="primary" data-tab="details">
-        {{> "systems/cabinet/templates/sheets/partials/pnj-details.hbs"}}
-    </div>
+      {{! Détails Tab }}
+      <div class="tab tab-details flexcol" data-group="primary" data-tab="details">
+          {{> "systems/cabinet/templates/sheets/partials/pnj-details.hbs"}}
+      </div>
 
-    {{! Santé Tab }}
-    <div class="tab tab-sante flexcol" data-group="primary" data-tab="sante">
-        {{> "systems/cabinet/templates/sheets/partials/pnj-sante.hbs"}}
-    </div>
+      {{! Santé Tab }}
+      <div class="tab tab-sante flexcol" data-group="primary" data-tab="sante">
+          {{> "systems/cabinet/templates/sheets/partials/pnj-sante.hbs"}}
+      </div>
 
-    {{! Notes Tab }}
-    <div class="tab tab-notes flexcol" data-group="primary" data-tab="notes">
-       {{> "systems/cabinet/templates/sheets/partials/tab-notes.hbs"}}
+      {{! Notes Tab }}
+      <div class="tab tab-notes flexcol" data-group="primary" data-tab="notes">
+        {{> "systems/cabinet/templates/sheets/partials/tab-notes.hbs"}}
+      </div>
     </div>
-
   </section>
-
 </form>

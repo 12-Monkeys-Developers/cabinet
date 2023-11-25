@@ -1,26 +1,25 @@
 
 <div class="pnj-details">
-  <div class="col-aspects">
-      <div class="conso-bloc">
-        <div class="perisprit-label">Perisprit</div>
-        <div class="perisprit-value">
-            <input type="text" name="system.perisprit" value="{{system.perisprit}}" />
-        </div>
-        <div class="perisprit-label">Énergie</div>
-        <div class="perisprit-value">
-          <input type="text" name="system.energie.actuelle" value="{{system.energie.actuelle}}" />
-        </div>
-        <div class="perisprit-label">/</div>
-          {{#if editable}}
-        <div class="perisprit-value">
-          <input type="text" name="system.energie.totale" value="{{system.energie.totale}}" />
-        </div>
-          {{else}}
-        <div class="perisprit-label">
-            {{system.aspects.neshama.valeur}}
-        </div>
-          {{/if}}
-      </div>
+  <div class="conso-bloc">
+    <div class="perisprit-label">Perisprit</div>
+    <div class="perisprit-value">
+        <input type="text" name="system.perisprit" value="{{system.perisprit}}" />
+    </div>
+    <div class="perisprit-label">Énergie</div>
+    <div class="perisprit-value">
+      <input type="text" name="system.energie.actuelle" value="{{system.energie.actuelle}}" />
+    </div>
+    <div class="perisprit-label">/</div>
+      {{#if editable}}
+    <div class="perisprit-value">
+      <input type="text" name="system.energie.totale" value="{{system.energie.totale}}" />
+    </div>
+      {{else}}
+    <div class="perisprit-label">
+        {{system.aspects.neshama.valeur}}
+    </div>
+      {{/if}}
+  </div>
   <div class="col-aspects">
     <div class="titre2" style="margin-top: 0px;">Aspects</div>
     <div class="aspects-grid">

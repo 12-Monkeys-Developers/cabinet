@@ -10,7 +10,8 @@
         </span>
       </div>
       <div class="charname">
-        {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}</div>
+        {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}
+      </div>
     </header>
     <div class="sheet-cont">
       {{! Sheet Navigation }}
@@ -20,20 +21,20 @@
         <a class="choix_tab" data-tab="notes"><i class="fa-regular fa-clipboard"></i></a>
       </nav>
 
-    {{! Détails Tab }}
-    <div class="tab tab-details flexcol" data-group="primary" data-tab="details">
-        {{> "systems/cabinet/templates/sheets/partials/corps-details.hbs"}}
-    </div>
+      {{! Détails Tab }}
+      <div class="tab tab-details flexcol" data-group="primary" data-tab="details">
+          {{> "systems/cabinet/templates/sheets/partials/corps-details.hbs"}}
+      </div>
 
-    {{! Santé Tab }}
-    <div class="tab tab-sante flexcol" data-group="primary" data-tab="sante">
-        {{> "systems/cabinet/templates/sheets/partials/corps-sante.hbs"}}
-    </div>
+      {{! Santé Tab }}
+      <div class="tab tab-sante flexcol" data-group="primary" data-tab="sante">
+          {{> "systems/cabinet/templates/sheets/partials/corps-sante.hbs"}}
+      </div>
 
-    {{! Notes Tab }}
-    <div class="tab tab-notes flexcol" data-group="primary" data-tab="notes">
-       {{> "systems/cabinet/templates/sheets/partials/tab-notes.hbs"}}
-    </div>
+      {{! Notes Tab }}
+      <div class="tab tab-notes flexcol" data-group="primary" data-tab="notes">
+        {{> "systems/cabinet/templates/sheets/partials/tab-notes.hbs"}}
+      </div>
     </div>
   </section>
 </form>
