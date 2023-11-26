@@ -6,6 +6,12 @@
   --background_esprit_header: repeat url("/systems/cabinet/assets/images/sheets/esprit-header.webp");
   --background_esprit_header_jardin: repeat url("/systems/cabinet/assets/images/sheets/esprit-header-jardin.webp");
   --background_esprit_header_comedien: repeat url("/systems/cabinet/assets/images/sheets/esprit-header-comedien.webp");
+  --background_esprit_tab_pouvoir: repeat url("/systems/cabinet/assets/images/sheets/esprit-tab-pouvoirs.webp");
+  --background_esprit_tab_profil: repeat url("/systems/cabinet/assets/images/sheets/esprit-tab-profil.webp");
+  --background_esprit_tab_actions: repeat url("/systems/cabinet/assets/images/sheets/esprit-tab-actions.webp");
+  --background_esprit_tab_qualites: repeat url("/systems/cabinet/assets/images/sheets/esprit-tab-qualites.webp");
+  --background_esprit_encart_exp: no-repeat url("/systems/cabinet/assets/images/sheets/encart_exp.webp");
+  --background_esprit_encart_exp_col: no-repeat url("/systems/cabinet/assets/images/sheets/encart_exp_col.webp");
   --background_acquis: none;
   --background_action: none;
   --background_corruption: none;
@@ -243,7 +249,7 @@ i.logo_defaut {
   text-transform: uppercase;
 }
 .esprit-sheet .tab-qualites {
-  background: repeat url("../assets/images/sheets/esprit-tab-qualites.webp");
+  background: var(--background_esprit_tab_qualites);
 }
 .esprit-sheet .grid-tab-qualites {
   display: grid;
@@ -475,7 +481,7 @@ i.logo_defaut {
   border: 0px;
 }
 .esprit-sheet .col-droite-qualites .col-droite-bloc3 .encart-exp {
-  background: no-repeat url("../assets/images/sheets/encart_exp.webp");
+  background: var(--background_esprit_encart_exp);
   background-size: contain;
   font-family: "arrusbt";
   font-weight: bold;
@@ -523,7 +529,7 @@ i.logo_defaut {
   margin-bottom: 0px;
 }
 .esprit-sheet .grid-tab-actions {
-  background: repeat url("../assets/images/sheets/esprit-tab-actions.webp");
+  background: var(--background_esprit_tab_actions);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -560,7 +566,7 @@ i.logo_defaut {
   text-transform: uppercase;
 }
 .esprit-sheet .tab-pouvoirs {
-  background: repeat url("../assets/images/sheets/esprit-tab-pouvoirs.webp");
+  background: var(--background_esprit_tab_pouvoir);
   min-height: 600px;
 }
 .esprit-sheet .tab-pouvoirs .titre2 {
@@ -620,7 +626,7 @@ i.logo_defaut {
   padding: 8px;
 }
 .esprit-sheet .tab-concept {
-  background: repeat url("../assets/images/sheets/esprit-tab-profil.webp");
+  background: var(--background_esprit_tab_profil);
   min-height: 600px;
 }
 .esprit-sheet .tab-concept .concept-grid {
@@ -663,7 +669,7 @@ i.logo_defaut {
   min-height: 80px;
 }
 .esprit-sheet .ongletnotes {
-  background: repeat url("../assets/images/sheets/esprit-tab-profil.webp");
+  background: var(--background_esprit_tab_profil);
   min-height: 600px;
 }
 .esprit-sheet .ongletnotes .notes-zone {
@@ -1804,7 +1810,7 @@ i.logo_action {
   flex-direction: column;
 }
 .cab-sheet .cabinet-details .grid-haut .right-col .encart-exp {
-  background: no-repeat url("../assets/images/sheets/encart_exp_col.webp");
+  background: var(--background_esprit_encart_exp_col);
   background-size: cover;
   font-family: "arrusbt";
   font-weight: bold;
