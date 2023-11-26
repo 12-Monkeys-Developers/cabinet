@@ -103,16 +103,35 @@ Hooks.once("init", async function () {
     else return "";
   });
 
-  Handlebars.registerHelper("getBackgroundCss", function (actor) {
-    if (actor.system.comedien) return "var(--background_esprit_header_comedien)";
-    if (actor.system.jardin) return "var(--background_esprit_header_jardin)";
-    return "var(--background_esprit_header)";
+  Handlebars.registerHelper('times', function(n, block) {
+    var accum = '';
+    for(var i = 0; i < n; ++i) {
+      // Pass the index to the block with block.fn
+      accum += block.fn(i, { data: { index: i } });
+    }
+    return accum;
+  });
+  
+  Handlebars.registerHelper("nbCasesSante", function (actor, zone) {
+    return actor.system.sante[zone].reserve + 1;
   });
 
-  Handlebars.registerHelper("testlog", function (data) {
-    return console.log("Handlebars log : ", data);
+  Handlebars.registerHelper("seuilSante", function (actor, zone, index) {
+    return index === (actor.system.sante[zone].seuil - 1);
   });
 
+  Handlebars.registerHelper("estCocheeSante", function (actor, zone, index) {
+    const valeur = actor.system.sante[zone].valeur;
+    if (valeur < actor.system.sante[zone].seuil) return index <= (valeur - 1);
+    else return index <= valeur;    
+  });
+
+  /*
+  Handlebars.registerHelper('eq', function (value1, value2) {
+    return value1 === value2;
+  });
+  */
+  
   game.settings.register("cabinet", "cabinet", {
     name: "Cabinet",
     hint: "Id du cabinet.",
