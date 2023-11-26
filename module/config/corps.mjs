@@ -69,7 +69,7 @@ export const SANTE =  Object.freeze({
         seuil: 3
     },
     jambeGauche: {
-        id: "tete",
+        id: "jambeGauche",
         label: "CDM.SANTE.jambeGauche",
         reserve: 4,
         seuil: 3

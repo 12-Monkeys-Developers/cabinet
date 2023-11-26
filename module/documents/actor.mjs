@@ -1,6 +1,20 @@
 import StandardCheck from "../dice/standard-check.mjs";
 
 export default class CabinetActor extends Actor {
+  prepareBaseData() {
+    if (this.type === "corps" || this.type === "pnj") {
+      // Malus total : pour chaque partie du corps, lorque la blessure est supérieure au seuil
+      // le malus est égal à la blessure - le seuil + 1
+      let malusTotal = 0;
+      for (const partie of Object.values(this.system.sante)) {
+        if (partie.valeur >= partie.seuil) {
+          malusTotal += partie.valeur - partie.seuil + 1;
+        }
+      }
+      this.system.malus = malusTotal;
+    }
+  }
+
   /** @override */
   _onUpdate(data, options, userId) {
     if (this.type === "corps") {
@@ -151,7 +165,7 @@ export default class CabinetActor extends Actor {
         return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
       }
       // Le MJ peut forcer depuis le cabinet
-      if (this.system.comedien && forcer)  {
+      if (this.system.comedien && forcer) {
         cabinet.majComedien(null);
         Hooks.callAll("cabinet.majComedien", null);
       }
@@ -321,7 +335,7 @@ export default class CabinetActor extends Actor {
 
     for (const sphere in this.system.arbre) {
       if (this.system.arbre[sphere].idEsprit !== null) {
-        result.add(sphere);;
+        result.add(sphere);
       }
     }
     return result;
@@ -335,8 +349,8 @@ export default class CabinetActor extends Actor {
     if (this.type !== "cabinet") return;
     const result = new Set();
     for (const sphere in this.system.arbre) {
-      if (this.system.arbre[sphere].idQlipha !== undefined && this.system.arbre[sphere].idQlipha !== null && this.system.arbre[sphere].idQlipha !== idEsprit) { 
-        result.add(sphere);;
+      if (this.system.arbre[sphere].idQlipha !== undefined && this.system.arbre[sphere].idQlipha !== null && this.system.arbre[sphere].idQlipha !== idEsprit) {
+        result.add(sphere);
       }
     }
     return result;
