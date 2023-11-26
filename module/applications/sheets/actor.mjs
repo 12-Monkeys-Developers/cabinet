@@ -125,6 +125,12 @@ export default class CabinetActorSheet extends ActorSheet {
       case "acquis":
         itemData.name = game.i18n.localize("CDM.NOUVEAU.acquis");
         break;
+      case "arme":
+        itemData.name = game.i18n.localize("CDM.NOUVEAU.arme");
+        break;
+      case "corruption":
+        itemData.name = game.i18n.localize("CDM.NOUVEAU.corruption");
+        break;
     }
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }

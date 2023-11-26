@@ -154,11 +154,15 @@
     "TOOLTIP": {
       "unlockSheet": "Verrouiller/Déverrouiller la feuille",
       "ajouterAcquis": "Ajouter un nouvel Acquis",
+      "ajouterArme": "Ajouter une nouvelle Arme",
+      "ajouterCorruption": "Ajouter une nouvelle Corruption",
       "modifier": "Modifier",
       "supprimer": "Supprimer"
     },
     "NOUVEAU": {
-      "acquis": "Nouvel acquis"
+      "acquis": "Nouvel acquis",
+      "arme": "Nouvelle arme",
+      "corruption": "Nouvelle corruption"
     },
     "DE":{
       "total": "Total",

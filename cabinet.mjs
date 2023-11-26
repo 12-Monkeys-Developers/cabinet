@@ -103,6 +103,16 @@ Hooks.once("init", async function () {
     else return "";
   });
 
+  Handlebars.registerHelper("getBackgroundCss", function (actor) {
+    if (actor.system.comedien) return "var(--background_esprit_header_comedien)";
+    if (actor.system.jardin) return "var(--background_esprit_header_jardin)";
+    return "var(--background_esprit_header)";
+  });
+
+  Handlebars.registerHelper("testlog", function (data) {
+    return console.log("Handlebars log : ", data);
+  })
+
   Handlebars.registerHelper('times', function(n, block) {
     var accum = '';
     for(var i = 0; i < n; ++i) {
@@ -125,12 +135,6 @@ Hooks.once("init", async function () {
     if (valeur < actor.system.sante[zone].seuil) return index <= (valeur - 1);
     else return index <= valeur;    
   });
-
-  /*
-  Handlebars.registerHelper('eq', function (value1, value2) {
-    return value1 === value2;
-  });
-  */
   
   game.settings.register("cabinet", "cabinet", {
     name: "Cabinet",
