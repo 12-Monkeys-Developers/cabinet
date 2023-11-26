@@ -1636,6 +1636,118 @@ i.logo_action {
   margin: 0px 5px;
   font-size: 0.8em;
 }
+.corps-sheet .sante-grid {
+  margin-left: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 220px);
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+.corps-sheet .sante-grid > div > label:first-child {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #497180;
+  text-transform: uppercase;
+}
+.corps-sheet .sante-grid .circles-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  gap: 0px;
+}
+.corps-sheet .sante-grid .circle-checkbox {
+  -webkit-appearance: none;
+  /* Supprime l'apparence par défaut pour WebKit/Blink */
+  appearance: none;
+  /* Supprime l'apparence par défaut */
+  flex: 0 0 20px;
+  /* Taille des cercles */
+  border: 2px solid black;
+  /* Contour des cercles */
+  border-radius: 50%;
+  /* Rend les inputs circulaires */
+  margin: 0 5px;
+  /* Espacement entre les cercles */
+  cursor: pointer;
+  /* Affiche un curseur pointeur lorsque vous survolez les cercles */
+}
+.corps-sheet .sante-grid .circle-checkbox.filled {
+  flex: 0 0 10px;
+  /* Taille des cercles remplis */
+  height: 10px;
+  background-color: black;
+  /* Remplissage pour le cercle plein */
+}
+.corps-sheet .sante-grid .circle-checkbox.checked {
+  background-color: black;
+  /* Remplissage pour le cercle coché */
+}
+.corps-sheet .sante-grid .sante-protection {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  font-family: "arrusbt";
+  font-weight: bold;
+  color: #497180;
+}
+.corps-sheet .sante-grid .sante-protection input {
+  width: 25px;
+}
+.corps-sheet .sante-grid .sante-protection label {
+  padding-right: 10px;
+}
+.corps-sheet .sante-grid .sante-tete {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.corps-sheet .sante-grid .sante-bras-droit {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.corps-sheet .sante-grid .sante-bras-gauche {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.corps-sheet .sante-grid .sante-torse {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.corps-sheet .sante-grid .sante-jambe-droite {
+  grid-row: 4 / 5;
+  grid-column: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.corps-sheet .sante-grid .sante-jambe-gauche {
+  grid-row: 4 / 5;
+  grid-column: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
 .cab-sheet .outer-border {
   border: 6px solid black;
   height: 99%;

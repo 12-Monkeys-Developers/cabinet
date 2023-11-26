@@ -1,4 +1,4 @@
-{{log "cabinet-details" this}}
+{{!log "cabinet-details" this}}
 <div class="cabinet-details">
   <div class="grid-haut">
     <div class="outer-border">
@@ -9,7 +9,7 @@
           <div class="titre_col">Nom</div>
           <div class="titre_col">Statut</div>
           {{#each esprits as |membre index|}}
-            {{log "membre" this}}
+            {{!log "membre" this}}
             <div class="membre-img">
               <img style="border:0px;" src="{{membre.token}}" title="{{membre.nom}}" />
             </div>

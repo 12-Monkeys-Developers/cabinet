@@ -75,41 +75,4 @@ export default class PnjSheet extends CabinetActorSheet {
     });
   }
 
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.find(".case-sante").click(this._onCocherCaseSante.bind(this));
-  }
-
-  /**
-   * Coche ou décoche une case de santé
-   * @param {Event} event
-   */
-  async _onCocherCaseSante(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    
-    let index = parseInt(element.dataset.index);
-    let zone = element.dataset.zone;
-
-    let nouvelleValeur;  
-
-    // Index avant le seuil
-    if (index < this.actor.system.sante[zone].seuil - 1) {
-      nouvelleValeur = index + 1;
-      // Première case déjà cochée
-      if (nouvelleValeur == 1 && this.actor.system.sante[zone].valeur == 1) {
-        return await this.actor.update({[`system.sante.${zone}.valeur`]: 0});;
-      }
-    }
-    // Index égal au seuil
-    else if (index == this.actor.system.sante[zone].seuil - 1) {
-     return;
-    }
-    // Index après le seuil
-    else {
-      nouvelleValeur = index;
-    }
-    await this.actor.update({[`system.sante.${zone}.valeur`]: nouvelleValeur});
-  }
 }

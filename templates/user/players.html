@@ -9,7 +9,7 @@
         {{/if}}
     </h3>
 
-    {{log 'players users' users}}
+    {{!log 'players users' users}}
     <ol aria-label="{{localize 'PLAYERS.List'}}" tabIndex="0" id="player-list">
         {{#each users as |user|}}
         <li class="player {{#if user.isGM}}gm{{/if}} flexrow" data-user-id="{{user._id}}">

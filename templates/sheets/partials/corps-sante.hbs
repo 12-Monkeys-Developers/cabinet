@@ -1,4 +1,101 @@
-<h1>Santé</h1>
-{{log "corps-Santé" this}}
+{{!log 'sante' this}}
+<div class="sante-grid">
+    <div class="sante-tete">
+        <label> 2 : tête</label>
+        <div class="circles-container">
+            {{#times (nbCasesSante actor 'tete')}}
+                <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'tete' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'tete' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="tete"/>
+            {{/times}}
+        </div>
+        <div class="sante-protection">
+            <label for="protection-tete-input">Protection</label>
+            {{#if editable}}
+                {{numberInput system.sante.tete.protection name="system.sante.tete.protection" min=0}}
+            {{else}}
+                {{system.sante.tete.protection}}
+            {{/if}}
+        </div>  
+    </div>
+    <div class="sante-bras-droit">
+        <label> 3-5 : bras droit</label>
+        <div class="circles-container">    
+             {{#times (nbCasesSante actor 'brasDroit')}}                
+                <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'brasDroit' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'brasDroit' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="brasDroit"/>
+            {{/times}}        
+        </div>
+        <div class="sante-protection">
+            <label for="protection-bras-droit-input">Protection</label>
+            {{#if editable}}
+                {{numberInput system.sante.brasDroit.protection name="system.sante.brasDroit.protection" min=0}}
+            {{else}}
+                {{system.sante.brasDroit.protection}}
+            {{/if}}
+        </div>
+    </div>
+    <div class="sante-bras-gauche">
+        <label> 6-8 : bras gauche</label>
+        <div class="circles-container">     
+            {{#times (nbCasesSante actor 'brasGauche')}} 
+                <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'brasGauche' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'brasGauche' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="brasGauche"/>
+            {{/times}}          
+        </div>
+        <div class="sante-protection">
+            <label for="protection-bras-gauche-input">Protection</label>
+            {{#if editable}}
+                {{numberInput system.sante.brasGauche.protection name="system.sante.brasGauche.protection" min=0}}
+            {{else}}
+                {{system.sante.brasGauche.protection}}
+            {{/if}}
+        </div>
+    </div>
+    <div class="sante-torse">
+        <label> 9-10 : torse</label>
+        <div class="circles-container">    
+            {{#times (nbCasesSante actor 'torse')}}    
+                <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'torse' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'torse' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="torse"/>
+            {{/times}}           
+        </div>
+        <div class="sante-protection">
+            <label for="protection-torse-input">Protection</label>
+            {{#if editable}}
+                {{numberInput system.sante.torse.protection name="system.sante.torse.protection" min=0}}
+            {{else}}
+                {{system.sante.torse.protection}}
+            {{/if}}
+        </div>        
+    </div>
+    <div class="sante-jambe-droite">
+        <label> 11 : jambe droite</label>
+        <div class="circles-container">         
+            {{#times (nbCasesSante actor 'jambeDroite')}} 
+                <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'jambeDroite' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'jambeDroite' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="jambeDroite"/>
+            {{/times}}      
+        </div>
+        <div class="sante-protection">
+            <label for="protection-jambe-droite-input">Protection</label>
+            {{#if editable}}
+                {{numberInput system.sante.jambeDroite.protection name="system.sante.jambeDroite.protection" min=0}}
+            {{else}}
+                {{system.sante.jambeDroite.protection}}
+            {{/if}}
+        </div>
+    </div>
+    <div class="sante-jambe-gauche">
+        <label> 12 : jambe gauche</label>
+        <div class="circles-container">      
+            {{#times (nbCasesSante actor 'jambeGauche')}}
+                <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'jambeGauche' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'jambeGauche' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="jambeGauche"/>
+            {{/times}}         
+        </div>
+        <div class="sante-protection">
+            <label for="protection-jambe-gauche-input">Protection</label>
+            {{#if editable}}
+                    {{numberInput system.sante.jambeGauche.protection name="system.sante.jambeGauche.protection" min=0}}
+                {{else}}
+                    {{system.sante.jambeGauche.protection}}
+            {{/if}}
+        </div>
+    </div>
+</div>
 <h2>Malus total</h2>
 {{malus}}
