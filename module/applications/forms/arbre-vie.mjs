@@ -133,6 +133,8 @@ export class ArbreVieForm extends FormApplication {
       console.log(`La sphère d'arrivée '${arrivee}' est bloquée par la Qlipha d'un autre esprit.`);
       return false;
     }
+    //en cas de départ jardin, c'est suffisant
+    if(!depart) return(true);
 
     // Vérifier si le déplacement est possible en parcourant le graphe
     const queue = [depart];
