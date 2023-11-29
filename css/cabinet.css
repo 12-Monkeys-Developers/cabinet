@@ -19,6 +19,7 @@
   --background_ins-pouvoir: none;
   --background_corps: none;
   --background_pnj: none;
+  --background_arbre_vie: no-repeat url("/systems/cabinet/assets/images/sheets/arbre_vie.webp");
 }
 @font-face {
   font-family: "alexbrush";
@@ -724,7 +725,7 @@ i.logo_defaut {
   left: 100px;
 }
 .arbredevie {
-  background: no-repeat url("../assets/images/sheets/arbre_vie.webp");
+  background: var(--background_arbre_vie);
   width: 600px;
   height: 628px;
   display: grid;
