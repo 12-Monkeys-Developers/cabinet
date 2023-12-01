@@ -189,6 +189,12 @@
         "haut": "Afficher le médaillon en haut à droite",
         "bas": "Afficher le médaillon en bas à droite"
       }
+    },
+    "DICECHATMESSAGE":{
+      "introText": "Jet de {activite} de {actingCharName}"
+    },
+    "COMEDIENCHATMESSAGE":{
+      "introText": "{actingCharName} réclame le contrôle."
     }
   }
 }

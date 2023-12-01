@@ -119,6 +119,7 @@ export const IMAGES= {
   netzach_logo: "",
   tiferet_logo: "",
   yesod_logo: "",
+  deco_chat:"systems/cabinet/assets/images/sheets/trait_separation.webp",
   ornement_feuille:"systems/cabinet/assets/images/sheets/ornement_dore_feuille.webp",
   trait_separation: "systems/cabinet/assets/images/sheets/trait_separation.webp"
 }

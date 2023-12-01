@@ -1,6 +1,15 @@
 <div class="cabinet chat">
     <div class="foreground">
-        <p>{{nomEsprit}} réclame le contrôle.</p>
+        <div class="intro-chat">
+            {{#if (ne actingCharImg "icons/svg/mystery-man.svg")}}
+            <div class="introImg">
+                <img src="{{actingCharImg}}" title="{{actingCharName}}" />
+            </div>
+            {{/if}}
+            <div class="intro_right">
+            <p class="introText">{{{introText}}}</p>
+            </div>
+        </div>
         <p>{{nomComedien}} ou MJ peuvent accepter :</p>
         <p> <button id="accepter">Accepter</button></p>
         <p> <button id="annuler">Refuser</button></p>

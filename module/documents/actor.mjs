@@ -88,6 +88,7 @@ export default class CabinetActor extends Actor {
 
     // Prepare check data
     let rollData = {
+      activitelbl : defaultValues?.action ? (defaultValues.action+" ("+SYSTEM.QUALITES[qualiteId].label+")") : SYSTEM.QUALITES[qualiteId].label,
       actorId: this.id,
       actorData: this.system,
       qualite: qualiteId,
@@ -105,7 +106,7 @@ export default class CabinetActor extends Actor {
     let sc = new StandardCheck(rollData);
 
     // Prompt the user with a roll dialog
-    const flavor = defaultValues === null ? `Jet de ${SYSTEM.QUALITES[qualiteId].label} de ${this.name}` : `Jet de ${defaultValues.action} de ${this.name}`;
+    const flavor = `Jet de ${rollData.activitelbl} de ${this.name}`;
     if (dialog) {
       const jet = defaultValues === null ? SYSTEM.QUALITES[qualiteId].label : defaultValues.action;
       const title = game.i18n.format("CDM.DIALOG.titreJet", { nom: this.name, jet: jet });
@@ -124,7 +125,6 @@ export default class CabinetActor extends Actor {
 
     // Execute the roll to chat
     await sc.toMessage({
-      flavor,
       flags: {
         cabinet: {
           skill: qualiteId,

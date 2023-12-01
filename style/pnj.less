@@ -208,11 +208,14 @@
   }
 
   .sante-grid {
+    background: var(--background_sante_f);
+    background-position: 55% 90%;
     margin-left: 30px;
     display: grid;
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    gap: 5px;  
+    gap: 5px;
+    min-height: 600px;
     
     > div > label:first-child {
       font-family: "arrusbt";

@@ -265,8 +265,10 @@ export default class EspritSheet extends CabinetActorSheet {
     } else {
       // Informer le MJ
       const html = await renderTemplate("systems/cabinet/templates/chat/demanderComedienButton.hbs", {
-        nomEsprit: this.actor.name,
+        actingCharName: this.actor.name,
         nomComedien: comedien.name,
+        actingCharImg: this.actor.img,
+        introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName:  this.actor.name }),
       });
       const chatData = {
         speaker: ChatMessage.getSpeaker({

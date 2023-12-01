@@ -1,8 +1,23 @@
 {{!log "chat standard check roll" this}}
 <div class="dice-roll {{cssClass}}">
-  {{#if data.desastre}}
-    Désastre !
-  {{else}}
+  <div class="intro-chat">
+    {{#if (ne data.actingCharImg "icons/svg/mystery-man.svg")}}
+      <div class="introImg">
+        <img src="{{data.actingCharImg}}" title="{{data.actingCharName}}" />
+      </div>
+    {{/if}}
+    <div class="intro_right">
+      <p class="introText">{{{data.introText}}}</p>
+    </div>
+  </div>
+  <img style="width: 60%; align-self: center;" src={{images.deco_chat}} />
+  <div class="dice-result">
+    <div class="dice-tooltip">
+      <p>Résultat du jet de dés : {{{total}}}</p>
+    </div>
+    <p class="finalText">{{{data.finalText}}}</p>
+  </div>
+  {{#ifn data.desastre}}
     <div class="dice-result">
       <div class="dice-tooltip">
         <div class="dice-formula">{{formula}}</div>
@@ -58,5 +73,5 @@
         <span>{{total}}</span>
       </h4>
     </div>
-  {{/if}}
+  {{/ifn}}
 </div>

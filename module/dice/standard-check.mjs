@@ -42,14 +42,19 @@ export default class StandardCheck extends Roll {
    * @type {object}
    */
   static defaultData = {
+    activitelbl:null,
     actorId: null,
     actorData: null,
+    actingCharImg: null,
+    actingCharName: null,
     qualite: undefined,
     qualiteValeur: 0,
     deQualite: null,
     difficultes: [],
     difficulte: undefined,
     difficulteValeur: undefined,
+    introText:"",
+    finalText:"",
     type: "classique",
     aspect: "neshama",
     aspectValeur: 0,
@@ -131,6 +136,14 @@ export default class StandardCheck extends Roll {
 
     // Attribut pour le comédien
     if (data.actorData.comedien && data.attribut) data.attributValeur = data.attributs[data.attribut].valeur;
+
+    const actingChar = game.actors.get(data.actorId);
+    data.actingCharImg = actingChar.img;
+    data.actingCharName = actingChar.name;
+
+    data.introText = game.i18n.format("CDM.DICECHATMESSAGE.introText", { actingCharName: actingChar.name, activite: data.activitelbl});
+    if(data.desastre ) data.finalText = "Désastre !";
+    else if (data.estEmbellie) data.finalText = "Embellie !";
   }
 
   /** @override */
@@ -182,6 +195,7 @@ export default class StandardCheck extends Roll {
       isGM: game.user.isGM,
       formula: this.formula,
       total: this.total,
+      images: SYSTEM.IMAGES
     };
 
     // Successes and Failures
@@ -221,7 +235,7 @@ export default class StandardCheck extends Roll {
    * @returns {Promise<StandardCheck|null>}   The resolved check, or null if the dialog was closed
    */
   async dialog({ title, flavor, rollMode } = {}) {
-    const options = { title, flavor, rollMode, roll: this };
+    const options = { title, rollMode, roll: this };
     return this.constructor.dialogClass.prompt({ title, options });
   }
 
