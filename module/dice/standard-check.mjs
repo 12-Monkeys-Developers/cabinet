@@ -180,6 +180,7 @@ export default class StandardCheck extends Roll {
   /** @override */
   async render(chatOptions = {}) {
     if (chatOptions.isPrivate) return "";
+    this.data.diceTooltip = await this.getTooltip();
     return renderTemplate(this.constructor.htmlTemplate, this._getChatCardData());
   }
 

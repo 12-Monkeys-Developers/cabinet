@@ -34,14 +34,14 @@
         <div style="grid-row: 1 / 2; grid-column: 1 / 2;" class="bonus-block">
             {{#if peutEmbellie}}
             <div class="bonus-lbl">Embellie</div>
-            <select name="bonus-lbl" style="width:6em;" data-action="embellie-change">
+            <select name="embellie" style="width:6em;" data-action="embellie-change">
                 {{selectOptions optionsEmbellie selected=embellie nameAttr="indice" labelAttr="label" blank="Non"}}
             </select>
             {{/if}}
         </div>
         <div style="grid-row: 1 / 2; grid-column: 2 / 3;" class="bonus-block">
             <div class="bonus-lbl">Périsprit</div>
-            <select name="bonus-lbl" style="width:3em;" data-action="perisprit-change">
+            <select name="perisprit" style="width:3em;" data-action="perisprit-change">
                 {{selectOptions optionsPerisprit selected=perisprit nameAttr="indice" labelAttr="label" blank="0"}}
             </select>
         </div>
