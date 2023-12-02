@@ -1,0 +1,78 @@
+{{!log 'standard check dialog' this}}
+<form class="standard-check">
+    <section class="content">
+        <div class="qualite">
+            <label>Qualité</label>
+            <select name="qualite" data-action="qualite-change">
+                {{selectOptions qualites selected=qualite labelAttr="label" blank="Choisir une qualité" sort=true}}
+            </select>
+            {{numberInput qualiteValeur name="qualiteValeur" min=1}}
+        </div>
+        {{#if peutEmbellie}}
+        <div class="embellie">
+            <label>Embellie</label>
+            <select name="embellie" data-action="embellie-change">
+                {{selectOptions optionsEmbellie selected=embellie nameAttr="indice" labelAttr="label" blank="Choisir le
+                nombre de dés"}}
+            </select>
+        </div>
+        {{/if}}
+        <div class="aspect">
+            <label>Aspect</label>
+            <select name="aspect" data-action="aspect-change">
+                {{selectOptions aspects selected=aspect labelAttr="label"}}
+            </select>
+            {{numberInput aspectValeur name="aspectValeur" min=0}}
+        </div>
+        {{#if estComedien}}
+        <div class="attribut">
+            <label>Attribut</label>
+            <select name="attribut" data-action="attribut-change">
+                {{selectOptions listeAttributs selected=attribut labelAttr="label" blank="Choisir un attribut"
+                sort=true}}
+            </select>
+            {{numberInput attributValeur name="attributValeur" min=1}}
+        </div>
+        {{/if}}
+        <div class="acquis">
+            <label>Acquis</label>
+            <select name="acquis" data-action="acquis-change">
+                {{selectOptions listeAcquis selected=acquis nameAttr="indice" labelAttr="nom" blank="Choisir un
+                acquis"}}
+            </select>
+            {{numberInput acquisValeur name="acquisValeur" min=0}}
+        </div>
+        <div class="perisprit">
+            <label>Perisprit</label>
+            <select name="perisprit" data-action="perisprit-change">
+                {{selectOptions optionsPerisprit selected=perisprit nameAttr="indice" labelAttr="label" blank="Choisir
+                le nombre de points de périsprit"}}
+            </select>
+        </div>
+        {{#if estComedien}}
+        <div class="malus">
+            <label>Malus total</label>
+            {{numberInput malus name="malus" min=0}}
+        </div>
+        {{/if}}
+        <div class="bonus">
+            <label data-action="bonus-change">Bonus</label>
+            <input type="number" value="{{bonus}}" name="bonus" min="0" data-action="bonus-change">
+        </div>
+        <div class="difficulte">
+            <label>Difficulté</label>
+            <select name="difficulte" data-action="diff-change">
+                {{selectOptions difficultes selected=difficulte labelAttr="label" blank=""}}
+            </select>
+        </div>
+        {{#unless isGM}}
+        <select name="rollMode">
+            {{selectOptions rollModes selected=rollMode localize=true}}
+        </select>
+        {{/unless}}
+        <button type="button" class="dialog-button" data-button="ok">
+            <i class="logo_action"></i>
+            <label>Lancer</label>
+        </button>
+    </section>
+</form>

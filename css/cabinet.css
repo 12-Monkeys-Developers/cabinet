@@ -7,6 +7,7 @@
   --background_cabinet_grey: none;
   --background_corps: none;
   --background_corruption: none;
+  --background_dialog: none;
   --background_esprit_header: none;
   --background_esprit_header: repeat url("/systems/cabinet/assets/images/sheets/esprit-header.webp");
   --background_esprit_header_jardin: repeat url("/systems/cabinet/assets/images/sheets/esprit-header-jardin.webp");
@@ -1209,6 +1210,67 @@ i.logo_defaut {
   border: 1px solid;
   border-radius: 2px;
   text-align: center;
+}
+.flexcol {
+  display: flex;
+  flex-direction: column;
+}
+.dialog-check {
+  background-color: white;
+  background: var(--background_dialog);
+}
+.dialog-check .bonus-lbl {
+  text-align: center;
+  margin-bottom: 5px;
+}
+.dialog-check .action-sheet-grid {
+  display: grid;
+  grid-template-columns: 40px 160px 40px 120px 40px 150px 20px;
+  grid-template-rows: 60px;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-family: "imfellfrenchcanon";
+  font-size: 1em;
+  color: #605347;
+  align-items: center;
+}
+.dialog-check .action-sheet-grid .action-label {
+  align-self: center;
+  font-size: 3em;
+}
+.dialog-check .action-sheet-grid .action-val select {
+  font-family: "imfellfrenchcanon";
+  font-size: 1em;
+  color: #605347;
+}
+.dialog-check .action-bonus-grid {
+  display: grid;
+  grid-template-columns: 80px 110px 130px 100px 150px;
+  grid-template-rows: 60px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.dialog-check .action-bonus-grid .bonus-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dialog-check .action-roll-grid {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  grid-template-rows: 60px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.dialog-check .action-roll-grid .rollmode {
+  justify-self: center;
+  margin: auto;
+}
+.dialog-check .action-roll-grid .dialog-button {
+  padding: 10px;
+  border: solid 2px #497180;
+  border-radius: 20px;
+  margin: 5px 80px;
 }
 .esprit-sheet .esprit-header {
   background-color: #394e55;

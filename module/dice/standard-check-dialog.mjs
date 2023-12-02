@@ -14,7 +14,7 @@ export default class StandardCheckDialog extends Dialog {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      width: 1500,
+      width: 600,
       height: 300,
       classes: ["cabinet", "roll"],
       template: `systems/${SYSTEM.id}/templates/dice/standard-check-dialog.hbs`,
@@ -37,7 +37,7 @@ export default class StandardCheckDialog extends Dialog {
     // Si comédien et positionné sur la qualité utilisée : embellie possible
     if (estComedien && !jardin && position === sphere) peutEmbellie = true;
     data.peutEmbellie = peutEmbellie;
-    const optionsEmbellie = Array.from({ length: data.qualiteValeur }, (_, index) => ({ indice: index + 1, label: index + 1 }));
+    const optionsEmbellie = Array.from({ length: data.qualiteValeur }, (_, index) => ({ indice: index + 1, label: (index + 1).toString()+"D" }));
 
     const optionsPerisprit = Array.from({ length: data.actorData.perisprit }, (_, index) => ({ indice: index + 1, label: index + 1 }));
 

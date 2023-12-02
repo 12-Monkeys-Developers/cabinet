@@ -140,3 +140,66 @@
     }
   }
 }
+.flexcol {
+  display: flex;
+  flex-direction: column;
+}
+.dialog-check {
+  background-color: white;
+  background: var(--background_dialog);
+  .bonus-lbl {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .action-sheet-grid {
+    display: grid;
+    grid-template-columns: 40px 160px 40px 120px 40px 150px 20px;
+    grid-template-rows: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-family: "imfellfrenchcanon";
+    font-size: 1em;
+    color: #605347;
+    align-items: center;
+    .action-label {
+      align-self: center;
+      font-size: 3em;
+    }
+    .action-val {
+      select {
+        font-family: "imfellfrenchcanon";
+        font-size: 1em;
+        color: #605347;
+      }
+    }
+  }
+  .action-bonus-grid {
+    display: grid;
+    grid-template-columns: 80px 110px 130px 100px 150px;
+    grid-template-rows: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
+    .bonus-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .action-roll-grid {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
+    .rollmode {
+      justify-self: center;
+      margin: auto;
+    }
+    .dialog-button {
+      padding: 10px;
+      border: solid 2px #497180;
+      border-radius: 20px;
+      margin: 5px 80px;
+    }
+  }
+}

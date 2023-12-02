@@ -1,78 +1,76 @@
 {{!log 'standard check dialog' this}}
-<form class="standard-check">
+<form class="dialog-check">
     <section class="content">
-        <div class="qualite">
-            <label>Qualité</label>
-            <select name="qualite" data-action="qualite-change">
-                {{selectOptions qualites selected=qualite labelAttr="label" blank="Choisir une qualité" sort=true}}
-            </select>
-            {{numberInput qualiteValeur name="qualiteValeur" min=1}}
+    {{! Sheet Body }}
+    <section class="sheet-body flexcol">
+      <div class="action-sheet-grid">
+        <div class="action-label" style="grid-row: 1 / 2; grid-column: 1 / 2;"><i class="logo_action"></i></div>
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 2 / 3;">
+          <select name="system.qualite">
+            {{selectOptions qualites selected=qualite labelAttr="label" placeholder="Choisir une qualité" sort=true}}
+          </select>
         </div>
-        {{#if peutEmbellie}}
-        <div class="embellie">
-            <label>Embellie</label>
-            <select name="embellie" data-action="embellie-change">
-                {{selectOptions optionsEmbellie selected=embellie nameAttr="indice" labelAttr="label" blank="Choisir le
-                nombre de dés"}}
-            </select>
-        </div>
-        {{/if}}
-        <div class="aspect">
-            <label>Aspect</label>
-            <select name="aspect" data-action="aspect-change">
+        <div class="action-label" style="grid-row: 1 / 2; grid-column: 3 / 4;">+</div>
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 4 / 5;">
+          <select name="system.aspect">
                 {{selectOptions aspects selected=aspect labelAttr="label"}}
-            </select>
-            {{numberInput aspectValeur name="aspectValeur" min=0}}
+          </select>
         </div>
-        {{#if estComedien}}
-        <div class="attribut">
-            <label>Attribut</label>
-            <select name="attribut" data-action="attribut-change">
-                {{selectOptions listeAttributs selected=attribut labelAttr="label" blank="Choisir un attribut"
+        <div class="action-label" style="grid-row: 1 / 2; grid-column: 5 / 6;">(+</div>
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 6 / 7;">
+          <select name="system.attribut">
+                {{selectOptions listeAttributs selected=attribut labelAttr="label" blank="Pas d'attribut"
                 sort=true}}
+          </select>
+        </div>
+        <div class="action-label" style="grid-row: 1 / 2; grid-column: 7 / 8;">)</div>
+      </div>
+      <div class="action-bonus-grid">
+        <div style="grid-row: 1 / 2; grid-column: 1 / 2;" class="bonus-block">
+            {{#if peutEmbellie}}
+            <div class="bonus-lbl">Embellie</div>
+            <select name="bonus-lbl" style="width:6em;" data-action="embellie-change">
+                {{selectOptions optionsEmbellie selected=embellie nameAttr="indice" labelAttr="label" blank="Non"}}
             </select>
-            {{numberInput attributValeur name="attributValeur" min=1}}
+            {{/if}}
         </div>
-        {{/if}}
-        <div class="acquis">
-            <label>Acquis</label>
-            <select name="acquis" data-action="acquis-change">
-                {{selectOptions listeAcquis selected=acquis nameAttr="indice" labelAttr="nom" blank="Choisir un
-                acquis"}}
-            </select>
-            {{numberInput acquisValeur name="acquisValeur" min=0}}
-        </div>
-        <div class="perisprit">
-            <label>Perisprit</label>
-            <select name="perisprit" data-action="perisprit-change">
-                {{selectOptions optionsPerisprit selected=perisprit nameAttr="indice" labelAttr="label" blank="Choisir
-                le nombre de points de périsprit"}}
+        <div style="grid-row: 1 / 2; grid-column: 2 / 3;" class="bonus-block">
+            <div class="bonus-lbl">Périsprit</div>
+            <select name="bonus-lbl" style="width:3em;" data-action="perisprit-change">
+                {{selectOptions optionsPerisprit selected=perisprit nameAttr="indice" labelAttr="label" blank="0"}}
             </select>
         </div>
-        {{#if estComedien}}
-        <div class="malus">
-            <label>Malus total</label>
-            {{numberInput malus name="malus" min=0}}
-        </div>
-        {{/if}}
-        <div class="bonus">
-            <label data-action="bonus-change">Bonus</label>
-            <input type="number" value="{{bonus}}" name="bonus" min="0" data-action="bonus-change">
-        </div>
-        <div class="difficulte">
-            <label>Difficulté</label>
+        <div style="grid-row: 1 / 2; grid-column: 3 / 4;" class="bonus-block">
+            <div class="bonus-lbl">Difficulté</div>
             <select name="difficulte" data-action="diff-change">
                 {{selectOptions difficultes selected=difficulte labelAttr="label" blank=""}}
             </select>
         </div>
+        <div style="grid-row: 1 / 2; grid-column: 4 / 5;" class="bonus-block">
+            <div class="bonus-lbl" data-action="bonus-change">Bonus libre</div>
+            <input type="number" value="{{bonus}}" name="bonus" min="0" data-action="bonus-change">
+        </div>
+        <div style="grid-row: 1 / 2; grid-column: 5 / 6;" class="bonus-block">
+        {{#if estComedien}}
+            <div class="bonus-lbl">Malus blessures</div>
+            {{malus}}
+        {{/if}}
+        </div>
+      </div>
+      <div class="action-roll-grid">
+        <div class="rollmode">
         {{#unless isGM}}
+            <div class="bonus-lbl">Visibilité</div>
         <select name="rollMode">
             {{selectOptions rollModes selected=rollMode localize=true}}
         </select>
         {{/unless}}
+        </div>
+        <div class="rollbutton">
         <button type="button" class="dialog-button" data-button="ok">
             <i class="logo_action"></i>
             <label>Lancer</label>
         </button>
+        </div>
     </section>
 </form>
