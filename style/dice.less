@@ -1,126 +1,6 @@
 /* ----------------------------------------- */
 /*  Roll Dialog                              */
 /* ----------------------------------------- */
-.roll-content-mixin {
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.cabinet.roll {
-  .content {
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 50px);
-    gap: 10px;
-
-    .qualite {
-      grid-row: 1 / 2;
-      grid-column: 1 / 2;
-      .roll-content-mixin;
-    }
-
-    .aspect {
-      grid-row: 1 / 2;
-      grid-column: 2 / 3;
-      .roll-content-mixin;
-    }
-
-    .attribut {
-      grid-row: 1 / 2;
-      grid-column: 3 / 4;
-      .roll-content-mixin;
-    }
-
-    .embellie {
-      grid-row: 2 / 3;
-      grid-column: 1 / 2;
-      .roll-content-mixin;
-    }
-
-    .malus {
-      grid-row: 2 / 3;
-      grid-column: 3 / 4;
-      .roll-content-mixin;
-    }
-
-    .acquis {
-      grid-row: 3 / 4;
-      grid-column: 1 / 2;
-      .roll-content-mixin;
-    }
-
-    .perisprit {
-      grid-row: 3 / 4;
-      grid-column: 2 / 3;
-      .roll-content-mixin;
-    }
-
-    .bonus {
-      grid-row: 3 / 4;
-      grid-column: 3 / 4;
-      .roll-content-mixin;
-    }
-
-    .difficulte {
-      grid-row: 4 / 5;
-      grid-column: 1 / 2;
-      .roll-content-mixin;
-    }
-
-    .dialog-button {
-      grid-row: 4 / 5;
-      grid-column: 2 / 3;
-    }
-
-    label,
-    select {
-      font-family: "trajan";
-      font-size: 1em;
-      color: #6a7980;
-      text-indent: 5px;
-      text-transform: uppercase;
-    }
-
-    input {
-      font-family: "trajan";
-      font-size: 1em;
-      color: #6a7980;
-      text-indent: 5px;
-      text-transform: uppercase;
-      width: 25px;
-    }
-  }
-
-  // Success
-  &.success .check-result {
-    background: rgb(0 255 0 / 5%);
-    border: 1px solid green;
-  }
-
-  // Failure
-  &.failure .check-result {
-    background: rgb(255 0 0 / 5%);
-    border: 1px solid red;
-  }
-
-  // Critical Failure
-  &.failure.critical .check-result {
-    background: rgb(255 0 0 / 5%);
-    color: red;
-    border: 1px solid red;
-  }
-
-  // Critical Success
-  &.success.critical .check-result {
-    background: rgb(0 255 0 / 5%);
-    color: green;
-    border: 1px solid green;
-  }
-}
-
 .dice-tooltip {
   .counter {
     display: flex;
@@ -153,12 +33,12 @@
   }
   .action-sheet-grid {
     display: grid;
-    grid-template-columns: 40px 160px 40px 120px 40px 150px 20px;
+    grid-template-columns: 30px 105px 20px 90px 30px 120px 40px 100px;
     grid-template-rows: 60px;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-top: 10px;
     font-family: "imfellfrenchcanon";
-    font-size: 1em;
+    font-size: 0.9em;
     color: #605347;
     align-items: center;
     .action-label {

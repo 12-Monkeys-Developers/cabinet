@@ -5,25 +5,30 @@
     <section class="sheet-body flexcol">
       <div class="action-sheet-grid">
         <div class="action-label" style="grid-row: 1 / 2; grid-column: 1 / 2;"><i class="logo_action"></i></div>
-        <div class="action-val" style="grid-row: 1 / 2; grid-column: 2 / 3;">
-          <select name="system.qualite">
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 2 / 3;" data-tooltip="{{qualiteValeur}}">
+          <select name="qualite" data-action="qualite-change">
             {{selectOptions qualites selected=qualite labelAttr="label" placeholder="Choisir une qualité" sort=true}}
           </select>
         </div>
         <div class="action-label" style="grid-row: 1 / 2; grid-column: 3 / 4;">+</div>
-        <div class="action-val" style="grid-row: 1 / 2; grid-column: 4 / 5;">
-          <select name="system.aspect">
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 4 / 5;" data-tooltip="{{aspectValeur}}">
+          <select name="aspect" data-action="aspect-change">
                 {{selectOptions aspects selected=aspect labelAttr="label"}}
           </select>
         </div>
         <div class="action-label" style="grid-row: 1 / 2; grid-column: 5 / 6;">(+</div>
-        <div class="action-val" style="grid-row: 1 / 2; grid-column: 6 / 7;">
-          <select name="system.attribut">
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 6 / 7;" data-tooltip="{{attributValeur}}">
+          <select name="attribut" data-action="attribut-change">
                 {{selectOptions listeAttributs selected=attribut labelAttr="label" blank="Pas d'attribut"
                 sort=true}}
           </select>
         </div>
-        <div class="action-label" style="grid-row: 1 / 2; grid-column: 7 / 8;">)</div>
+        <div class="action-label" style="grid-row: 1 / 2; grid-column: 7 / 8;">) + </div>
+        <div class="action-val" style="grid-row: 1 / 2; grid-column: 8 / 9;" data-tooltip="{{acquisValeur}}">
+            <select name="acquis" data-action="acquis-change">
+                {{selectOptions listeAcquis selected=acquis nameAttr="indice" labelAttr="nom" blank="Acquis ?"}}
+            </select>
+        </div>
       </div>
       <div class="action-bonus-grid">
         <div style="grid-row: 1 / 2; grid-column: 1 / 2;" class="bonus-block">

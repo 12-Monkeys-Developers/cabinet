@@ -88,7 +88,6 @@ export default class CabinetActor extends Actor {
 
     // Prepare check data
     let rollData = {
-      activitelbl : defaultValues?.action ? (defaultValues.action+" ("+SYSTEM.QUALITES[qualiteId].label+")") : SYSTEM.QUALITES[qualiteId].label,
       actorId: this.id,
       actorData: this.system,
       qualite: qualiteId,

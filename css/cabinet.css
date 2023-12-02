@@ -1071,129 +1071,6 @@ i.logo_defaut {
 /* ----------------------------------------- */
 /*  Roll Dialog                              */
 /* ----------------------------------------- */
-.roll-content-mixin {
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content {
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 50px);
-  gap: 10px;
-}
-.cabinet.roll .content .qualite {
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .aspect {
-  grid-row: 1 / 2;
-  grid-column: 2 / 3;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .attribut {
-  grid-row: 1 / 2;
-  grid-column: 3 / 4;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .embellie {
-  grid-row: 2 / 3;
-  grid-column: 1 / 2;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .malus {
-  grid-row: 2 / 3;
-  grid-column: 3 / 4;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .acquis {
-  grid-row: 3 / 4;
-  grid-column: 1 / 2;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .perisprit {
-  grid-row: 3 / 4;
-  grid-column: 2 / 3;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .bonus {
-  grid-row: 3 / 4;
-  grid-column: 3 / 4;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .difficulte {
-  grid-row: 4 / 5;
-  grid-column: 1 / 2;
-  display: grid;
-  grid-template-columns: 120px 200px 25px;
-  justify-content: space-around;
-  align-items: center;
-}
-.cabinet.roll .content .dialog-button {
-  grid-row: 4 / 5;
-  grid-column: 2 / 3;
-}
-.cabinet.roll .content label,
-.cabinet.roll .content select {
-  font-family: "trajan";
-  font-size: 1em;
-  color: #6a7980;
-  text-indent: 5px;
-  text-transform: uppercase;
-}
-.cabinet.roll .content input {
-  font-family: "trajan";
-  font-size: 1em;
-  color: #6a7980;
-  text-indent: 5px;
-  text-transform: uppercase;
-  width: 25px;
-}
-.cabinet.roll.success .check-result {
-  background: rgba(0, 255, 0, 0.05);
-  border: 1px solid green;
-}
-.cabinet.roll.failure .check-result {
-  background: rgba(255, 0, 0, 0.05);
-  border: 1px solid red;
-}
-.cabinet.roll.failure.critical .check-result {
-  background: rgba(255, 0, 0, 0.05);
-  color: red;
-  border: 1px solid red;
-}
-.cabinet.roll.success.critical .check-result {
-  background: rgba(0, 255, 0, 0.05);
-  color: green;
-  border: 1px solid green;
-}
 .dice-tooltip .counter {
   display: flex;
   justify-content: space-between;
@@ -1225,12 +1102,12 @@ i.logo_defaut {
 }
 .dialog-check .action-sheet-grid {
   display: grid;
-  grid-template-columns: 40px 160px 40px 120px 40px 150px 20px;
+  grid-template-columns: 30px 105px 20px 90px 30px 120px 40px 100px;
   grid-template-rows: 60px;
-  margin-left: 10px;
+  margin-left: 5px;
   margin-top: 10px;
   font-family: "imfellfrenchcanon";
-  font-size: 1em;
+  font-size: 0.9em;
   color: #605347;
   align-items: center;
 }

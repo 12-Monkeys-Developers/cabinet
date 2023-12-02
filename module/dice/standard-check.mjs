@@ -140,6 +140,7 @@ export default class StandardCheck extends Roll {
     const actingChar = game.actors.get(data.actorId);
     data.actingCharImg = actingChar.img;
     data.actingCharName = actingChar.name;
+    data.activitelbl = data.action ? (data.action+" ("+SYSTEM.QUALITES[data.qualite].label+")") : SYSTEM.QUALITES[data.qualite].label;
 
     data.introText = game.i18n.format("CDM.DICECHATMESSAGE.introText", { actingCharName: actingChar.name, activite: data.activitelbl});
     if(data.desastre ) data.finalText = "Désastre !";
