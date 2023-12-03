@@ -135,6 +135,23 @@ Hooks.once("init", async function () {
     if (valeur < actor.system.sante[zone].seuil) return index <= (valeur - 1);
     else return index <= valeur;    
   });
+  // If is not equal
+  Handlebars.registerHelper("ifne", function (v1, v2, options) {
+    if (v1 !== v2) return options.fn(this);
+    else return options.inverse(this);
+  });
+
+  // if not
+  Handlebars.registerHelper("ifn", function (v1, options) {
+    if (!v1) return options.fn(this);
+    else return options.inverse(this);
+  });
+
+  // if equal
+  Handlebars.registerHelper("ife", function (v1, v2, options) {
+    if (v1 === v2) return options.fn(this);
+    else return options.inverse(this);
+  });
   
   game.settings.register("cabinet", "cabinet", {
     name: "Cabinet",
