@@ -34,8 +34,8 @@ export default class StandardCheckDialog extends Dialog {
     const jardin = data.actorData.jardin;
 
     let peutEmbellie = false;
-    // Si comédien et positionné sur la qualité utilisée : embellie possible
-    if (estComedien && !jardin && position === sphere) peutEmbellie = true;
+    // Si positionné sur la qualité utilisée : embellie possible
+    if (!jardin && position === sphere) peutEmbellie = true;
     data.peutEmbellie = peutEmbellie;
     const optionsEmbellie = Array.from({ length: data.qualiteValeur }, (_, index) => ({ indice: index + 1, label: (index + 1).toString()+"D" }));
 
