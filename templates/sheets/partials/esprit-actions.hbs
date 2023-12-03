@@ -2,33 +2,33 @@
     <div class="categorie categorie_agir">
         <div class="titre2">Agir</div>
     {{#each actions as |action|}}
-    {{#ife action.system.categorie "agir"}}
+    {{#if (eq action.system.categorie "agir")}}
        {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
-    {{/ife}}
+    {{/if}}
     {{/each}}
     </div>
     <div class="categorie categorie_communiquer">
         <div class="titre2">Communiquer</div>
     {{#each actions as |action|}}
-    {{#ife action.system.categorie "communiquer"}}
+    {{#if (eq action.system.categorie "communiquer")}}
        {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
-    {{/ife}}
+    {{/if}}
     {{/each}}
     </div>
     <div class="categorie categorie_percevoir">
         <div class="titre2">Percevoir</div>
     {{#each actions as |action|}}
-    {{#ife action.system.categorie "percevoir"}}
+    {{#if (eq action.system.categorie "percevoir")}}
        {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
-    {{/ife}}
+    {{/if}}
     {{/each}}
     </div>
     <div class="categorie categorie_savoir">
         <div class="titre2">Savoir</div>
     {{#each actions as |action|}}
-    {{#ife action.system.categorie "savoir"}}
+    {{#if (eq action.system.categorie "savoir")}}
        {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
-    {{/ife}}
+    {{/if}}
     {{/each}}
     </div>
 </div>

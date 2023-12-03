@@ -1,4 +1,4 @@
-{{!log 'sante' this}}
+{{log 'sante' this}}
 <div class="sante-grid">
     <div class="encart-malus">
           <img src={{images.encart_malus}} title="Malus dû aux blessures" />
@@ -95,9 +95,20 @@
             <label for="protection-jambe-gauche-input">Protection</label>
             {{#if editable}}
                     {{numberInput system.sante.jambeGauche.protection name="system.sante.jambeGauche.protection" min=0}}
-                {{else}}
+            {{else}}
                     {{system.sante.jambeGauche.protection}}
             {{/if}}
         </div>
     </div>
+    {{#if editable}}
+        <div class="sequelles-editable">
+            <label> Séquelles</label>
+            {{editor sequellesHtml target="system.sequelles" button=true engine="prosemirror" editable=true}}
+        </div>
+    {{else}}
+        <div class="sequelles">
+            <label> Séquelles</label>
+            {{editor sequellesHtml target="system.sequelles" button=true engine="prosemirror" editable=false}}
+        </div>
+    {{/if}}
 </div>

@@ -88,7 +88,7 @@
     <div class="titre3">Grâces</div>
     <div class="grid-graces">
         {{#each graces as |grace|}}
-            <div class="bloc-graces {{#ifn @root.editable}}item-control item-edit{{/ifn}}" data-field="{{grace._id}}">
+            <div class="bloc-graces {{#unless @root.editable}}item-control item-edit{{/unless}}" data-field="{{grace._id}}">
             <div class="back">
                 <div class="description">
                     <div class="inner-desc">

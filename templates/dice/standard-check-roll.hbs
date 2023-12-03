@@ -18,7 +18,7 @@
     </div>
     <p class="finalText">{{{data.finalText}}}</p>
   </div>
-  {{#ifn data.desastre}}
+  {{#unless data.desastre}}
     <div class="dice-result">
       <div class="dice-tooltip">
         <div class="dice-formula">{{formula}}</div>
@@ -74,5 +74,5 @@
         <span>{{total}}</span>
       </h4>
     </div>
-  {{/ifn}}
+  {{/unless}}
 </div>

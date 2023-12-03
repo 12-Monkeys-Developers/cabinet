@@ -24,10 +24,7 @@ export default class CabinetCorps extends foundry.abstract.TypeDataModel {
     );
 
     schema.equipement = new fields.HTMLField();
-    schema.sequelles = new fields.SchemaField({
-      legeres: new fields.HTMLField(),
-      graves: new fields.HTMLField(),
-    });
+    schema.sequelles = new fields.HTMLField();
 
     // armes : Embedded items de type arme
 
