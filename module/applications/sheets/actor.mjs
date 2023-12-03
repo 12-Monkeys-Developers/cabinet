@@ -190,25 +190,11 @@ export default class CabinetActorSheet extends ActorSheet {
 
     let index = parseInt(element.dataset.index);
     let zone = element.dataset.zone;
+    let nouvelleValeur = index < this.actor.system.sante[zone].seuil - 1 ? index + 1 : index;
 
-    let nouvelleValeur;
-
-    // Index avant le seuil
-    if (index < this.actor.system.sante[zone].seuil - 1) {
-      nouvelleValeur = index + 1;
-      // Première case déjà cochée
-      if (nouvelleValeur == 1 && this.actor.system.sante[zone].valeur == 1) {
-        return await this.actor.update({ [`system.sante.${zone}.valeur`]: 0 });
-      }
-    }
-    // Index égal au seuil
-    else if (index == this.actor.system.sante[zone].seuil - 1) {
+    if (index == this.actor.system.sante[zone].seuil - 1) {
       return;
-    }
-    // Index après le seuil
-    else {
-      nouvelleValeur = index;
-    }
-    await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur });
+    } else if (nouvelleValeur == this.actor.system.sante[zone].valeur) await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur - 1 });
+    else await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur });
   }
 }

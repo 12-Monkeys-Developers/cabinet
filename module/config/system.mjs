@@ -120,6 +120,7 @@ export const IMAGES= {
   tiferet_logo: "",
   yesod_logo: "",
   deco_chat:"systems/cabinet/assets/images/sheets/trait_separation.webp",
+  encart_malus:"systems/cabinet/assets/images/sheets/encart_malus.webp",
   ornement_feuille:"systems/cabinet/assets/images/sheets/ornement_dore_feuille.webp",
   trait_separation: "systems/cabinet/assets/images/sheets/trait_separation.webp"
 }

@@ -980,6 +980,29 @@ i.logo_defaut {
 .corps-sheet .sante-grid .sante-protection label {
   padding-right: 10px;
 }
+.corps-sheet .sante-grid .encart-malus {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.corps-sheet .sante-grid .encart-malus img {
+  border: 0px;
+  z-index: 1;
+}
+.corps-sheet .sante-grid .encart-malus .text_malus {
+  margin-top: -67px;
+  margin-left: 10px;
+  padding-bottom: 35px;
+  position: relative;
+  z-index: 2;
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #7b3135;
+}
 .corps-sheet .sante-grid .sante-tete {
   grid-row: 1 / 2;
   grid-column: 2 / 3;
