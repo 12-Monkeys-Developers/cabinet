@@ -42,7 +42,8 @@ export default class StandardCheck extends Roll {
    * @type {object}
    */
   static defaultData = {
-    activitelbl:null,
+    action: null,
+    activitelbl: null,
     actorId: null,
     actorData: null,
     actingCharImg: null,
