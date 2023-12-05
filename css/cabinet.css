@@ -483,6 +483,9 @@ i.logo_action {
 .cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces .back {
   padding: 0px 5px;
 }
+.cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces nav#context-menu.expand-down {
+  top: calc(20% + 2px);
+}
 .cab-sheet .cabinet-details .zone-graces .grid-graces .nom {
   font-family: "arrusbt";
   font-weight: bold;
@@ -627,18 +630,12 @@ i.logo_action {
 }
 #comedien .window-content {
   padding: 0;
-  border: solid 3px red;
-}
-#comedien .window-content .comedien-img {
-  width: 100%;
-  height: 100%;
+  border: solid 3px #605347;
 }
 #comedien .window-content .comedien-img img {
-  border-bottom: solid 3px blue;
-  width: 100%;
-  height: auto;
+  border-bottom: solid 3px #605347;
 }
-#comedien .comedien-corruption {
+#comedien .window-content .comedien-corruption {
   font-family: "imfell";
   margin-left: 5px;
   font-weight: bold;

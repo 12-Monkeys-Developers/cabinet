@@ -88,17 +88,11 @@
     <div class="titre3">Grâces</div>
     <div class="grid-graces">
         {{#each graces as |grace|}}
-            <div class="bloc-graces {{#unless @root.editable}}item-control item-edit{{/unless}}" data-field="{{grace._id}}">
+            <div class="bloc-graces item-contextmenu" data-item-id="{{grace._id}}">
             <div class="back">
                 <div class="description">
                     <div class="inner-desc">
                         <div class="nom">{{grace.name}}</div>
-                        <div class="info-line">
-                            {{#if @root.editable}}
-                            &nbsp;<a class="item-control item-edit" data-field="{{grace._id}}" data-tooltip="Modifier"><i class="fas fa-cog"></i></a>
-                            <a class="item-control item-delete" data-field="{{grace._id}}" data-tooltip="Supprimer"><i class="fas fa-trash"></i></a>
-                            {{/if}}
-                        </div>
                         {{{grace.system.descriptionhtml}}}
                     </div></div>
                 </div>
