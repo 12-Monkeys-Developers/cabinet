@@ -1,11 +1,12 @@
 .arme-sheet {
-  background: repeat url("../assets/images/sheets/fond-arme.webp");
+  background: var(--background_arme);
   font-family: "arrusbt";
   font-weight: bold;
   .name-title {
     display: flex;
     flex-direction: row;
     input {
+      width: 18em;
       font-size: 2em;
       text-transform: uppercase;
       text-align: left;
@@ -20,8 +21,10 @@
     }
   }
   .arme-content {
-    width: 400px;
+    min-width: 600px;
     min-height: 260px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
   .field-name {
     text-transform: uppercase;
@@ -29,13 +32,13 @@
     text-align: center;
     color: #497180;
   }
+  input {
+    width: 3em;
+  }
   .data-group {
     display: flex;
     flex-direction: row;
     margin: 0px 10px 15px 10px;
-    input {
-      width: 3em;
-    }
   }
     .description-group {
       display: flex;

@@ -2,6 +2,7 @@
   --background_acquis: none;
   --background_action: none;
   --background_arbre_vie: no-repeat url("/systems/cabinet/assets/images/sheets/arbre_vie.webp");
+  --background_arme: none;
   --background_base: none;
   --background_cabinet_graces: none;
   --background_cabinet_grey: none;
@@ -184,7 +185,7 @@ i.logo_action {
   text-align: justify;
 }
 .arme-sheet {
-  background: repeat url("../assets/images/sheets/fond-arme.webp");
+  background: var(--background_arme);
   font-family: "arrusbt";
   font-weight: bold;
 }
@@ -193,6 +194,7 @@ i.logo_action {
   flex-direction: row;
 }
 .arme-sheet .name-title input {
+  width: 18em;
   font-size: 2em;
   text-transform: uppercase;
   text-align: left;
@@ -206,8 +208,10 @@ i.logo_action {
   max-height: 100px;
 }
 .arme-sheet .arme-content {
-  width: 400px;
+  min-width: 600px;
   min-height: 260px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .arme-sheet .field-name {
   text-transform: uppercase;
@@ -215,13 +219,13 @@ i.logo_action {
   text-align: center;
   color: #497180;
 }
+.arme-sheet input {
+  width: 3em;
+}
 .arme-sheet .data-group {
   display: flex;
   flex-direction: row;
   margin: 0px 10px 15px 10px;
-}
-.arme-sheet .data-group input {
-  width: 3em;
 }
 .arme-sheet .description-group {
   display: flex;
