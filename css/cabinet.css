@@ -76,6 +76,12 @@
   margin: 0px 5px;
   font-weight: normal;
 }
+.acquis-sheet .description-group .prosemirror menu {
+  font-size: 0.8em;
+}
+.acquis-sheet .description-group .prosemirror menu li {
+  margin: 0px 0px;
+}
 .action-sheet {
   background-color: white;
   background: var(--background_action);
@@ -229,6 +235,12 @@ i.logo_action {
   min-height: 150px;
   margin: 0px 5px;
   font-weight: normal;
+}
+.arme-sheet .description-group .prosemirror menu {
+  font-size: 0.8em;
+}
+.arme-sheet .description-group .prosemirror menu li {
+  margin: 0px 0px;
 }
 .cab-sheet .outer-border {
   border: 6px solid black;
@@ -1695,6 +1707,12 @@ i.logo_defaut {
   margin: 0px 5px;
   font-size: 0.8em;
 }
+.esprit-sheet .tab-concept .prosemirror menu {
+  font-size: 0.8em;
+}
+.esprit-sheet .tab-concept .prosemirror menu li {
+  margin: 0px 0px;
+}
 .esprit-sheet .tab-concept .script {
   text-align: justify;
   margin-left: 10px;
@@ -2254,6 +2272,55 @@ i.logo_defaut {
   text-align: center;
   justify-content: center;
 }
+.pnj-sheet .ongletnotes {
+  min-height: 600px;
+  min-width: 480px;
+}
+.pnj-sheet .ongletnotes .notes-zone {
+  padding: 10px;
+}
+.pnj-sheet .ongletnotes .notes-zone .outer-border {
+  border: 6px solid #685649;
+  height: 99%;
+  width: 98%;
+  padding: 6px;
+  margin: 0 auto;
+}
+.pnj-sheet .ongletnotes .notes-zone .inner-border {
+  border: 2px solid #685649;
+  height: 100%;
+  width: 100%;
+  padding: 6px;
+  margin: auto;
+}
+.pnj-sheet .ongletnotes .notes-zone .script {
+  text-align: justify;
+  margin-left: 10px;
+  font-family: "alexbrush";
+  font-size: 1.5em;
+  color: black;
+  margin-left: 5px;
+  margin-top: 10px;
+  min-height: 80px;
+}
+.pnj-sheet .ongletnotes .notes-zone .cdmnotes {
+  min-height: 500px;
+}
+.pnj-sheet .ongletnotes .notes-zone .editor {
+  min-height: 500px;
+}
+.pnj-sheet .ongletnotes .notes-zone .prosemirror menu {
+  font-size: 0.8em;
+}
+.pnj-sheet .ongletnotes .notes-zone .prosemirror menu li {
+  margin: 0px 0px;
+}
+.pnj-sheet .ongletnotes .notes-zone .editor-content {
+  min-height: 500px;
+  font-weight: normal;
+  margin: 0px 5px;
+  font-size: 0.8em;
+}
 @font-face {
   font-family: "alexbrush";
   src: url("../assets/fonts/alexbrush.ttf") format("truetype");
@@ -2449,6 +2516,12 @@ i.logo_defaut {
 .pouvoir-sheet .pouvoir-content .description-group .editor-content {
   min-height: 300px;
   font-weight: normal;
+}
+.pouvoir-sheet .pouvoir-content .description-group .prosemirror menu {
+  font-size: 0.8em;
+}
+.pouvoir-sheet .pouvoir-content .description-group .prosemirror menu li {
+  margin: 0px 0px;
 }
 .pouvoir-sheet .pouvoir-content .controle-fields {
   grid-row: 3 / 4;
