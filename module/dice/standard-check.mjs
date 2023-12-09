@@ -47,6 +47,7 @@ export default class StandardCheck extends Roll {
     actorData: null,
     actingCharImg: null,
     actingCharName: null,
+    action: null,
     qualite: undefined,
     qualiteValeur: 0,
     deQualite: null,

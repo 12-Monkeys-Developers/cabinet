@@ -98,7 +98,7 @@ export default class CabinetActor extends Actor {
     };
 
     if (defaultValues !== null) {
-      rollData = foundry.utils.mergeObject(rollData, defaultValues);
+      rollData = await foundry.utils.mergeObject(rollData, defaultValues);
     }
 
     // Create the check roll
@@ -109,10 +109,10 @@ export default class CabinetActor extends Actor {
     if (dialog) {
       const jet = defaultValues === null ? SYSTEM.QUALITES[qualiteId].label : defaultValues.action;
       const title = game.i18n.format("CDM.DIALOG.titreJet", { nom: this.name, jet: jet });
+      sc.data.action=defaultValues.action;
       const response = await sc.dialog({ title, flavor, rollMode });
       if (response === null) return null;
     }
-
     // Des points de perisprit ont été dépensés
     if (sc.data.perispritValeur > 0) {
       const valeurActuelle = this.system.perisprit;
