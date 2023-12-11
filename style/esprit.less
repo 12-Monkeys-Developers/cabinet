@@ -1,305 +1,374 @@
-.esprit-sheet {
-  .esprit-header {
-    background-color: #394e55;
-    background: var(--background_esprit_header);
-    display: grid;
-    grid-template-columns: 180px 571px 100px 133px;
-    .titre_feuille {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 1.5em;
-      color: white;
-      text-transform: uppercase;
-      padding-left: 10px;
-      margin-top: 1em;
-      margin-bottom: 0.5em;
-    }
-    .titre_feuille::first-letter {
-      font-size: 2rem;
-    }
-    .charname {
-      font-family: "alexbrush";
-      font-size: 3em;
-      color: white;
-      margin-left: 5px;
-      margin-top: 10px;
-      input {
-        color: white;
-      }
-    }
-    .perisprit-bloc {
-      display: flex;
-      flex-direction: column;
-      .perisprit-label {
-        font-family: "arrusbt";
-        font-size: 1em;
-        text-transform: uppercase;
-        text-align: center;
-        border: 0px;
-        margin-bottom: 5px;
-        margin-top: 16px;
-        color: #ae9065;
-      }
-      .perisprit-value {
-        text-align: center;
-        input {
-          font-family: "arrusbt";
-          font-size: 2em;
-          width: 3em;
-          color: #ae9065;
-          border: 0px;
-        }
-      }
-    }
-    .esprit-portrait {
-      border: none;
-      margin: 2px 10px 0px 0px;
-      justify-self: end;
-      width: 133px;
-      height: 80px;
-      z-index: 2;
-      img {
-        border-radius: 50%;
-      }
-    }
+.cabinet.sheet.actor.esprit {
+  .window-content {
+    background: var(--fond_esprit);
   }
-  .choix_tab {
-    font-family: "posterbodoni";
-    font-size: 1.2em;
-    color: #f0eae1;
-    text-align: center;
-    text-transform: uppercase;
-    border: 1px solid #f0eae1;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    text-align: center;
-    padding: 0.5em 0.5em 0.3em 0.5em;
-  }
-  .choix_tab.active {
-    border: 2px solid white;
-    color: white;
-    border-bottom-width: 0;
-  }
-  .sheet-navigation {
-    grid-column: 1 / 3;
-    display: flex;
-    flex-direction: row;
-    font-size: 1, 5em;
-  }
-
-  .titre2 {
-    font-family: "posterbodoni";
-    font-size: 1.5em;
-    color: #497180;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  .tab-qualites {
-    background: var(--background_esprit_tab_qualites);
-  }
-
-  .grid-tab-qualites {
-    display: grid;
-    grid-template-columns: 350px 600px;
-    padding-left: 30px;
-  }
-  .grid-arbre-qualites {
-    grid-row: 1 / 6;
-    grid-column: 1 / 2;
-    display: grid;
-    margin-top: 9px;
-    grid-template-columns: 90px 100px 120px;
-    grid-template-rows: 120px 120px 120px 120px 120px;
-  }
-  .intellect-group {
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 1;
-    grid-column: 1 / 2;
-  }
-  .courage-group {
-    grid-row: 1;
-    grid-column: 2 / 3;
-  }
-  .sensibilite-group {
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 1;
-    grid-column: 3 / 4;
-  }
-  .autorite-group {
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 2;
-    grid-column: 1 / 2;
-  }
-  .ouverture-group {
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 2;
-    grid-column: 3 / 4;
-  }
-  .savoir-group {
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 3;
-    grid-column: 1 / 2;
-  }
-  .serenite-group {
-    grid-row: 3;
-    grid-column: 2 / 3;
-  }
-  .charisme-group {
-    position: relative;
-    z-index: 1;
-    margin-top: 48px;
-    grid-row: 3;
-    grid-column: 3 / 4;
-  }
-  .attention-group {
-    grid-row: 4;
-    grid-column: 2 / 3;
-  }
-  .coordination-group {
-    grid-row: 5;
-    grid-column: 2 / 3;
-  }
-  .qualite-group {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 40px 30px 23px 30px;
-    .qualite-name {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 1em;
-      color: #497180;
-      text-transform: uppercase;
-      margin-top: 15px;
-      padding-left: 24px;
-    }
-    .qualite-value {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 2em;
-      color: #497180;
-      text-transform: uppercase;
-      input {
-        margin-left: -6px;
-        text-align: center;
-        width: 1em;
-      }
-    }
-    .qvdroite {
-      padding-left: 55px;
-    }
-    .qvgauche {
-      padding-left: 47px;
-    }
-    .position-arbre {
-      text-shadow: 0 0 5px #3c36f4;
-    }
-    .defaut-value {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 1.2em;
-      color: #7b3135;
-      text-transform: uppercase;
-      input {
-        text-align: center;
-        width: 0.9em;
-        margin-left: -4px;
-      }
-    }
-    .dvdroite {
-      padding-left: 70px;
-    }
-    .dvgauche {
-      text-align: left;
-      padding-left: 38px;
-    }
-    .defaut-name {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 0.7em;
-      color: #7b3135;
-      text-transform: uppercase;
-    }
-    .dndroite {
-      padding-left: 45px;
-    }
-    .dngauche {
-      padding-left: 0px;
-    }
-  }
-  .col-droite-qualites {
-    display: flex;
-    flex-direction: column;
-    .col-droite-bloc1 {
+  .esprit-sheet {
+    .esprit-header {
+      background-color: #394e55;
+      background: var(--background_esprit_header);
       display: grid;
-      grid-template-columns: 240px 1fr;
-      padding-left: 50px;
-      margin-top: 50px;
-      .aspects-grid {
-        display: grid;
-        grid-template-columns: 180px 40px 1fr;
-        grid-template-rows: 34px 34px 34px;
-        .aspects-ligne {
-          display: flex;
-          flex-direction: row;
-          margin-top: 10px;
-          .nom-aspect {
-            font-family: "arrusbt";
-            font-weight: bold;
-            font-size: 1em;
-            color: #497180;
-            text-transform: uppercase;
-            padding-left: 10px;
-          }
-          .aspect-desc {
-            font-family: "arrusbt";
-            font-weight: bold;
-            font-size: 1em;
-            color: #685a4e;
-            text-transform: uppercase;
-            padding-left: 6px;
-          }
-        }
-        .aspectcircle {
-          border-radius: 50%;
-          padding: 7px 8px;
-          border: 2px solid #497180;
-          color: #497180;
-          text-align: center;
-          font-size: 1em;
-          font-weight: bold;
+      grid-template-columns: 180px 571px 100px 133px;
+      .titre_feuille {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1.5em;
+        color: white;
+        text-transform: uppercase;
+        padding-left: 10px;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+      }
+      .titre_feuille::first-letter {
+        font-size: 2rem;
+      }
+      .charname {
+        font-family: "alexbrush";
+        font-size: 3em;
+        color: white;
+        margin-left: 5px;
+        margin-top: 10px;
+        input {
+          color: white;
         }
       }
-
-      .corruptions-col {
+      .perisprit-bloc {
         display: flex;
         flex-direction: column;
-        .ligne-cor {
+        .perisprit-label {
+          font-family: "arrusbt";
+          font-size: 1em;
+          text-transform: uppercase;
+          text-align: center;
+          border: 0px;
+          margin-bottom: 5px;
+          margin-top: 16px;
+          color: #ae9065;
+        }
+        .perisprit-value {
+          text-align: center;
+          input {
+            font-family: "arrusbt";
+            font-size: 2em;
+            width: 3em;
+            color: #ae9065;
+            border: 0px;
+          }
+        }
+      }
+      .esprit-portrait {
+        border: none;
+        margin: 2px 10px 0px 0px;
+        justify-self: end;
+        width: 133px;
+        height: 80px;
+        z-index: 2;
+        img {
+          border-radius: 50%;
+        }
+      }
+    }
+    .choix_tab {
+      font-family: "posterbodoni";
+      font-size: 1.2em;
+      color: #f0eae1;
+      text-align: center;
+      text-transform: uppercase;
+      border: 1px solid #f0eae1;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      text-align: center;
+      padding: 0.5em 0.5em 0.3em 0.5em;
+    }
+    .choix_tab.active {
+      border: 2px solid white;
+      color: white;
+      border-bottom-width: 0;
+    }
+    .sheet-navigation {
+      grid-column: 1 / 3;
+      display: flex;
+      flex-direction: row;
+      font-size: 1, 5em;
+    }
+
+    .titre2 {
+      font-family: "posterbodoni";
+      font-size: 1.5em;
+      color: #497180;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .tab-qualites {
+      background: var(--background_esprit_tab_qualites);
+    }
+
+    .grid-tab-qualites {
+      display: grid;
+      grid-template-columns: 350px 600px;
+      padding-left: 30px;
+    }
+    .grid-arbre-qualites {
+      grid-row: 1 / 6;
+      grid-column: 1 / 2;
+      display: grid;
+      margin-top: 9px;
+      grid-template-columns: 90px 100px 120px;
+      grid-template-rows: 120px 120px 120px 120px 120px;
+    }
+    .intellect-group {
+      position: relative;
+      z-index: 1;
+      margin-top: 48px;
+      grid-row: 1;
+      grid-column: 1 / 2;
+    }
+    .courage-group {
+      grid-row: 1;
+      grid-column: 2 / 3;
+    }
+    .sensibilite-group {
+      position: relative;
+      z-index: 1;
+      margin-top: 48px;
+      grid-row: 1;
+      grid-column: 3 / 4;
+    }
+    .autorite-group {
+      position: relative;
+      z-index: 1;
+      margin-top: 48px;
+      grid-row: 2;
+      grid-column: 1 / 2;
+    }
+    .ouverture-group {
+      position: relative;
+      z-index: 1;
+      margin-top: 48px;
+      grid-row: 2;
+      grid-column: 3 / 4;
+    }
+    .savoir-group {
+      position: relative;
+      z-index: 1;
+      margin-top: 48px;
+      grid-row: 3;
+      grid-column: 1 / 2;
+    }
+    .serenite-group {
+      grid-row: 3;
+      grid-column: 2 / 3;
+    }
+    .charisme-group {
+      position: relative;
+      z-index: 1;
+      margin-top: 48px;
+      grid-row: 3;
+      grid-column: 3 / 4;
+    }
+    .attention-group {
+      grid-row: 4;
+      grid-column: 2 / 3;
+    }
+    .coordination-group {
+      grid-row: 5;
+      grid-column: 2 / 3;
+    }
+    .qualite-group {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 40px 30px 23px 30px;
+      .qualite-name {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: #497180;
+        text-transform: uppercase;
+        margin-top: 15px;
+        padding-left: 24px;
+      }
+      .qualite-value {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 2em;
+        color: #497180;
+        text-transform: uppercase;
+        input {
+          margin-left: -6px;
+          text-align: center;
+          width: 1em;
+        }
+      }
+      .qvdroite {
+        padding-left: 55px;
+      }
+      .qvgauche {
+        padding-left: 47px;
+      }
+      .position-arbre {
+        text-shadow: 0 0 5px #3c36f4;
+      }
+      .defaut-value {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #7b3135;
+        text-transform: uppercase;
+        input {
+          text-align: center;
+          width: 0.9em;
+          margin-left: -4px;
+        }
+      }
+      .dvdroite {
+        padding-left: 70px;
+      }
+      .dvgauche {
+        text-align: left;
+        padding-left: 38px;
+      }
+      .defaut-name {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 0.7em;
+        color: #7b3135;
+        text-transform: uppercase;
+      }
+      .dndroite {
+        padding-left: 45px;
+      }
+      .dngauche {
+        padding-left: 0px;
+      }
+    }
+    .col-droite-qualites {
+      display: flex;
+      flex-direction: column;
+      .col-droite-bloc1 {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        padding-left: 50px;
+        margin-top: 50px;
+        .aspects-grid {
           display: grid;
-          grid-template-columns: 5fr 1fr 1fr;
+          grid-template-columns: 180px 40px 1fr;
+          grid-template-rows: 34px 34px 34px;
+          .aspects-ligne {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            .nom-aspect {
+              font-family: "arrusbt";
+              font-weight: bold;
+              font-size: 1em;
+              color: #497180;
+              text-transform: uppercase;
+              padding-left: 10px;
+            }
+            .aspect-desc {
+              font-family: "arrusbt";
+              font-weight: bold;
+              font-size: 1em;
+              color: #685a4e;
+              text-transform: uppercase;
+              padding-left: 6px;
+            }
+          }
+          .aspectcircle {
+            border-radius: 50%;
+            padding: 7px 8px;
+            border: 2px solid #497180;
+            color: #497180;
+            text-align: center;
+            font-size: 1em;
+            font-weight: bold;
+          }
+        }
+
+        .corruptions-col {
+          display: flex;
+          flex-direction: column;
+          .ligne-cor {
+            display: grid;
+            grid-template-columns: 5fr 1fr 1fr;
+            justify-content: left;
+            margin: 0.5em 0.5em 0px 0.5em;
+            border-bottom: 1px solid #724755;
+          }
+          .nom-cor {
+            font-family: "arrusbt";
+            font-weight: bold;
+            font-size: 1em;
+            color: #724755;
+            padding-left: 0.5em;
+            align-self: center;
+          }
+          .icon-group {
+            margin-left: auto;
+          }
+          .desc {
+            font-family: "garamondpro";
+            font-size: 0.9em;
+            text-indent: 0px;
+            text-align: justify;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+          }
+        }
+      }
+
+      .col-droite-bloc3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-left: 50px;
+        .medaillon_cab {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          margin-top: 22px;
+          img {
+            border: 0px;
+          }
+        }
+        .encart-exp {
+          background: var(--background_esprit_encart_exp);
+          background-size: contain;
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1.5em;
+          color: #497180;
+          text-transform: uppercase;
+          text-align: center;
+          width: 250px;
+          margin-top: 60px;
+
+          .text-exp {
+            margin-top: 50px;
+          }
+          input {
+            width: 1em;
+          }
+        }
+      }
+      .acquis-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-left: 50px;
+        .ligne-acquis {
+          display: grid;
+          grid-template-columns: 5fr 1fr;
           justify-content: left;
           margin: 0.5em 0.5em 0px 0.5em;
-          border-bottom: 1px solid #724755;
+          border-bottom: 1px solid black;
         }
-        .nom-cor {
+        .acquis-nom {
           font-family: "arrusbt";
           font-weight: bold;
           font-size: 1em;
-          color: #724755;
+          color: #497180;
           padding-left: 0.5em;
           align-self: center;
-        }
-        .icon-group {
-          margin-left: auto;
         }
         .desc {
           font-family: "garamondpro";
@@ -313,179 +382,160 @@
         }
       }
     }
-
-    .col-droite-bloc3 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-left: 50px;
-      .medaillon_cab {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 22px;
-        img {
-          border: 0px;
-        }
-      }
-      .encart-exp {
-        background: var(--background_esprit_encart_exp);
-        background-size: contain;
-        font-family: "arrusbt";
-        font-weight: bold;
-        font-size: 1.5em;
-        color: #497180;
-        text-transform: uppercase;
-        text-align: center;
-        width: 250px;
-        margin-top: 60px;
-
-        .text-exp {
-          margin-top: 50px;
-        }
-        input {
-          width: 1em;
-        }
-      }
-    }
-    .acquis-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-left: 50px;
-      .ligne-acquis {
-        display: grid;
-        grid-template-columns: 5fr 1fr;
-        justify-content: left;
-        margin: 0.5em 0.5em 0px 0.5em;
-        border-bottom: 1px solid black;
-      }
-      .acquis-nom {
-        font-family: "arrusbt";
-        font-weight: bold;
-        font-size: 1em;
-        color: #497180;
-        padding-left: 0.5em;
-        align-self: center;
-      }
-      .desc {
-        font-family: "garamondpro";
-        font-size: 0.9em;
-        text-indent: 0px;
-        text-align: justify;
-        padding-left: 5px;
-        padding-right: 5px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-      }
-    }
-  }
-  .grid-tab-actions {
-    background: var(--background_esprit_tab_actions);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    .categorie {
-      display: flex;
-      flex-direction: column;
-      margin: 10px 5px 0px 5px;
-      min-height: 250px;
-      .actions-ligne {
-        margin-top: 15px;
-      }
-    }
-    .categorie_agir {
-      grid-row: 1 / 4;
-      grid-column: 1 / 2;
-    }
-    .categorie_communiquer {
-      grid-row: 1 / 4;
-      grid-column: 2 / 3;
-    }
-    .categorie_percevoir {
-      grid-row: 1 / 2;
-      grid-column: 3 / 4;
-    }
-    .categorie_savoir {
-      grid-row: 2 / 3;
-      grid-column: 3 / 4;
-    }
-    .nom-action {
-      font-family: "trajan";
-      font-size: 1em;
-      color: #6a7980;
-      text-indent: 5px;
-      text-transform: uppercase;
-    }
-  }
-  .tab-pouvoirs {
-    background: var(--background_esprit_tab_pouvoir);
-    min-height: 600px;
-
-    .titre2 {
-      color: white;
-      max-height: 30px;
-    }
-    .grid-pouvoirs {
+    .grid-tab-actions {
+      background: var(--background_esprit_tab_actions);
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      .bloc-pouvoir {
-        padding: 0px 5px;
+      .categorie {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 5px 0px 5px;
+        min-height: 250px;
+        .actions-ligne {
+          margin-top: 15px;
+        }
       }
-      .nom {
-        font-family: "arrusbt";
-        font-weight: bold;
-        font-size: 1.5em;
+      .categorie_agir {
+        grid-row: 1 / 4;
+        grid-column: 1 / 2;
+      }
+      .categorie_communiquer {
+        grid-row: 1 / 4;
+        grid-column: 2 / 3;
+      }
+      .categorie_percevoir {
+        grid-row: 1 / 2;
+        grid-column: 3 / 4;
+      }
+      .categorie_savoir {
+        grid-row: 2 / 3;
+        grid-column: 3 / 4;
+      }
+      .nom-action {
+        font-family: "trajan";
+        font-size: 1em;
+        color: #6a7980;
+        text-indent: 5px;
         text-transform: uppercase;
-        text-align: center;
-        border: 0px;
-        margin-bottom: 5px;
-        margin-top: 10px;
-        color: #ae9065;
-      }
-      .info-line {
-        font-family: "arrusbt";
-        font-weight: bold;
-        font-size: 1.1em;
-        border: 0px;
-        margin: 3px;
-        color: #ae9065;
-        text-align: center;
-      }
-
-      .neoclassic {
-        font-family: "neoclassic";
-        font-size: 1.3em;
-        text-align: center;
-        color: #ae9065;
-        text-indent: 0px;
-        margin: 0px;
-      }
-      .description {
-        font-size: 0.9em;
-        color: white;
-        text-align: justify;
-        border: 2px solid #886a3c;
-        width: 98%;
-        padding: 6px;
-        margin: 0 auto;
-        background: rgba(10, 9, 0, 0.5);
-      }
-      .inner-desc {
-        position: relative;
-        border: 2px solid #886a3c;
-        width: 100%;
-        margin: auto;
-        padding: 8px;
       }
     }
-  }
+    .tab-pouvoirs {
+      background: var(--background_esprit_tab_pouvoir);
+      min-height: 600px;
 
-  .tab-concept {
-    background: var(--background_esprit_tab_profil);
-    min-height: 600px;
-    .concept-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      .concept-col1 {
-        margin: 20px;
+      .titre2 {
+        color: white;
+        max-height: 30px;
+      }
+      .grid-pouvoirs {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        .bloc-pouvoir {
+          padding: 0px 5px;
+        }
+        .nom {
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1.5em;
+          text-transform: uppercase;
+          text-align: center;
+          border: 0px;
+          margin-bottom: 5px;
+          margin-top: 10px;
+          color: #ae9065;
+        }
+        .info-line {
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1.1em;
+          border: 0px;
+          margin: 3px;
+          color: #ae9065;
+          text-align: center;
+        }
+
+        .neoclassic {
+          font-family: "neoclassic";
+          font-size: 1.3em;
+          text-align: center;
+          color: #ae9065;
+          text-indent: 0px;
+          margin: 0px;
+        }
+        .description {
+          font-size: 0.9em;
+          color: white;
+          text-align: justify;
+          border: 2px solid #886a3c;
+          width: 98%;
+          padding: 6px;
+          margin: 0 auto;
+          background: rgba(10, 9, 0, 0.5);
+        }
+        .inner-desc {
+          position: relative;
+          border: 2px solid #886a3c;
+          width: 100%;
+          margin: auto;
+          padding: 8px;
+        }
+      }
+    }
+
+    .tab-concept {
+      background: var(--background_esprit_tab_profil);
+      min-height: 600px;
+      .concept-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .concept-col1 {
+          margin: 20px;
+          .outer-border {
+            border: 6px solid #685649;
+            height: 99%;
+            width: 98%;
+            padding: 6px;
+            margin: 0 auto;
+          }
+          .inner-border {
+            border: 2px solid #685649;
+            height: 100%;
+            width: 100%;
+            padding: 6px;
+            margin: auto;
+          }
+        }
+        .concept-col2 {
+          margin: 20px;
+        }
+      }
+      .editor-content {
+        font-weight: normal;
+        margin: 0px 5px;
+        font-size: 0.8em;
+      }
+      .prosemirror menu {
+        font-size: 0.8em;
+        li {
+          margin: 0px 0px;
+        }
+      }
+      .script {
+        text-align: justify;
+        margin-left: 10px;
+        font-family: "alexbrush";
+        font-size: 1.5em;
+        color: black;
+        margin-left: 5px;
+        margin-top: 10px;
+        min-height: 80px;
+      }
+    }
+    .ongletnotes {
+      background: var(--background_esprit_tab_profil);
+      min-height: 600px;
+      .notes-zone {
+        padding: 10px;
         .outer-border {
           border: 6px solid #685649;
           height: 99%;
@@ -500,79 +550,34 @@
           padding: 6px;
           margin: auto;
         }
-      }
-      .concept-col2 {
-        margin: 20px;
-      }
-    }
-    .editor-content {
-      font-weight: normal;
-      margin: 0px 5px;
-      font-size: 0.8em;
-    }
-    .prosemirror menu {
-      font-size: 0.8em;
-      li {
-        margin: 0px 0px;
-      }
-    }
-    .script {
-      text-align: justify;
-      margin-left: 10px;
-      font-family: "alexbrush";
-      font-size: 1.5em;
-      color: black;
-      margin-left: 5px;
-      margin-top: 10px;
-      min-height: 80px;
-    }
-  }
-  .ongletnotes {
-    background: var(--background_esprit_tab_profil);
-    min-height: 600px;
-    .notes-zone {
-      padding: 10px;
-      .outer-border {
-        border: 6px solid #685649;
-        height: 99%;
-        width: 98%;
-        padding: 6px;
-        margin: 0 auto;
-      }
-      .inner-border {
-        border: 2px solid #685649;
-        height: 100%;
-        width: 100%;
-        padding: 6px;
-        margin: auto;
-      }
-      .script {
-        text-align: justify;
-        margin-left: 10px;
-        font-family: "alexbrush";
-        font-size: 1.5em;
-        color: black;
-        margin-left: 5px;
-        margin-top: 10px;
-        min-height: 80px;
-      }
-      .cdmnotes {
-        min-height: 500px;
-      }
-      .editor {
-        min-height: 500px;
-      }
-      .editor-content {
-        min-height: 500px;
-        font-weight: normal;
-        margin: 0px 5px;
-        font-size: 0.8em;
+        .script {
+          text-align: justify;
+          margin-left: 10px;
+          font-family: "alexbrush";
+          font-size: 1.5em;
+          color: black;
+          margin-left: 5px;
+          margin-top: 10px;
+          min-height: 80px;
+        }
+        .cdmnotes {
+          min-height: 500px;
+        }
+        .editor {
+          min-height: 500px;
+        }
+        .editor-content {
+          min-height: 500px;
+          font-weight: normal;
+          margin: 0px 5px;
+          font-size: 0.8em;
+        }
       }
     }
-  }
 
-  .expand-up {
-    top: 50px;
-    left: 100px;
+    .expand-up {
+      top: 50px;
+      left: 100px;
+    }
   }
 }
