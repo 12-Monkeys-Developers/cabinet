@@ -4,7 +4,7 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
     const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = {};
 
-    schema.opinion = new fields.StringField({ required: true, blank: true, initial: "neutre" });
+    schema.opinion = new fields.StringField({choices: SYSTEM.OPINION, initial: "neutre"});
 
     // Aspects : Valeur de +1 à +9, un PNJ surnaturel peut dépasser 9
     const aspectField = (label) =>
