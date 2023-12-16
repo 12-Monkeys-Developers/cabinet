@@ -5,22 +5,18 @@
     <div class="perisprit-value">
         <input type="text" name="system.perisprit" value="{{system.perisprit}}" />
     </div>
-    <div class="perisprit-label">Énergie</div>
-    <div class="perisprit-value">
-      <input type="text" name="system.energie.actuelle" value="{{system.energie.actuelle}}" />
+    <div class="energie-label">Énergie</div>
+    <div class="energie-value">
+      <input type="text" name="system.energie.actuelle" value="{{system.energie.actuelle}}" />    
+      <span>/</span>
+      <input type="text" name="system.energie.totale" value="{{system.energie.totale}}" {{disabled uneditable}}/>
     </div>
-    <div class="perisprit-label">/</div>
-      {{#if editable}}
-    <div class="perisprit-value">
-      <input type="text" name="system.energie.totale" value="{{system.energie.totale}}" />
-    </div>
-      {{else}}
-    <div class="perisprit-label">
-        {{system.energie.totale}}
-    </div>
-      {{/if}}
+    <select name="system.opinion">
+      {{selectOptions opinions selected=system.opinion labelAttr="label" localize=true}}
+      {{disabled uneditable}}
+    </select>
   </div>
-  <div class="col-aspects">
+  <div class="aspects-bloc">
     <div class="titre2" style="margin-top: 0px;">Aspects</div>
     <div class="aspects-grid">
       <div class="aspects-ligne">
@@ -55,24 +51,28 @@
       {{/if}}
     </div>
   </div>
-  <div class="titre2">Attributs</div>
-  <div class="attributs-grid">
-    {{#each attributs as |attribut id|}}
-      <div class="attribut-name">{{attribut.label}}</div>
-      {{#if ../editable}}
-      <input type="number" name="system.attributs.{{attribut.id}}.valeur" value="{{getAttributProperty ../actor attribut 'valeur'}}" placeholder="0" />
-      {{else}}
-      <div class="attribut-value">+ {{attribut.valeur}}</div>
-      {{/if}}
-    {{/each}}
+  <div class="attributs-bloc">
+    <div class="titre2">Attributs</div>
+    <div class="attributs-grid">
+      {{#each attributs as |attribut id|}}
+        <div class="attribut-name">{{attribut.label}}</div>
+        {{#if ../editable}}
+          <input type="number" name="system.attributs.{{attribut.id}}.valeur" value="{{getAttributProperty ../actor attribut 'valeur'}}" placeholder="0" />
+        {{else}}
+          <div class="attribut-value">+ {{attribut.valeur}}</div>
+        {{/if}}
+      {{/each}}
+    </div>  
   </div>
-  <div class="titre2">Acquis
+
+<div class="acquis-bloc">
+    <div class="titre2">Acquis
     {{#if editable}}&nbsp;&nbsp;
       <a class="item-create" data-type="acquis" title="{{localize 'CDM.TOOLTIP.ajouterAcquis'}}">
       <i class="fa-solid fa-books-medical"></i></a>
     {{/if}}
   </div>
-  <div class="acquis-col">
+  <div class="acquis-grid">
     {{#each acquis as |acquisElement id|}}
     <div class="item-contextmenu" data-item-id="{{acquisElement._id}}">
       <details>
@@ -84,12 +84,44 @@
     </div>
     {{/each}}
   </div>
-  <div class="titre2">Description</div>
-  <div style="margin:0px 0px 10px 15px;" class="script cdmdsc">
-  {{#if editable}}
-    {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
-  {{else}}
-    {{{descriptionhtml}}}
-  {{/if}}
+</div>
+
+<div class="combat-bloc">
+  <div class="titre2">Combat</div>
+  <div class="combat-grid">
+    {{#each combat as |combatElement id|}}
+      {{!log 'combatElement' combatElement}}
+      {{#if ../editable}}
+        <div class="combat-name">
+          {{combatElement.label}}
+          {{#if combatElement.hasLabelComplement}}
+            <input class="input-label-complement" type="text" name="system.combat.{{combatElement.id}}.labelComplement" value="{{getCombatProperty ../actor combatElement 'labelComplement'}}" placeholder="Complément" /> 
+          {{/if}}       
+        </div>
+        <input class="input-combat-complement" type="number" name="system.combat.{{combatElement.id}}.valeur" value="{{getCombatProperty ../actor combatElement 'valeur'}}" placeholder="0" />        
+      {{else}}
+            {{#if combatElement.afficherAction}}
+                <div class="combat-name">
+                  {{combatElement.label}}
+                    {{#if combatElement.hasLabelComplement}}
+                        <span class="combat-label-complement">({{getCombatProperty ../actor combatElement 'labelComplement'}})</span>
+                    {{/if}}       
+                </div>
+                  <div class="combat-value">+ {{combatElement.valeur}}</div>
+            {{/if}}
+      {{/if}}
+    {{/each}}   
+  </div>
+</div>
+
+  <div class="description-bloc">
+      <div class="titre2">Description</div>
+      <div style="margin:0px 0px 10px 15px;" class="script cdmdsc">
+      {{#if editable}}
+        {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+      {{else}}
+        {{{descriptionhtml}}}
+      {{/if}}
+      </div>
   </div>
 </div>

@@ -128,6 +128,12 @@
       "jambeDroite": "Jambe droite",
       "jambeGauche": "Jambe gauche"
     },
+    "COMBAT": {
+      "initiative": "Initiative",
+      "attaquer": "Attaquer",
+      "immobiliser": "Immobiliser",
+      "sedefendre": "Se défendre"
+    },
     "OPINION": {
       "favorable": "Opinion favorable",
       "neutre": "Opinion neutre",

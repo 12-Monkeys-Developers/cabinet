@@ -19,6 +19,7 @@ export default class CabinetActorSheet extends ActorSheet {
     const isEditable = this.actor.isUnlocked;
     context.cssClass = isEditable ? "editable" : "locked";
     context.editable = isEditable;
+    context.uneditable = !isEditable;
 
     context.actor = this.document;
     context.system = this.document.system;

@@ -109,7 +109,6 @@ export default class CabinetActor extends Actor {
     if (dialog) {
       const jet = defaultValues === null ? SYSTEM.QUALITES[qualiteId].label : defaultValues.action;
       const title = game.i18n.format("CDM.DIALOG.titreJet", { nom: this.name, jet: jet });
-      sc.data.action=defaultValues?.action;
       const response = await sc.dialog({ title, flavor, rollMode });
       if (response === null) return null;
     }

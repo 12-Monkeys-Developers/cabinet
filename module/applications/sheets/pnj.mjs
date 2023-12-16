@@ -1,3 +1,4 @@
+import { SYSTEM } from "../../config/system.mjs";
 import CabinetActorSheet from "./actor.mjs";
 
 export default class PnjSheet extends CabinetActorSheet {
@@ -35,6 +36,11 @@ export default class PnjSheet extends CabinetActorSheet {
     context.acquis.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
+
+    context.combat = this.#formatCombat(context.actor.system.combat);
+    context.malus = context.actor.system.malus;
+
+    context.opinions = SYSTEM.OPINIONS;
 
     return context;
   }
@@ -74,5 +80,23 @@ export default class PnjSheet extends CabinetActorSheet {
       return attribut;
     });
   }
+
+    /**
+   * Format les actions de combat pour les afficher sur la fiche
+   * @param {object} combat
+   * @return {object[]}
+   */
+    #formatCombat(combats) {
+      return Object.values(SYSTEM.COMBAT).map((cfg) => {
+        const combat = foundry.utils.deepClone(cfg);
+        combat.label = game.i18n.localize(combat.label);
+        combat.valeur = combats[combat.id].valeur;        
+        if (!combats[combat.id].hasLabelComplement || combats[combat.id].labelComplement !== "") {
+          combat.afficherAction = true;
+        }
+        else combat.afficherAction = false;
+        return combat;
+      });
+    }
 
 }

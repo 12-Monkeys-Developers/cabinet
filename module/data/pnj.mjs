@@ -77,6 +77,27 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
     // armes : Embedded items de type arme
 
     // Combat : dans preparedData
+    const combatField = (label, hasLabelComplement, aspect, attribut) =>
+      new fields.SchemaField(
+        {
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+          defaut: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+          label: new fields.StringField({ required: true, initial: game.i18n.localize(label), blank: false }),
+          hasLabelComplement: new fields.BooleanField({ initial: hasLabelComplement }),
+          labelComplement: new fields.StringField({ required: false, blank: true }),
+          aspect: new fields.StringField({ required: true, blank: false, choices: SYSTEM.ASPECTS, initial: aspect }),
+          attribut: new fields.StringField({ required: false, blank: true, choices: SYSTEM.ATTRIBUTS, initial: attribut }),
+          acquis: new fields.StringField({ required: false, blank: true, initial: undefined }),
+        },
+        { label }
+      );
+
+    schema.combat = new fields.SchemaField(
+      Object.values(SYSTEM.COMBAT).reduce((obj, combat) => {
+        obj[combat.id] = combatField(combat.label, combat.hasLabelComplement, combat.aspect, combat.attribut);
+        return obj;
+      }, {})
+    );
 
     schema.malus = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
     schema.description = new fields.HTMLField();
@@ -84,4 +105,5 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
 
     return schema;
   }
+
 }

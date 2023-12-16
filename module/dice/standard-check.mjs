@@ -42,7 +42,6 @@ export default class StandardCheck extends Roll {
    * @type {object}
    */
   static defaultData = {
-    action: null,
     activitelbl: null,
     actorId: null,
     actorData: null,
@@ -112,6 +111,7 @@ export default class StandardCheck extends Roll {
 
   /** @override */
   _prepareData(data = {}) {
+    console.log("StandardCheck - _prepareData", data);
     const current = this.data || foundry.utils.deepClone(this.constructor.defaultData);
     for (let [k, v] of Object.entries(data)) {
       if (v === undefined) delete data[k];
