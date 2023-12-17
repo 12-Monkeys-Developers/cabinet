@@ -1,0 +1,154 @@
+<div class="cabinet_murmures_journal">
+  <h1 style="margin-top: -6px">Guide du système</h1>
+  <p class="intro_chap">
+    Bienvenue dans le système pour le jeu de rôle
+    <em><strong>Le Cabinet des Murmures</strong></em>, de
+    <strong>Matthias Haddad</strong>, édité par
+    <em>Les XII singes</em>. Ce système pour FoundryVTT a été développé par Khaali et Kristov.
+  </p>
+  <h2>Création des éléments du jeu : esprits, corps, cabinet</h2>
+  <p>
+    Dans
+    <em><strong>Le Cabinet des Murmures</strong></em>, les joueurs et joueuses incarnent des
+    <em>esprits</em>
+    qui doivent cohabiter dans un
+    <em>Corps</em>. Les esprits forment un
+    <em>Cabinet</em>.
+  </p>
+  <p>Tous ces éléments doivent d’abord être créés sur Foundry dans votre Monde (world) puis être reliés ensemble.</p>
+
+  <h3>Création des esprits</h3>
+  <p>
+    Chaque joueur et joueuse incarne un esprit. Dans foundry, il s’agit d’<em>Actors</em>
+    de type
+    <em>Esprit</em>. Après avoir créé un esprit, vous devez donner au joueur / à la joueuse correspondante les droits de contrôle total dessus.
+  </p>
+  <p>
+    Pour modifier une feuille d’esprit, il faut d’abord la deverrouiller (icone
+    <i class="fas fa-lock"></i>). Une fois les modifications effectuées, reverrouillée la feuille en cliquant sur l’icône. Dans Foundry, les
+    <em>Acquis</em>,
+    <em>Pouvoirs</em>
+    et
+    <em>Corruptions</em>
+    sont des items. Une fois créés, vous pouvez les attribuer à un esprit en les faisant glisser-déposer. Sur une feuille d’esprit, vous pouvez faire un clic-droit pour faire
+    apparaitre un menbu qui vous permet de les modifier et de les supprimer.
+  </p>
+  <h3>Création du corps</h3>
+  <p>
+    Le
+    <em>Corps</em>
+    que contrôlent les
+    <em>Esprits</em>
+    est un Actor de type
+    <em>Corps</em>. Vous devez le créer, et donner à tous les jpueurs et joueuses les droits complets dessus. Pour modifier ses attributs il faut également le déverrouiler. Vous
+    pouvez glisser-déposer des
+    <em>Armes</em>
+    sur cette feuille.
+  </p>
+  <h3>Création du Cabinet</h3>
+  <p>
+    Une fois les
+    <em>Esprits</em>
+    et le
+    <em>Corps</em>
+    créés, vous devez les réunir dans un
+    <em>Cabinet</em>. Il s'agit d’un nouveau type d’Actor. Il ne peut y en avoir qu’un dans votre monde.
+  </p>
+  <p>
+    Une fois le
+    <m>Cabinet</m>
+    créé, vous devez glisser-déposer dessus les
+    <em>Esprits</em>
+    et le
+    <em>Corps</em>. Vous pouvez également glisser-déposer sur le
+    <em>Cabinet</em>
+    les
+    <em>Acquis communs</em>
+    et les
+    <em>gloires</em>.
+  </p>
+  <p>Vous pouvez retirer ces éléments.</p>
+  <h2>Position : le Cabinet, le Comédien et le jardin secret</h2>
+  <p>Un esprit peut etre dans le Cabinet, dans son jardin secret, ou bien être le comédien. La position d’un esprit est indiquée sur sa feuille d’esprit ainsi que sur la feuille de
+    Cabinet, par un icône :</p>
+  <div
+    style="display: flex;
+        align-items:center;"
+  ><img style="width: 100px; border: 0px;" src={{images.ICONE_JARDIN}} title="Dans son Jardin secret" /><p>&nbsp;&nbsp;Dans son Jardin secret</p></div>
+  <div
+    style="display: flex;
+        align-items:center;"
+  ><img style="width: 100px; border: 0px;" src={{images.ICONE_CABINET}} title="Dans le Cabinet" /><p>&nbsp;&nbsp;Dans le Cabinet</p></div>
+  <div
+    style="display: flex;
+        align-items:center;"
+  ><img style="width: 100px; border: 0px;" src={{images.ICONE_COMEDIEN}} title="Le Comédien (contrôle le Corps)" /><p>&nbsp;&nbsp;Le Comédien (contrôle le Corps)</p></div>
+  <p>Pour se déplacer entre ces positions, il faut faire un clic-droit sur l’icône et choisir dans le menu.</p>
+
+  <h2>Menu d’icônes</h2>
+  <p>
+    Sur la gauche de l’écran, l’icône
+    <span style="text-indent: 0px" class="logo_comportement"></span>
+    permet d’accéder au menu du système. Il vous permet d’accéder à l’arbre de vie et à des rappels de règles. L’écran des joueurs affiche également ce menu.
+  </p>
+  <h3>L’Arbre de Vie</h3>
+  <div
+    style="display: flex;
+        align-items:center;"
+  ><img style="width: 300px; border: 0px;" src={{images.presentation_adv}} title="L’Arbre de Vie" /><p>Les esprits du Cabinet y sont représentés par leur
+      <em>Token</em>. Ceux qui sont dans leur jardin secret sont dans la colonne de gauche. Leq joueurs et joueuses peuvent déplacer leur esprit dans l'Arbre par glisser-déposer.
+      Ils doivent respecter les règles de placement. Le MJ peut déplacer tous les tokens.</p></div>
+  <p><br /></p>
+  <div
+    style="display: flex;
+        align-items:center;"
+  ><img style="width: 300px; border: 0px;" src={{images.presentation_esprit_com}} title="Esprit" /><p>La position d'un esprit est rappellée sur sa feuille d'esprit : la valeur de
+      la qualité correspondante est bleutée. Augustine est sur la Sphère Coordination / Malkuth</p></div>
+  <h3>Modules officiels</h3>
+  <img
+    style="
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;width: 30%; border: 0px;"
+    src="systems/cabinet/assets/couvertures/couv_ldb.webp"
+  />
+  <p>
+    <br />
+    Le module "<em>Livre de base</em>" importe dans votre monde tout le contenu du livre de base :</p>
+  <ul>
+    <li>les règles du jeu, la description de l'univers du <strong><em>Cabinet des Murmures</em></strong>,</li>
+    <li>l'intégration de l'univers graphique dans les feuilles de personnage et autres éléments du système Foundry pour une meilleure ambiance et immersion,</li>
+    <li>Toutes les actions de base pour simplifier les jets de dés,</li>
+    <li>Les Acquis, Grâces, Corruptions, Armes, directement rentrées sous la forme d'Items,</li>
+    <li>le scénario "Des monstres et des hommes", ses aides de jeu, illustrations et PNJs</li>
+  </ul>
+  <img
+    style="
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;width: 30%; border: 0px;"
+    src="systems/cabinet/assets/couvertures/couv_gdp.webp"
+  />
+  <p>
+    <br />
+    Le module "<em>Le Guide de Paris</em>" inclut la description de chaque quartier du Paris dans l’univers du
+    <strong><em>Cabinet des Murmures</em></strong>, ainsi que des intrigues et amorces de scénarios.<br />
+    Vous y trouverez aussi plusieurs scénarios complets qui se passent dans la ville.
+  </p>
+  <h3>Questions, aides, discussions...</h3>
+  <p>
+    Vous avez une question ? Vous avez trouvé un bug ? Vous voulez discuter de Trinités, avoir des conseils de MJs qui l’ont déjà fait jouer ? Vous cherchez des joueurs et des
+    joueuses ?
+  </p>
+  <p>Rejoignez :</p>
+  <ul>
+    <li>"La Fonderie", le serveur Discord francophone dédié à Foundry VTT : <strong> https://discord.gg/pPSDNJk</strong></li>
+
+    <li>Le serveur Discord des 12 Singes : <strong>https://discord.gg/dzVxXMyp</strong></li>
+  </ul>
+
+</div>

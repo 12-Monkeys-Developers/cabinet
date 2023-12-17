@@ -1,6 +1,6 @@
 <h2>System <em>Le Cabinet des Murmures</em> for Foundry Virtual Tabletop</h2>
 
-<p style="margin-left: 10%;"> <img src="/assets/thumb_cdm.webp" alt="" width="700" height="405" /></p>
+<p style="margin-left: 10%;"> <img src="/assets/couvertures/thumb_cdm.webp" alt="" width="700" height="405" /></p>
 
 <div align="center">
 

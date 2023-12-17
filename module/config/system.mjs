@@ -122,7 +122,9 @@ export const IMAGES= {
   deco_chat:"systems/cabinet/assets/images/sheets/trait_separation.webp",
   encart_malus:"systems/cabinet/assets/images/sheets/encart_malus.webp",
   ornement_feuille:"systems/cabinet/assets/images/sheets/ornement_dore_feuille.webp",
-  trait_separation: "systems/cabinet/assets/images/sheets/trait_separation.webp"
+  trait_separation: "systems/cabinet/assets/images/sheets/trait_separation.webp",
+  presentation_adv: "systems/cabinet/assets/images/presentation/arbre_de_vie.webp",
+  presentation_esprit_com: "systems/cabinet/assets/images/presentation/esprit_com.webp",
 }
 
 /**

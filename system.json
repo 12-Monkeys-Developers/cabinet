@@ -34,14 +34,14 @@
     "media": [
       {
         "type": "cover",
-        "thumbnail": "systems/cabinet/assets/thumb_cdm.webp",
+        "thumbnail": "systems/cabinet/assets/couvertures/thumb_cdm.webp",
         "loop": false,
         "flags": {}
       },
       {
         "type": "setup",
         "loop": false,
-        "thumbnail": "systems/cabinet/assets/thumb_cdm.webp",
+        "thumbnail": "systems/cabinet/assets/couvertures/thumb_cdm.webp",
         "flags": {}
       }
     ],

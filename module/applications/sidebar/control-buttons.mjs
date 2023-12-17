@@ -1,4 +1,5 @@
 import { ArbreVieForm } from "../forms/arbre-vie.mjs";
+import { PresentationForm } from "../forms/presentation.mjs";
 
 export default function initControlButtons() {
   CONFIG.Canvas.layers.cabinet = { layerClass: ControlsLayer, group: "primary" };
@@ -19,8 +20,17 @@ export default function initControlButtons() {
           const cabinet = game.actors.get(cabinetId);
           if (cabinet) new ArbreVieForm(cabinet).render(true);
         }
+      }
+    },
+    {
+      name: "presentation",
+      title: "Présentation du système",
+      icon: "fas fa-question",
+      button: true,
+      onClick: () => {
+        new PresentationForm().render(true);
       },
-    });
+    },);
     btns.push({
       name: "cabinet_menu",
       title: "Le cabinet des murmures",
