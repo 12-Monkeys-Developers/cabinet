@@ -1,0 +1,61 @@
+
+<div class="pnj-details">
+  <div class="combat-bloc">
+    <div class="titre2">Combat</div>
+    <div class="combat-grid">
+      {{#each combat as |combatElement id|}}
+        {{!log 'combatElement' combatElement}}
+        {{#if ../editable}}
+          <div class="combat-name">
+            {{combatElement.label}}
+            {{#if combatElement.hasLabelComplement}}
+              <input class="input-label-complement" type="text" name="system.combat.{{combatElement.id}}.labelComplement" value="{{getCombatProperty ../actor combatElement 'labelComplement'}}" placeholder="Complément" /> 
+            {{/if}}       
+          </div>
+          <input class="input-combat-complement" type="number" name="system.combat.{{combatElement.id}}.valeur" value="{{getCombatProperty ../actor combatElement 'valeur'}}" placeholder="0" />        
+        {{else}}
+              {{#if combatElement.afficherAction}}
+                  <div class="combat-name">
+                    {{combatElement.label}}
+                      {{#if combatElement.hasLabelComplement}}
+                          <span class="combat-label-complement">({{getCombatProperty ../actor combatElement 'labelComplement'}})</span>
+                      {{/if}}       
+                  </div>
+                    <div class="combat-value">{{combatElement.valeur}}</div>
+              {{/if}}
+        {{/if}}
+      {{/each}}   
+    </div>
+      <div class="armes-col">
+        <div class="titre2" style="margin:0px 0px 10px 0px;">Armes
+          {{#if editable}}&nbsp;&nbsp;
+            <a class="item-create" data-type="arme" title="{{localize 'CDM.TOOLTIP.ajouterArme'}}">
+            <i class="fa-solid fa-books-medical"></i></a>
+          {{/if}}
+        </div>
+        <div class="grid-armes">
+          {{#each armes as |arme id|}}
+          <div class="ligne-arme item-contextmenu" data-item-id="{{arme._id}}">
+            <div class="nom-arme">{{arme.name}}</div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="pouvoirs-col">
+        <div class="titre2" style="margin:0px 0px 10px 0px;">Pouvoirs, grâces, corruptions
+        </div>
+        <div class="grid-pouvoirs">
+          {{#each speciaux as |special id|}}
+          <div style="margin: 0px 5px;" class="item-contextmenu" data-item-id="{{special._id}}">
+            <details>
+            <summary class="ligne-pouv">
+              <div class="nom-pouv">{{special.name}}</div>
+            </summary>
+              <div class="desc">{{{special.system.descriptionhtml}}}</div>
+            </details>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+  </div>
+</div>

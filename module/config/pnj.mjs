@@ -1,7 +1,7 @@
 export const OPINIONS = Object.freeze({
-  favorable: {
-    id: "favorable",
-    label: "CDM.OPINION.favorable",
+  positive: {
+    id: "positive",
+    label: "CDM.OPINION.positive",
   },
   neutre: {
     id: "neutre",

@@ -1,0 +1,18 @@
+<div class="ongletdesc">
+  <div class="conso-bloc">
+    <select name="system.opinion">
+      {{selectOptions opinions selected=system.opinion labelAttr="label" localize=true}}
+      {{disabled uneditable}}
+    </select>
+  </div>
+  <div class="description-bloc">
+      <div class="titre2">Description</div>
+      <div style="margin:0px 0px 10px 15px;" class="script cdmdsc">
+      {{#if editable}}
+        {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+      {{else}}
+        {{{descriptionhtml}}}
+      {{/if}}
+      </div>
+  </div>
+</div>

@@ -6,6 +6,9 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
 
     schema.opinion = new fields.StringField({choices: SYSTEM.OPINION, initial: "neutre"});
 
+    // Précise si le PnJ a accès aux embellies
+    schema.peutEmbellie = new fields.BooleanField({ initial: false });
+
     // Aspects : Valeur de +1 à +9, un PNJ surnaturel peut dépasser 9
     const aspectField = (label) =>
       new fields.SchemaField(

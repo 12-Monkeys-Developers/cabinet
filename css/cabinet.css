@@ -169,22 +169,6 @@
   text-align: center;
   text-transform: uppercase;
 }
-i.logo_action {
-  width: 30px;
-  height: 30px;
-  background-image: url("../assets/icones/symbole_de_action.png");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-  vertical-align: middle;
-}
-.action-description {
-  font-family: "garamondpro";
-  font-size: 1em;
-  text-indent: 0px;
-  text-align: justify;
-}
 .arme-sheet {
   background: var(--background_arme);
   font-family: "arrusbt";
@@ -698,6 +682,32 @@ i.logo_defaut {
   background-position: center;
   background-repeat: no-repeat;
   display: inline-block;
+}
+i.logo_action {
+  width: 30px;
+  height: 30px;
+  background-image: url("../assets/icones/symbole_de_action.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+}
+i.logo_embellie {
+  width: 30px;
+  height: 30px;
+  background-image: url("../assets/icones/symbole_embellie.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+}
+.action-description {
+  font-family: "garamondpro";
+  font-size: 1em;
+  text-indent: 0px;
+  text-align: justify;
 }
 .cabinet.sheet #context-menu {
   color: #497180;
@@ -1960,12 +1970,12 @@ i.logo_defaut {
 }
 .pnj-sheet {
   background: var(--background_pnj);
-  min-height: 700px;
+  min-height: 550px;
 }
 .pnj-sheet .titre2 {
-  margin-top: 30px;
+  margin-top: 20px;
   font-family: "posterbodoni";
-  font-size: 1.2em;
+  font-size: 1em;
   color: #497180;
   text-align: center;
   text-transform: uppercase;
@@ -1994,8 +2004,8 @@ i.logo_defaut {
 }
 .pnj-sheet .pnj-header {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  height: 75px;
+  grid-template-columns: 0.7fr 3fr 1fr;
+  height: 100px;
 }
 .pnj-sheet .pnj-header .titre_feuille {
   font-family: "arrusbt";
@@ -2061,6 +2071,7 @@ i.logo_defaut {
 }
 .pnj-sheet .pnj-details {
   margin-left: 15px;
+  justify-content: center;
 }
 .pnj-sheet .conso-bloc {
   display: flex;
@@ -2091,36 +2102,31 @@ i.logo_defaut {
 }
 .pnj-sheet .aspects-grid {
   display: grid;
-  grid-template-columns: 95px 40px 95px 40px 95px 40px;
-  grid-template-rows: 34px;
+  grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr;
+  margin-top: 5px;
 }
 .pnj-sheet .aspects-grid .aspects-ligne {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
 }
 .pnj-sheet .aspects-grid .aspects-ligne .nom-aspect {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 0.9em;
   color: #685a4e;
-  text-transform: uppercase;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 .pnj-sheet .aspects-grid .aspectcircle {
-  border-radius: 50%;
-  padding: 7px 8px;
-  border: 2px solid #685a4e;
   color: #685a4e;
   text-align: center;
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: bold;
 }
 .pnj-sheet .attributs-grid {
   display: grid;
-  grid-template-columns: 95px 40px 95px 40px 95px 40px;
+  grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  margin: 15px 0px 15px 5px;
+  margin-top: 5px;
 }
 .pnj-sheet .attributs-grid input {
   width: 20px;
@@ -2130,20 +2136,16 @@ i.logo_defaut {
 .pnj-sheet .attributs-grid .attribut-name {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: #497180;
-  text-transform: uppercase;
-  padding-left: 10px;
+  padding-left: 5px;
   align-self: center;
 }
 .pnj-sheet .attributs-grid .attribut-value {
   margin-top: 2px;
-  border-radius: 50%;
-  padding: 7px 8px;
-  border: 2px solid #497180;
   color: #497180;
   text-align: center;
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: bold;
 }
 .pnj-sheet .acquis-grid {
@@ -2161,7 +2163,7 @@ i.logo_defaut {
 .pnj-sheet .acquis-grid .acquis-nom {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #497180;
   padding-left: 0.5em;
   align-self: center;
@@ -2178,7 +2180,7 @@ i.logo_defaut {
 }
 .pnj-sheet .combat-grid {
   display: grid;
-  grid-template-columns: 140px 40px 140px 40px;
+  grid-template-columns: 3fr 1fr 3fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   margin: 15px 0px 15px 5px;
   align-items: center;
@@ -2194,31 +2196,60 @@ i.logo_defaut {
 .pnj-sheet .combat-grid .combat-name {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: #497180;
-  text-transform: uppercase;
   padding-left: 10px;
   align-self: center;
 }
 .pnj-sheet .combat-grid .combat-value {
   margin-top: 2px;
-  border-radius: 50%;
-  padding: 7px 8px;
-  border: 2px solid #497180;
   color: #497180;
   text-align: center;
   font-size: 1em;
   font-weight: bold;
 }
+.pnj-sheet .grid-pouvoirs {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  margin: 15px 0px 15px 5px;
+}
+.pnj-sheet .grid-pouvoirs .ligne-pouv {
+  display: grid;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+.pnj-sheet .grid-pouvoirs .nom-pouv {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  padding-left: 0.5em;
+  align-self: center;
+}
+.pnj-sheet .grid-pouvoirs .desc {
+  font-family: "garamondpro";
+  font-size: 0.9em;
+  text-indent: 0px;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 .pnj-sheet .sante-grid {
   background: var(--background_sante_f);
-  background-position: 55% 90%;
+  background-position: 90% 50%;
   margin-left: 30px;
   display: grid;
-  grid-template-columns: repeat(3, 150px);
+  grid-template-columns: repeat(3, 100px);
   grid-template-rows: 1fr 1fr 1fr 1fr;
   gap: 5px;
-  min-height: 600px;
+  min-height: 430px;
+}
+.pnj-sheet .sante-grid input[type="checkbox"] {
+  flex: 0 0 10px;
+  height: 10px;
+  width: 10px;
 }
 .pnj-sheet .sante-grid > div > label:first-child {
   font-family: "arrusbt";
@@ -2239,8 +2270,6 @@ i.logo_defaut {
   /* Supprime l'apparence par défaut pour WebKit/Blink */
   appearance: none;
   /* Supprime l'apparence par défaut */
-  flex: 0 0 20px;
-  /* Taille des cercles */
   border: 2px solid black;
   /* Contour des cercles */
   border-radius: 50%;
@@ -2290,14 +2319,14 @@ i.logo_defaut {
   z-index: 1;
 }
 .pnj-sheet .sante-grid .encart-malus .text-malus {
-  margin-top: -50px;
+  margin-top: -34px;
   margin-left: 10px;
   padding-bottom: 35px;
   position: relative;
   z-index: 2;
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #7b3135;
 }
 .pnj-sheet .sante-grid .sante-tete {
@@ -2348,28 +2377,14 @@ i.logo_defaut {
   text-align: center;
   justify-content: center;
 }
-.pnj-sheet .ongletnotes {
-  min-height: 600px;
-  min-width: 480px;
+.pnj-sheet .ongletdesc {
+  min-height: 550px;
+  min-width: 435px;
 }
-.pnj-sheet .ongletnotes .notes-zone {
-  padding: 10px;
+.pnj-sheet .ongletdesc .conso-bloc {
+  justify-content: center;
 }
-.pnj-sheet .ongletnotes .notes-zone .outer-border {
-  border: 6px solid #685649;
-  height: 99%;
-  width: 98%;
-  padding: 6px;
-  margin: 0 auto;
-}
-.pnj-sheet .ongletnotes .notes-zone .inner-border {
-  border: 2px solid #685649;
-  height: 100%;
-  width: 100%;
-  padding: 6px;
-  margin: auto;
-}
-.pnj-sheet .ongletnotes .notes-zone .script {
+.pnj-sheet .ongletdesc .script {
   text-align: justify;
   margin-left: 10px;
   font-family: "alexbrush";
@@ -2379,20 +2394,20 @@ i.logo_defaut {
   margin-top: 10px;
   min-height: 80px;
 }
-.pnj-sheet .ongletnotes .notes-zone .cdmnotes {
-  min-height: 500px;
+.pnj-sheet .ongletdesc .cdmnotes {
+  min-height: 350px;
 }
-.pnj-sheet .ongletnotes .notes-zone .editor {
-  min-height: 500px;
+.pnj-sheet .ongletdesc .editor {
+  min-height: 350px;
 }
-.pnj-sheet .ongletnotes .notes-zone .prosemirror menu {
+.pnj-sheet .ongletdesc .prosemirror menu {
   font-size: 0.8em;
 }
-.pnj-sheet .ongletnotes .notes-zone .prosemirror menu li {
+.pnj-sheet .ongletdesc .prosemirror menu li {
   margin: 0px 0px;
 }
-.pnj-sheet .ongletnotes .notes-zone .editor-content {
-  min-height: 500px;
+.pnj-sheet .ongletdesc .editor-content {
+  min-height: 350px;
   font-weight: normal;
   margin: 0px 5px;
   font-size: 0.8em;

@@ -6,8 +6,8 @@ export default class PnjSheet extends CabinetActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 550,
-      height: 770,
+      width: 500,
+      height: 600,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "details" }],
     });
   }
@@ -34,6 +34,14 @@ export default class PnjSheet extends CabinetActorSheet {
         return a.name.localeCompare(b.name);
       });
     context.acquis.forEach((element) => {
+      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    });
+    context.armes = this.actor.items.filter((item) => item.type == "arme");
+    context.armes.forEach((element) => {
+      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    });
+    context.speciaux = this.actor.items.filter((item) => item.type == "grace"||item.type == "corruption"||item.type == "pouvoir");
+    context.speciaux.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
