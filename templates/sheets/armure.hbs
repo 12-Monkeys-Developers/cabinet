@@ -1,0 +1,85 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{!log "armure" this}}
+  <div class="armure-sheet">
+    <div class="name-title">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+      <input name="name" type="text" value="{{item.name}}" />
+    </div>
+    <div class="armure-content">
+      <div class="armure-grid">
+        <div class="sante-tete">
+          <label> 2 : tête</label>
+          <div class="sante-protection">
+            <label for="protection-tete-input">Protection</label>
+            {{#if editable}}
+              {{numberInput system.tete name="system.tete" min=0}}
+            {{else}}
+              {{system.tete}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="sante-bras-droit">
+          <label> 3-5 : bras droit</label>
+          <div class="sante-protection">
+            <label for="protection-bras-droit-input">Protection</label>
+            {{#if editable}}
+              {{numberInput system.brasDroit name="system.brasDroit" min=0}}
+            {{else}}
+              {{system.brasDroit}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="sante-bras-gauche">
+          <label> 6-8 : bras gauche</label>
+          <div class="sante-protection">
+            <label for="protection-bras-gauche-input">Protection</label>
+            {{#if editable}}
+              {{numberInput system.brasGauche name="system.brasGauche" min=0}}
+            {{else}}
+              {{system.brasGauche}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="sante-torse">
+          <label> 9-10 : torse</label>
+          <div class="sante-protection">
+            <label for="protection-torse-input">Protection</label>
+            {{#if editable}}
+              {{numberInput system.torse name="system.torse" min=0}}
+            {{else}}
+              {{system.torse}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="sante-jambe-droite">
+          <label> 11 : jambe droite</label>
+          <div class="sante-protection">
+            <label for="protection-jambe-droite-input">Protection</label>
+            {{#if editable}}
+              {{numberInput system.jambeDroite name="system.jambeDroite" min=0}}
+            {{else}}
+              {{system.jambeDroite}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="sante-jambe-gauche">
+          <label> 12 : jambe gauche</label>
+          <div class="sante-protection">
+            <label for="protection-jambe-gauche-input">Protection</label>
+            {{#if editable}}
+              {{numberInput system.jambeGauche name="system.jambeGauche" min=0}}
+            {{else}}
+              {{system.jambeGauche}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      <div class="description-group">
+        <div class="field-name">Description</div>
+        <div class="description-val">
+          {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

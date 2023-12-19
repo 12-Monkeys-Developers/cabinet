@@ -24,6 +24,7 @@
   --background_pouvoir: none;
   --background_sante_f: none;
   --background_sante_h: none;
+  --background_sante_armure: none;
   --background_chat: none;
   --fond_esprit: #EFEBE2;
 }
@@ -230,6 +231,139 @@
 }
 .arme-sheet .description-group .prosemirror menu li {
   margin: 0px 0px;
+}
+.armure-sheet {
+  background-color: white;
+  font-family: "arrusbt";
+  font-weight: bold;
+}
+.armure-sheet .name-title {
+  display: flex;
+  flex-direction: row;
+}
+.armure-sheet .name-title input {
+  font-size: 1.5em;
+  text-transform: uppercase;
+  text-align: left;
+  border: 0px;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: #497180;
+}
+.armure-sheet .name-title img {
+  border: 0px;
+  max-height: 100px;
+}
+.armure-sheet .armure-content {
+  width: 400px;
+  min-height: 260px;
+}
+.armure-sheet .field-name {
+  text-transform: uppercase;
+  margin: 5px 10px;
+  text-align: center;
+  color: #497180;
+}
+.armure-sheet .description-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px 15px 10px;
+}
+.armure-sheet .description-group .editor {
+  min-height: 150px;
+}
+.armure-sheet .description-group .editor-content {
+  min-height: 150px;
+  margin: 0px 5px;
+  font-weight: normal;
+}
+.armure-sheet .description-group .prosemirror menu {
+  font-size: 0.8em;
+}
+.armure-sheet .description-group .prosemirror menu li {
+  margin: 0px 0px;
+}
+.armure-sheet .armure-grid {
+  background: var(--background_sante_armure);
+  background-position: 40% 20%;
+  background-size: 34%;
+  margin-left: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 5px;
+  min-height: 330px;
+}
+.armure-sheet .armure-grid > div > label:first-child {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #497180;
+  text-transform: uppercase;
+}
+.armure-sheet .armure-grid .sante-protection {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  font-family: "arrusbt";
+  font-weight: bold;
+  color: #497180;
+}
+.armure-sheet .armure-grid .sante-protection input {
+  width: 25px;
+}
+.armure-sheet .armure-grid .sante-protection label {
+  padding-right: 10px;
+}
+.armure-sheet .armure-grid .sante-tete {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.armure-sheet .armure-grid .sante-bras-droit {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.armure-sheet .armure-grid .sante-bras-gauche {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.armure-sheet .armure-grid .sante-torse {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.armure-sheet .armure-grid .sante-jambe-droite {
+  grid-row: 4 / 5;
+  grid-column: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.armure-sheet .armure-grid .sante-jambe-gauche {
+  grid-row: 4 / 5;
+  grid-column: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
 }
 .cab-sheet .outer-border {
   border: 6px solid black;
