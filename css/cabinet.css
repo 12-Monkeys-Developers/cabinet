@@ -1696,6 +1696,17 @@ i.logo_embellie {
   background: var(--background_esprit_tab_profil);
   min-height: 600px;
 }
+.cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .titre_paragraphe {
+  text-indent: 0px;
+  font-family: "garamondpro";
+  font-size: 1.4em;
+  color: #3c4b50;
+  text-align: center;
+  margin: 0px 0px 10px 0px;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .editor {
+  font-size: 1em;
+}
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .concept-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1716,6 +1727,9 @@ i.logo_embellie {
   width: 100%;
   padding: 6px;
   margin: auto;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .concept-grid .concept-col1 .editor {
+  min-height: 560px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .concept-grid .concept-col2 {
   margin: 20px;
