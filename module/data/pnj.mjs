@@ -63,7 +63,6 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
         reserve: new fields.NumberField({ ...requiredInteger, initial: reserve, min: reserve, max: reserve }),
         seuil: new fields.NumberField({ ...requiredInteger, initial: seuil, min: seuil, max: seuil }),
         valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: reserve }),
-        protection: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 3 }),
       };
       return new fields.SchemaField(schema, { label });
     };

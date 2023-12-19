@@ -353,4 +353,14 @@ export default class CabinetActor extends Actor {
     }
     return result;
   }
+  /** retourne la valeur de protection du membre demmandé */
+  getProtection(membre) {
+    if (this.type !== "pnj" && this.type !== "corps") return;
+    let armures = this.items.filter((item) => item.type == "armure");
+    let protTotal = 0;
+    for (const armure of armures) {
+      if(armure.system.equipee) protTotal+= armure.system[membre];
+    }
+    return(protTotal)
+  }
 }

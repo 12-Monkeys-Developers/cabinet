@@ -59,7 +59,11 @@ export default class CorpsSheet extends CabinetActorSheet {
     context.armes.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
-
+    context.armures = this.actor.items.filter((item) => item.type == "armure");
+    context.prot={};
+    SYSTEM.MEMBRES.forEach((element) => {
+      context.prot[element]= this.actor.getProtection(element);
+    });
     return context;
   }
 

@@ -9,7 +9,8 @@ export default class CabinetArmure extends foundry.abstract.TypeDataModel {
       brasGauche: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       torse: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       jambeDroite: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      jambeGauche: new fields.NumberField({ ...requiredInteger, initial: 0 })
+      jambeGauche: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      equipee: new fields.BooleanField({ initial: true })
     };
   }
 }

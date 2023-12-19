@@ -13,11 +13,7 @@
         </div>
         <div class="sante-protection">
             <label for="protection-tete-input">Protection</label>
-            {{#if editable}}
-                {{numberInput system.sante.tete.protection name="system.sante.tete.protection" min=0}}
-            {{else}}
-                {{system.sante.tete.protection}}
-            {{/if}}
+            {{prot.tete}}
         </div>  
     </div>
     <div class="sante-bras-droit">
@@ -29,11 +25,7 @@
         </div>
         <div class="sante-protection">
             <label for="protection-bras-droit-input">Protection</label>
-            {{#if editable}}
-                {{numberInput system.sante.brasDroit.protection name="system.sante.brasDroit.protection" min=0}}
-            {{else}}
-                {{system.sante.brasDroit.protection}}
-            {{/if}}
+                {{prot.brasDroit}}
         </div>
     </div>
     <div class="sante-bras-gauche">
@@ -45,11 +37,7 @@
         </div>
         <div class="sante-protection">
             <label for="protection-bras-gauche-input">Protection</label>
-            {{#if editable}}
-                {{numberInput system.sante.brasGauche.protection name="system.sante.brasGauche.protection" min=0}}
-            {{else}}
-                {{system.sante.brasGauche.protection}}
-            {{/if}}
+                {{prot.brasGauche}}
         </div>
     </div>
     <div class="sante-torse">
@@ -61,11 +49,7 @@
         </div>
         <div class="sante-protection">
             <label for="protection-torse-input">Protection</label>
-            {{#if editable}}
-                {{numberInput system.sante.torse.protection name="system.sante.torse.protection" min=0}}
-            {{else}}
-                {{system.sante.torse.protection}}
-            {{/if}}
+                {{prot.torse}}
         </div>        
     </div>
     <div class="sante-jambe-droite">
@@ -77,11 +61,7 @@
         </div>
         <div class="sante-protection">
             <label for="protection-jambe-droite-input">Protection</label>
-            {{#if editable}}
-                {{numberInput system.sante.jambeDroite.protection name="system.sante.jambeDroite.protection" min=0}}
-            {{else}}
-                {{system.sante.jambeDroite.protection}}
-            {{/if}}
+                {{prot.jambeDroite}}
         </div>
     </div>
     <div class="sante-jambe-gauche">
@@ -93,11 +73,7 @@
         </div>
         <div class="sante-protection">
             <label for="protection-jambe-gauche-input">Protection</label>
-            {{#if editable}}
-                    {{numberInput system.sante.jambeGauche.protection name="system.sante.jambeGauche.protection" min=0}}
-                {{else}}
-                    {{system.sante.jambeGauche.protection}}
-            {{/if}}
+            {{prot.jambeGauche}}
         </div>
     </div>
 </div>

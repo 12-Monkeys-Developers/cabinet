@@ -80,6 +80,7 @@ export default class CabinetActorSheet extends ActorSheet {
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click((ev) => this._onItemEdit(ev));
     html.find(".item-delete").click((ev) => this._onItemDelete(ev));
+    html.find(".inline-edit").change(this._onEmbeddedItemEdit.bind(this));
 
     // Activate context menu
     this._contextMenu(html);
@@ -126,9 +127,12 @@ export default class CabinetActorSheet extends ActorSheet {
       case "acquis":
         itemData.name = game.i18n.localize("CDM.NOUVEAU.acquis");
         break;
-      case "arme":
-        itemData.name = game.i18n.localize("CDM.NOUVEAU.arme");
+        case "arme":
+          itemData.name = game.i18n.localize("CDM.NOUVEAU.arme");
         break;
+        case "armure":
+          itemData.name = game.i18n.localize("CDM.NOUVEAU.armure");
+          break;
       case "corruption":
         itemData.name = game.i18n.localize("CDM.NOUVEAU.corruption");
         break;
@@ -197,5 +201,23 @@ export default class CabinetActorSheet extends ActorSheet {
       return;
     } else if (nouvelleValeur == this.actor.system.sante[zone].valeur) await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur - 1 });
     else await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur });
+  }
+  /**
+   *
+   * @param {*} event
+   * @returns
+   */
+  _onEmbeddedItemEdit(event) {
+    event.preventDefault();
+    const itemId = $(event.currentTarget).data("itemId");
+    let item = this.actor.items.get(itemId);
+
+    const element = event.currentTarget;
+    let field = element.dataset.field;
+    let newValue;
+    if (element.type === "checkbox") newValue = element.checked;
+    else if (element.type === "number") newValue = element.valueAsNumber;
+    else newValue = element.value;
+    return item.update({ [field]: newValue });
   }
 }

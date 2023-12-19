@@ -161,6 +161,7 @@
       "unlockSheet": "Verrouiller/Déverrouiller la feuille",
       "ajouterAcquis": "Ajouter un nouvel Acquis",
       "ajouterArme": "Ajouter une nouvelle Arme",
+      "ajouterArmure": "Ajouter une nouvelle Armure",
       "ajouterCorruption": "Ajouter une nouvelle Corruption",
       "modifier": "Modifier",
       "supprimer": "Supprimer"
@@ -168,6 +169,7 @@
     "NOUVEAU": {
       "acquis": "Nouvel acquis",
       "arme": "Nouvelle arme",
+      "armure": "Nouvelle armure",
       "corruption": "Nouvelle corruption"
     },
     "DE":{

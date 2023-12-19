@@ -104,6 +104,8 @@ export const DIFFICULTES = {
     seuil: 21 
   },
 }
+export const MEMBRES = ["brasDroit","brasGauche","tete","torse","jambeGauche","jambeDroite"];
+
 export const IMAGES= {
   ICONE_JARDIN: "icons/environment/wilderness/tomb-entrance.webp",
   ICONE_CABINET: "icons/environment/settlement/wagon-black.webp",
@@ -144,6 +146,7 @@ export const SYSTEM = {
   ARME_CATEGORIES: ARME.CATEGORIES,
   ACTION_CATEGORIES: ACTION.ACTION_CATEGORIES,
   DIFFICULTES,
-  IMAGES
+  IMAGES,
+  MEMBRES
 };
 

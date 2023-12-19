@@ -40,6 +40,11 @@ export default class PnjSheet extends CabinetActorSheet {
     context.armes.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
+    context.armures = this.actor.items.filter((item) => item.type == "armure");
+    context.prot={};
+    SYSTEM.MEMBRES.forEach((element) => {
+      context.prot[element]= this.actor.getProtection(element);
+    });
     context.speciaux = this.actor.items.filter((item) => item.type == "grace"||item.type == "corruption"||item.type == "pouvoir");
     context.speciaux.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
