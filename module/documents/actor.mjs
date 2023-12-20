@@ -48,6 +48,13 @@ export default class CabinetActor extends Actor {
 
   /** @inheritdoc */
   async _preCreate(data, options, userId) {
+    //empeche la création d'un second cabinet dans le monde
+      if (this.type ==="cabinet"){
+        if(game.actors.filter((actor) => actor.type === "cabinet").length){
+          ui.notifications.warn("Il est interdit de créer un second Cabinet dans le monde. Supprimez d’abord le premier.");
+          return(false);
+        }
+      }
     await super._preCreate(data, options, userId);
 
     switch (data.type) {

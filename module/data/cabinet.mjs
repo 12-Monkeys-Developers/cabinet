@@ -37,5 +37,4 @@ export default class CabinetCabinet extends foundry.abstract.TypeDataModel {
 
     return schema;
   }
-
 }
