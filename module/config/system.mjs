@@ -126,6 +126,10 @@ export const IMAGES= {
   ornement_feuille:"systems/cabinet/assets/images/sheets/ornement_dore_feuille.webp",
   trait_separation: "systems/cabinet/assets/images/sheets/trait_separation.webp",
   presentation_adv: "systems/cabinet/assets/images/presentation/arbre_de_vie.webp",
+  presentation_corps_sante: "systems/cabinet/assets/images/presentation/sante.webp",
+  presentation_chat1: "systems/cabinet/assets/images/presentation/chat1.webp",
+  presentation_chat2: "systems/cabinet/assets/images/presentation/chat2.webp",
+  presentation_dialog: "systems/cabinet/assets/images/presentation/dialog.webp",
   presentation_esprit_com: "systems/cabinet/assets/images/presentation/esprit_com.webp",
 }
 

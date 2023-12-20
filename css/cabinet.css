@@ -26,6 +26,7 @@
   --background_sante_h: none;
   --background_sante_armure: none;
   --background_chat: none;
+  --color_corps_leftcol: black;
   --fond_esprit: #EFEBE2;
 }
 .acquis-sheet {
@@ -900,7 +901,7 @@ i.logo_embellie {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1.2em;
-  color: white;
+  color: var(--color_corps_leftcol);
   text-transform: uppercase;
   padding-left: 10px;
   margin-top: 0.5em;
@@ -933,9 +934,9 @@ i.logo_embellie {
 .corps-sheet .sheet-cont .choix_tab {
   font-family: "posterbodoni";
   font-size: 1.8em;
-  color: #f0eae1;
+  color: var(--color_corps_leftcol);
   text-transform: uppercase;
-  border: 1px solid #f0eae1;
+  border: 1px solid var(--color_corps_leftcol);
   border-radius: 15px;
   text-align: center;
   padding: 0.5em 0.5em 0.3em 0.5em;
