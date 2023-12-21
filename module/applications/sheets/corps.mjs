@@ -33,8 +33,7 @@ export default class CorpsSheet extends CabinetActorSheet {
       name: "Pas de contrôle",
       img: null,
     };
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
+    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
 
     if (cabinet) {
       let comedienId = cabinet.system.comedien;

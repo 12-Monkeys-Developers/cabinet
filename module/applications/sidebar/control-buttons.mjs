@@ -13,11 +13,10 @@ export default function initControlButtons() {
       icon: "logo_defaut",
       button: true,
       onClick: () => {
-        const cabinetId = game.settings.get("cabinet", "cabinet");
-        if (!cabinetId) {
+        const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
+        if (!cabinet) {
           return ui.notifications.warn("L'arbre de vie nécessite un cabinet actif !");
         } else {
-          const cabinet = game.actors.get(cabinetId);
           if (cabinet) new ArbreVieForm(cabinet).render(true);
         }
       }

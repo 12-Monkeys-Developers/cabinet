@@ -96,7 +96,7 @@ Hooks.once("init", async function () {
     name: "Cabinet",
     hint: "Id du cabinet.",
     scope: "world",
-    config: true,
+    config: false,
     type: String,
   });
 
@@ -122,13 +122,8 @@ Hooks.once("i18nInit", function () {
 
 Hooks.once("ready", async function () {
   if (game.settings.get("cabinet", "appComedien") !== "aucun") {
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    let cabinet = null;
     let comedien = null;
-    
-    if (cabinetId) {
-      cabinet = await game.actors.get(cabinetId);
-    }
+    let cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
     
     if (cabinet) {
       const comedienId = cabinet.system.comedien;

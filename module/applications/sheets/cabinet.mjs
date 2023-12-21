@@ -60,8 +60,6 @@ export default class CabinetSheet extends CabinetActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".select-cabinet").click(this._onSelectCabinet.bind(this));
-
     // Activate context menu
     this._contextCabMenu(html);
   }
@@ -160,22 +158,6 @@ export default class CabinetSheet extends CabinetActorSheet {
         },
       },
     ];
-  }
-
-  /**
-   * @description Sélectionne le cabinet comme actif
-   * - Met à jour le settings du monde
-   * - Donner les droits sur le cabinet à tous les joueurs par défaut
-   * @param {*} event
-   * @returns
-   */
-  async _onSelectCabinet(event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    let cabinetId = event.currentTarget.dataset.actorId;
-    await game.settings.set("cabinet", "cabinet", cabinetId);
-    await this.actor.update({ "ownership.default": 3 });
   }
 
   async _onAllerJardin(actorId) {

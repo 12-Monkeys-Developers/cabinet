@@ -86,8 +86,7 @@ export default class CabinetActor extends Actor {
   async rollSkill(qualiteId, { diff, rollMode, dialog = false, defaultValues = null } = {}) {
     // Acquis de l'acteur et acquis collectifs
     let listeAcquis = this.getlisteAcquis();
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
+    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
     if (cabinet) {
       const listeAcquisCollectifs = cabinet.getlisteAcquis(listeAcquis.length);
       listeAcquis = listeAcquis.concat(listeAcquisCollectifs);
@@ -152,8 +151,7 @@ export default class CabinetActor extends Actor {
    */
   async deplacerPosition(newPosition, forcer = false) {
     if (this.type !== "esprit") return;
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
+    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
     if (!cabinet) {
       return ui.notifications.warn("Créez et attribuez d'abord un cabinet.");
     }
@@ -199,8 +197,7 @@ export default class CabinetActor extends Actor {
     }
     qualites.sort((a, b) => b.valeur - a.valeur);
 
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
+    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
     let arbre;
     if (cabinet) {
       arbre = cabinet.system.arbre;

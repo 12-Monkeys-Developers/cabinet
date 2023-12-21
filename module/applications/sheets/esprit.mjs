@@ -117,8 +117,7 @@ export default class EspritSheet extends CabinetActorSheet {
    */
   #formatActions(actions) {
     let corps;
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
+    const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
     if (cabinet) {
       const corpsId = cabinet.system.corps;
       corps = game.actors.get(corpsId);
@@ -228,8 +227,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
     // Information du corps si l'esprit est le comédien
     if (this.actor.system.comedien) {
-      const cabinetId = game.settings.get("cabinet", "cabinet");
-      const cabinet = game.actors.get(cabinetId);
+      const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
       if (cabinet) {
         const corpsId = cabinet.system.corps;
         const corps = game.actors.get(corpsId);
@@ -256,8 +254,7 @@ export default class EspritSheet extends CabinetActorSheet {
    *
    */
   async _devenirComedien() {
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
+    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
     let comedien = game.actors.get(cabinet.system.comedien);
 
     if (!comedien) {

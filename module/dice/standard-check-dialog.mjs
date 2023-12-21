@@ -45,8 +45,7 @@ export default class StandardCheckDialog extends Dialog {
 
     data.attributs = [];
     data.malus = 0;
-    const cabinetId = game.settings.get("cabinet", "cabinet");
-    const cabinet = game.actors.get(cabinetId);
+    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
     const corpsId = cabinet.system.corps;
     const corps = game.actors.get(corpsId);
     if (corps) {
