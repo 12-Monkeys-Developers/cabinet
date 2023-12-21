@@ -4,9 +4,9 @@ export default class AcquisSheet extends CabinetItemSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      height: 400,
-      width: 600,
-      resizable: false,
+      height: 350,
+      width: 450,
+      resizable: true,
     });
   }
   /**

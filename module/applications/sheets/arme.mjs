@@ -4,9 +4,9 @@ export default class ArmeSheet extends CabinetItemSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      height: 500,
-      width: 700,
-      resizable: false,
+      height: 450,
+      width: 550,
+      resizable: true,
     });
   }
   /**

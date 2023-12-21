@@ -125,6 +125,7 @@ export const IMAGES= {
   encart_malus:"systems/cabinet/assets/images/sheets/encart_malus.webp",
   ornement_feuille:"systems/cabinet/assets/images/sheets/ornement_dore_feuille.webp",
   trait_separation: "systems/cabinet/assets/images/sheets/trait_separation.webp",
+  presentation_action: "systems/cabinet/assets/images/presentation/action.webp",
   presentation_adv: "systems/cabinet/assets/images/presentation/arbre_de_vie.webp",
   presentation_corps_sante: "systems/cabinet/assets/images/presentation/sante.webp",
   presentation_chat1: "systems/cabinet/assets/images/presentation/chat1.webp",

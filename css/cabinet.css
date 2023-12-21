@@ -40,21 +40,20 @@
   flex-direction: row;
 }
 .acquis-sheet .name-title input {
-  font-size: 2em;
+  font-size: 1.5em;
   text-transform: uppercase;
   text-align: left;
   border: 0px;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
   color: #497180;
 }
 .acquis-sheet .name-title img {
   border: 0px;
-  max-height: 100px;
+  max-height: 50px;
 }
 .acquis-sheet .acquis-content {
-  width: 400px;
-  min-height: 260px;
+  width: 436px;
 }
 .acquis-sheet .field-name {
   text-transform: uppercase;
@@ -65,12 +64,12 @@
 .acquis-sheet .valeur-group {
   display: flex;
   flex-direction: row;
-  margin: 0px 10px 15px 150px;
+  margin: 10px 0px;
+  justify-content: center;
 }
 .acquis-sheet .description-group {
   display: flex;
   flex-direction: column;
-  margin: 0px 10px 15px 10px;
 }
 .acquis-sheet .description-group .editor {
   min-height: 150px;
@@ -181,21 +180,21 @@
   flex-direction: row;
 }
 .arme-sheet .name-title input {
-  width: 18em;
+  width: 16em;
   font-size: 2em;
   text-transform: uppercase;
   text-align: left;
   border: 0px;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 10px;
   color: #497180;
 }
 .arme-sheet .name-title img {
   border: 0px;
-  max-height: 100px;
+  max-height: 50px;
 }
 .arme-sheet .arme-content {
-  min-width: 600px;
+  min-width: 500px;
   min-height: 260px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -220,7 +219,7 @@
   margin: 0px 10px 15px 10px;
 }
 .arme-sheet .description-group .editor {
-  min-height: 150px;
+  min-height: 160px;
 }
 .arme-sheet .description-group .editor-content {
   min-height: 150px;
@@ -1260,7 +1259,7 @@ i.logo_embellie {
 }
 .corruption-sheet .name-title img {
   border: 0px;
-  max-height: 100px;
+  max-height: 50px;
 }
 .corruption-sheet .description-group {
   display: flex;
@@ -2104,7 +2103,7 @@ i.logo_embellie {
 }
 .grace-sheet .name-title img {
   border: 0px;
-  max-height: 100px;
+  max-height: 50px;
 }
 .grace-sheet .description-group {
   display: flex;

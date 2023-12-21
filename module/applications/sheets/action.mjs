@@ -6,9 +6,9 @@ export default class ActionSheet extends CabinetItemSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      height: 600,
-      width:600,
-      resizable: false,
+      height: 550,
+      width: 520,
+      resizable: true,
     });
   }
   /**
