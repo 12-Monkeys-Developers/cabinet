@@ -1,16 +1,10 @@
 <div class="actions-ligne">
-  <div class="nom-action">
-      <i class="logo_action" data-field="{{action._id}}"></i> {{action.name}}</div>
-<details>
+  <div class="nom-action item-contextmenu" data-item-id="{{action._id}}">
+    <i class="logo_action" data-field="{{action._id}}"></i> {{action.name}}</div>
+  <details>
     <summary class="resolution" data-tooltip="{{action.formulaTooltip}}">
     {{{action.formulaHtml}}}
     </summary>
-  <div>{{{action.system.circonstances}}}</div>
-</details>
-  <div class="icon-group">
-    {{#if @root.editable}}
-      <a class="item-control item-edit" data-field="{{action._id}}" data-tooltip="Modifier"><i class="fas fa-cog"></i></a>
-      <a class="item-control item-delete" data-field="{{action._id}}" data-tooltip="Supprimer"><i class="fas fa-trash"></i></a>
-    {{/if}}
-  </div>
+    <div>{{{action.system.circonstances}}}</div>
+  </details>
 </div>
