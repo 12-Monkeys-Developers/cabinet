@@ -6,7 +6,7 @@ export default class CabinetCorps extends foundry.abstract.TypeDataModel {
 
     schema.comedien = new fields.StringField({nullable: true});
     schema.cabinet = new fields.StringField({nullable: true});
-    schema.description = new fields.HTMLField();
+    schema.description = new fields.HTMLField({textSearch: true});
 
     const attributField = (label) =>
       new fields.SchemaField(

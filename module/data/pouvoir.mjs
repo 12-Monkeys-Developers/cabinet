@@ -9,7 +9,7 @@ export default class CabinetPouvoir extends foundry.abstract.DataModel {
         schema.perisprit = new fields.NumberField({...requiredInteger, initial: 0, min: 0});
         schema.controle = new fields.BooleanField({initial: false});
         schema.automatique = new fields.BooleanField({initial: false});
-        schema.description = new fields.HTMLField();
+        schema.description = new fields.HTMLField({textSearch: true});
 
         return schema;
     }

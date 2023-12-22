@@ -1,0 +1,19 @@
+<div class="cabinet_chat">
+<div>
+        <div style="width:100%; text-align:center">
+            <h3>Résultat de la recherche</h3>
+        </div>
+        <div>Motif recherché : {{pattern}}</div>
+        <div>
+        {{#each resultCollection as |page|}}
+        @UUID[JournalEntry.{{page.parent._id}}.JournalEntryPage.{{page._id}}]<br />
+        {{/each}}
+        {{#each itemResultCollection as |item|}}
+        @UUID[Item.{{item._id}}]<br />
+        {{/each}}
+        {{#each actorResultCollection as |actor|}}
+        @UUID[Actor.{{actor._id}}]<br />
+        {{/each}}
+        </div>
+    </div>
+</div>

@@ -81,6 +81,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-description.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/tab-notes.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
+    `systems/${SYSTEM.id}/templates/chat/searchResult.hbs`
   ]);
 
   // Configuration text enrichers

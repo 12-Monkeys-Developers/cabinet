@@ -1,0 +1,20 @@
+{{!log 'standard check dialog' this}}
+<div class="dialog-search">
+  <section class="content">
+    <div style="width:100%; text-align:center">
+      <h3>Recherche de texte dans les journaux</h3>
+    </div>
+    <div>
+      <label for="searchtext">Collez ici le texte à rechercher</label>
+      <input name="searchtext" type="text" />
+    </div>
+    <div class="dialog-buttons">
+      {{#each buttons as |button id|}}
+        <button class="dialog-button {{cssClass}}" data-button="{{id}}" {{disabled button.disabled}}>
+          {{{button.icon}}}
+          {{{button.label}}}
+        </button>
+      {{/each}}
+    </div>
+  </section>
+</div>

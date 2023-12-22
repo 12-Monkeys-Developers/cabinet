@@ -57,10 +57,10 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     schema.positionArbre = new fields.StringField({ required: false, blank: true, choices: SYSTEM.SPHERES, initial: undefined });
 
     schema.perisprit = new fields.NumberField({ ...requiredInteger, initial: 9, min: 0, max: 9 });
-    schema.routine = new fields.HTMLField();
+    schema.routine = new fields.HTMLField({textSearch: true});
 
-    schema.contacts = new fields.HTMLField();
-    schema.adversaires = new fields.HTMLField();
+    schema.contacts = new fields.HTMLField({textSearch: true});
+    schema.adversaires = new fields.HTMLField({textSearch: true});
     
     schema.notes = new fields.HTMLField();
 

@@ -41,16 +41,6 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
       }, {})
     );
 
-    // Acquis : Nom, valeur de +1 à +3, description optionnelle, milieu (oui/non)
-    schema.acquis = new fields.ArrayField(
-      new fields.SchemaField({
-        nom: new fields.StringField({ required: true, blank: true, initial: "" }),
-        valeur: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 1, min: 1, max: 3 }),
-        description: new fields.StringField({ required: false, blank: true }),
-        milieu: new fields.BooleanField({ initial: false }),
-      })
-    );
-
     schema.energie = new fields.SchemaField({
         actuelle: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
@@ -102,8 +92,8 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
     );
 
     schema.malus = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
-    schema.description = new fields.HTMLField();
-    schema.notes = new fields.HTMLField();
+    schema.description = new fields.HTMLField({textSearch: true});
+    schema.notes = new fields.HTMLField({textSearch: true});
 
     return schema;
   }
