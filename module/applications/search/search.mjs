@@ -51,6 +51,7 @@ export class SearchDialog extends Dialog {
     });
     const chatData = {
       content: htmlChat,
+      whisper: [game.user],
     };
     ChatMessage.create(chatData);
     return;

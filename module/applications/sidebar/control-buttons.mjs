@@ -31,8 +31,10 @@ export default function initControlButtons() {
         onClick: () => {
           new PresentationForm().render(true);
         },
-      },
-      {
+      }
+    );
+    if (game.user.isGM) {
+      menu.push({
         name: "search",
         title: "Recherche",
         icon: "fas fa-magnifying-glass",
@@ -40,8 +42,8 @@ export default function initControlButtons() {
         onClick: () => {
           new SearchDialog().render(true);
         },
-      }
-    );
+      });
+    }
     btns.push({
       name: "cabinet_menu",
       title: "Le cabinet des murmures",
