@@ -1,6 +1,6 @@
 import { ArbreVieForm } from "../forms/arbre-vie.mjs";
 import { PresentationForm } from "../forms/presentation.mjs";
-import { searchDialog } from "./search.mjs";
+import { SearchDialog } from "../search/search.mjs";
 
 export default function initControlButtons() {
   CONFIG.Canvas.layers.cabinet = { layerClass: ControlsLayer, group: "primary" };
@@ -38,7 +38,7 @@ export default function initControlButtons() {
         icon: "fas fa-magnifying-glass",
         button: true,
         onClick: () => {
-          searchDialog();
+          new SearchDialog().render(true);
         },
       }
     );

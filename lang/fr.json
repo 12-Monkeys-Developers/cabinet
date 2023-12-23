@@ -42,52 +42,52 @@
       "binah": {
         "label": "Binah",
         "qualite": "Intelligent",
-        "qualiteSmall" : "intelligent"
+        "qualiteSmall": "intelligent"
       },
       "chesed": {
         "label": "Chesed",
         "qualite": "Ouvert",
-        "qualiteSmall" : "ouvert"
+        "qualiteSmall": "ouvert"
       },
       "chokmah": {
         "label": "Chokmah",
         "qualite": "Sensible",
-        "qualiteSmall" : "sensible"
+        "qualiteSmall": "sensible"
       },
       "geburah": {
         "label": "Geburah",
         "qualite": "Autoritaire",
-        "qualiteSmall" : "autoritaire"
+        "qualiteSmall": "autoritaire"
       },
       "hod": {
         "label": "Hod",
         "qualite": "Savant",
-        "qualiteSmall" : "savant"
+        "qualiteSmall": "savant"
       },
       "kether": {
         "label": "Kether",
         "qualite": "Courageux",
-        "qualiteSmall" : "courageux"
+        "qualiteSmall": "courageux"
       },
       "malkuth": {
         "label": "Malkuth",
         "qualite": "Coordonné",
-        "qualiteSmall" : "coordonne"
+        "qualiteSmall": "coordonne"
       },
       "netzach": {
         "label": "Netzach",
         "qualite": "Charismatique",
-        "qualiteSmall" : "charismatique"
+        "qualiteSmall": "charismatique"
       },
       "tiferet": {
         "label": "Tiferet",
         "qualite": "Serein",
-        "qualiteSmall" : "serein"
+        "qualiteSmall": "serein"
       },
       "yesod": {
         "label": "Yesod",
         "qualite": "Attentif",
-        "qualiteSmall" : "attentif"
+        "qualiteSmall": "attentif"
       }
     },
     "ATTRIBUT": {
@@ -172,9 +172,9 @@
       "armure": "Nouvelle armure",
       "corruption": "Nouvelle corruption"
     },
-    "DE":{
+    "DE": {
       "total": "Total",
-      "qualite": "Nb dés de qualité",      
+      "qualite": "Nb dés de qualité",
       "aspect": "Aspect",
       "acquis": "Acquis",
       "attribut": "Attribut",
@@ -198,11 +198,18 @@
         "bas": "Afficher le médaillon en bas à droite"
       }
     },
-    "DICECHATMESSAGE":{
+    "DICECHATMESSAGE": {
       "introText": "Jet de {activite} de {actingCharName}"
     },
-    "COMEDIENCHATMESSAGE":{
+    "COMEDIENCHATMESSAGE": {
       "introText": "{actingCharName} réclame le contrôle."
+    },
+    "SEARCHTOOL": {
+      "window_title": "Rechercher",
+      "button_search": "Rechercher",
+      "button_cancel": "Annuler",
+      "dialog_title": "Recherche de Texte dans les Journaux, Personnages, Objets...",
+      "dialog_input": "Tapez ici le texte à rechercher :"
     }
   }
 }
