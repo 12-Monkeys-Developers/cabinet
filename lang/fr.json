@@ -209,7 +209,9 @@
       "button_search": "Rechercher",
       "button_cancel": "Annuler",
       "dialog_title": "Recherche de Texte dans les Journaux, Personnages, Objets...",
-      "dialog_input": "Entrez ici le texte à rechercher :"
+      "dialog_input": "Entrez ici le texte à rechercher :",
+      "chat_intro": "Résultat de la recherche",
+      "chat_text": "Texte recherché : "
     }
   }
 }

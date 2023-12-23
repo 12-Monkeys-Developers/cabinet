@@ -1,17 +1,15 @@
 <div class="cabinet_chat {{cssClass}}">
-    <div style="width:100%; text-align:center">
-      <h3>Résultat de la recherche</h3>
-    </div>
-    <div class="motif">Motif recherché : {{pattern}}</div>
-    <div>
-      {{#each resultCollection as |page|}}
-        @UUID[JournalEntry.{{page.parent._id}}.JournalEntryPage.{{page._id}}]<br />
-      {{/each}}
-      {{#each itemResultCollection as |item|}}
-        @UUID[Item.{{item._id}}]<br />
-      {{/each}}
-      {{#each actorResultCollection as |actor|}}
-        @UUID[Actor.{{actor._id}}]<br />
-      {{/each}}
-    </div>
+  <h3>{{localize "CDM.SEARCHTOOL.chat_intro"}}</h3>
+  <div class="motif">{{localize "CDM.SEARCHTOOL.chat_text"}}{{pattern}}</div>
+  <div>
+    {{#each resultCollection as |page|}}
+      @UUID[JournalEntry.{{page.parent._id}}.JournalEntryPage.{{page._id}}]<br />
+    {{/each}}
+    {{#each itemResultCollection as |item|}}
+      @UUID[Item.{{item._id}}]<br />
+    {{/each}}
+    {{#each actorResultCollection as |actor|}}
+      @UUID[Actor.{{actor._id}}]<br />
+    {{/each}}
+  </div>
 </div>
