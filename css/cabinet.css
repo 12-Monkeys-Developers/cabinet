@@ -757,6 +757,26 @@
   font-size: 1.2em;
   text-align: center;
 }
+.cabinet_chat {
+  background-color: #394e55;
+  background: var(--background_chat);
+  font-family: "garamondpro";
+  font-size: 1.2em;
+}
+.cabinet_chat h3 {
+  margin: 10px;
+  font-family: "garamondpro";
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+.cabinet_chat .motif {
+  margin: 10px;
+}
+.cabinet_chat .content-link {
+  background: none;
+  border: 0px;
+}
 #comedien {
   display: grid;
   grid-template-columns: 1fr;
@@ -1279,6 +1299,22 @@ i.logo_embellie {
   min-height: 235px;
   font-weight: normal;
   margin: 0px 5px;
+}
+.search_dialog {
+  background-color: #394e55;
+  background: var(--background_chat);
+  font-family: "garamondpro";
+  font-size: 1.2em;
+}
+.search_dialog h3 {
+  margin: 10px;
+  font-family: "garamondpro";
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+.search_dialog .dialog-buttons {
+  padding-top: 15px;
 }
 /* ----------------------------------------- */
 /*  Roll Dialog                              */

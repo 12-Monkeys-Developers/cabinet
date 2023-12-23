@@ -9,7 +9,7 @@ export class SearchDialog extends Dialog {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       width: 400,
-      height: 200,
+      height: 230,
       template: `systems/${SYSTEM.id}/templates/search/search-dialog.hbs`,
     });
   };
