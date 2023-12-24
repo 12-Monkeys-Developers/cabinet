@@ -54,8 +54,8 @@ export default class StandardCheck extends Roll {
     difficultes: [],
     difficulte: undefined,
     difficulteValeur: undefined,
-    introText:"",
-    finalText:"",
+    introText: "",
+    finalText: "",
     type: "classique",
     aspect: "neshama",
     aspectValeur: 0,
@@ -69,12 +69,13 @@ export default class StandardCheck extends Roll {
     perisprit: 0,
     bonus: 0,
     malus: 0,
-    peutEmbellie: false,
-    estEmbellie: false,
-    embellie: undefined,
-    embellieValeur: 0,
-    totalEmbellie: null,
-    desastre: false,
+    peutEmbellie: false,  //propose une embellie dans le dialog
+    estEmbellie: false,  //le jet réussit une embellie
+    tenterEmbellie: false,  //tentative d'embellie
+    embellieValeur: "",  //nombre de dés d'embellie
+    totalEmbellie: null,  // somme des dés retenus si embellie
+    reRollEmbellie: null, // roll en cas de jet exlosif sur embellie
+    desastre: false,  // le jet est un désastre
     rollMode: undefined,
   };
 
@@ -94,7 +95,7 @@ export default class StandardCheck extends Roll {
    * Did this check result in a success?
    * @returns {boolean}
    */
-  get isSuccess() {    
+  get isSuccess() {
     if (!this._evaluated) return undefined;
     if (this.data.difficulteValeur === undefined) return undefined;
     return this.total >= this.data.difficulteValeur;
@@ -131,7 +132,6 @@ export default class StandardCheck extends Roll {
     data.qualiteValeur = qualite.valeur;
 
     data.perispritValeur = data.perisprit !== "" ? parseInt(data.perisprit) : 0;
-    data.estEmbellie = data.peutEmbellie && data.embellie !== undefined && data.embellie !== "";
 
     if (data.aspect) data.aspectValeur = data.actorData.aspects[data.aspect].valeur;
     if (data.difficulte) data.difficulteValeur = SYSTEM.DIFFICULTES[data.difficulte].seuil;
@@ -142,10 +142,10 @@ export default class StandardCheck extends Roll {
     const actingChar = game.actors.get(data.actorId);
     data.actingCharImg = actingChar.img;
     data.actingCharName = actingChar.name;
-    data.activitelbl = data.action ? (data.action+" ("+SYSTEM.QUALITES[data.qualite].label+")") : SYSTEM.QUALITES[data.qualite].label;
+    data.activitelbl = data.action ? data.action + " (" + SYSTEM.QUALITES[data.qualite].label + ")" : SYSTEM.QUALITES[data.qualite].label;
 
-    data.introText = game.i18n.format("CDM.DICECHATMESSAGE.introText", { actingCharName: actingChar.name, activite: data.activitelbl});
-    if(data.desastre ) data.finalText = "Désastre !";
+    data.introText = game.i18n.format("CDM.DICECHATMESSAGE.introText", { actingCharName: actingChar.name, activite: data.activitelbl });
+    if (data.desastre) data.finalText = "Désastre !";
     else if (data.estEmbellie) data.finalText = "Embellie !";
   }
 
@@ -154,15 +154,12 @@ export default class StandardCheck extends Roll {
     // Construct the formula
     let dices;
     let terms;
-
-    // Sams embellie
-    if (!data.estEmbellie) {
-      dices = `${data.qualiteValeur}d6k`;
-    }
-
     // Avec embellie
-    if (data.estEmbellie) {
+    if (data.tenterEmbellie) {
       dices = `${data.embellieValeur}d6`;
+    } else {
+      // Sans embellie
+      dices = `${data.qualiteValeur}d6k`;
     }
 
     terms = [dices].concat([data.aspectValeur]);
@@ -173,6 +170,7 @@ export default class StandardCheck extends Roll {
 
     let formula = terms.join(" + ");
     if (data.malus > 0) formula = formula + " - " + data.malus;
+    console.log("formula", formula);
 
     return super.parse(formula, data);
   }
@@ -199,7 +197,7 @@ export default class StandardCheck extends Roll {
       isGM: game.user.isGM,
       formula: this.formula,
       total: this.total,
-      images: SYSTEM.IMAGES
+      images: SYSTEM.IMAGES,
     };
 
     // Successes and Failures
@@ -256,7 +254,14 @@ export default class StandardCheck extends Roll {
   async toMessage(messageData, options = {}) {
     options.rollMode = options.rollMode || this.data.rollMode;
     messageData.content ||= "";
-    return super.toMessage(messageData, options);
+    let resChatMessage  = await super.toMessage(messageData, options);
+    if(this.data.reRollEmbellie){
+      const blind = resChatMessage.blind;
+      const whisper=resChatMessage.whisper;
+      this.data.reRollEmbellie.dice[0].options.rollOrder = 2;
+      await game.dice3d.showForRoll(this.data.reRollEmbellie, game.user, true, whisper, blind);
+    }
+    return resChatMessage;
   }
 
   /** @override */
@@ -269,7 +274,7 @@ export default class StandardCheck extends Roll {
      * S'il reste des dés compris entre 2 et 5 : prendre le meilleur des résultats
      * Si le meilleur dé restant est un 6 : Embelle ! Ajouter le meilleur dé suivant autre qu'un 6. S'il n'y en a pas. Lancer un dé explosif
      */
-    if (this.data.peutEmbellie && this.data.embellie !== "") {
+    if (this.data.peutEmbellie && this.data.tenterEmbellie) {
       console.log("Standard Roll - Evaluate : Tentative Embellie !");
 
       let deConserveQualite;
@@ -304,6 +309,7 @@ export default class StandardCheck extends Roll {
         }
       } else if (nbDeSix > nbDeUn) {
         console.log("embellie !");
+        this.data.estEmbellie = true;
         deConserveQualite = 6;
         // Addition des 6 restants
         let sixRestant = (nbDeSix - 1 - nbDeUn) * 6;
@@ -312,16 +318,9 @@ export default class StandardCheck extends Roll {
         if (nbAutresDes > 0) desEmbellie = sixRestant + Math.max(...autreDes);
         // Si pas d'autres dés, jet explosif
         else {
-          const newRoll = await new Roll("1d6x").roll();
-          console.log("Evaluate - newRoll", newRoll);
-
-          // TODO
-          // display the roll in Dice So Nice if the module is active
-          //if (game.modules.get("dice-so-nice")?.active) {
-            //let synchro = actor.type === "player" || !game.user.isGM;   Vient de clé en main, actor n'est pas connu ici
-            //game.dice3d.showForRoll(newRoll, game.user);//, synchro);
-          //}
-          desEmbellie = sixRestant + newRoll.total;
+          this.data.reRollEmbellie = await new Roll("1d6x").roll();
+          console.log("Evaluate - reRollEmbellie", this.data.reRollEmbellie);
+          desEmbellie = sixRestant + this.data.reRollEmbellie.total;
         }
       }
       // Il n'y a ni 1 ni 6

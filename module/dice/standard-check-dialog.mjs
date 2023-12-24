@@ -32,6 +32,7 @@ export default class StandardCheckDialog extends Dialog {
     const qualite = data.qualite;
     const sphere = SYSTEM.QUALITES[qualite].sphere;
     const jardin = data.actorData.jardin;
+    let rollMode= data.rollMode ?? game.settings.get("core", "rollMode");
 
     let peutEmbellie = false;
     // Si positionné sur la qualité utilisée : embellie possible
@@ -62,7 +63,6 @@ export default class StandardCheckDialog extends Dialog {
       //difficulty: this._getDifficulty(data.diff),
       //difficulties: Object.entries(SYSTEM.dice.checkDifficulties).map(d => ({dc: d[0], label: `${d[1]} (DC ${d[0]})`})),
       isGM: game.user.isGM,
-      rollMode: this.options.rollMode || game.settings.get("core", "rollMode"),
       rollModes: CONFIG.Dice.rollModes,
       difficultes: SYSTEM.DIFFICULTES,
       aspects: SYSTEM.ASPECTS,
@@ -71,6 +71,7 @@ export default class StandardCheckDialog extends Dialog {
       listeAcquis: data.listeAcquis,
       optionsEmbellie: optionsEmbellie,
       optionsPerisprit: optionsPerisprit,
+      rollMode:rollMode,
     });
   }
 
@@ -104,6 +105,7 @@ export default class StandardCheckDialog extends Dialog {
     html.find('select[name="perisprit"]').change(this._onChangeAction.bind(this));
     html.find('select[name="embellie"]').change(this._onChangeAction.bind(this));
     html.find('input[name="bonus"]').change(this._onChangeAction.bind(this));
+    html.find('select[name="rollMode"]').change(this._onChangeAction.bind(this));
     html.find('select[name="difficulte"]').change(this._onChangeDifficulte.bind(this));
     super.activateListeners(html);
   }
@@ -140,11 +142,15 @@ export default class StandardCheckDialog extends Dialog {
         return this.render(false, { height: "auto" });
       case "embellie-change":
         const newEmbellie = event.currentTarget.value;
-        this.roll.initialize({ embellie: newEmbellie, embellieValeur: newEmbellie });
+        this.roll.initialize({ tenterEmbellie: true, embellieValeur: newEmbellie });
         return this.render(false, { height: "auto" });
       case "bonus-change":
         const newBonus = event.currentTarget.value;
         this.roll.initialize({ bonus: newBonus });
+        return this.render(false, { height: "auto" });
+      case "rollMode-change":
+        const newRollMode = event.currentTarget.value;
+        this.roll.initialize({ rollMode: newRollMode });
         return this.render(false, { height: "auto" });
     }
   }

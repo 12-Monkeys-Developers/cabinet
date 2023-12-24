@@ -35,7 +35,7 @@
             {{#if peutEmbellie}}
             <div class="bonus-lbl">Embellie</div>
             <select name="embellie" style="width:6em;" data-action="embellie-change">
-                {{selectOptions optionsEmbellie selected=embellie nameAttr="indice" labelAttr="label" blank="Non"}}
+                {{selectOptions optionsEmbellie selected=embellieValeur nameAttr="indice" labelAttr="label" blank="Non"}}
             </select>
             {{/if}}
         </div>
@@ -66,7 +66,7 @@
         <div class="rollmode">
         {{#unless isGM}}
             <div class="bonus-lbl">Visibilité</div>
-        <select name="rollMode">
+        <select name="rollMode" data-action="rollMode-change">
             {{selectOptions rollModes selected=rollMode localize=true}}
         </select>
         {{/unless}}
