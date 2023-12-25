@@ -10,7 +10,7 @@ export default class CabinetSheet extends CabinetActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 900,
+      width: 750,
       height: 800,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "details" }],
     });
