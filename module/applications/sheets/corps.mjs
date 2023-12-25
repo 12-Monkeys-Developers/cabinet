@@ -11,8 +11,8 @@ export default class CorpsSheet extends CabinetActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 800,
-      height: 750,
+      width: 550,
+      height: 600,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "details" }],
     });
   }
