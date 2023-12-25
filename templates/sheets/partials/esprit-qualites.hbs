@@ -4,7 +4,7 @@
         {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='intellect' gauche="1"}}
       </div>
       <div class="qualite-group courage-group" data-field="courage">
-        {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='courage' }}
+        {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='courage' centre="1"}}
       </div>
       <div class="qualite-group sensibilite-group" data-field="sensibilite">
         {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='sensibilite' }}
@@ -19,19 +19,22 @@
         {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='savoir' gauche="1" }}
       </div>
       <div class="qualite-group serenite-group" data-field="serenite">
-        {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='serenite' }}
+        {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='serenite' centre="1"}}
       </div>
       <div class="qualite-group charisme-group" data-field="charisme">
         {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='charisme' }}
       </div>
       <div class="qualite-group attention-group" data-field="attention">
-        {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='attention' }}
+        {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='attention' centre="1"}}
       </div>
       <div class="qualite-group coordination-group" data-field="coordination">
-        {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='coordination' }}
+        {{> "systems/cabinet/templates/sheets/partials/esprit-qualite-group.hbs" qualite='coordination' centre="1"}}
       </div>
   </div>
   <div class="col-droite-qualites">
+    <div class="col-droite-bloc0">
+      <div class="comportement-label">Comportement : </div><div class="comportement">{{localize comportement}}</div>
+    </div>
     <div class="col-droite-bloc1">
       <div class="col-aspects">
         <div class="titre2" style="margin: 0px 0px 10px 0px;">Aspects</div>

@@ -12,8 +12,8 @@ export default class EspritSheet extends CabinetActorSheet {
   static get defaultOptions() {
     const options = super.defaultOptions;
     return Object.assign(options, {
-      width: 1000,
-      height: 780,
+      width: 685,
+      height: 630,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "qualites" }],
     });
   }
@@ -70,6 +70,11 @@ export default class EspritSheet extends CabinetActorSheet {
 
     context.comedien = this.actor.system.comedien;
     context.jardin = this.actor.system.jardin;
+
+    if(this.actor.system.positionArbre){
+    let positionQual = SYSTEM.SPHERES[this.actor.system.positionArbre].qualiteSmall;
+    context.comportement = ("CDM.SPHERE."+ this.actor.system.positionArbre) + (this.actor.system.qualites[positionQual].qlipha ? ".defaut" : ".qualite");
+    }else context.comportement ="";
 
     return context;
   }
