@@ -366,27 +366,25 @@
   justify-content: center;
 }
 .cab-sheet .outer-border {
-  border: 6px solid black;
+  border: 4px solid black;
   height: 99%;
   width: 98%;
-  padding: 6px;
+  padding: 4px;
   margin: 0 auto;
 }
 .cab-sheet .inner-border {
   border: 2px solid black;
   height: 100%;
   width: 100%;
-  padding: 6px;
+  padding: 4px;
   margin: auto;
 }
 .cab-sheet .script {
   text-align: justify;
-  margin-left: 10px;
   font-family: "alexbrush";
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: black;
   margin-left: 5px;
-  margin-top: 10px;
   min-height: 80px;
 }
 .cab-sheet .editor-content {
@@ -397,7 +395,7 @@
 .cab-sheet .titre2 {
   text-align: center;
   font-family: "posterbodoni";
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #497180;
   text-transform: uppercase;
 }
@@ -410,11 +408,11 @@
 .cab-sheet .cabinet-header .titre_feuille {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1em;
   color: white;
   text-transform: uppercase;
-  padding-left: 10px;
-  margin: 1em 1em 0px 0px;
+  padding-left: 5px;
+  margin: 5px 0px 0px 0px;
 }
 .cab-sheet .cabinet-header .titre_feuille .header-icons {
   margin: 0px 1em 0px 1em;
@@ -425,10 +423,10 @@
 }
 .cab-sheet .cabinet-header .charname {
   font-family: "alexbrush";
-  font-size: 3em;
+  font-size: 2em;
   color: white;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 .cab-sheet .cabinet-header .charname input {
   color: white;
@@ -438,7 +436,7 @@
   margin: 2px 10px 0px 0px;
   justify-self: end;
   width: 80px;
-  height: 80px;
+  height: 50px;
   z-index: 2;
 }
 .cab-sheet .cabinet-header .cabinet-portrait img {
@@ -446,19 +444,23 @@
 }
 .cab-sheet .choix_tab {
   font-family: "posterbodoni";
-  font-size: 1.2em;
+  font-size: 1em;
   color: #f0eae1;
   text-transform: uppercase;
   border: 1px solid #f0eae1;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-width: 0;
   text-align: center;
-  padding: 0.5em 0.5em 0.3em 0.5em;
+  padding: 0.4em 0.4em 0.1em 0.3em;
 }
 .cab-sheet .choix_tab.active {
-  border: 2px solid white;
+  font-size: 1.1em;
+  padding: 0.4em 0.5em 0.2em 0.5em;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border: 3px solid white;
   color: white;
-  border-bottom-width: 0;
 }
 .cab-sheet .sheet-navigation {
   grid-column: 1 / 3;
@@ -478,29 +480,28 @@
 }
 .cab-sheet .cabinet-details .grid-haut {
   display: grid;
-  grid-template-columns: 540px 1fr;
+  grid-template-columns: 450px 1fr;
 }
 .cab-sheet .cabinet-details .grid-haut .outer-border {
-  margin: 5px;
+  margin: 4px;
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres {
   min-width: 200px;
   min-height: 200px;
   display: grid;
-  grid-template-columns: 90px 90px 200px 90px;
+  grid-template-columns: 60px 50px 200px 80px;
   align-items: center;
   font-family: "arrusbt";
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .membre-name {
   font-family: "alexbrush";
-  font-size: 1.8em;
+  font-size: 1.5em;
   text-align: center;
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .membre-img {
-  padding: 5px;
   justify-self: end;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .membre-img img {
   max-height: 90%;
@@ -508,8 +509,8 @@
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab {
   padding: 5px;
   justify-self: end;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab #context-menu {
   width: max-content;
@@ -519,8 +520,9 @@
   left: 100px;
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab img {
-  max-height: 90%;
+  max-height: 115%;
   border: 0px;
+  margin-top: -10px;
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .membre-icone {
   width: 40px;
@@ -529,8 +531,8 @@
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .titre_col {
   text-align: center;
   font-weight: bold;
-  font-size: 1.5em;
-  margin-bottom: 1en;
+  font-size: 1.2em;
+  margin-bottom: 5px;
   color: #497180;
 }
 .cab-sheet .cabinet-details .grid-haut .right-col {
@@ -547,10 +549,8 @@
   color: #497180;
   text-transform: uppercase;
   text-align: center;
-  height: 103px;
-  width: 199px;
-  align-self: center;
-  margin-top: 20px;
+  height: 106px;
+  margin: 10px 40px;
 }
 .cab-sheet .cabinet-details .grid-haut .right-col .encart-exp .text-exp {
   margin-top: 50px;
@@ -605,18 +605,18 @@
   border: 4px solid #886a3c;
 }
 .cab-sheet .cabinet-details .zone-graces .titre3 {
-  font-size: 2em;
-  margin: 10px;
+  font-size: 1.5em;
+  margin: 7px;
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces {
-  padding: 0px 5px;
+  padding: 0px 2px;
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces .back {
-  padding: 0px 5px;
+  padding: 0px 2px;
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces nav#context-menu.expand-down {
   top: calc(20% + 2px);
@@ -634,13 +634,12 @@
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces .description {
   border: 2px solid #886a3c;
-  width: 98%;
-  padding: 6px;
+  padding: 3px;
   margin: 0 auto;
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces .description p {
   font-family: "garamondpro";
-  text-indent: 2em;
+  text-indent: 1em;
   text-align: justify;
   padding-left: 5px;
   padding-right: 5px;
@@ -652,13 +651,17 @@
   border: 2px solid #886a3c;
   width: 100%;
   margin: auto;
-  padding: 8px;
+  padding: 4px;
 }
 .cab-sheet .cabinet-description {
   background-color: #394e55;
   background: var(--background_cabinet_grey);
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.cab-sheet .cabinet-description p {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .cab-sheet .cabinet-description .description-description {
   grid-column: 1/3;
@@ -906,12 +909,12 @@ i.logo_embellie {
 }
 .corps-sheet .corps-header {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 105px 4fr 1fr;
 }
 .corps-sheet .corps-header .titre2 {
   text-align: center;
   font-family: "posterbodoni";
-  font-size: 1.5em;
+  font-size: 1.1em;
   color: #497180;
   text-transform: uppercase;
 }
@@ -919,10 +922,10 @@ i.logo_embellie {
   grid-column: 1 / 2;
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1em;
   color: var(--color_corps_leftcol);
   text-transform: uppercase;
-  padding-left: 10px;
+  padding-left: 5px;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
@@ -932,42 +935,51 @@ i.logo_embellie {
 .corps-sheet .corps-header .charname {
   grid-column: 2 / 3;
   font-family: "alexbrush";
-  font-size: 3em;
+  font-size: 2.5em;
   color: black;
   margin-left: 5px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .corps-sheet .corps-header .charname input {
   color: black;
+}
+.corps-sheet .corps-header .img-bloc {
+  border: none;
+  margin: 5px 5px 0px 0px;
+  justify-self: end;
+  width: 90px;
+  height: 50px;
+}
+.corps-sheet .corps-header .img-bloc img {
+  border-radius: 50%;
 }
 .corps-sheet .sheet-cont {
   display: flex;
   flex-direction: row;
 }
 .corps-sheet .sheet-cont .sheet-navigation {
-  width: 70px;
+  width: 50px;
   flex-direction: column;
   justify-content: flex-start;
-  font-size: 1, 5em;
 }
 .corps-sheet .sheet-cont .choix_tab {
   font-family: "posterbodoni";
-  font-size: 1.8em;
+  font-size: 1.5em;
   color: var(--color_corps_leftcol);
   text-transform: uppercase;
   border: 1px solid var(--color_corps_leftcol);
   border-radius: 15px;
   text-align: center;
   padding: 0.5em 0.5em 0.3em 0.5em;
-  margin: 20px 0px 20px 10px;
+  margin: 20px 0px 20px 5px;
 }
 .corps-sheet .sheet-cont .choix_tab.active {
   border: 2px solid #7b3135;
   color: #7b3135;
 }
 .corps-sheet .sheet-cont .corps-main {
-  display: grid;
-  grid-template-columns: 400px 1fr;
+  display: flex;
+  flex-direction: column;
 }
 .corps-sheet .sheet-cont .corps-main .attributs-bloc {
   display: flex;
@@ -998,17 +1010,9 @@ i.logo_embellie {
   font-size: 1em;
   font-weight: bold;
 }
-.corps-sheet .sheet-cont .corps-main .img-bloc {
-  border: none;
-  margin: 5px 5px 5px 30px;
-  justify-self: center;
-}
-.corps-sheet .sheet-cont .corps-main .img-bloc img {
-  border-radius: 50%;
-}
 .corps-sheet .sheet-cont .corps-main .grid-armes {
   display: grid;
-  grid-template-columns: 135px 135px 135px;
+  grid-template-columns: 155px 155px 155px;
   margin: 15px 0px 15px 5px;
 }
 .corps-sheet .sheet-cont .corps-main .grid-armes .ligne-arme {
@@ -1022,7 +1026,7 @@ i.logo_embellie {
 }
 .corps-sheet .sheet-cont .corps-main .grid-cor {
   display: grid;
-  grid-template-columns: 210px 210px;
+  grid-template-columns: 235px 235px;
   margin: 15px 0px 15px 5px;
 }
 .corps-sheet .sheet-cont .corps-main .grid-cor .ligne-cor {
@@ -1055,57 +1059,61 @@ i.logo_embellie {
   text-align: center;
 }
 .corps-sheet .ongletnotes {
-  min-height: 600px;
-  min-width: 710px;
+  min-height: 400px;
+  min-width: 495px;
 }
 .corps-sheet .ongletnotes .notes-zone {
-  padding: 10px;
+  padding: 5px;
 }
 .corps-sheet .ongletnotes .notes-zone .outer-border {
-  border: 6px solid #685649;
+  border: 4px solid #685649;
   height: 99%;
   width: 98%;
-  padding: 6px;
+  padding: 4px;
   margin: 0 auto;
 }
 .corps-sheet .ongletnotes .notes-zone .inner-border {
   border: 2px solid #685649;
   height: 100%;
   width: 100%;
-  padding: 6px;
+  padding: 4px;
   margin: auto;
 }
 .corps-sheet .ongletnotes .notes-zone .script {
   text-align: justify;
   margin-left: 10px;
   font-family: "alexbrush";
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: black;
   margin-left: 5px;
-  margin-top: 10px;
+  margin-top: 5px;
   min-height: 80px;
 }
 .corps-sheet .ongletnotes .notes-zone .cdmnotes {
-  min-height: 500px;
+  min-height: 400px;
 }
 .corps-sheet .ongletnotes .notes-zone .editor {
-  min-height: 500px;
+  min-height: 400px;
 }
 .corps-sheet .ongletnotes .notes-zone .editor-content {
-  min-height: 500px;
+  min-height: 400px;
   font-weight: normal;
   margin: 0px 5px;
   font-size: 0.8em;
 }
 .corps-sheet .sante-grid {
   background: var(--background_sante_h);
-  background-position: 55% 90%;
-  margin-left: 30px;
+  background-position: 55% 0%;
+  margin-left: 18px;
   display: grid;
-  grid-template-columns: repeat(3, 220px);
+  grid-template-columns: repeat(3, 150px);
   grid-template-rows: 1fr 1fr 1fr 1fr;
   gap: 5px;
-  min-height: 600px;
+}
+.corps-sheet .sante-grid input[type="checkbox"] {
+  flex: 0 0 10px;
+  height: 10px;
+  width: 10px;
 }
 .corps-sheet .sante-grid > div > label:first-child {
   font-family: "arrusbt";
@@ -1138,9 +1146,9 @@ i.logo_embellie {
   /* Affiche un curseur pointeur lorsque vous survolez les cercles */
 }
 .corps-sheet .sante-grid .circle-checkbox.filled {
-  flex: 0 0 10px;
+  flex: 0 0 6px;
   /* Taille des cercles remplis */
-  height: 10px;
+  height: 6px;
   background-color: black;
   /* Remplissage pour le cercle plein */
 }
@@ -1177,14 +1185,14 @@ i.logo_embellie {
   z-index: 1;
 }
 .corps-sheet .sante-grid .encart-malus .text-malus {
-  margin-top: -67px;
+  margin-top: -48px;
   margin-left: 10px;
   padding-bottom: 35px;
   position: relative;
   z-index: 2;
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: #7b3135;
 }
 .corps-sheet .sante-grid .sante-tete {
@@ -1404,27 +1412,27 @@ i.logo_embellie {
   background-color: #394e55;
   background: var(--background_esprit_header);
   display: grid;
-  grid-template-columns: 180px 571px 100px 133px;
+  grid-template-columns: 120px 370px 90px 90px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .esprit-header .titre_feuille {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1em;
   color: white;
   text-transform: uppercase;
-  padding-left: 10px;
+  padding-left: 5px;
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .esprit-header .titre_feuille::first-letter {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .esprit-header .charname {
   font-family: "alexbrush";
-  font-size: 3em;
+  font-size: 2em;
   color: white;
   margin-left: 5px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .esprit-header .charname input {
   color: white;
@@ -1435,7 +1443,7 @@ i.logo_embellie {
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .esprit-header .perisprit-bloc .perisprit-label {
   font-family: "arrusbt";
-  font-size: 1em;
+  font-size: 0.8em;
   text-transform: uppercase;
   text-align: center;
   border: 0px;
@@ -1448,17 +1456,17 @@ i.logo_embellie {
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .esprit-header .perisprit-bloc .perisprit-value input {
   font-family: "arrusbt";
-  font-size: 2em;
-  width: 3em;
+  font-size: 1.5em;
+  width: 2em;
   color: #ae9065;
   border: 0px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .esprit-header .esprit-portrait {
   border: none;
-  margin: 2px 10px 0px 0px;
+  margin: 2px 8px 0px 0px;
   justify-self: end;
-  width: 133px;
-  height: 80px;
+  width: 90px;
+  height: 60px;
   z-index: 2;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .esprit-header .esprit-portrait img {
@@ -1466,29 +1474,33 @@ i.logo_embellie {
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .choix_tab {
   font-family: "posterbodoni";
-  font-size: 1.2em;
+  font-size: 1em;
   color: #f0eae1;
   text-transform: uppercase;
   border: 1px solid #f0eae1;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-width: 0;
   text-align: center;
-  padding: 0.5em 0.5em 0.3em 0.5em;
+  padding: 0.4em 0.4em 0.1em 0.3em;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .choix_tab.active {
-  border: 2px solid white;
+  font-size: 1.1em;
+  padding: 0.4em 0.5em 0.2em 0.5em;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border: 3px solid white;
   color: white;
-  border-bottom-width: 0;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .sheet-navigation {
   grid-column: 1 / 3;
   display: flex;
   flex-direction: row;
-  font-size: 1, 5em;
+  font-size: 1em;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .titre2 {
   font-family: "posterbodoni";
-  font-size: 1.5em;
+  font-size: 1em;
   color: #497180;
   text-align: center;
   text-transform: uppercase;
@@ -1498,70 +1510,74 @@ i.logo_embellie {
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-qualites {
   display: grid;
-  grid-template-columns: 350px 600px;
-  padding-left: 30px;
+  grid-template-columns: 220px 440px;
+  padding-left: 5px;
+  min-height: 488px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-arbre-qualites {
   grid-row: 1 / 6;
   grid-column: 1 / 2;
   display: grid;
   margin-top: 9px;
-  grid-template-columns: 90px 100px 120px;
-  grid-template-rows: 120px 120px 120px 120px 120px;
+  grid-template-columns: 60px 78px;
+  grid-template-rows: 81px 82px 79px 80px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .intellect-group {
   position: relative;
   z-index: 1;
-  margin-top: 48px;
+  margin-top: 30px;
   grid-row: 1;
   grid-column: 1 / 2;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .courage-group {
   grid-row: 1;
   grid-column: 2 / 3;
+  margin-top: -4px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .sensibilite-group {
   position: relative;
   z-index: 1;
-  margin-top: 48px;
+  margin-top: 30px;
   grid-row: 1;
   grid-column: 3 / 4;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .autorite-group {
   position: relative;
   z-index: 1;
-  margin-top: 48px;
+  margin-top: 30px;
   grid-row: 2;
   grid-column: 1 / 2;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .ouverture-group {
   position: relative;
   z-index: 1;
-  margin-top: 48px;
+  margin-top: 30px;
   grid-row: 2;
   grid-column: 3 / 4;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .savoir-group {
   position: relative;
   z-index: 1;
-  margin-top: 48px;
+  margin-top: 30px;
   grid-row: 3;
   grid-column: 1 / 2;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .serenite-group {
   grid-row: 3;
   grid-column: 2 / 3;
+  margin-top: -4px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .charisme-group {
   position: relative;
   z-index: 1;
-  margin-top: 48px;
+  margin-top: 30px;
   grid-row: 3;
   grid-column: 3 / 4;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .attention-group {
   grid-row: 4;
   grid-column: 2 / 3;
+  margin-top: -1px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .coordination-group {
   grid-row: 5;
@@ -1570,34 +1586,37 @@ i.logo_embellie {
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 40px 30px 23px 30px;
+  grid-template-rows: 25px 21px 17px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .qualite-name {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #497180;
   text-transform: uppercase;
-  margin-top: 15px;
-  padding-left: 24px;
+  margin-top: 7px;
+  padding-left: 7px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .qualite-value {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 2em;
+  font-size: 1.5em;
   color: #497180;
   text-transform: uppercase;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .qualite-value input {
-  margin-left: -6px;
+  margin-left: -4px;
   text-align: center;
-  width: 1em;
+  width: 0.8em;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .qvdroite {
-  padding-left: 55px;
+  padding-left: 28px;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .qvcentre {
+  padding-left: 38px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .qvgauche {
-  padding-left: 47px;
+  padding-left: 31px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .position-arbre {
   text-shadow: 0 0 5px #3c36f4;
@@ -1605,31 +1624,38 @@ i.logo_embellie {
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .defaut-value {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1em;
   color: #7b3135;
   text-transform: uppercase;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .defaut-value input {
   text-align: center;
-  width: 0.9em;
-  margin-left: -4px;
+  width: 0.7em;
+  margin-left: -3px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .dvdroite {
-  padding-left: 70px;
+  padding-left: 39px;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .dvcentre {
+  padding-left: 49px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .dvgauche {
   text-align: left;
-  padding-left: 38px;
+  padding-left: 25px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .defaut-name {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 0.7em;
+  font-size: 0.6em;
   color: #7b3135;
   text-transform: uppercase;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .dndroite {
-  padding-left: 45px;
+  padding-left: 26px;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .dncentre {
+  padding-left: 25px;
+  text-align: left;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .dngauche {
   padding-left: 0px;
@@ -1638,21 +1664,35 @@ i.logo_embellie {
   display: flex;
   flex-direction: column;
 }
+.cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc0 {
+  display: flex;
+  flex-direction: row;
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: #685a4e;
+  text-transform: uppercase;
+  padding-left: 78px;
+  margin-top: 15px;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc0 .comportement {
+  margin-left: 5px;
+}
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 160px 1fr;
   padding-left: 50px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid {
   display: grid;
-  grid-template-columns: 180px 40px 1fr;
-  grid-template-rows: 34px 34px 34px;
+  grid-template-columns: 120px 30px 1fr;
+  grid-template-rows: 26px 26px 26px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid .aspects-ligne {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  margin-top: 4px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid .aspects-ligne .nom-aspect {
   font-family: "arrusbt";
@@ -1662,21 +1702,13 @@ i.logo_embellie {
   text-transform: uppercase;
   padding-left: 10px;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid .aspects-ligne .aspect-desc {
-  font-family: "arrusbt";
-  font-weight: bold;
-  font-size: 1em;
-  color: #685a4e;
-  text-transform: uppercase;
-  padding-left: 6px;
-}
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .aspects-grid .aspectcircle {
   border-radius: 50%;
-  padding: 7px 8px;
+  padding: 5px 6px;
   border: 2px solid #497180;
   color: #497180;
   text-align: center;
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: bold;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col {
@@ -1720,7 +1752,8 @@ i.logo_embellie {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 22px;
+  margin: 10px 10px 5px 30px;
+  width: 120px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc3 .medaillon_cab img {
   border: 0px;
@@ -1734,8 +1767,8 @@ i.logo_embellie {
   color: #497180;
   text-transform: uppercase;
   text-align: center;
-  width: 250px;
-  margin-top: 60px;
+  width: 180px;
+  margin-top: 50px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc3 .encart-exp .text-exp {
   margin-top: 50px;
@@ -1781,11 +1814,11 @@ i.logo_embellie {
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie {
   display: flex;
   flex-direction: column;
-  margin: 10px 5px 0px 5px;
+  margin: 5px 3px 0px 3px;
   min-height: 250px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie .actions-ligne {
-  margin-top: 15px;
+  margin-top: 6px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie_agir {
   grid-row: 1 / 4;
@@ -1805,14 +1838,14 @@ i.logo_embellie {
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .nom-action {
   font-family: "trajan";
-  font-size: 1em;
+  font-size: 0.8em;
   color: #6a7980;
-  text-indent: 5px;
+  text-indent: 4px;
   text-transform: uppercase;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs {
   background: var(--background_esprit_tab_pouvoir);
-  min-height: 600px;
+  min-height: 488px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .titre2 {
   color: white;
@@ -1823,31 +1856,31 @@ i.logo_embellie {
   grid-template-columns: 1fr 1fr 1fr;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .grid-pouvoirs .bloc-pouvoir {
-  padding: 0px 5px;
+  padding: 0px 2px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .grid-pouvoirs .nom {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.1em;
   text-transform: uppercase;
   text-align: center;
   border: 0px;
   margin-bottom: 5px;
-  margin-top: 10px;
+  margin-top: 8px;
   color: #ae9065;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .grid-pouvoirs .info-line {
   font-family: "arrusbt";
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 0.9em;
+  margin-bottom: 3px;
   border: 0px;
-  margin: 3px;
   color: #ae9065;
   text-align: center;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .grid-pouvoirs .neoclassic {
   font-family: "neoclassic";
-  font-size: 1.3em;
+  font-size: 1.1em;
   text-align: center;
   color: #ae9065;
   text-indent: 0px;
@@ -1870,9 +1903,18 @@ i.logo_embellie {
   margin: auto;
   padding: 8px;
 }
+.cabinet.sheet.actor.esprit .esprit-sheet .script {
+  text-align: justify;
+  font-family: "alexbrush";
+  font-size: 1.3em;
+  color: black;
+  margin-left: 4px;
+  margin-top: 8px;
+  min-height: 80px;
+}
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept {
   background: var(--background_esprit_tab_profil);
-  min-height: 600px;
+  min-height: 488px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .titre_paragraphe {
   text-indent: 0px;
@@ -1890,27 +1932,27 @@ i.logo_embellie {
   grid-template-columns: 1fr 1fr;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .concept-grid .concept-col1 {
-  margin: 20px;
+  margin: 5px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .concept-grid .concept-col1 .outer-border {
-  border: 6px solid #685649;
+  border: 4px solid #685649;
   height: 99%;
   width: 98%;
-  padding: 6px;
+  padding: 2px;
   margin: 0 auto;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .concept-grid .concept-col1 .inner-border {
   border: 2px solid #685649;
   height: 100%;
   width: 100%;
-  padding: 6px;
+  padding: 4px;
   margin: auto;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .concept-grid .concept-col1 .editor {
-  min-height: 560px;
+  min-height: 500px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .concept-grid .concept-col2 {
-  margin: 20px;
+  margin: 5px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .editor-content {
   font-weight: normal;
@@ -1923,55 +1965,35 @@ i.logo_embellie {
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .prosemirror menu li {
   margin: 0px 0px;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .tab-concept .script {
-  text-align: justify;
-  margin-left: 10px;
-  font-family: "alexbrush";
-  font-size: 1.5em;
-  color: black;
-  margin-left: 5px;
-  margin-top: 10px;
-  min-height: 80px;
-}
 .cabinet.sheet.actor.esprit .esprit-sheet .ongletnotes {
   background: var(--background_esprit_tab_profil);
-  min-height: 600px;
+  min-height: 488px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .ongletnotes .notes-zone {
-  padding: 10px;
+  padding: 5px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .ongletnotes .notes-zone .outer-border {
-  border: 6px solid #685649;
+  border: 4px solid #685649;
   height: 99%;
   width: 98%;
-  padding: 6px;
+  padding: 4px;
   margin: 0 auto;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .ongletnotes .notes-zone .inner-border {
   border: 2px solid #685649;
   height: 100%;
   width: 100%;
-  padding: 6px;
+  padding: 4px;
   margin: auto;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .ongletnotes .notes-zone .script {
-  text-align: justify;
-  margin-left: 10px;
-  font-family: "alexbrush";
-  font-size: 1.5em;
-  color: black;
-  margin-left: 5px;
-  margin-top: 10px;
-  min-height: 80px;
-}
 .cabinet.sheet.actor.esprit .esprit-sheet .ongletnotes .notes-zone .cdmnotes {
-  min-height: 500px;
+  min-height: 410px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .ongletnotes .notes-zone .editor {
-  min-height: 500px;
+  min-height: 410px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .ongletnotes .notes-zone .editor-content {
-  min-height: 500px;
+  min-height: 410px;
   font-weight: normal;
   margin: 0px 5px;
   font-size: 0.8em;
@@ -2472,9 +2494,9 @@ i.logo_embellie {
   /* Affiche un curseur pointeur lorsque vous survolez les cercles */
 }
 .pnj-sheet .sante-grid .circle-checkbox.filled {
-  flex: 0 0 10px;
+  flex: 0 0 6px;
   /* Taille des cercles remplis */
-  height: 10px;
+  height: 6px;
   background-color: black;
   /* Remplissage pour le cercle plein */
 }

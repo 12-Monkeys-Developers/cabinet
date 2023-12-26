@@ -42,52 +42,62 @@
       "binah": {
         "label": "Binah",
         "qualite": "Intelligent",
-        "qualiteSmall": "intelligent"
+        "qualiteSmall": "intelligent",
+        "defaut" : "Froid"
       },
       "chesed": {
         "label": "Chesed",
         "qualite": "Ouvert",
-        "qualiteSmall": "ouvert"
+        "qualiteSmall": "ouvert",
+        "defaut" : "Jaloux"
       },
       "chokmah": {
         "label": "Chokmah",
         "qualite": "Sensible",
-        "qualiteSmall": "sensible"
+        "qualiteSmall": "sensible",
+        "defaut" : "Superstitieux"
       },
       "geburah": {
         "label": "Geburah",
         "qualite": "Autoritaire",
-        "qualiteSmall": "autoritaire"
+        "qualiteSmall": "autoritaire",
+        "defaut" : "Intolérant"
       },
       "hod": {
         "label": "Hod",
         "qualite": "Savant",
-        "qualiteSmall": "savant"
+        "qualiteSmall": "savant",
+        "defaut" : "Orgueilleux"
       },
       "kether": {
         "label": "Kether",
         "qualite": "Courageux",
-        "qualiteSmall": "courageux"
+        "qualiteSmall": "courageux",
+        "defaut" : "Imprudent"
       },
       "malkuth": {
         "label": "Malkuth",
         "qualite": "Coordonné",
-        "qualiteSmall": "coordonne"
+        "qualiteSmall": "coordonne",
+        "defaut" : "Avide"
       },
       "netzach": {
         "label": "Netzach",
         "qualite": "Charismatique",
-        "qualiteSmall": "charismatique"
+        "qualiteSmall": "charismatique",
+        "defaut" : "Manipulateur"
       },
       "tiferet": {
         "label": "Tiferet",
         "qualite": "Serein",
-        "qualiteSmall": "serein"
+        "qualiteSmall": "serein",
+        "defaut" : "Passif"
       },
       "yesod": {
         "label": "Yesod",
         "qualite": "Attentif",
-        "qualiteSmall": "attentif"
+        "qualiteSmall": "attentif",
+        "defaut" : "Maniaque"
       }
     },
     "ATTRIBUT": {

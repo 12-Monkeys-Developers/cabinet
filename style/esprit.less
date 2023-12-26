@@ -7,26 +7,26 @@
       background-color: #394e55;
       background: var(--background_esprit_header);
       display: grid;
-      grid-template-columns: 180px 571px 100px 133px;
+      grid-template-columns: 120px 370px 90px 90px;
       .titre_feuille {
         font-family: "arrusbt";
         font-weight: bold;
-        font-size: 1.5em;
+        font-size: 1em;
         color: white;
         text-transform: uppercase;
-        padding-left: 10px;
+        padding-left: 5px;
         margin-top: 1em;
         margin-bottom: 0.5em;
       }
       .titre_feuille::first-letter {
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
       .charname {
         font-family: "alexbrush";
-        font-size: 3em;
+        font-size: 2em;
         color: white;
         margin-left: 5px;
-        margin-top: 10px;
+        margin-top: 12px;
         input {
           color: white;
         }
@@ -36,7 +36,7 @@
         flex-direction: column;
         .perisprit-label {
           font-family: "arrusbt";
-          font-size: 1em;
+          font-size: 0.8em;
           text-transform: uppercase;
           text-align: center;
           border: 0px;
@@ -48,8 +48,8 @@
           text-align: center;
           input {
             font-family: "arrusbt";
-            font-size: 2em;
-            width: 3em;
+            font-size: 1.5em;
+            width: 2em;
             color: #ae9065;
             border: 0px;
           }
@@ -57,10 +57,10 @@
       }
       .esprit-portrait {
         border: none;
-        margin: 2px 10px 0px 0px;
+        margin: 2px 8px 0px 0px;
         justify-self: end;
-        width: 133px;
-        height: 80px;
+        width: 90px;
+        height: 60px;
         z-index: 2;
         img {
           border-radius: 50%;
@@ -69,31 +69,35 @@
     }
     .choix_tab {
       font-family: "posterbodoni";
-      font-size: 1.2em;
+      font-size: 1em;
       color: #f0eae1;
       text-align: center;
       text-transform: uppercase;
       border: 1px solid #f0eae1;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-width: 0;
       text-align: center;
-      padding: 0.5em 0.5em 0.3em 0.5em;
+      padding: 0.4em 0.4em 0.1em 0.3em;
     }
     .choix_tab.active {
-      border: 2px solid white;
+      font-size: 1.1em;
+      padding: 0.4em 0.5em 0.2em 0.5em;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      border: 3px solid white;
       color: white;
-      border-bottom-width: 0;
     }
     .sheet-navigation {
       grid-column: 1 / 3;
       display: flex;
       flex-direction: row;
-      font-size: 1, 5em;
+      font-size: 1em;
     }
 
     .titre2 {
       font-family: "posterbodoni";
-      font-size: 1.5em;
+      font-size: 1em;
       color: #497180;
       text-align: center;
       text-transform: uppercase;
@@ -104,70 +108,74 @@
 
     .grid-tab-qualites {
       display: grid;
-      grid-template-columns: 350px 600px;
-      padding-left: 30px;
+      grid-template-columns: 220px 440px;
+      padding-left: 5px;
+      min-height: 488px;
     }
     .grid-arbre-qualites {
       grid-row: 1 / 6;
       grid-column: 1 / 2;
       display: grid;
       margin-top: 9px;
-      grid-template-columns: 90px 100px 120px;
-      grid-template-rows: 120px 120px 120px 120px 120px;
+      grid-template-columns: 60px 78px;
+      grid-template-rows: 81px 82px 79px 80px;
     }
     .intellect-group {
       position: relative;
       z-index: 1;
-      margin-top: 48px;
+      margin-top: 30px;
       grid-row: 1;
       grid-column: 1 / 2;
     }
     .courage-group {
       grid-row: 1;
       grid-column: 2 / 3;
+      margin-top: -4px;
     }
     .sensibilite-group {
       position: relative;
       z-index: 1;
-      margin-top: 48px;
+      margin-top: 30px;
       grid-row: 1;
       grid-column: 3 / 4;
     }
     .autorite-group {
       position: relative;
       z-index: 1;
-      margin-top: 48px;
+      margin-top: 30px;
       grid-row: 2;
       grid-column: 1 / 2;
     }
     .ouverture-group {
       position: relative;
       z-index: 1;
-      margin-top: 48px;
+      margin-top: 30px;
       grid-row: 2;
       grid-column: 3 / 4;
     }
     .savoir-group {
       position: relative;
       z-index: 1;
-      margin-top: 48px;
+      margin-top: 30px;
       grid-row: 3;
       grid-column: 1 / 2;
     }
     .serenite-group {
       grid-row: 3;
       grid-column: 2 / 3;
+      margin-top: -4px;
     }
     .charisme-group {
       position: relative;
       z-index: 1;
-      margin-top: 48px;
+      margin-top: 30px;
       grid-row: 3;
       grid-column: 3 / 4;
     }
     .attention-group {
       grid-row: 4;
       grid-column: 2 / 3;
+      margin-top: -1px;
     }
     .coordination-group {
       grid-row: 5;
@@ -176,33 +184,36 @@
     .qualite-group {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 40px 30px 23px 30px;
+      grid-template-rows: 25px 21px 17px;
       .qualite-name {
         font-family: "arrusbt";
         font-weight: bold;
-        font-size: 1em;
+        font-size: 0.9em;
         color: #497180;
         text-transform: uppercase;
-        margin-top: 15px;
-        padding-left: 24px;
+        margin-top:7px;
+        padding-left: 7px;
       }
       .qualite-value {
         font-family: "arrusbt";
         font-weight: bold;
-        font-size: 2em;
+        font-size: 1.5em;
         color: #497180;
         text-transform: uppercase;
         input {
-          margin-left: -6px;
+          margin-left: -4px;
           text-align: center;
-          width: 1em;
+          width: 0.8em;
         }
       }
       .qvdroite {
-        padding-left: 55px;
+        padding-left: 28px;
+      }
+      .qvcentre {
+        padding-left: 38px;
       }
       .qvgauche {
-        padding-left: 47px;
+        padding-left: 31px;
       }
       .position-arbre {
         text-shadow: 0 0 5px #3c36f4;
@@ -210,31 +221,38 @@
       .defaut-value {
         font-family: "arrusbt";
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1em;
         color: #7b3135;
         text-transform: uppercase;
         input {
           text-align: center;
-          width: 0.9em;
-          margin-left: -4px;
+          width: 0.7em;
+          margin-left: -3px;
         }
       }
       .dvdroite {
-        padding-left: 70px;
+        padding-left: 39px;
+      }
+      .dvcentre {
+        padding-left: 49px;
       }
       .dvgauche {
         text-align: left;
-        padding-left: 38px;
+        padding-left: 25px;
       }
       .defaut-name {
         font-family: "arrusbt";
         font-weight: bold;
-        font-size: 0.7em;
+        font-size: 0.6em;
         color: #7b3135;
         text-transform: uppercase;
       }
       .dndroite {
-        padding-left: 45px;
+        padding-left: 26px;
+      }
+      .dncentre {
+        padding-left: 25px;
+        text-align: left;
       }
       .dngauche {
         padding-left: 0px;
@@ -243,19 +261,33 @@
     .col-droite-qualites {
       display: flex;
       flex-direction: column;
+      .col-droite-bloc0 {
+        display: flex;
+          flex-direction: row;
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 1em;
+          color: #685a4e;
+          text-transform: uppercase;
+          padding-left: 78px;
+          margin-top: 15px;
+          .comportement {
+            margin-left:5px;
+          }
+      }
       .col-droite-bloc1 {
         display: grid;
-        grid-template-columns: 240px 1fr;
+        grid-template-columns: 160px 1fr;
         padding-left: 50px;
-        margin-top: 50px;
+        margin-top: 20px;
         .aspects-grid {
           display: grid;
-          grid-template-columns: 180px 40px 1fr;
-          grid-template-rows: 34px 34px 34px;
+          grid-template-columns: 120px 30px 1fr;
+          grid-template-rows: 26px 26px 26px;
           .aspects-ligne {
             display: flex;
             flex-direction: row;
-            margin-top: 10px;
+            margin-top: 4px;
             .nom-aspect {
               font-family: "arrusbt";
               font-weight: bold;
@@ -264,22 +296,14 @@
               text-transform: uppercase;
               padding-left: 10px;
             }
-            .aspect-desc {
-              font-family: "arrusbt";
-              font-weight: bold;
-              font-size: 1em;
-              color: #685a4e;
-              text-transform: uppercase;
-              padding-left: 6px;
-            }
           }
           .aspectcircle {
             border-radius: 50%;
-            padding: 7px 8px;
+            padding: 5px 6px;
             border: 2px solid #497180;
             color: #497180;
             text-align: center;
-            font-size: 1em;
+            font-size: .9em;
             font-weight: bold;
           }
         }
@@ -325,8 +349,8 @@
         .medaillon_cab {
           display: flex;
           flex-direction: row;
-          justify-content: center;
-          margin-top: 22px;
+          justify-content: center;margin: 10px 10px 5px 30px;
+          width:120px;
           img {
             border: 0px;
           }
@@ -340,8 +364,8 @@
           color: #497180;
           text-transform: uppercase;
           text-align: center;
-          width: 250px;
-          margin-top: 60px;
+          width: 180px;
+          margin-top: 50px;
 
           .text-exp {
             margin-top: 50px;
@@ -389,10 +413,10 @@
       .categorie {
         display: flex;
         flex-direction: column;
-        margin: 10px 5px 0px 5px;
+        margin: 5px 3px 0px 3px;
         min-height: 250px;
         .actions-ligne {
-          margin-top: 15px;
+          margin-top: 6px;
         }
       }
       .categorie_agir {
@@ -413,15 +437,15 @@
       }
       .nom-action {
         font-family: "trajan";
-        font-size: 1em;
+        font-size: 0.8em;
         color: #6a7980;
-        text-indent: 5px;
+        text-indent: 4px;
         text-transform: uppercase;
       }
     }
     .tab-pouvoirs {
       background: var(--background_esprit_tab_pouvoir);
-      min-height: 600px;
+      min-height: 488px;
 
       .titre2 {
         color: white;
@@ -431,32 +455,32 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         .bloc-pouvoir {
-          padding: 0px 5px;
+          padding: 0px 2px;
         }
         .nom {
           font-family: "arrusbt";
           font-weight: bold;
-          font-size: 1.5em;
+          font-size: 1.1em;
           text-transform: uppercase;
           text-align: center;
           border: 0px;
           margin-bottom: 5px;
-          margin-top: 10px;
+          margin-top: 8px;
           color: #ae9065;
         }
         .info-line {
           font-family: "arrusbt";
           font-weight: bold;
-          font-size: 1.1em;
+          font-size: 0.9em;
+          margin-bottom: 3px;
           border: 0px;
-          margin: 3px;
           color: #ae9065;
           text-align: center;
         }
 
         .neoclassic {
           font-family: "neoclassic";
-          font-size: 1.3em;
+          font-size: 1.1em;
           text-align: center;
           color: #ae9065;
           text-indent: 0px;
@@ -482,9 +506,18 @@
       }
     }
 
+    .script {
+      text-align: justify;
+      font-family: "alexbrush";
+      font-size: 1.3em;
+      color: black;
+      margin-left: 4px;
+      margin-top: 8px;
+      min-height: 80px;
+    }
     .tab-concept {
       background: var(--background_esprit_tab_profil);
-      min-height: 600px;
+      min-height: 488px;
 
       .titre_paragraphe {
         text-indent: 0px;
@@ -501,27 +534,27 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         .concept-col1 {
-          margin: 20px;
+          margin: 5px;
           .outer-border {
-            border: 6px solid #685649;
+            border: 4px solid #685649;
             height: 99%;
             width: 98%;
-            padding: 6px;
+            padding: 2px;
             margin: 0 auto;
           }
           .inner-border {
             border: 2px solid #685649;
             height: 100%;
             width: 100%;
-            padding: 6px;
+            padding: 4px;
             margin: auto;
           }
           .editor {
-            min-height: 560px;
+            min-height: 500px;
           }
         }
         .concept-col2 {
-          margin: 20px;
+          margin: 5px;
         }
       }
       .editor-content {
@@ -535,54 +568,34 @@
           margin: 0px 0px;
         }
       }
-      .script {
-        text-align: justify;
-        margin-left: 10px;
-        font-family: "alexbrush";
-        font-size: 1.5em;
-        color: black;
-        margin-left: 5px;
-        margin-top: 10px;
-        min-height: 80px;
-      }
     }
     .ongletnotes {
       background: var(--background_esprit_tab_profil);
-      min-height: 600px;
+      min-height: 488px;
       .notes-zone {
-        padding: 10px;
+        padding: 5px;
         .outer-border {
-          border: 6px solid #685649;
+          border: 4px solid #685649;
           height: 99%;
           width: 98%;
-          padding: 6px;
+          padding: 4px;
           margin: 0 auto;
         }
         .inner-border {
           border: 2px solid #685649;
           height: 100%;
           width: 100%;
-          padding: 6px;
+          padding: 4px;
           margin: auto;
         }
-        .script {
-          text-align: justify;
-          margin-left: 10px;
-          font-family: "alexbrush";
-          font-size: 1.5em;
-          color: black;
-          margin-left: 5px;
-          margin-top: 10px;
-          min-height: 80px;
-        }
         .cdmnotes {
-          min-height: 500px;
+          min-height: 410px;
         }
         .editor {
-          min-height: 500px;
+          min-height: 410px;
         }
         .editor-content {
-          min-height: 500px;
+          min-height: 410px;
           font-weight: normal;
           margin: 0px 5px;
           font-size: 0.8em;
