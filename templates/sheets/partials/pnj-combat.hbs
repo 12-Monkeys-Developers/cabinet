@@ -44,9 +44,10 @@
           {{#each armures as |armure id|}}
           <div class="ligne-arme item-contextmenu" data-item-id="{{armure._id}}">
             <div class="nom-arme">{{armure.name}}
-            <input title="{{localize 'Armure équipée'}}"
+              <input title="{{localize 'Armure équipée'}}"
                 class="inline-edit armure-dev checkbox" data-item-id="{{armure._id}}" data-field="system.equipee"
                 name="armure.system.equipee" type="checkbox" {{checked armure.system.equipee}}>
+            </div>
           </div>
           {{/each}}
         </div>

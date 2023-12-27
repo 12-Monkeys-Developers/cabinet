@@ -1675,11 +1675,12 @@ i.logo_embellie {
   font-size: 1em;
   color: #685a4e;
   text-transform: uppercase;
-  padding-left: 78px;
-  margin-top: 15px;
+  padding-left: 120px;
+  margin-top: 10px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc0 .comportement {
   margin-left: 5px;
+  font-style: italic;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 {
   display: grid;

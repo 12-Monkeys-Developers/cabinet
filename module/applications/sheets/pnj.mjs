@@ -49,7 +49,7 @@ export default class PnjSheet extends CabinetActorSheet {
     context.speciaux.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
-
+    
     context.combat = this.#formatCombat(context.actor.system.combat);
     context.malus = context.actor.system.malus;
 
