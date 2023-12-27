@@ -1,16 +1,16 @@
-      <div class="qualite-name">{{getQualiteProperty actor qualite 'label'}}</div>
-        <div class="qualite-value {{#if gauche}}qvgauche{{else if centre}}qvcentre{{else}}qvdroite{{/if}} {{positionArbre actor qualite}}">
-          {{#if editable}}
-            <input type="number" name="system.qualites.{{qualite}}.valeur" value="{{getQualiteProperty actor qualite 'valeur'}}" placeholder="0" />
-          {{else}}
-            {{getQualiteProperty actor qualite 'valeur'}}
-          {{/if}}
-      </div>
-      <div class="defaut-value {{#if gauche}}dvgauche{{else if centre}}dvcentre{{else}}dvdroite{{/if}}">
-        {{#if editable}}
-          <input type="number" name="system.qualites.{{qualite}}.defaut.valeur" value="{{getDefautProperty actor qualite 'valeur'}}" placeholder="0" />
-        {{else}}
-          {{getDefautProperty actor qualite 'valeur'}}
-        {{/if}}
-      </div>
-      <div class="defaut-name {{#if gauche}}dngauche{{else if centre}}dncentre{{else}}dndroite{{/if}}">{{getDefautProperty actor qualite 'label'}}</div>
+<div class="qualite-name">{{getQualiteProperty actor qualite 'label'}}</div>
+  <div class="qualite-value {{#if gauche}}qvgauche{{else if centre}}qvcentre{{else}}qvdroite{{/if}} {{positionArbre actor qualite}}">
+    {{#if editable}}
+      <input type="number" name="system.qualites.{{qualite}}.valeur" value="{{getQualiteProperty actor qualite 'valeur'}}" placeholder="0" />
+    {{else}}
+      {{getQualiteProperty actor qualite 'valeur'}}
+    {{/if}}
+</div>
+<div class="defaut-value {{#if gauche}}dvgauche{{else if centre}}dvcentre{{else}}dvdroite{{/if}}">
+  {{#if editable}}
+    <input type="number" name="system.qualites.{{qualite}}.defaut.valeur" value="{{getDefautProperty actor qualite 'valeur'}}" placeholder="0" />
+  {{else}}
+    {{getDefautProperty actor qualite 'valeur'}}
+  {{/if}}
+</div>
+<div class="defaut-name {{#if gauche}}dngauche{{else if centre}}dncentre{{else}}dndroite{{/if}}">{{getDefautProperty actor qualite 'label'}}</div>

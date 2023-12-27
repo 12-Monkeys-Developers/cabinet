@@ -1609,6 +1609,9 @@ i.logo_embellie {
   text-align: center;
   width: 0.8em;
 }
+.cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .qualite-value:hover {
+  text-shadow: 0px 0px 5px #ea2b58;
+}
 .cabinet.sheet.actor.esprit .esprit-sheet .qualite-group .qvdroite {
   padding-left: 28px;
 }
@@ -1819,6 +1822,9 @@ i.logo_embellie {
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie .actions-ligne {
   margin-top: 6px;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie .actions-ligne .logo_action:hover {
+  box-shadow: 0px 0px 5px #ea2b58;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie_agir {
   grid-row: 1 / 4;

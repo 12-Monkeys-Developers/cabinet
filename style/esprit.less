@@ -191,7 +191,7 @@
         font-size: 0.9em;
         color: #497180;
         text-transform: uppercase;
-        margin-top:7px;
+        margin-top: 7px;
         padding-left: 7px;
       }
       .qualite-value {
@@ -206,6 +206,9 @@
           width: 0.8em;
         }
       }
+      .qualite-value:hover {
+        text-shadow: 0px 0px 5px #ea2b58;
+      }    
       .qvdroite {
         padding-left: 28px;
       }
@@ -263,17 +266,17 @@
       flex-direction: column;
       .col-droite-bloc0 {
         display: flex;
-          flex-direction: row;
-          font-family: "arrusbt";
-          font-weight: bold;
-          font-size: 1em;
-          color: #685a4e;
-          text-transform: uppercase;
-          padding-left: 78px;
-          margin-top: 15px;
-          .comportement {
-            margin-left:5px;
-          }
+        flex-direction: row;
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: #685a4e;
+        text-transform: uppercase;
+        padding-left: 78px;
+        margin-top: 15px;
+        .comportement {
+          margin-left: 5px;
+        }
       }
       .col-droite-bloc1 {
         display: grid;
@@ -303,7 +306,7 @@
             border: 2px solid #497180;
             color: #497180;
             text-align: center;
-            font-size: .9em;
+            font-size: 0.9em;
             font-weight: bold;
           }
         }
@@ -349,8 +352,9 @@
         .medaillon_cab {
           display: flex;
           flex-direction: row;
-          justify-content: center;margin: 10px 10px 5px 30px;
-          width:120px;
+          justify-content: center;
+          margin: 10px 10px 5px 30px;
+          width: 120px;
           img {
             border: 0px;
           }
@@ -417,6 +421,9 @@
         min-height: 250px;
         .actions-ligne {
           margin-top: 6px;
+          .logo_action:hover {
+            box-shadow: 0px 0px 5px #ea2b58;
+          }
         }
       }
       .categorie_agir {
