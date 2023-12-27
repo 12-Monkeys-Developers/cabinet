@@ -13,7 +13,11 @@
         {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}
       </div>
       <div class="img-bloc">
-            <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      {{#if editable}}
+          <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      {{else if (ne actor.img "icons/svg/mystery-man.svg")}}
+            <img src="{{actor.img}}" title="{{actor.name}}" />
+      {{/if}}
       </div>
     </header>
     <div class="sheet-cont">

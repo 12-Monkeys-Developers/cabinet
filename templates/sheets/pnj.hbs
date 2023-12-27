@@ -10,7 +10,11 @@
         {{#if editable}}<input name="name" type="text" value="{{actor.name}}" />{{else}}{{actor.name}}{{/if}}
       </div>
       <div class="pnj-portrait" style="grid-row: 1 / 3; grid-column: 3 / 4;">
-        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      {{#if editable}}
+          <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      {{else if (ne actor.img "icons/svg/mystery-man.svg")}}
+            <img src="{{actor.img}}" title="{{actor.name}}" />
+      {{/if}}
       </div>
       <div class="conso-bloc" style="grid-row: 2 / 3; grid-column: 2 / 3;">
         <div class="middle-size" style="color:black; font-size 1.5em"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">

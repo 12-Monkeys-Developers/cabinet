@@ -18,7 +18,11 @@
         </div>
       </div>
       <div class="esprit-portrait">
-        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      {{#if editable}}
+          <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      {{else if (ne actor.img "icons/svg/mystery-man.svg")}}
+            <img src="{{actor.img}}" title="{{actor.name}}" />
+      {{/if}}
       </div>
       {{! Sheet Navigation }}
       <nav class="sheet-navigation tabs" data-group="primary">

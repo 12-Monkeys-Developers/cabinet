@@ -1,6 +1,6 @@
 <h2>System <em>Le Cabinet des Murmures</em> for Foundry Virtual Tabletop</h2>
 
-<p style="margin-left: 10%;"> <img src="/assets/couvertures/thumb_cdm.webp" alt="" width="700" height="405" /></p>
+<p style="margin-left: 10%;"> <img src="/assets/couvertures/thumb_cdm.webp" alt="" width="700" /></p>
 
 <div align="center">
 
@@ -14,7 +14,7 @@
 
 <p>Ceci est un programme qui permet de jouer à des jeux de rôle basés sur le système "<em>Le Cabinet des Murmures</em>" sur la plateforme de jeu Foundry Virtual Tabletop.</p>
 
-<p style="margin-left: 10%;"> <img src="/assets/image/system-exemple1.webp" alt="" width="700" height="511" /></p>
+<p style="margin-left: 10%;"> <img src="/assets/images/presentation/system-exemple1.webp" alt="" width="700" /></p>
 
 <h2>Disclaimer</h2>
 <p>"<em>Le Cabinet des Murmures</em>" is a role-playing game edited by Les XII Singes. The author is Matthias Haddad.</p>
