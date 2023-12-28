@@ -19,8 +19,6 @@ export default class ArmeSheet extends CabinetItemSheet {
   async getData(options) {
     const context = await super.getData(options);
 
-    context.arme_soustypes = SYSTEM.ARME_SOUSTYPES;
-    context.arme_categories = SYSTEM.ARME_CATEGORIES;
     context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
     return context;
   }

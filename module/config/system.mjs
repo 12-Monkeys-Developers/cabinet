@@ -1,7 +1,6 @@
 import * as ESPRIT from "./esprit.mjs";
 import * as CORPS from "./corps.mjs";
 import * as PNJ from "./pnj.mjs";
-import * as ARME from "./arme.mjs";
 import * as ACTION from "./action.mjs";
 
 export const SYSTEM_ID = "cabinet";
@@ -147,8 +146,6 @@ export const SYSTEM = {
   SANTE: CORPS.SANTE,
   OPINIONS: PNJ.OPINIONS,
   COMBAT: PNJ.COMBAT,
-  ARME_SOUSTYPES: ARME.SOUSTYPES,
-  ARME_CATEGORIES: ARME.CATEGORIES,
   ACTION_CATEGORIES: ACTION.ACTION_CATEGORIES,
   DIFFICULTES,
   IMAGES,
