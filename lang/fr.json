@@ -1,4 +1,21 @@
 {
+  "TYPES": {
+    "Actor": {
+      "esprit": "Esprit",
+      "corps": "Corps",
+      "cabinet": "Cabinet",
+      "pnj": "PNJ"
+    },
+    "Item": {
+      "acquis": "Acquis",
+      "arme": "Arme",
+      "armure": "Armure",
+      "corruption": "Corruption",
+      "grace": "Grâce",
+      "pouvoir": "Pouvoir",
+      "action": "Action"
+    }
+  },
   "CDM": {
     "QUALITE": {
       "courage": "Courage",
@@ -43,61 +60,61 @@
         "label": "Binah",
         "qualite": "Intelligent",
         "qualiteSmall": "intelligent",
-        "defaut" : "Froid"
+        "defaut": "Froid"
       },
       "chesed": {
         "label": "Chesed",
         "qualite": "Ouvert",
         "qualiteSmall": "ouvert",
-        "defaut" : "Jaloux"
+        "defaut": "Jaloux"
       },
       "chokmah": {
         "label": "Chokmah",
         "qualite": "Sensible",
         "qualiteSmall": "sensible",
-        "defaut" : "Superstitieux"
+        "defaut": "Superstitieux"
       },
       "geburah": {
         "label": "Geburah",
         "qualite": "Autoritaire",
         "qualiteSmall": "autoritaire",
-        "defaut" : "Intolérant"
+        "defaut": "Intolérant"
       },
       "hod": {
         "label": "Hod",
         "qualite": "Savant",
         "qualiteSmall": "savant",
-        "defaut" : "Orgueilleux"
+        "defaut": "Orgueilleux"
       },
       "kether": {
         "label": "Kether",
         "qualite": "Courageux",
         "qualiteSmall": "courageux",
-        "defaut" : "Imprudent"
+        "defaut": "Imprudent"
       },
       "malkuth": {
         "label": "Malkuth",
         "qualite": "Coordonné",
         "qualiteSmall": "coordonne",
-        "defaut" : "Avide"
+        "defaut": "Avide"
       },
       "netzach": {
         "label": "Netzach",
         "qualite": "Charismatique",
         "qualiteSmall": "charismatique",
-        "defaut" : "Manipulateur"
+        "defaut": "Manipulateur"
       },
       "tiferet": {
         "label": "Tiferet",
         "qualite": "Serein",
         "qualiteSmall": "serein",
-        "defaut" : "Passif"
+        "defaut": "Passif"
       },
       "yesod": {
         "label": "Yesod",
         "qualite": "Attentif",
         "qualiteSmall": "attentif",
-        "defaut" : "Maniaque"
+        "defaut": "Maniaque"
       }
     },
     "ATTRIBUT": {
