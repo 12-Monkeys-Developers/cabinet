@@ -14,4 +14,66 @@ export default class CabinetArme extends foundry.abstract.TypeDataModel {
 
     return schema;
   }
+
+  /**
+   * La description de l'arme
+   * @type {string}
+   * @readonly
+   */
+  get details() {
+    let details = "";
+    if (this.precision > 0) {
+      details += `Pré.: +${this.precision} `;
+    }
+    if (this.portee) {
+      details += `Po.: ${this.portee}m `;
+    }
+    if (this.degats) {
+      details += `Dgts.: ${this.formuleDegats} `;
+    }
+    if (this.munitions) {
+      details += `Mun.: ${this.munitions} `;
+    }
+    if (this.cadence) {
+      details += `Cad.: ${this.cadence} `;
+    }
+    return details;
+  }
+
+  /**
+   * Le tooltip de l'arme
+   * @type {string}
+   * @readonly
+   */
+  get degatsToolTip() {
+    let tooltip = "";
+    if (this.degats) {
+      tooltip += `Dgts.: ${this.degats} `;
+    }
+    if (this.puissance) {
+      tooltip += `+ Puissance(${this.parent.actor.system.attributs.puissance.valeur})`;
+    }
+    return tooltip;
+  }
+
+  /**
+   * La formule de dégâts de l'arme
+   * @type {string}
+   * @readonly
+   */
+  get formuleDegats() {
+    let termes = this.degats.split("+");
+    let formule = termes[0];
+
+    if (termes.length == 2) {
+      if (this.puissance) {
+        const bonus = parseInt(termes[1]) + parseInt(this.parent.actor.system.attributs.puissance.valeur);
+        formule += `+${bonus}`;
+      } else {
+        formule += `+${termes[1]}`;
+      }
+    }
+
+    return formule;
+  }
 }

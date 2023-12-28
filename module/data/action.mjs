@@ -130,8 +130,13 @@ export default class CabinetAction extends foundry.abstract.TypeDataModel {
    * @param {*} attributs les attributs du corps
    */
   getFormulatTooltip(espritSystem, attributs) {
-    let formulaTooltip = `${espritSystem.qualites[this.qualite].valeur}${this.qualiteAlt ? ` / ${this.qualiteAlt} ` : ""}D6 + ${espritSystem.aspects[this.aspect].valeur}`;
-  
+    let formulaTooltip = `${espritSystem.qualites[this.qualite].valeur}`;
+    if (this.qualiteAlt !== undefined && this.qualiteAlt !== null && this.qualiteAlt !== "") {
+      formulaTooltip += ` / ${espritSystem.qualites[this.qualiteAlt].valeur}`;
+    }
+
+    formulaTooltip += ` D6 + ${espritSystem.aspects[this.aspect].valeur}`;
+
     if (this.attribut !== undefined && this.attribut !== null && this.attribut !== "") {
       formulaTooltip += ` (+ ${attributs ? attributs[this.attribut].valeur : 'x'}`;
       if (this.attributAlt !== undefined && this.attributAlt !== null && this.attributAlt !== "") {

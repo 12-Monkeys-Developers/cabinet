@@ -1012,17 +1012,17 @@ i.logo_embellie {
 }
 .corps-sheet .sheet-cont .corps-main .grid-armes {
   display: grid;
-  grid-template-columns: 155px 155px 155px;
   margin: 15px 0px 15px 5px;
 }
 .corps-sheet .sheet-cont .corps-main .grid-armes .ligne-arme {
+  display: grid;
+  grid-template-columns: 120px 1fr;
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
   color: black;
   padding-left: 0.5em;
   align-self: center;
-  text-align: center;
 }
 .corps-sheet .sheet-cont .corps-main .grid-cor {
   display: grid;
@@ -1827,19 +1827,23 @@ i.logo_embellie {
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie .actions-ligne .logo_action:hover {
   box-shadow: 0px 0px 5px #ea2b58;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie_agir {
+.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie-agir {
   grid-row: 1 / 4;
   grid-column: 1 / 2;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie_communiquer {
-  grid-row: 1 / 4;
+.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie-communiquer {
+  grid-row: 1 / 2;
   grid-column: 2 / 3;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie_percevoir {
+.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie-attaquer {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie-percevoir {
   grid-row: 1 / 2;
   grid-column: 3 / 4;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie_savoir {
+.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie-defendre {
   grid-row: 2 / 3;
   grid-column: 3 / 4;
 }

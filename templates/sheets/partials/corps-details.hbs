@@ -24,6 +24,7 @@
           {{#each armes as |arme id|}}
           <div class="ligne-arme item-contextmenu" data-item-id="{{arme._id}}">
             <div class="nom-arme">{{arme.name}}</div>
+            <div class="details-arme" data-tooltip="{{arme.system.degatsToolTip}}">{{arme.system.details}}</div>
           </div>
           {{/each}}
         </div>
