@@ -514,6 +514,7 @@
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab #context-menu {
   width: max-content;
+  top: calc(50%);
 }
 .cab-sheet .cabinet-details .grid-haut .cabinet-membres .medaillon_cab .expand-up {
   top: 50px;
@@ -618,8 +619,9 @@
 .cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces .back {
   padding: 0px 2px;
 }
-.cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces nav#context-menu.expand-down {
-  top: calc(20% + 2px);
+.cab-sheet .cabinet-details .zone-graces .grid-graces .bloc-graces #context-menu {
+  width: max-content;
+  top: calc(20%);
 }
 .cab-sheet .cabinet-details .zone-graces .grid-graces .nom {
   font-family: "arrusbt";
@@ -1762,6 +1764,10 @@ i.logo_embellie {
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc3 .medaillon_cab img {
   border: 0px;
 }
+.cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc3 .medaillon_cab #context-menu {
+  width: max-content;
+  top: calc(50%);
+}
 .cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc3 .encart-exp {
   background: var(--background_esprit_encart_exp);
   background-size: contain;
@@ -1868,6 +1874,10 @@ i.logo_embellie {
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .grid-pouvoirs .bloc-pouvoir {
   padding: 0px 2px;
+}
+.cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .grid-pouvoirs .bloc-pouvoir #context-menu {
+  width: max-content;
+  top: calc(20%);
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .grid-pouvoirs .nom {
   font-family: "arrusbt";
