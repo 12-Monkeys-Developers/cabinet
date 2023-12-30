@@ -3,14 +3,14 @@
     <div class="jardin droppable draggable">
       {{#each membresJardin as |membre index|}}
         <div class="sphere">
-          <img src="{{membre.token}}" title="{{membre.nom}}" data-field="{{membre.id}}" />
+          <img src="{{membre.token}}" data-tooltip="{{membre.nom}}" data-field="{{membre.id}}" />
         </div>
       {{/each}}
     </div>
     <div class="arbre">
       {{#each contenuArbre as |sphere index|}}
         <div class="sphere {{index}} droppable draggable" data-field="{{index}}">
-          <img src="{{sphere.token}}" title="{{sphere.nom}}" data-field="{{sphere.id}}"/>
+          <img src="{{sphere.token}}" data-tooltip="{{sphere.nom}}" data-field="{{sphere.id}}"/>
         </div>
       {{/each}}
       {{#each contenuArbre as |qlipha index|}}

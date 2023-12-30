@@ -49,12 +49,12 @@ export default class CabinetActor extends Actor {
   /** @inheritdoc */
   async _preCreate(data, options, userId) {
     //empeche la création d'un second cabinet dans le monde
-      if (this.type ==="cabinet"){
-        if(game.actors.filter((actor) => actor.type === "cabinet").length){
-          ui.notifications.warn("Il est interdit de créer un second Cabinet dans le monde. Supprimez d’abord le premier.");
-          return(false);
-        }
+    if (this.type === "cabinet") {
+      if (game.actors.filter((actor) => actor.type === "cabinet").length) {
+        ui.notifications.warn("Il est interdit de créer un second Cabinet dans le monde. Supprimez d’abord le premier.");
+        return false;
       }
+    }
     await super._preCreate(data, options, userId);
 
     switch (data.type) {
@@ -143,6 +143,14 @@ export default class CabinetActor extends Actor {
   /** -------*/
 
   /**
+   * Retourne tous les objets de type corruption d'un esprit
+   */
+  get corruptions() {
+    if (this.type !== "esprit") return undefined;
+    return this.items.filter((i) => i.type === "corruption");
+  }
+
+  /**
    * déplace l'esprit dans l'arbre ou vers/depuis le jardin secret
    * Cette méthode est la méthode entrante à utiliser pour tout déplacement
    * @param {*} newPosition (sphere ou null pour jardin ou "auto" pour attribution automatique selon la qualité la plus haute)
@@ -223,36 +231,9 @@ export default class CabinetActor extends Actor {
     await this.update({ "system.comedien": valeur });
   }
 
-  get corruptions() {
-    if (this.type !== "esprit") return undefined;
-    return this.items.filter((i) => i.type === "corruption");
-  }
-
   /** --------*/
   /* CABINET  */
   /** --------*/
-
-  /**
-   *
-   * @param {CabinetActor} esprit  l'item Esprit
-   * @returns
-   */
-  async ajouterEsprit(esprit) {
-    if (this.type !== "cabinet") return;
-
-    // Mise à jour du cabinet
-    let esprits = this.system.esprits;
-    if (esprits.includes(esprit.id)) return false;
-    esprits.push(esprit.id);
-    await this.update({ "system.esprits": esprits });
-
-    // Mise à jour de l'esprit
-    await esprit.update({ "system.jardin": true });
-    await esprit.update({ "system.comedien": false });
-
-    // FIXME si on veut utiliser await esprit.deplacerPosition(null); au lieu des 2 lignes au-dessus
-    // ca ne marche pas s'il n'y pas de cabinet de référence
-  }
 
   /**
    * Liste des esprits d'un cabinet
@@ -286,6 +267,43 @@ export default class CabinetActor extends Actor {
     const corpsId = this.system.corps;
     const corps = game.actors.get(corpsId);
     if (corps) return corps;
+  }
+
+  /**
+   * Retourne les sphères occupées par un esprit
+   * @returns un Set des sphères occupées
+   */
+  get spheresOccupees() {
+    if (this.type !== "cabinet") return;
+    const result = new Set();
+
+    for (const sphere in this.system.arbre) {
+      if (this.system.arbre[sphere].idEsprit !== null && this.system.arbre[sphere].idEsprit !== undefined) {
+        result.add(sphere);
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Ajoute un esprit au cabinet
+   * @param {CabinetActor} esprit l'actor Esprit
+   * @returns
+   */
+  async ajouterEsprit(esprit) {
+    if (this.type !== "cabinet") return;
+
+    // L'esprit est déjà dans le cabinet
+    let esprits = this.system.esprits;
+    if (esprits.includes(esprit.id)) return false;
+
+    // Mise à jour de la liste des esprits du cabinet
+    esprits.push(esprit.id);
+    await this.update({ "system.esprits": esprits });
+
+    // Mise à jour de l'esprit
+    await esprit.update({ "system.jardin": true });
+    await esprit.update({ "system.comedien": false });
   }
 
   /**
@@ -328,22 +346,6 @@ export default class CabinetActor extends Actor {
   }
 
   /**
-   * Retourne les sphères occupées par un esprit
-   * @returns un Set des sphères occupées
-   */
-  get spheresOccupees() {
-    if (this.type !== "cabinet") return;
-    const result = new Set();
-
-    for (const sphere in this.system.arbre) {
-      if (this.system.arbre[sphere].idEsprit !== null) {
-        result.add(sphere);
-      }
-    }
-    return result;
-  }
-
-  /**
    * Retourne les sphères non accessibles pour un esprit, à cause des Qliphoth
    * @returns un Set des sphères non accessibles
    */
@@ -357,14 +359,15 @@ export default class CabinetActor extends Actor {
     }
     return result;
   }
+
   /** retourne la valeur de protection du membre demmandé */
   getProtection(membre) {
     if (this.type !== "pnj" && this.type !== "corps") return;
     let armures = this.items.filter((item) => item.type == "armure");
     let protTotal = 0;
     for (const armure of armures) {
-      if(armure.system.equipee) protTotal+= armure.system[membre];
+      if (armure.system.equipee) protTotal += armure.system[membre];
     }
-    return(protTotal)
+    return protTotal;
   }
 }

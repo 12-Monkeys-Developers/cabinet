@@ -21,27 +21,27 @@
             </div>
           <div class="medaillon_cab {{#if ../isgm}}membre-contextmenu{{/if}}" data-actor-id="{{membre.id}}" data-index="{{index}}">
             {{#if membre.dansJardin}}
-              <img src={{../images.ICONE_JARDIN}} title="Clic droit pour menu du cabinet" />
+              <img src={{../images.ICONE_JARDIN}} data-tooltip="Clic droit pour menu du cabinet" />
             {{else}}
               {{#if membre.estComedien}}
-                <img src={{../images.ICONE_COMEDIEN}} title="Clic droit pour menu du cabinet" />
+                <img src={{../images.ICONE_COMEDIEN}} data-tooltip="Clic droit pour menu du cabinet" />
               {{else}}
-                <img src={{../images.ICONE_CABINET}} title="Clic droit pour menu du cabinet" />
+                <img src={{../images.ICONE_CABINET}} data-tooltip="Clic droit pour menu du cabinet" />
               {{/if}}
             {{/if}}
           </div>
           {{/each}}
           {{#if corps}}
-          <div class="titre_col">Corps :</div>
-          <div class="membre-img">
-            <img src="{{corps.img}}" title="{{corps.name}}" />
-          </div>
-          <div class="membre-name">
-            {{corps.name}}
-          </div>
-          <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}">
-            <img src={{images.ICONE_CORPS}} title="Clic droit pour menu du cabinet" />
-          </div>
+            <div class="titre_col">Corps :</div>
+            <div class="membre-img">
+              <img src="{{corps.img}}" title="{{corps.name}}" />
+            </div>
+            <div class="membre-name">
+              {{corps.name}}
+            </div>
+            <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}" data-actor-id="{{corps.id}}">
+              <img src={{images.ICONE_CORPS}} data-tooltip="Clic droit pour menu du cabinet" />
+            </div>
           {{/if}}
         </div>
       </div>

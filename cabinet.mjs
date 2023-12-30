@@ -81,7 +81,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-description.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/tab-notes.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
-    `systems/${SYSTEM.id}/templates/chat/searchResult.hbs`
+    `systems/${SYSTEM.id}/templates/chat/searchResult.hbs`,
   ]);
 
   // Configuration text enrichers
@@ -92,7 +92,7 @@ Hooks.once("init", async function () {
 
   //configuration Handlebars
   registerHandlebarsHelpers();
-  
+
   game.settings.register("cabinet", "cabinet", {
     name: "Cabinet",
     hint: "Id du cabinet.",
@@ -125,23 +125,35 @@ Hooks.once("ready", async function () {
   if (game.settings.get("cabinet", "appComedien") !== "aucun") {
     let comedien = null;
     let cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
-    
+
     if (cabinet) {
       const comedienId = cabinet.system.comedien;
-      
+
       if (comedienId) {
         comedien = await game.actors.get(comedienId);
       }
     }
-      const comedienApp = new ComedienApp(comedien);
-      comedienApp.render(true);
-      console.log("renderApplication - comedienApp", comedienApp);
+    const comedienApp = new ComedienApp(comedien);
+    comedienApp.render(true);
+    console.log("renderApplication - comedienApp", comedienApp);
   }
 
   console.log("CABINET DES MURMURES | Initialisation du système fini.");
 });
 
-
+Hooks.on("deleteActor", async (document, options, userId) => {
+  const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
+  if (cabinet) {
+    if (document.type === "corps" && cabinet.system.corps === document.id) cabinet.update({ "system.corps": null });
+    if (document.type === "esprit" && cabinet.system.esprits.includes(document.id)) {
+      // Mise à jour des esprits
+      let esprits = cabinet.system.esprits.filter((esprit) => esprit !== document.id);
+      await cabinet.update({ "system.esprits": esprits });
+      // Mise à jour du comédien si nécessaire
+      if (cabinet.system.comedien === document.id) cabinet.update({ "system.comedien": null });
+    }
+  }
+});
 
 function preLocalizeConfig() {
   const localizeConfigObject = (obj, keys) => {

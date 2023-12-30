@@ -6,6 +6,7 @@ export default class CabinetSheet extends CabinetActorSheet {
     super(object, options);
     Hooks.on("updateActor", async (document, change, options, userId) => this.render());
   }
+
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
@@ -37,7 +38,7 @@ export default class CabinetSheet extends CabinetActorSheet {
     });
     context.corps = game.actors.get(this.actor.system.corps);
     context.isgm = game.user.isGM;
-    
+
     context.graces = this.actor.items
       .filter((item) => item.type == "grace")
       .sort(function (a, b) {
@@ -47,7 +48,6 @@ export default class CabinetSheet extends CabinetActorSheet {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
-    
     context.adversaireshtml = TextEditor.enrichHTML(this.actor.system.adversaires, { async: false });
     context.contactshtml = TextEditor.enrichHTML(this.actor.system.contacts, { async: false });
     context.descriptionhtml = TextEditor.enrichHTML(this.actor.system.description, { async: false });
@@ -154,12 +154,53 @@ export default class CabinetSheet extends CabinetActorSheet {
         icon: `<i class="fa-solid fa-trash"></i>`,
         condition: true,
         callback: (li) => {
-          this._enleverCorps();
+          const actorId = li.data("actorId");
+          this._enleverCorps(actorId);
         },
       },
     ];
   }
 
+  /** @override */
+  async _onDropActor(event, data) {
+    const actor = await fromUuid(data.uuid);
+    if (!["esprit", "corps"].includes(actor.type)) return false;
+
+    const actorId = actor._id;
+
+    // Drop d'esprit
+    if (actor.type === "esprit") {
+      this.actor.ajouterEsprit(actor);
+    }
+
+    // Drop de corps
+    if (actor.type === "corps") {
+      // S'il y a déjà un corps dans le cabinet
+      if (this.actor.system.corps) {
+        // Récupère le corps déjà dans le cabinet et casse le lien avec le cabinet
+        const corps = game.actors.get(this.actor.system.corps);
+        corps.update({ "system.cabinet": null });       
+      }
+      // Ajout du nouveau corps dans le cabinet
+      await this.actor.update({ "system.corps": actorId });
+      // Ajout du lien du cabinet dans le corps
+      await actor.update({ "system.cabinet": this.actor._id });
+    }
+
+    this.render();
+  }
+
+  /** @override */
+  async _onDropItem(event, data) {
+    const item = await fromUuid(data.uuid);
+    if (["action", "arme", "armure", "corruption", "pouvoir"].includes(item.type)) return false;
+    else return super._onDropItem(event, data);
+  }
+
+  /**
+   * Déplace un membre dans son jardin
+   * @param {*} id
+   */
   async _onAllerJardin(actorId) {
     const actor = game.actors.get(actorId);
     if (!actor) return;
@@ -167,6 +208,11 @@ export default class CabinetSheet extends CabinetActorSheet {
     this.render();
   }
 
+  /**
+   * Déplace un membre hors de son jardin avec un déplacement automatique vers la position libre
+   * Attribution automatique selon la qualité la plus haute si la sphère est libre
+   * @param {*} id
+   */
   async _onQuitterJardin(actorId) {
     const actor = game.actors.get(actorId);
     if (!actor) return;
@@ -174,6 +220,11 @@ export default class CabinetSheet extends CabinetActorSheet {
     this.render();
   }
 
+  /**
+   * Nomme un des esprits comme comédien
+   * @param {*} id
+   *
+   */
   async _onNommerComedien(actorId) {
     const actor = game.actors.get(actorId);
     if (!actor) return;
@@ -196,33 +247,10 @@ export default class CabinetSheet extends CabinetActorSheet {
     this.render();
   }
 
-  /** @override */
-  async _onDropActor(event, data) {
-    const actor = await fromUuid(data.uuid);
-    if (actor.type !== "esprit" && actor.type !== "corps") return false;
-
-    const actorId = actor._id;
-
-    // Drop d'esprit
-    if (actor.type === "esprit") {
-      this.actor.ajouterEsprit(actor);
-    }
-
-    // Drop de corps
-    if (actor.type === "corps") {
-      await this.actor.update({ "system.corps": actorId });
-    }
-
-    this.render();
-  }
-
-  /** @override */
-  async _onDropItem(event, data) {
-    const item = await fromUuid(data.uuid);
-    if(["action", "arme", "armure", "corruption", "pouvoir"].includes(item.type)) return false;
-    else return super._onDropItem(event, data);
-  }
-
+  /**
+   * Endort tous les corps du cabinet
+   * Renvoie les esprits dans leur jardin
+   */
   async _endormirCorps() {
     for (let membreId of this.actor.system.esprits) {
       const membre = game.actors.get(membreId);
@@ -231,7 +259,13 @@ export default class CabinetSheet extends CabinetActorSheet {
     this.render();
   }
 
-  async _enleverCorps() {
+  /**
+   * Enlève le corps du cabinet
+   * Supprime l'id du corps dans le cabinet
+   */
+  async _enleverCorps(actorId) {
+    let corps = game.actors.get(actorId);
+    await corps.update({ "system.cabinet": null });
     await this.actor.update({ "system.corps": null });
     this.render();
   }
