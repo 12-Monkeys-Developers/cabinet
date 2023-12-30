@@ -225,6 +225,7 @@ export default class StandardCheck extends Roll {
    * @param {object} data
    */
   initialize(data) {
+    console.log("StandardCheck - initialize", data);
     this.data = this._prepareData(data);
     this.terms = this.constructor.parse("", this.data);
   }

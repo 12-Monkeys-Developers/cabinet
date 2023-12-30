@@ -37,18 +37,59 @@ export default class CabinetActorSheet extends ActorSheet {
   _getItemEntryContextOptions() {
     return [
       {
-        name: `Attaquer`,
+        name: `Frapper`,
         icon: `<i class="fa-regular fa-hand-fist"></i>`,
         condition: (li) => {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
-          console.log("it", item);
           if (!item) return false;
-          return item.type === "arme";
+          return item.type === "arme" && item.system.estCorpsACorps;
         },
         callback: (li) => {
           const armeId = li.data("itemId");
-          this._utiliserArme(armeId);
+          this.actor.utiliserArme(armeId, "Frapper");
+        },
+      },
+      {
+        name: `Se bagarrer`,
+        icon: `<i class="fa-regular fa-hand-fist"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return item.type === "arme" && item.system.estCorpsACorps;
+        },
+        callback: (li) => {
+          const armeId = li.data("itemId");
+          this.actor.utiliserArme(armeId, "Se bagarrer");
+        },
+      },
+      {
+        name: `Tirer`,
+        icon: `<i class="fa-solid fa-gun"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return item.type === "arme" && item.system.estDistance;
+        },
+        callback: (li) => {
+          const armeId = li.data("itemId");
+          this.actor.utiliserArme(armeId, "Tirer");
+        },
+      },
+      {
+        name: `Lancer`,
+        icon: `<i class="fa-solid fa-gun"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return item.type === "arme" && item.system.estDistance;;
+        },
+        callback: (li) => {
+          const armeId = li.data("itemId");
+          this.actor.utiliserArme(armeId, "Lancer");
         },
       },
       {
@@ -179,10 +220,6 @@ export default class CabinetActorSheet extends ActorSheet {
     if (this.actor.type === "esprit" && item.type === "corruption") {
       Hooks.callAll("cabinet.deleteCorruptionOnEsprit", item.uuid);
     }
-  }
-
-  _utiliserArme(armeId) {
-    //jet d'attaque a évaluer
   }
 
   /**

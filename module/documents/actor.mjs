@@ -85,6 +85,58 @@ export default class CabinetActor extends Actor {
     }
   }
 
+  async rollAction(actionId) {
+    const action = this.items.get(actionId);
+    const actionSystem = action.system;
+
+    // Si l'action n'est possible que pour le comédient et que l'esprit n'est pas le comédien, message d'avertissement
+    if (actionSystem.controle && !this.system.comedien) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.actionReserveeComedie"));
+
+    let qualite = actionSystem.qualite;
+    const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];
+    const defaultValues = Object.fromEntries(Object.entries(actionSystem).filter(([key, value]) => value !== undefined && !keysToIgnore.includes(key)));
+
+    defaultValues.action = action.name;
+
+    // Information du corps si l'esprit est le comédien
+    if (this.system.comedien) {
+      const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+      if (cabinet) {
+        const corpsId = cabinet.system.corps;
+        const corps = game.actors.get(corpsId);
+        const attributs = corps.system.attributs;
+        defaultValues.attributs = attributs;
+      }
+    }
+
+    console.log("rollAction defaultValues", defaultValues);
+    return this.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
+  }
+
+  /**
+   * Roll an action for a given action ID.
+   * @param {string} armeId      The ID of the action to roll a check for, for example "courage"
+   * @param {string} nomAction   The name of the action
+   * @return {StandardCheck}      The StandardCheck roll instance which was produced.
+   * 
+   */
+  async utiliserArme(armeId, nomAction) {
+    console.log("utiliserArme", armeId, nomAction);
+
+    // Trouver le comedien
+    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+    if (cabinet) {
+      const comedienId = cabinet.system.comedien;
+      if (!comedienId) return ui.notifications.warn("Il faut d'abord choisir un comédien.");
+      const comedien = game.actors.get(comedienId);
+      if (!comedien) return ui.notifications.warn("Le comédien n'existe pas.");
+      if (comedien.type !== "esprit") return ui.notifications.warn("Le comédien doit être un esprit.");
+      const action = comedien.items.find((item) => item.type === "action" && item.name === nomAction);
+      if (action) return await comedien.rollAction(action.id);
+    }    
+  }
+
+
   /**
    * Roll a skill check for a given skill ID.
    *

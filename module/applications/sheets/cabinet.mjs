@@ -106,7 +106,7 @@ export default class CabinetSheet extends CabinetActorSheet {
         },
       },
       {
-        name: `Nommer comedien`,
+        name: `Nommer comédien`,
         icon: `<i class="fa-solid fa-person-simple"></i>`,
         condition: (li) => {
           const actorId = li.data("actorId");

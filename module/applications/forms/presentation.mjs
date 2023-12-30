@@ -8,8 +8,8 @@ export class PresentationForm extends FormApplication {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       title: "Présentation du système",
-      id: "guide_systeme",
-      template: "systems/cabinet/templates/forms/guide_systeme.hbs",
+      id: "guide-systeme",
+      template: "systems/cabinet/templates/forms/guide-systeme.hbs",
       width: 800,
       height: 700,
       resizable: true,

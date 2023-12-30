@@ -117,41 +117,22 @@ export default class StandardCheckDialog extends Dialog {
   _onChangeAction(event) {
     event.preventDefault();
     const action = event.currentTarget.dataset.action;
-    switch (action) {
-      case "qualite-change":
-        const newQualite = event.currentTarget.value;
-        this.roll.initialize({ qualite: newQualite, qualiteValeur: this.roll.data.actorData.qualites[newQualite].valeur });
-        return this.render(false, { height: "auto" });
-      case "aspect-change":
-        const newAspect = event.currentTarget.value;
-        this.roll.initialize({ aspect: newAspect, aspectValeur: this.roll.data.actorData.aspects[newAspect].valeur });
-        return this.render(false, { height: "auto" });
-      case "acquis-change":
-        const newAcquis = event.currentTarget.value;
-        if (newAcquis !== "") this.roll.initialize({ acquis: newAcquis, acquisValeur: this.roll.data.listeAcquis[newAcquis].valeur });
-        else this.roll.initialize({ acquis: newAcquis, acquisValeur: 0 });
-        return this.render(false, { height: "auto" });
-      case "attribut-change":
-        const newAttribut = event.currentTarget.value;
-        if (newAttribut !== "") this.roll.initialize({ attribut: newAttribut, attributValeur: this.roll.data.attributs[newAttribut].valeur });
-        else this.roll.initialize({ attribut: newAttribut, attributValeur: 0 });
-        return this.render(false, { height: "auto" });
-      case "perisprit-change":
-        const newPerisprit = event.currentTarget.value;
-        this.roll.initialize({ perisprit: newPerisprit });
-        return this.render(false, { height: "auto" });
-      case "embellie-change":
-        const newEmbellie = event.currentTarget.value;
-        this.roll.initialize({ tenterEmbellie: true, embellieValeur: newEmbellie });
-        return this.render(false, { height: "auto" });
-      case "bonus-change":
-        const newBonus = event.currentTarget.value;
-        this.roll.initialize({ bonus: newBonus });
-        return this.render(false, { height: "auto" });
-      case "rollMode-change":
-        const newRollMode = event.currentTarget.value;
-        this.roll.initialize({ rollMode: newRollMode });
-        return this.render(false, { height: "auto" });
+    const newValue = event.currentTarget.value;
+  
+    const actionMap = {
+      "qualite-change": () => ({ qualite: newValue, qualiteValeur: this.roll.data.actorData.qualites[newValue].valeur }),
+      "aspect-change": () => ({ aspect: newValue, aspectValeur: this.roll.data.actorData.aspects[newValue].valeur }),
+      "acquis-change": () => newValue !== "" ? { acquis: newValue, acquisValeur: this.roll.data.listeAcquis[newValue].valeur } : { acquis: newValue, acquisValeur: 0 },
+      "attribut-change": () => newValue !== "" ? { attribut: newValue, attributValeur: this.roll.data.attributs[newValue].valeur } : { attribut: newValue, attributValeur: 0 },
+      "perisprit-change": () => ({ perisprit: newValue }),
+      "embellie-change": () => ({ tenterEmbellie: true, embellieValeur: newValue }),
+      "bonus-change": () => ({ bonus: newValue }),
+      "rollMode-change": () => ({ rollMode: newValue }),
+    };
+  
+    if (actionMap[action]) {
+      this.roll.initialize(actionMap[action]());
+      this.render(false, { height: "auto" });
     }
   }
 
