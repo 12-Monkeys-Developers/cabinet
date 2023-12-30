@@ -1,6 +1,19 @@
 import StandardCheck from "../dice/standard-check.mjs";
 
 export default class CabinetActor extends Actor {
+  constructor(data, context) {
+    super(data, context);
+    if (this.type === "corps") {
+      // Pour détecter un changement de comédien
+      Hooks.on("cabinet.majComedien", async (comedien) => {
+        const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+        if (this.system.cabinet === cabinet.id) {
+          this.update({ "system.comedien": comedien.id });
+        }
+      });
+    }
+  }
+
   prepareBaseData() {
     if (this.type === "corps" || this.type === "pnj") {
       // Malus total : pour chaque partie du corps, lorque la blessure est supérieure au seuil
@@ -307,8 +320,8 @@ export default class CabinetActor extends Actor {
   }
 
   /**
-   * Deplace un esprit dans l'arbre
-   * !!! Agit uniquement sur l'objet cabinet, ne pas appller directement.
+   * Déplace un esprit dans l'arbre
+   * !!! Agit uniquement sur l'objet cabinet, ne pas appeler directement.
    * Pour eviter desynchro cabinet/esprits appellez uniquement esprit.deplacerPosition
    * @param {string}} espritId
    * @param {*} oldPosition  Ancienne position (ou null si jardin)
@@ -322,8 +335,8 @@ export default class CabinetActor extends Actor {
   }
 
   /**
-   * change le comedien
-   * Pour eviter desynchro cabinet/esprits appellez uniquement cette methode
+   * Change le comedien
+   * Pour éviter desynchro cabinet/esprits appeller uniquement cette méthode
    * @param {*} comedienId    l'Id du nouveau comedien, ou null si aucun comedien
    * @returns
    */

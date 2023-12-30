@@ -4,13 +4,16 @@ export default class ComedienApp extends Application {
     super(options);
     // Pour suivre le mouvement de la sidebar
     Hooks.on("collapseSidebar", async (sidebar, collapsed) => this.setPosition());
+
     // Pour détecter un changement de comédien
     Hooks.on("cabinet.majComedien", async (comedien) => {
       this.comedien = comedien;
       this.render(true);
     });
+
     // Pour détecter quand une corruption est retirée d'un esprit
     Hooks.on("cabinet.deleteCorruptionOnEsprit", async (uuid) => this.render());
+
     // Pour détecter quand une corruption est ajoutée à un esprit
     Hooks.on("cabinet.dropCorruptionOnEsprit", async (uuid) => this.render());
 

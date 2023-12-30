@@ -178,8 +178,12 @@ export default class CabinetSheet extends CabinetActorSheet {
       // S'il y a déjà un corps dans le cabinet
       if (this.actor.system.corps) {
         // Récupère le corps déjà dans le cabinet et casse le lien avec le cabinet
+        // Récupère le comédien s'il y en a
+        if (this.actor.system.comedien) {
+          actor.update({ "system.comedien": this.actor.system.comedien });
+        }
         const corps = game.actors.get(this.actor.system.corps);
-        corps.update({ "system.cabinet": null });       
+        corps.update({ "system.cabinet": null, "system.comedien": null });
       }
       // Ajout du nouveau corps dans le cabinet
       await this.actor.update({ "system.corps": actorId });
