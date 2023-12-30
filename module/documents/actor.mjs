@@ -123,17 +123,16 @@ export default class CabinetActor extends Actor {
   async utiliserArme(armeId, nomAction) {
     console.log("utiliserArme", armeId, nomAction);
 
-    // Trouver le comedien
-    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
-    if (cabinet) {
-      const comedienId = cabinet.system.comedien;
+    // Si c'est le corps qui utilise l'arme
+    if (this.type === "corps") {
+      const cabinetId = this.system.cabinet;
+      if (!cabinetId) return ui.notifications.warn("Il faut d'abord attribuer le corps à un cabinet.");
+      const comedienId = this.system.comedien;
       if (!comedienId) return ui.notifications.warn("Il faut d'abord choisir un comédien.");
       const comedien = game.actors.get(comedienId);
-      if (!comedien) return ui.notifications.warn("Le comédien n'existe pas.");
-      if (comedien.type !== "esprit") return ui.notifications.warn("Le comédien doit être un esprit.");
       const action = comedien.items.find((item) => item.type === "action" && item.name === nomAction);
       if (action) return await comedien.rollAction(action.id);
-    }    
+    } 
   }
 
 

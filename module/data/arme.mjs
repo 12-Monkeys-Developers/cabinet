@@ -62,11 +62,23 @@ export default class CabinetArme extends foundry.abstract.TypeDataModel {
    * @readonly
    */
   get formuleDegats() {
-    let formule = this.degats;
+    let termes = this.degats.split("+");
+    let formule = termes[0];
 
-    if (this.puissance) {
+    if (termes.length == 1) {
+      if (this.puissance) {
         const bonus = parseInt(this.parent.actor.system.attributs.puissance.valeur);
         formule += `+${bonus}`;
+      }
+    }
+
+    if (termes.length == 2) {
+      if (this.puissance) {
+        const bonus = parseInt(termes[1]) + parseInt(this.parent.actor.system.attributs.puissance.valeur);
+        formule += `+${bonus}`;
+      } else {
+        formule += `+${termes[1]}`;
+      }
     }
     return formule;
   }

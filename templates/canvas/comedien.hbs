@@ -1,7 +1,7 @@
 {{!log "comedien-app" this}}
 {{#if comedienDefini}}
   <div class="comedien-img">
-    <img src="{{comedien.img}}" title="{{comedien.name}}" />
+    <img src="{{comedien.img}}" data-tooltip="{{comedien.name}}" />
   </div>
   {{#if (gt corruptions.length 0)}}
     {{#each corruptions as |corruption|}}
