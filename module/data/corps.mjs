@@ -11,7 +11,7 @@ export default class CabinetCorps extends foundry.abstract.TypeDataModel {
     const attributField = (label) =>
       new fields.SchemaField(
         {
-          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 3 }),
+          valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
         },
         { label }
       );
