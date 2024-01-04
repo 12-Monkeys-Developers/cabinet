@@ -80,37 +80,55 @@ export default class CabinetActor extends Actor {
           const item = await fromUuid(action.uuid);
           actions.push(item.toObject());
         }
-        this.updateSource({ items: actions });
+
+        // La position dans l'arbre est null (par défaut l'esprit est dans le jardin)
+        // L'esprit n'est pas le comédien
+        this.updateSource({ items: actions, "system.positionArbre": null, "system.comedien": false });
         break;
     }
   }
 
-  async rollAction(actionId) {
+  /**
+   * Jet d'action
+   * @param {*} actionId 
+   * @param {*} armeId 
+   * @returns 
+   */
+  async rollAction(actionId, armeId = null) {
     const action = this.items.get(actionId);
     const actionSystem = action.system;
 
-    // Si l'action n'est possible que pour le comédient et que l'esprit n'est pas le comédien, message d'avertissement
-    if (actionSystem.controle && !this.system.comedien) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.actionReserveeComedie"));
+    // Si l'action n'est possible que pour le comédien et que l'esprit n'est pas le comédien, message d'avertissement
+    if (actionSystem.controle && !this.system.comedien) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.actionReserveeComedien"));
 
     let qualite = actionSystem.qualite;
     const keysToIgnore = ["formula", "formulaTooltip", "circonstances"];
+    // On ne garde que les valeurs définies
     const defaultValues = Object.fromEntries(Object.entries(actionSystem).filter(([key, value]) => value !== undefined && !keysToIgnore.includes(key)));
 
     defaultValues.action = action.name;
 
+    let corps = null;
     // Information du corps si l'esprit est le comédien
     if (this.system.comedien) {
       const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
       if (cabinet) {
         const corpsId = cabinet.system.corps;
-        const corps = game.actors.get(corpsId);
+        corps = game.actors.get(corpsId);
         const attributs = corps.system.attributs;
         defaultValues.attributs = attributs;
       }
     }
 
     console.log("rollAction defaultValues", defaultValues);
-    return this.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
+
+    // Si l'action est une arme, on récupère les valeurs de l'arme
+    if (armeId) {
+      const armeNom = corps.items.get(armeId).name;
+      const arme = {"id": armeId, "nom": armeNom};
+      return this.rollSkill(qualite, { dialog: true, defaultValues: defaultValues, arme: arme });
+    }
+    else return this.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
   }
 
   /**
@@ -131,7 +149,8 @@ export default class CabinetActor extends Actor {
       if (!comedienId) return ui.notifications.warn("Il faut d'abord choisir un comédien.");
       const comedien = game.actors.get(comedienId);
       const action = comedien.items.find((item) => item.type === "action" && item.name === nomAction);
-      if (action) return await comedien.rollAction(action.id);
+      if (!action) return ui.notifications.warn(`L'action ${nomAction} n'a pas été trouvée dans les actions du comédien.`);      
+      return await comedien.rollAction(action.id, armeId);
     } 
   }
 
@@ -147,7 +166,7 @@ export default class CabinetActor extends Actor {
    * action : nom de l'action, aspect, aspectAlt, attribut, attributAlt, categorie, controle, formulaHtml, opposition, parDefaut, qualite, qualiteAlt
    * @return {StandardCheck}      The StandardCheck roll instance which was produced.
    */
-  async rollSkill(qualiteId, { diff, rollMode, dialog = false, defaultValues = null } = {}) {
+  async rollSkill(qualiteId, { diff, rollMode, dialog = false, defaultValues = null, arme = null } = {}) {
     // Acquis de l'acteur et acquis collectifs
     let listeAcquis = this.getlisteAcquis();
     const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
@@ -165,6 +184,7 @@ export default class CabinetActor extends Actor {
       diff: diff,
       type: "classique",
       rollMode: rollMode,
+      arme: arme
     };
 
     if (defaultValues !== null) {
@@ -191,7 +211,7 @@ export default class CabinetActor extends Actor {
 
     sc = await sc.roll();
 
-    // Execute the roll to chat
+    // Send the roll to chat
     await sc.toMessage({
       flags: {
         cabinet: {

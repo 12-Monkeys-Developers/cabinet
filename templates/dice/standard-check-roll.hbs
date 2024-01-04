@@ -1,4 +1,4 @@
-{{!log "chat standard check roll" this}}
+{{log "chat standard check roll" this}}
 <div class="dice-roll {{cssClass}}">
   <div class="intro-chat">
     {{#if (ne data.actingCharImg "icons/svg/mystery-man.svg")}}
@@ -7,16 +7,23 @@
       </div>
     {{/if}}
     <div class="intro_right">
-      <p class="introText">{{{data.introText}}}</p>
+      <p class="introText">
+        {{#if data.attaque}}
+          Attaque avec {{data.attaqueNom}}<br />
+        {{/if}}
+        {{{data.introText}}}
+        </p>
     </div>
   </div>
   <img style="width: 60%; align-self: center;" src={{images.deco_chat}} />
   <div class="dice-result">
-      <p>Total de l'action : {{{total}}}</p>
-      <span class="tooltiptext">{{{data.diceTooltip}}}</span>
-    <p class="finalText">{{{data.finalText}}}</p>
+    <p>Total de l'action : {{{total}}}</p>
+    <span class="tooltiptext">{{{data.diceTooltip}}}</span>
+    {{#if (ne resultText '')}}
+      <p class="resultText">{{{resultText}}}</p>
+    {{/if}}
   </div>
-  {{#unless data.desastre}}
+  {{#unless data.estDesastre}}
     <div class="dice-result">
       <div class="dice-tooltip">
         <div class="dice-formula">{{formula}}</div>

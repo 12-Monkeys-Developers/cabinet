@@ -52,7 +52,7 @@ export default class CabinetActorSheet extends ActorSheet {
       },
       {
         name: `Se bagarrer`,
-        icon: `<i class="fa-regular fa-hand-fist"></i>`,
+        icon: `<i class="fa-regular fa-hand-back-fist"></i>`,
         condition: (li) => {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
@@ -80,7 +80,7 @@ export default class CabinetActorSheet extends ActorSheet {
       },
       {
         name: `Lancer`,
-        icon: `<i class="fa-solid fa-gun"></i>`,
+        icon: `<i class="fa-regular fa-hand"></i>`,
         condition: (li) => {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
