@@ -87,10 +87,12 @@
 }
 .action-sheet {
   background-color: white;
-  background: var(--background_action);
   font-family: "arrusbt";
   font-weight: bold;
   color: black;
+}
+.action-sheet .sheet-body {
+  background: var(--background_action);
 }
 .action-sheet .name-title input {
   font-family: "trajan";
@@ -144,10 +146,10 @@
   color: #605347;
 }
 .action-sheet .editor {
-  min-height: 300px;
+  min-height: 150px;
 }
 .action-sheet .editor-content {
-  min-height: 300px;
+  min-height: 150px;
   font-weight: normal;
   margin: 0px 5px;
 }
@@ -194,6 +196,7 @@
   max-height: 50px;
 }
 .arme-sheet .arme-content {
+  margin-top: 20px;
   min-width: 500px;
   min-height: 260px;
   display: grid;
