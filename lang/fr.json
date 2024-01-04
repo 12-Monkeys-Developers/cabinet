@@ -216,7 +216,7 @@
       "titreJet": "{nom} : jet de {jet}"
     },
     "WARNING": {
-      "actionReserveeComedie": "Votre esprit doit avoir le contrôle du corps pour réaliser cette action."
+      "actionReserveeComedien": "Votre esprit doit avoir le contrôle du corps pour réaliser cette action."
     },
     "SETTINGS": {
       "appComedien": {

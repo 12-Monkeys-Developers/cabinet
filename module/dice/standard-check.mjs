@@ -35,6 +35,7 @@ export default class StandardCheck extends Roll {
       formula = "";
     }
     super(formula, data);
+    console.debug("StandardCheck - constructor", data);
   }
 
   /**
@@ -55,7 +56,6 @@ export default class StandardCheck extends Roll {
     difficulte: undefined,
     difficulteValeur: undefined,
     introText: "",
-    finalText: "",
     type: "classique",
     aspect: "neshama",
     aspectValeur: 0,
@@ -69,14 +69,18 @@ export default class StandardCheck extends Roll {
     perisprit: 0,
     bonus: 0,
     malus: 0,
-    peutEmbellie: false,  //propose une embellie dans le dialog
-    estEmbellie: false,  //le jet réussit une embellie
-    tenterEmbellie: false,  //tentative d'embellie
-    embellieValeur: "",  //nombre de dés d'embellie
-    totalEmbellie: null,  // somme des dés retenus si embellie
-    reRollEmbellie: null, // roll en cas de jet exlosif sur embellie
-    desastre: false,  // le jet est un désastre
+    peutEmbellie: false, // propose une embellie dans le dialog
+    estEmbellie: false, // le jet réussi est une embellie
+    tenterEmbellie: false, // tentative d'embellie
+    embellieValeur: "", // nombre de dés d'embellie
+    totalEmbellie: null, // somme des dés retenus si embellie
+    reRollEmbellie: null, // roll en cas de jet explosif sur embellie
+    estDesastre: false, // le jet est un désastre
     rollMode: undefined,
+    attaque: false,
+    arme: undefined,
+    armeId: null,
+    corpsId: null,
   };
 
   /**
@@ -103,7 +107,12 @@ export default class StandardCheck extends Roll {
 
   get isDesastre() {
     if (!this._evaluated) return undefined;
-    return this.data.desastre;
+    return this.data.estDesastre;
+  }
+
+  get isEmblellie() {
+    if (!this._evaluated) return undefined;
+    return this.data.estEmbellie;
   }
 
   /* -------------------------------------------- */
@@ -112,13 +121,14 @@ export default class StandardCheck extends Roll {
 
   /** @override */
   _prepareData(data = {}) {
-    console.log("StandardCheck - _prepareData", data);
+    console.debug("StandardCheck - _prepareData", data);
     const current = this.data || foundry.utils.deepClone(this.constructor.defaultData);
     for (let [k, v] of Object.entries(data)) {
       if (v === undefined) delete data[k];
     }
     data = foundry.utils.mergeObject(current, data, { insertKeys: false });
     StandardCheck.#configureData(data);
+    console.debug("StandardCheck - _prepareData - data", data);
     return data;
   }
 
@@ -145,8 +155,11 @@ export default class StandardCheck extends Roll {
     data.activitelbl = data.action ? data.action + " (" + SYSTEM.QUALITES[data.qualite].label + ")" : SYSTEM.QUALITES[data.qualite].label;
 
     data.introText = game.i18n.format("CDM.DICECHATMESSAGE.introText", { actingCharName: actingChar.name, activite: data.activitelbl });
-    if (data.desastre) data.finalText = "Désastre !";
-    else if (data.estEmbellie) data.finalText = "Embellie !";
+
+    if (data.arme) {
+      data.attaque = true;
+      data.attaqueNom = data.arme.nom;
+    }
   }
 
   /** @override */
@@ -170,7 +183,7 @@ export default class StandardCheck extends Roll {
 
     let formula = terms.join(" + ");
     if (data.malus > 0) formula = formula + " - " + data.malus;
-    console.log("formula", formula);
+    console.debug("formula", formula);
 
     return super.parse(formula, data);
   }
@@ -194,6 +207,7 @@ export default class StandardCheck extends Roll {
       css: [SYSTEM.id, "standard-check"],
       data: this.data,
       difficulty: this.data.difficulteValeur,
+      resultText: "",
       isGM: game.user.isGM,
       formula: this.formula,
       total: this.total,
@@ -203,20 +217,26 @@ export default class StandardCheck extends Roll {
     // Successes and Failures
     if (this.data.difficulteValeur != undefined) {
       if (this.isSuccess) {
-        cardData.outcome = "Success";
-        cardData.css.push("success");
+        cardData.resultText = "Succès";
+        cardData.css.push("succes");
       } else {
-        cardData.outcome = "Failure";
-        cardData.css.push("failure");
+        cardData.resultText = "Echec";
+        cardData.css.push("echec");
       }
     }
 
     if (this.isDesastre) {
-      cardData.outcome = "Failure";
-      cardData.css.push("failure");
+      cardData.resultText = "Désastre";
+      cardData.css.push("desastre");
+    }
+
+    if (this.isEmblellie) {
+      cardData.resultText = "Embellie";  
+      cardData.css.push("embellie");
     }
 
     cardData.cssClass = cardData.css.join(" ");
+
     return cardData;
   }
 
@@ -225,7 +245,7 @@ export default class StandardCheck extends Roll {
    * @param {object} data
    */
   initialize(data) {
-    console.log("StandardCheck - initialize", data);
+    console.debug("StandardCheck - initialize", data);
     this.data = this._prepareData(data);
     this.terms = this.constructor.parse("", this.data);
   }
@@ -255,10 +275,10 @@ export default class StandardCheck extends Roll {
   async toMessage(messageData, options = {}) {
     options.rollMode = options.rollMode || this.data.rollMode;
     messageData.content ||= "";
-    let resChatMessage  = await super.toMessage(messageData, options);
-    if(this.data.reRollEmbellie){
+    let resChatMessage = await super.toMessage(messageData, options);
+    if (this.data.reRollEmbellie) {
       const blind = resChatMessage.blind;
-      const whisper=resChatMessage.whisper;
+      const whisper = resChatMessage.whisper;
       this.data.reRollEmbellie.dice[0].options.rollOrder = 2;
       await game.dice3d.showForRoll(this.data.reRollEmbellie, game.user, true, whisper, blind);
     }
@@ -276,7 +296,7 @@ export default class StandardCheck extends Roll {
      * Si le meilleur dé restant est un 6 : Embelle ! Ajouter le meilleur dé suivant autre qu'un 6. S'il n'y en a pas. Lancer un dé explosif
      */
     if (this.data.peutEmbellie && this.data.tenterEmbellie) {
-      console.log("Standard Roll - Evaluate : Tentative Embellie !");
+      console.debug("Standard Roll - Evaluate : Tentative Embellie !");
 
       let deConserveQualite;
       let desEmbellie;
@@ -295,21 +315,20 @@ export default class StandardCheck extends Roll {
       const nbDeSix = desSix.length;
       const nbAutresDes = autreDes.length;
 
-      console.log("Evaluate - des : ", des);
+      console.debug("Evaluate - des : ", des);
 
       if (nbDeUn > nbDeSix) {
-        //TODO Désastre
-        console.log("desastre");
+        console.debug("Evaluate - desastre");
         deConserveQualite = 1;
-        this.data.desastre = true;
+        this.data.estDesastre = true;
       } else if (nbDeSix > 0 && nbDeSix === nbDeUn) {
-        console.log("egalite");
+        console.debug("Evaluate - egalite");
         if (nbAutresDes === 0) deConserveQualite = 0;
         else {
           deConserveQualite = Math.max(...autreDes);
         }
       } else if (nbDeSix > nbDeUn) {
-        console.log("embellie !");
+        console.debug("Evaluate - embellie !");
         this.data.estEmbellie = true;
         deConserveQualite = 6;
         // Addition des 6 restants
@@ -320,7 +339,7 @@ export default class StandardCheck extends Roll {
         // Si pas d'autres dés, jet explosif
         else {
           this.data.reRollEmbellie = await new Roll("1d6x").roll();
-          console.log("Evaluate - reRollEmbellie", this.data.reRollEmbellie);
+          console.debug("Evaluate - reRollEmbellie", this.data.reRollEmbellie);
           desEmbellie = sixRestant + this.data.reRollEmbellie.total;
         }
       }
@@ -335,9 +354,8 @@ export default class StandardCheck extends Roll {
       this._total = this._evaluateTotalEmbellie();
       return this;
     } else {
-      console.log("Evaluate - Jet normal");
       await super.evaluate({ minimize: false, maximize: false, async: true });
-      console.log("Evaluate - Jet normal", this);
+      console.debug("Evaluate - Jet normal", this);
       this.data.deQualite = this.dice[0].total;
       return this;
     }
