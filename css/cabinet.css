@@ -809,6 +809,10 @@
   display: flex;
   flex-direction: row;
 }
+.flexcol {
+  display: flex;
+  flex-direction: column;
+}
 .editor {
   height: 100%;
   width: 100%;
@@ -986,17 +990,13 @@ i.logo_embellie {
   display: flex;
   flex-direction: column;
 }
-.corps-sheet .sheet-cont .corps-main .attributs-bloc {
-  display: flex;
-  flex-direction: column;
-}
-.corps-sheet .sheet-cont .corps-main .attributs-bloc .grid-attributs {
+.corps-sheet .sheet-cont .corps-main .grid-attributs {
   display: grid;
   grid-template-columns: 95px 40px 95px 40px 95px 40px;
   grid-template-rows: 1fr 1fr 1fr;
   margin: 15px 0px 15px 5px;
 }
-.corps-sheet .sheet-cont .corps-main .attributs-bloc .grid-attributs .attribut-name {
+.corps-sheet .sheet-cont .corps-main .grid-attributs .attribut-name {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 0.8em;
@@ -1005,7 +1005,7 @@ i.logo_embellie {
   padding-left: 10px;
   align-self: center;
 }
-.corps-sheet .sheet-cont .corps-main .attributs-bloc .grid-attributs .attribut-value {
+.corps-sheet .sheet-cont .corps-main .grid-attributs .attribut-value {
   margin-top: 2px;
   border-radius: 50%;
   padding: 7px 8px;
@@ -1029,17 +1029,17 @@ i.logo_embellie {
   padding-left: 0.5em;
   align-self: center;
 }
-.corps-sheet .sheet-cont .corps-main .grid-cor {
+.corps-sheet .sheet-cont .corps-main .grid-corruption {
   display: grid;
   grid-template-columns: 235px 235px;
   margin: 15px 0px 15px 5px;
 }
-.corps-sheet .sheet-cont .corps-main .grid-cor .ligne-cor {
+.corps-sheet .sheet-cont .corps-main .grid-corruption .ligne-corruption {
   display: grid;
   text-align: center;
   border-bottom: 1px solid #724755;
 }
-.corps-sheet .sheet-cont .corps-main .grid-cor .nom-cor {
+.corps-sheet .sheet-cont .corps-main .grid-corruption .nom-corruption {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -1047,7 +1047,7 @@ i.logo_embellie {
   padding-left: 0.5em;
   align-self: center;
 }
-.corps-sheet .sheet-cont .corps-main .grid-cor .desc {
+.corps-sheet .sheet-cont .corps-main .grid-corruption .desc {
   font-family: "garamondpro";
   font-size: 0.9em;
   text-indent: 0px;
@@ -1348,10 +1348,6 @@ i.logo_embellie {
   border: 1px solid;
   border-radius: 2px;
   text-align: center;
-}
-.flexcol {
-  display: flex;
-  flex-direction: column;
 }
 .dialog-check {
   background-color: white;
@@ -1724,14 +1720,14 @@ i.logo_embellie {
   display: flex;
   flex-direction: column;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col .ligne-cor {
+.cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col .ligne-corruption {
   display: grid;
   grid-template-columns: 5fr 1fr 1fr;
   justify-content: left;
   margin: 0.5em 0.5em 0px 0.5em;
   border-bottom: 1px solid #724755;
 }
-.cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col .nom-cor {
+.cabinet.sheet.actor.esprit .esprit-sheet .col-droite-qualites .col-droite-bloc1 .corruptions-col .nom-corruption {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -2282,6 +2278,33 @@ i.logo_embellie {
   object-position: 50% 0;
   object-fit: cover;
 }
+.pnj-sheet .conso-bloc {
+  display: flex;
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: #497180;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.pnj-sheet .conso-bloc input {
+  width: 20px;
+  text-align: center;
+}
+.pnj-sheet .conso-bloc .perisprit-label {
+  margin-left: 15px;
+  align-self: center;
+}
+.pnj-sheet .conso-bloc .perisprit-value {
+  display: flex;
+  align-self: center;
+}
+.pnj-sheet .conso-bloc .energie-value {
+  display: flex;
+  gap: 5px;
+}
 .pnj-sheet .sheet-cont {
   display: flex;
   flex-direction: row;
@@ -2311,67 +2334,40 @@ i.logo_embellie {
   margin-left: 15px;
   justify-content: center;
 }
-.pnj-sheet .conso-bloc {
-  display: flex;
-  font-family: "arrusbt";
-  font-weight: bold;
-  font-size: 1em;
-  color: #497180;
-  align-items: center;
-  text-align: center;
-  gap: 5px;
-  margin-bottom: 10px;
-}
-.pnj-sheet .conso-bloc input {
-  width: 20px;
-  text-align: center;
-}
-.pnj-sheet .conso-bloc .perisprit-label {
-  margin-left: 15px;
-  align-self: center;
-}
-.pnj-sheet .conso-bloc .perisprit-value {
-  display: flex;
-  align-self: center;
-}
-.pnj-sheet .conso-bloc .energie-value {
-  display: flex;
-  gap: 5px;
-}
-.pnj-sheet .aspects-grid {
+.pnj-sheet .pnj-details .aspects-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr;
   margin-top: 5px;
 }
-.pnj-sheet .aspects-grid .aspects-ligne {
+.pnj-sheet .pnj-details .aspects-grid .aspects-ligne {
   display: flex;
   flex-direction: row;
 }
-.pnj-sheet .aspects-grid .aspects-ligne .nom-aspect {
+.pnj-sheet .pnj-details .aspects-grid .aspects-ligne .nom-aspect {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 0.9em;
   color: #685a4e;
   padding-left: 5px;
 }
-.pnj-sheet .aspects-grid .aspectcircle {
+.pnj-sheet .pnj-details .aspects-grid .aspectcircle {
   color: #685a4e;
   text-align: center;
   font-size: 0.9em;
   font-weight: bold;
 }
-.pnj-sheet .attributs-grid {
+.pnj-sheet .pnj-details .attributs-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   margin-top: 5px;
 }
-.pnj-sheet .attributs-grid input {
+.pnj-sheet .pnj-details .attributs-grid input {
   width: 20px;
   text-align: center;
   margin-top: 2px;
 }
-.pnj-sheet .attributs-grid .attribut-name {
+.pnj-sheet .pnj-details .attributs-grid .attribut-name {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 0.9em;
@@ -2379,26 +2375,26 @@ i.logo_embellie {
   padding-left: 5px;
   align-self: center;
 }
-.pnj-sheet .attributs-grid .attribut-value {
+.pnj-sheet .pnj-details .attributs-grid .attribut-value {
   margin-top: 2px;
   color: #497180;
   text-align: center;
   font-size: 0.9em;
   font-weight: bold;
 }
-.pnj-sheet .acquis-grid {
+.pnj-sheet .pnj-details .acquis-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-left: 5px;
 }
-.pnj-sheet .acquis-grid .ligne-acquis {
+.pnj-sheet .pnj-details .acquis-grid .ligne-acquis {
   display: grid;
   grid-template-columns: 5fr 1fr;
   justify-content: left;
   margin: 0.5em 0.5em 0px 0.5em;
   border-bottom: 1px solid black;
 }
-.pnj-sheet .acquis-grid .acquis-nom {
+.pnj-sheet .pnj-details .acquis-grid .acquis-nom {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 0.9em;
@@ -2406,7 +2402,7 @@ i.logo_embellie {
   padding-left: 0.5em;
   align-self: center;
 }
-.pnj-sheet .acquis-grid .desc {
+.pnj-sheet .pnj-details .acquis-grid .desc {
   font-family: "garamondpro";
   font-size: 0.9em;
   text-indent: 0px;
@@ -2416,22 +2412,26 @@ i.logo_embellie {
   margin-top: 0px;
   margin-bottom: 0px;
 }
-.pnj-sheet .combat-grid {
+.pnj-sheet .pnj-combat {
+  margin-left: 15px;
+  justify-content: center;
+}
+.pnj-sheet .pnj-combat .combat-grid {
   display: grid;
   grid-template-columns: 3fr 1fr 3fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   margin: 15px 0px 15px 5px;
   align-items: center;
 }
-.pnj-sheet .combat-grid .input-label-complement {
+.pnj-sheet .pnj-combat .combat-grid .input-label-complement {
   text-align: center;
 }
-.pnj-sheet .combat-grid .input-combat-complement {
+.pnj-sheet .pnj-combat .combat-grid .input-combat-complement {
   width: 20px;
   text-align: center;
   margin-top: 2px;
 }
-.pnj-sheet .combat-grid .combat-name {
+.pnj-sheet .pnj-combat .combat-grid .combat-name {
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 0.9em;
@@ -2439,24 +2439,20 @@ i.logo_embellie {
   padding-left: 10px;
   align-self: center;
 }
-.pnj-sheet .combat-grid .combat-value {
+.pnj-sheet .pnj-combat .combat-grid .combat-value {
   margin-top: 2px;
   color: #497180;
   text-align: center;
   font-size: 1em;
   font-weight: bold;
 }
-.pnj-sheet .grid-pouvoirs {
+.pnj-sheet .pnj-combat .armes-grid {
   display: grid;
-  grid-template-columns: 200px 200px;
   margin: 15px 0px 15px 5px;
 }
-.pnj-sheet .grid-pouvoirs .ligne-pouv {
+.pnj-sheet .pnj-combat .armes-grid .ligne-arme {
   display: grid;
-  text-align: center;
-  border-bottom: 1px solid black;
-}
-.pnj-sheet .grid-pouvoirs .nom-pouv {
+  grid-template-columns: 120px 1fr;
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -2464,7 +2460,46 @@ i.logo_embellie {
   padding-left: 0.5em;
   align-self: center;
 }
-.pnj-sheet .grid-pouvoirs .desc {
+.pnj-sheet .pnj-combat .armures-grid {
+  display: grid;
+  margin: 15px 0px 15px 5px;
+}
+.pnj-sheet .pnj-combat .armures-grid .ligne-armure {
+  display: grid;
+  grid-template-columns: 1fr;
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  padding-left: 0.5em;
+  align-self: center;
+}
+.pnj-sheet .pnj-combat .armures-grid input[type="checkbox"] {
+  height: 10px;
+  width: 10px;
+}
+.pnj-sheet .pnj-combat .pouvoirs-grid {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  margin: 15px 0px 15px 5px;
+}
+.pnj-sheet .pnj-combat .pouvoirs-grid .special {
+  margin: 0px 5px;
+}
+.pnj-sheet .pnj-combat .pouvoirs-grid .ligne-pouv {
+  display: grid;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+.pnj-sheet .pnj-combat .pouvoirs-grid .nom-pouv {
+  font-family: "arrusbt";
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  padding-left: 0.5em;
+  align-self: center;
+}
+.pnj-sheet .pnj-combat .pouvoirs-grid .desc {
   font-family: "garamondpro";
   font-size: 0.9em;
   text-indent: 0px;
@@ -2615,14 +2650,14 @@ i.logo_embellie {
   text-align: center;
   justify-content: center;
 }
-.pnj-sheet .ongletdesc {
+.pnj-sheet .pnj-description {
   min-height: 550px;
   min-width: 435px;
 }
-.pnj-sheet .ongletdesc .conso-bloc {
+.pnj-sheet .pnj-description .opinion-bloc {
   justify-content: center;
 }
-.pnj-sheet .ongletdesc .script {
+.pnj-sheet .pnj-description .script {
   text-align: justify;
   margin-left: 10px;
   font-family: "alexbrush";
@@ -2632,19 +2667,19 @@ i.logo_embellie {
   margin-top: 10px;
   min-height: 80px;
 }
-.pnj-sheet .ongletdesc .cdmnotes {
+.pnj-sheet .pnj-description .cdmnotes {
   min-height: 350px;
 }
-.pnj-sheet .ongletdesc .editor {
+.pnj-sheet .pnj-description .editor {
   min-height: 350px;
 }
-.pnj-sheet .ongletdesc .prosemirror menu {
+.pnj-sheet .pnj-description .prosemirror menu {
   font-size: 0.8em;
 }
-.pnj-sheet .ongletdesc .prosemirror menu li {
+.pnj-sheet .pnj-description .prosemirror menu li {
   margin: 0px 0px;
 }
-.pnj-sheet .ongletdesc .editor-content {
+.pnj-sheet .pnj-description .editor-content {
   min-height: 350px;
   font-weight: normal;
   margin: 0px 5px;

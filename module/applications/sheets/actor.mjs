@@ -43,7 +43,7 @@ export default class CabinetActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          return item.type === "arme" && item.system.estCorpsACorps;
+          return item.type === "arme" && item.system.estCorpsACorps && this.actor.type === "corps";
         },
         callback: (li) => {
           const armeId = li.data("itemId");
@@ -57,7 +57,7 @@ export default class CabinetActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          return item.type === "arme" && item.system.estCorpsACorps;
+          return item.type === "arme" && item.system.estCorpsACorps && this.actor.type === "corps";
         },
         callback: (li) => {
           const armeId = li.data("itemId");
@@ -71,7 +71,7 @@ export default class CabinetActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          return item.type === "arme" && item.system.estDistance;
+          return item.type === "arme" && item.system.estDistance && this.actor.type === "corps";
         },
         callback: (li) => {
           const armeId = li.data("itemId");
@@ -85,7 +85,7 @@ export default class CabinetActorSheet extends ActorSheet {
           const itemId = li.data("itemId");
           const item = this.actor.items.get(itemId);
           if (!item) return false;
-          return item.type === "arme" && item.system.estDistance;;
+          return item.type === "arme" && item.system.estDistance && this.actor.type === "corps";
         },
         callback: (li) => {
           const armeId = li.data("itemId");

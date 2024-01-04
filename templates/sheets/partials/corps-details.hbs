@@ -1,68 +1,73 @@
 {{!log "corps-details" this}}
 <div class="corps-main">
-  <div class="attributs-bloc">
+  <div class="attributs-col">
     <div class="titre2">Attributs</div>
-      <div class="grid-attributs">
+    <div class="grid-attributs">
         {{#each attributs as |attribut id|}}
           <div class="attribut-name">{{attribut.label}}</div>
             {{#if ../editable}}
             <input type="number" name="system.attributs.{{attribut.id}}.valeur" value="{{getAttributProperty ../actor attribut 'valeur'}}" placeholder="0" />
             {{else}}
           <div class="attribut-value">+ {{attribut.valeur}}</div>
-           {{/if}}
-        {{/each}}
-      </div>
-      
-      <div class="armes-col">
-        <div class="titre2" style="margin:0px 0px 10px 0px;">Armes
-          {{#if editable}}&nbsp;&nbsp;
-            <a class="item-create" data-type="arme" title="{{localize 'CDM.TOOLTIP.ajouterArme'}}">
-            <i class="fa-solid fa-books-medical"></i></a>
           {{/if}}
-        </div>
-        <div class="grid-armes">
-          {{#each armes as |arme id|}}
-          <div class="ligne-arme item-contextmenu" data-item-id="{{arme._id}}">
-            <div class="nom-arme">{{arme.name}}</div>
-            <div class="details-arme" data-tooltip="{{arme.system.degatsToolTip}}">{{arme.system.details}}</div>
-          </div>
-          {{/each}}
-        </div>
-      </div>
-      
-      <div class="corruptions-col">
-        <div class="titre2" style="margin:0px 0px 10px 0px;">Corruptions
-        </div>
-        <div class="sstitre">( {{comedien.name}} )</div>
-        <div class="grid-cor">
-          {{#each corruptions as |corruption id|}}
-          <div style="margin: 0px 5px;">
-            <details>
-            <summary class="ligne-cor">
-              <div class="nom-cor">{{corruption.name}}</div>
-            </summary>
-              <div class="desc">{{{corruption.system.descriptionhtml}}}</div>
-            </details>
-          </div>
-          {{/each}}
-        </div>
-      </div>
-      <div class="titre2" style="margin:0px 0px 10px 0px;">Equipement
-      </div>
-      <div style="margin:0px 0px 10px 15px;" class="script cdmdsc">
-        {{#if editable}}
-          {{editor equipementhtml target="system.equipement" button=true engine="prosemirror" owner=owner editable=editable}}
-        {{else}}
-          {{{equipementhtml}}}
-        {{/if}}
-      </div>
+        {{/each}}
+    </div>
   </div>
-  <div class="titre2" style="margin:0px 0px 10px 0px;">Description</div>
-</div>
-<div style="margin:0px 0px 10px 15px;" class="script cdmdsc">
-  {{#if editable}}
-    {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
-  {{else}}
-    {{{descriptionhtml}}}
-  {{/if}}
+
+  <div class="armes-col">
+    <div class="titre2">Armes
+      {{#if editable}}&nbsp;&nbsp;
+        <a class="item-create" data-type="arme" title="{{localize 'CDM.TOOLTIP.ajouterArme'}}">
+        <i class="fa-solid fa-books-medical"></i></a>
+      {{/if}}
+    </div>
+    <div class="grid-armes">
+      {{#each armes as |arme id|}}
+      <div class="ligne-arme item-contextmenu" data-item-id="{{arme._id}}">
+        <div class="nom-arme">{{arme.name}}</div>
+        <div class="details-arme" data-tooltip="{{arme.system.degatsToolTip}}">{{arme.system.details}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+      
+  <div class="corruptions-col">
+    <div class="titre2">Corruptions
+    </div>
+    <div class="sstitre">( {{comedien.name}} )</div>
+    <div class="grid-corruption">
+      {{#each corruptions as |corruption id|}}
+        <div style="margin: 0px 5px;">
+          <details>
+          <summary class="ligne-corruption">
+            <div class="nom-corruption">{{corruption.name}}</div>
+          </summary>
+            <div class="desc">{{{corruption.system.descriptionhtml}}}</div>
+          </details>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+    
+  <div class="equipement-col">
+    <div class="titre2">Equipement</div>
+    <div style="margin:0px 0px 10px 15px;" class="script cdmdsc">
+      {{#if editable}}
+        {{editor equipementhtml target="system.equipement" button=true engine="prosemirror" owner=owner editable=editable}}
+      {{else}}
+        {{{equipementhtml}}}
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="description-col">
+    <div class="titre2">Description</div>
+    <div style="margin:0px 0px 10px 15px;" class="script cdmdsc">
+      {{#if editable}}
+        {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+      {{else}}
+        {{{descriptionhtml}}}
+      {{/if}}
+    </div>
+  </div>
 </div>

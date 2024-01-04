@@ -1,6 +1,6 @@
 
 <div class="pnj-details">
-  <div class="aspects-bloc">
+  <div class="aspects-col">
     <div class="titre2" style="margin-top: 0px;">Aspects</div>
     <div class="aspects-grid">
       <div class="aspects-ligne">
@@ -35,7 +35,7 @@
       {{/if}}
     </div>
   </div>
-  <div class="attributs-bloc">
+  <div class="attributs-col">
     <div class="titre2">Attributs</div>
     <div class="attributs-grid">
       {{#each attributs as |attribut id|}}
@@ -48,8 +48,7 @@
       {{/each}}
     </div>  
   </div>
-
-<div class="acquis-bloc">
+  <div class="acquis-col">
     <div class="titre2">Acquis
     {{#if editable}}&nbsp;&nbsp;
       <a class="item-create" data-type="acquis" title="{{localize 'CDM.TOOLTIP.ajouterAcquis'}}">
@@ -68,6 +67,5 @@
     </div>
     {{/each}}
   </div>
-</div>
-
+  </div>
 </div>

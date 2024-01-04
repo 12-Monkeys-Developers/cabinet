@@ -1,6 +1,6 @@
 
-<div class="pnj-details">
-  <div class="combat-bloc">
+<div class="pnj-combat">
+  <div class="combat-col">
     <div class="titre2">Combat</div>
     <div class="combat-grid">
       {{#each combat as |combatElement id|}}
@@ -26,24 +26,36 @@
         {{/if}}
       {{/each}}   
     </div>
-      <div class="armes-col">
-        <div class="titre2" style="margin:0px 0px 10px 0px;">Armes et armures
+  </div>
+  <div class="armes-col"> 
+    <div class="titre2">Armes et armures</div>
+    <div class="armes-col">
+        <div class="titre2">
           {{#if editable}}&nbsp;&nbsp;
             <a class="item-create" data-type="arme" title="{{localize 'CDM.TOOLTIP.ajouterArme'}}">
             <i class="fa-solid fa-books-medical"></i></a>
           {{/if}}
         </div>
-        <div class="grid-armes">
+        <div class="armes-grid">
           {{#each armes as |arme id|}}
           <div class="ligne-arme item-contextmenu" data-item-id="{{arme._id}}">
             <div class="nom-arme">{{arme.name}}</div>
+            <div class="details-arme" data-tooltip="{{arme.system.degatsToolTip}}">{{arme.system.details}}</div>
           </div>
           {{/each}}
         </div>
-        <div class="grid-armes">
+    </div>
+    <div class="armures-col">
+        <div class="titre2">
+          {{#if editable}}&nbsp;&nbsp;
+            <a class="item-create" data-type="armure" title="{{localize 'CDM.TOOLTIP.ajouterArmure'}}">
+            <i class="fa-solid fa-books-medical"></i></a>
+          {{/if}}
+        </div>
+        <div class="armures-grid">
           {{#each armures as |armure id|}}
-          <div class="ligne-arme item-contextmenu" data-item-id="{{armure._id}}">
-            <div class="nom-arme">{{armure.name}}
+          <div class="ligne-armure item-contextmenu" data-item-id="{{armure._id}}">
+            <div class="nom-armure">{{armure.name}}
               <input title="{{localize 'Armure équipée'}}"
                 class="inline-edit armure-dev checkbox" data-item-id="{{armure._id}}" data-field="system.equipee"
                 name="armure.system.equipee" type="checkbox" {{checked armure.system.equipee}}>
@@ -51,22 +63,21 @@
           </div>
           {{/each}}
         </div>
-      </div>
-      <div class="pouvoirs-col">
-        <div class="titre2" style="margin:0px 0px 10px 0px;">Pouvoirs, grâces, corruptions
-        </div>
-        <div class="grid-pouvoirs">
+    </div>    
+  </div>
+  <div class="pouvoirs-col">
+    <div class="titre2">Pouvoirs, grâces, corruptions</div>
+    <div class="pouvoirs-grid">
           {{#each speciaux as |special id|}}
-          <div style="margin: 0px 5px;" class="item-contextmenu" data-item-id="{{special._id}}">
-            <details>
-            <summary class="ligne-pouv">
-              <div class="nom-pouv">{{special.name}}</div>
-            </summary>
-              <div class="desc">{{{special.system.descriptionhtml}}}</div>
-            </details>
-          </div>
+            <div class="item-contextmenu special" data-item-id="{{special._id}}">
+              <details>
+              <summary class="ligne-pouv">
+                <div class="nom-pouv">{{special.name}}</div>
+              </summary>
+                <div class="desc">{{{special.system.descriptionhtml}}}</div>
+              </details>
+            </div>
           {{/each}}
         </div>
-      </div>
-  </div>
+  </div>  
 </div>

@@ -41,15 +41,15 @@ export default class PnjSheet extends CabinetActorSheet {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
     context.armures = this.actor.items.filter((item) => item.type == "armure");
-    context.prot={};
+    context.prot = {};
     SYSTEM.MEMBRES.forEach((element) => {
-      context.prot[element]= this.actor.getProtection(element);
+      context.prot[element] = this.actor.getProtection(element);
     });
-    context.speciaux = this.actor.items.filter((item) => item.type == "grace"||item.type == "corruption"||item.type == "pouvoir");
+    context.speciaux = this.actor.items.filter((item) => item.type == "grace" || item.type == "corruption" || item.type == "pouvoir");
     context.speciaux.forEach((element) => {
       element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
     });
-    
+
     context.combat = this.#formatCombat(context.actor.system.combat);
     context.malus = context.actor.system.malus;
 
@@ -61,7 +61,7 @@ export default class PnjSheet extends CabinetActorSheet {
   /** @override */
   async _onDropItem(event, data) {
     const item = await fromUuid(data.uuid);
-    if(["action"].includes(item.type)) return false;
+    if (["action"].includes(item.type)) return false;
     else return super._onDropItem(event, data);
   }
 
@@ -94,22 +94,20 @@ export default class PnjSheet extends CabinetActorSheet {
     });
   }
 
-    /**
+  /**
    * Format les actions de combat pour les afficher sur la fiche
    * @param {object} combat
    * @return {object[]}
    */
-    #formatCombat(combats) {
-      return Object.values(SYSTEM.COMBAT).map((cfg) => {
-        const combat = foundry.utils.deepClone(cfg);
-        combat.label = game.i18n.localize(combat.label);
-        combat.valeur = combats[combat.id].valeur;        
-        if (!combats[combat.id].hasLabelComplement || combats[combat.id].labelComplement !== "") {
-          combat.afficherAction = true;
-        }
-        else combat.afficherAction = false;
-        return combat;
-      });
-    }
-
+  #formatCombat(combats) {
+    return Object.values(SYSTEM.COMBAT).map((cfg) => {
+      const combat = foundry.utils.deepClone(cfg);
+      combat.label = game.i18n.localize(combat.label);
+      combat.valeur = combats[combat.id].valeur;
+      if (!combats[combat.id].hasLabelComplement || combats[combat.id].labelComplement !== "") {
+        combat.afficherAction = true;
+      } else combat.afficherAction = false;
+      return combat;
+    });
+  }
 }

@@ -73,7 +73,33 @@
       }
     }
   }
-
+  .conso-bloc {
+    display: flex;
+    font-family: "arrusbt";
+    font-weight: bold;
+    font-size: 1em;
+    color: #497180;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    margin-bottom: 10px;
+    input {
+      width: 20px;
+      text-align: center;
+    }
+    .perisprit-label {
+      margin-left: 15px;
+      align-self: center;
+    }
+    .perisprit-value {
+      display: flex;
+      align-self: center;
+    }
+    .energie-value {
+      display: flex;
+      gap: 5px;
+    }
+  }
   .sheet-cont {
     display: flex;
     flex-direction: row;
@@ -103,172 +129,182 @@
   .pnj-details {
     margin-left: 15px;
     justify-content: center;
-  }
-  .conso-bloc {
-    display: flex;
-    font-family: "arrusbt";
-    font-weight: bold;
-    font-size: 1em;
-    color: #497180;
-    align-items: center;
-    text-align: center;
-    gap: 5px;
-    margin-bottom: 10px;
-    input {
-      width: 20px;
-      text-align: center;
+    .aspects-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr;
+      margin-top: 5px;
+      .aspects-ligne {
+        display: flex;
+        flex-direction: row;
+        .nom-aspect {
+          font-family: "arrusbt";
+          font-weight: bold;
+          font-size: 0.9em;
+          color: #685a4e;
+          padding-left: 5px;
+        }
+      }
+      .aspectcircle {
+        color: #685a4e;
+        text-align: center;
+        font-size: 0.9em;
+        font-weight: bold;
+      }
     }
-    .perisprit-label {
-      margin-left: 15px;
-      align-self: center;
-    }
-    .perisprit-value {
-      display: flex;
-      align-self: center;
-    }
-    .energie-value {
-      display: flex;
-      gap: 5px;
-    }
-  }
-  .aspects-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr;
-    margin-top: 5px;
-    .aspects-ligne {
-      display: flex;
-      flex-direction: row;
-      .nom-aspect {
+    .attributs-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      margin-top: 5px;
+      input {
+        width: 20px;
+        text-align: center;
+        margin-top: 2px;
+      }
+      .attribut-name {
         font-family: "arrusbt";
         font-weight: bold;
         font-size: 0.9em;
-        color: #685a4e;
+        color: #497180;
         padding-left: 5px;
+        align-self: center;
+      }
+      .attribut-value {
+        margin-top: 2px;
+        color: #497180;
+        text-align: center;
+        font-size: 0.9em;
+        font-weight: bold;
       }
     }
-    .aspectcircle {
-      color: #685a4e;
-      text-align: center;
-      font-size: 0.9em;
-      font-weight: bold;
-    }
-  }
-  .attributs-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    margin-top: 5px;
-    input {
-      width: 20px;
-      text-align: center;
-      margin-top: 2px;
-    }
-    .attribut-name {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 0.9em;
-      color: #497180;
-      padding-left: 5px;
-      align-self: center;
-    }
-    .attribut-value {
-      margin-top: 2px;
-      color: #497180;
-      text-align: center;
-      font-size: 0.9em;
-      font-weight: bold;
-    }
-  }
-  .acquis-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: 5px;
-    .ligne-acquis {
+    .acquis-grid {
       display: grid;
-      grid-template-columns: 5fr 1fr;
-      justify-content: left;
-      margin: 0.5em 0.5em 0px 0.5em;
-      border-bottom: 1px solid black;
-    }
-    .acquis-nom {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 0.9em;
-      color: #497180;
-      padding-left: 0.5em;
-      align-self: center;
-    }
-    .desc {
-      font-family: "garamondpro";
-      font-size: 0.9em;
-      text-indent: 0px;
-      text-align: justify;
-      padding-left: 5px;
-      padding-right: 5px;
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
-  }
-
-  .combat-grid {
-    display: grid;
-    grid-template-columns: 3fr 1fr 3fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    margin: 15px 0px 15px 5px;
-    align-items: center;
-    .input-label-complement {
-      text-align: center;
-    }
-    .input-combat-complement {
-      width: 20px;
-      text-align: center;
-      margin-top: 2px;
-    }
-    .combat-name {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 0.9em;
-      color: #497180;
-      padding-left: 10px;
-      align-self: center;
-    }
-    .combat-value {
-      margin-top: 2px;
-      color: #497180;
-      text-align: center;
-      font-size: 1em;
-      font-weight: bold;
+      grid-template-columns: 1fr 1fr;
+      margin-left: 5px;
+      .ligne-acquis {
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+        justify-content: left;
+        margin: 0.5em 0.5em 0px 0.5em;
+        border-bottom: 1px solid black;
+      }
+      .acquis-nom {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 0.9em;
+        color: #497180;
+        padding-left: 0.5em;
+        align-self: center;
+      }
+      .desc {
+        font-family: "garamondpro";
+        font-size: 0.9em;
+        text-indent: 0px;
+        text-align: justify;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
     }
   }
-  .grid-pouvoirs {
-    display: grid;
-    grid-template-columns: 200px 200px;
-    margin: 15px 0px 15px 5px;
-    .ligne-pouv {
+  .pnj-combat {
+    margin-left: 15px;
+    justify-content: center;
+    .combat-grid {
       display: grid;
-      text-align: center;
-      border-bottom: 1px solid black;
+      grid-template-columns: 3fr 1fr 3fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      margin: 15px 0px 15px 5px;
+      align-items: center;
+      .input-label-complement {
+        text-align: center;
+      }
+      .input-combat-complement {
+        width: 20px;
+        text-align: center;
+        margin-top: 2px;
+      }
+      .combat-name {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 0.9em;
+        color: #497180;
+        padding-left: 10px;
+        align-self: center;
+      }
+      .combat-value {
+        margin-top: 2px;
+        color: #497180;
+        text-align: center;
+        font-size: 1em;
+        font-weight: bold;
+      }
     }
-    .nom-pouv {
-      font-family: "arrusbt";
-      font-weight: bold;
-      font-size: 1em;
-      color: black;
-      padding-left: 0.5em;
-      align-self: center;
+    .armes-grid {
+      display: grid;
+      margin: 15px 0px 15px 5px;
+      .ligne-arme {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: black;
+        padding-left: 0.5em;
+        align-self: center;          
+      }
     }
-    .desc {
-      font-family: "garamondpro";
-      font-size: 0.9em;
-      text-indent: 0px;
-      text-align: justify;
-      padding-left: 5px;
-      padding-right: 5px;
-      margin-top: 0px;
-      margin-bottom: 0px;
+    .armures-grid {
+      display: grid;
+      margin: 15px 0px 15px 5px;
+      .ligne-armure {
+        display: grid;
+        grid-template-columns: 1fr;
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: black;
+        padding-left: 0.5em;
+        align-self: center;          
+      }
+      input[type="checkbox"] {
+        height: 10px;
+        width: 10px;
+      }
+    }
+    .pouvoirs-grid {
+      display: grid;
+      grid-template-columns: 200px 200px;
+      margin: 15px 0px 15px 5px;
+      .special {
+        margin: 0px 5px;
+      }
+      .ligne-pouv {
+        display: grid;
+        text-align: center;
+        border-bottom: 1px solid black;
+      }
+      .nom-pouv {
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: black;
+        padding-left: 0.5em;
+        align-self: center;
+      }
+      .desc {
+        font-family: "garamondpro";
+        font-size: 0.9em;
+        text-indent: 0px;
+        text-align: justify;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
     }
   }
-
   .sante-grid {
     background: var(--background_sante_f);
     background-position: 90% 50%;
@@ -408,10 +444,10 @@
       justify-content: center;
     }
   }
-  .ongletdesc {
+  .pnj-description {
     min-height: 550px;
     min-width: 435px;
-    .conso-bloc {
+    .opinion-bloc {
       justify-content: center;
     }
     .script {
