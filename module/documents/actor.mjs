@@ -154,6 +154,14 @@ export default class CabinetActor extends Actor {
     } 
   }
 
+  async lancerDegats(armeId) {
+    if (this.type === "corps" || this.type === "pnj") {
+      const arme = this.items.get(armeId);
+      if (!arme) return ui.notifications.warn("L'arme n'a pas été trouvée.");
+      const degats = await arme.system.lancerDegats();
+      console.log("lanceDegats", armeId, degats);
+    }
+  }
 
   /**
    * Roll a skill check for a given skill ID.

@@ -16,7 +16,7 @@ export default class CabinetArme extends foundry.abstract.TypeDataModel {
   }
 
   /**
-   * La description de l'arme
+   * Les caractéristiques de l'arme
    * @type {string}
    * @readonly
    */
@@ -83,11 +83,54 @@ export default class CabinetArme extends foundry.abstract.TypeDataModel {
     return formule;
   }
 
+  /**
+   * L'arme est-elle une arme de corps à corps ?
+   * En fait, une arme de corps à corps est une arme qui n'a pas de portée
+   * @readonly
+   * @return {boolean}
+   */
   get estCorpsACorps() {
     return this.portee === null;
   }
 
+  /**
+   * L'arme est-elle une arme à distance ?
+   * En fait, une arme à distance est une arme qui a une portée
+   * @readonly
+   * @return {boolean}
+   */
   get estDistance() {
     return this.portee !== null;
+  }
+
+  /**
+   * Launches the damage calculation and determines the body part affected.
+   * @returns {Promise<{ degats: Roll, localisation: Roll, partieCorps: string }>} The damage roll, localization roll, and affected body part.
+   */
+  async lancerDegats() {
+    const formule = this.formuleDegats;
+    const rollDegats = await new Roll(formule).roll();
+    const formuleLocalisation = "1d12";
+    const rollLocalisation = await new Roll(formuleLocalisation).roll();
+
+    // Mapper les résultats du dé aux parties du corps
+    const mapPartieDuCorps = {
+      2: "Tête",
+      3: "Bras droit",
+      4: "Bras droit",
+      5: "Bras droit",
+      6: "Bras gauche",
+      7: "Bras gauche",
+      8: "Bras gauche",
+      9: "Torse",
+      10: "Torse",
+      11: "Jambe droite",
+      12: "Jambe gauche",
+    };
+
+    // Obtenir la partie du corps touchée
+    let partieDuCorps = mapPartieDuCorps[rollLocalisation.total];
+
+    return { degats: rollDegats, localisation: rollLocalisation, partieCorps: partieDuCorps };
   }
 }

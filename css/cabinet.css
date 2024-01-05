@@ -2239,7 +2239,6 @@ i.logo_embellie {
 .pnj-sheet .pnj-header {
   display: grid;
   grid-template-columns: 0.7fr 3fr 1fr;
-  height: 100px;
 }
 .pnj-sheet .pnj-header .titre_feuille {
   font-family: "arrusbt";
@@ -2466,7 +2465,7 @@ i.logo_embellie {
 }
 .pnj-sheet .pnj-combat .armures-grid .ligne-armure {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 1em;
@@ -2655,6 +2654,7 @@ i.logo_embellie {
   min-width: 435px;
 }
 .pnj-sheet .pnj-description .opinion-bloc {
+  display: flex;
   justify-content: center;
 }
 .pnj-sheet .pnj-description .script {

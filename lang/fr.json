@@ -191,7 +191,9 @@
       "ajouterArmure": "Ajouter une nouvelle Armure",
       "ajouterCorruption": "Ajouter une nouvelle Corruption",
       "modifier": "Modifier",
-      "supprimer": "Supprimer"
+      "supprimer": "Supprimer",
+      "armureEquipee": "Armure équipée",
+      "armureNonEquipee": "Armure non équipée"
     },
     "NOUVEAU": {
       "acquis": "Nouvel acquis",

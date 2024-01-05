@@ -93,6 +93,22 @@ export default class CabinetActorSheet extends ActorSheet {
         },
       },
       {
+        name: `Faire des dégâts`,
+        icon: `<i class="fa-solid fa-dice"></i>`,
+        condition: (li) => {
+          const itemId = li.data("itemId");
+          const item = this.actor.items.get(itemId);
+          if (!item) return false;
+          return item.type === "arme";
+        },
+        callback: async (li) => {
+          const armeId = li.data("itemId");
+          const arme = this.actor.items.get(armeId);
+          if (!arme) return false;
+          return this.actor.lancerDegats(armeId);
+        },
+      },
+      {
         name: `Détails`,
         icon: `<i class="fa-regular fa-cogs"></i>`,
         condition: true,
