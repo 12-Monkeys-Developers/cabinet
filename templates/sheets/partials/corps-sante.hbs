@@ -87,18 +87,4 @@
             {{editor sequellesHtml target="system.sequelles" button=true engine="prosemirror" editable=false}}
         </div>
     {{/if}}
-    <div class="armures-bloc">
-            <label>Armures</label>
-        {{#if editable}}&nbsp;&nbsp;
-            <a class="item-create" data-type="armure" title="{{localize 'CDM.TOOLTIP.ajouterArmure'}}">
-            <i class="fa-solid fa-books-medical"></i></a>
-        {{/if}}
-        {{#each armures as |armure id|}}
-        <div class="armure-nom item-contextmenu" data-item-id="{{armure._id}}">{{armure.name}}
-            <input title="{{localize 'Armure équipée'}}"
-                class="inline-edit armure-dev checkbox" data-item-id="{{armure._id}}" data-field="system.equipee"
-                name="armure.system.equipee" type="checkbox" {{checked armure.system.equipee}}>
-        </div>
-        {{/each}}
-    </div>
 </div>

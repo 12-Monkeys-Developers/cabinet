@@ -180,6 +180,43 @@
     }
   }
 
+  .corps-combat {
+    margin-left: 15px;
+    justify-content: center;
+    .armes-grid {
+      display: grid;
+      margin: 15px 0px 15px 5px;
+      .ligne-arme {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: black;
+        padding-left: 0.5em;
+        align-self: center;          
+      }
+    }
+    .armures-grid {
+      display: grid;
+      margin: 15px 0px 15px 5px;
+      .ligne-armure {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        font-family: "arrusbt";
+        font-weight: bold;
+        font-size: 1em;
+        color: black;
+        padding-left: 0.5em;
+        align-self: center;          
+      }
+      input[type="checkbox"] {
+        height: 10px;
+        width: 10px;
+      }
+    }
+  }
+
   .ongletnotes {
     min-height: 400px;
     min-width: 495px;

@@ -72,6 +72,7 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-concept.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-pouvoirs.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/corps-details.hbs`,
+    `systems/${SYSTEM.id}/templates/sheets/partials/corps-combat.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/corps-sante.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/cabinet-details.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/cabinet-description.hbs`,

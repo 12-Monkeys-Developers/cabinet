@@ -1,0 +1,43 @@
+
+<div class="corps-combat">
+  <div class="armes-col"> 
+    <div class="titre2">Armes et armures</div>
+    <div class="armes-col">
+        <div class="titre2">
+          {{#if editable}}&nbsp;&nbsp;
+            <a class="item-create" data-type="arme" title="{{localize 'CDM.TOOLTIP.ajouterArme'}}">
+            <i class="fa-solid fa-books-medical"></i></a>
+          {{/if}}
+        </div>
+        <div class="armes-grid">
+          {{#each armes as |arme id|}}
+          <div class="ligne-arme item-contextmenu" data-item-id="{{arme._id}}">
+            <div class="nom-arme">{{arme.name}}</div>
+            <div class="details-arme" data-tooltip="{{arme.system.degatsToolTip}}">{{arme.system.details}}</div>
+          </div>
+          {{/each}}
+        </div>
+    </div>
+    <div class="armures-col">
+        <div class="titre2">
+          {{#if editable}}&nbsp;&nbsp;
+            <a class="item-create" data-type="armure" title="{{localize 'CDM.TOOLTIP.ajouterArmure'}}"> 
+            <i class="fa-solid fa-books-medical"></i></a>
+          {{/if}}
+        </div>
+        <div class="armures-grid">
+          {{#each armures as |armure id|}}
+          <div class="ligne-armure item-contextmenu" data-item-id="{{armure._id}}">
+            <div class="nom-armure">
+              <input {{#if armure.system.equipee}} data-tooltip="{{localize 'CDM.TOOLTIP.armureEquipee'}}" {{else}} data-tooltip="{{localize 'CDM.TOOLTIP.armureNonEquipee'}}" {{/if}}
+                class="inline-edit armure-dev checkbox" data-item-id="{{armure._id}}" data-field="system.equipee"
+                name="armure.system.equipee" type="checkbox" {{checked armure.system.equipee}}>
+              {{armure.name}}
+            </div>
+            <div class="details-armure">{{armure.system.details}}</div>
+          </div>
+          {{/each}}
+        </div>
+    </div>    
+  </div>
+</div>
