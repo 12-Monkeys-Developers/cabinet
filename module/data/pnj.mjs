@@ -4,7 +4,7 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
     const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = {};
 
-    schema.opinion = new fields.StringField({choices: SYSTEM.OPINION, initial: "neutre"});
+    schema.opinion = new fields.StringField({ choices: SYSTEM.OPINION, initial: "neutre" });
 
     // Précise si le PnJ a accès aux embellies
     schema.peutEmbellie = new fields.BooleanField({ initial: false });
@@ -42,10 +42,10 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
     );
 
     schema.energie = new fields.SchemaField({
-        actuelle: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
-        totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
-      });
-        
+      actuelle: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+      totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+    });
+
     schema.perisprit = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 9 });
 
     const santeField = (label, reserve, seuil) => {
@@ -92,10 +92,21 @@ export default class CabinetPnj extends foundry.abstract.TypeDataModel {
     );
 
     schema.malus = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
-    schema.description = new fields.HTMLField({textSearch: true});
-    schema.notes = new fields.HTMLField({textSearch: true});
+    schema.description = new fields.HTMLField({ textSearch: true });
+    schema.notes = new fields.HTMLField({ textSearch: true });
 
     return schema;
   }
 
+  prepareBaseData() {
+    // Malus total : pour chaque partie du corps, lorque la blessure est supérieure au seuil
+    // le malus est égal à la blessure - le seuil + 1
+    let malusTotal = 0;
+    for (const partie of Object.values(this.sante)) {
+      if (partie.valeur >= partie.seuil) {
+        malusTotal += partie.valeur - partie.seuil + 1;
+      }
+    }
+    this.malus = malusTotal;
+  }
 }

@@ -76,8 +76,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
       totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
     });
 
-    schema.comedien = new fields.BooleanField({ initial: false });
-    schema.jardin = new fields.BooleanField({ initial: false });
+    schema.comedien = new fields.BooleanField({ initial: false });  
 
     return schema;
   }
@@ -89,7 +88,24 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     }
   }
 
+  /**
+   * Retourne true si l'esprit est le comédien
+   */
   get estComedien() {
     return this.comedien;
+  }
+
+  /*
+  * Retourne true si l'esprit est dans le jardin
+  */
+  get jardin() {
+    return !this.estDansLesSpheres;
+  }
+
+  /**
+   * Retourne true si l'esprit est dans une sphère
+   */
+  get estDansLesSpheres() {
+    return Object.values(SYSTEM.SPHERES).some(sphere => sphere.id === this.positionArbre);
   }
 }

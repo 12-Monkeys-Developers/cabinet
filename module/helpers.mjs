@@ -23,9 +23,13 @@ export const registerHandlebarsHelpers = function () {
   });
 
   Handlebars.registerHelper("getBackgroundCss", function (actor) {
-    if (actor.system.comedien) return "var(--background_esprit_header_comedien)";
-    if (actor.system.jardin) return "var(--background_esprit_header_jardin)";
-    return "var(--background_esprit_header)";
+    if (actor.type === "esprit") {
+      if (actor.system.comedien) return "var(--background_esprit_header_comedien)";
+      // Pour un esprit nouvellement créé, la positionArbre n'est pas encore définie
+      if (actor.system.positionArbre === undefined) return "var(--background_esprit_header)";
+      if (actor.system.jardin) return "var(--background_esprit_header_jardin)";
+      return "var(--background_esprit_header)";
+    }
   });
 
   Handlebars.registerHelper("testlog", function (data) {
@@ -54,5 +58,4 @@ export const registerHandlebarsHelpers = function () {
     if (valeur < actor.system.sante[zone].seuil) return index <= valeur - 1;
     else return index <= valeur;
   });
-
 };

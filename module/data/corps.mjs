@@ -4,9 +4,9 @@ export default class CabinetCorps extends foundry.abstract.TypeDataModel {
     const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = {};
 
-    schema.comedien = new fields.StringField({nullable: true});
-    schema.cabinet = new fields.StringField({nullable: true});
-    schema.description = new fields.HTMLField({textSearch: true});
+    schema.comedien = new fields.StringField({ nullable: true });
+    schema.cabinet = new fields.StringField({ nullable: true });
+    schema.description = new fields.HTMLField({ textSearch: true });
 
     const attributField = (label) =>
       new fields.SchemaField(
@@ -49,5 +49,17 @@ export default class CabinetCorps extends foundry.abstract.TypeDataModel {
     schema.malus = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
 
     return schema;
+  }
+
+  prepareBaseData() {
+    // Malus total : pour chaque partie du corps, lorque la blessure est supérieure au seuil
+    // le malus est égal à la blessure - le seuil + 1
+    let malusTotal = 0;
+    for (const partie of Object.values(this.sante)) {
+      if (partie.valeur >= partie.seuil) {
+        malusTotal += partie.valeur - partie.seuil + 1;
+      }
+    }
+    this.malus = malusTotal;
   }
 }

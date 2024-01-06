@@ -14,20 +14,6 @@ export default class CabinetActor extends Actor {
     }
   }
 
-  prepareBaseData() {
-    if (this.type === "corps" || this.type === "pnj") {
-      // Malus total : pour chaque partie du corps, lorque la blessure est supérieure au seuil
-      // le malus est égal à la blessure - le seuil + 1
-      let malusTotal = 0;
-      for (const partie of Object.values(this.system.sante)) {
-        if (partie.valeur >= partie.seuil) {
-          malusTotal += partie.valeur - partie.seuil + 1;
-        }
-      }
-      this.system.malus = malusTotal;
-    }
-  }
-
   /** @override */
   _onUpdate(data, options, userId) {
     if (this.type === "corps") {
@@ -243,7 +229,7 @@ export default class CabinetActor extends Actor {
   }
 
   /**
-   * déplace l'esprit dans l'arbre ou vers/depuis le jardin secret
+   * Déplace l'esprit dans l'arbre ou vers/depuis le jardin secret
    * Cette méthode est la méthode entrante à utiliser pour tout déplacement
    * @param {*} newPosition (sphere ou null pour jardin ou "auto" pour attribution automatique selon la qualité la plus haute)
    * @param {*} forcer    true si c'est le MJ qui force le déplacement
@@ -262,7 +248,7 @@ export default class CabinetActor extends Actor {
     // Déplacement vers le jardin
     if (!newPosition) {
       if (!this.system.comedien || forcer) {
-        this.update({ "system.positionArbre": "", "system.jardin": true, "system.comedien": false });
+        this.update({ "system.positionArbre": null, "system.comedien": false });
         cabinet.deplacerEsprit(this.id, oldPosition, null);
       } else if (this.system.estComedien) {
         return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
@@ -280,7 +266,7 @@ export default class CabinetActor extends Actor {
       destPosition = newPosition;
     }
     cabinet.deplacerEsprit(this.id, oldPosition, destPosition);
-    await this.update({ "system.positionArbre": destPosition, "system.jardin": false });
+    await this.update({ "system.positionArbre": destPosition });
   }
 
   /**
@@ -345,6 +331,7 @@ export default class CabinetActor extends Actor {
           token: esprit.prototypeToken.texture.src,
           estComedien: esprit.system.comedien,
           dansJardin: esprit.system.jardin,
+          sphere: esprit.system.positionArbre,
         };
       });
     }
@@ -394,7 +381,7 @@ export default class CabinetActor extends Actor {
     await this.update({ "system.esprits": esprits });
 
     // Mise à jour de l'esprit
-    await esprit.update({ "system.jardin": true });
+    await esprit.update({ "system.positionArbre": null });
     await esprit.update({ "system.comedien": false });
   }
 
