@@ -189,6 +189,11 @@ export default class CabinetSheet extends CabinetActorSheet {
       await this.actor.update({ "system.corps": actorId });
       // Ajout du lien du cabinet dans le corps
       await actor.update({ "system.cabinet": this.actor._id });
+      // Si un comédien existe déjà, ajout du comédien dans le nouveau corps
+      if (this.actor.system.comedien) {
+        await actor.update({ "system.comedien": this.actor.system.comedien });
+      }
+
     }
 
     this.render();

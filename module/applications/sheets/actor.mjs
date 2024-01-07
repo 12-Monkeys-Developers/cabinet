@@ -93,7 +93,7 @@ export default class CabinetActorSheet extends ActorSheet {
         },
       },
       {
-        name: `Faire des dégâts`,
+        name: `Calculer les dégâts`,
         icon: `<i class="fa-solid fa-dice"></i>`,
         condition: (li) => {
           const itemId = li.data("itemId");
