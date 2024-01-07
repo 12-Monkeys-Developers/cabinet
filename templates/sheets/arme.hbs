@@ -7,8 +7,10 @@
     </div>
     <div class="arme-content">
       <div class="field-name" style="grid-row: 3 / 4; grid-column: 1 / 2;">Précision</div>
-      <select style="grid-row: 3 / 4; grid-column: 2 / 3;width: 3em;" name="system.precision">
+      <select style="grid-row: 3 / 4; grid-column: 2 / 3;width: 4em;" name="system.precision">
         {{#select system.precision}}
+          <option value="-2">-2</option>
+          <option value="-1">-1</option>
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -29,10 +31,11 @@
         <div class="field-name" style="grid-row: 4 / 5; grid-column: 5 / 6;">Cadence</div>
         <input name="system.cadence" style="grid-row: 4 / 5; grid-column: 6 / 7;" type="number" value="{{item.system.cadence}}" />
       <div class="description-group" style="grid-row: 5 / 6; grid-column: 1 / 7;margin-top: 10px;">
-        <div class="field-name">Description</div>
+        <div class="field-name description">Description</div>
         <div class="description-val">
           {{editor descriptionhtml target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
         </div>
       </div>
-    </div></div>
+    </div>
+  </div>
 </form>

@@ -205,16 +205,18 @@
 .arme-sheet .field-name {
   text-transform: uppercase;
   margin: 5px 10px;
-  text-align: center;
   color: #497180;
 }
+.arme-sheet .field-name.description {
+  text-align: center;
+}
 .arme-sheet input {
-  width: 3em;
+  width: 2em;
 }
 .arme-sheet .data-group {
   display: flex;
   flex-direction: row;
-  margin: 0px 10px 15px 10px;
+  margin: 0px 0px 15px 0px;
 }
 .arme-sheet .description-group {
   display: flex;
