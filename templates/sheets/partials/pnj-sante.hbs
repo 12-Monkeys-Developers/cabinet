@@ -5,7 +5,7 @@
         <div class="text-malus">{{malus}}</div>
     </div>
     <div class="sante-tete">
-        <label> 2 : tête</label>
+        <label>Tête</label>
         <div class="circles-container">
             {{#times (nbCasesSante actor 'tete')}}
                 <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'tete' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'tete' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="tete"/>
@@ -17,7 +17,7 @@
         </div>  
     </div>
     <div class="sante-bras-droit">
-        <label> 3-5 : bras droit</label>
+        <label>Bras droit</label>
         <div class="circles-container">    
              {{#times (nbCasesSante actor 'brasDroit')}}                
                 <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'brasDroit' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'brasDroit' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="brasDroit"/>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="sante-bras-gauche">
-        <label> 6-8 : bras gauche</label>
+        <label>Bras gauche</label>
         <div class="circles-container">     
             {{#times (nbCasesSante actor 'brasGauche')}} 
                 <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'brasGauche' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'brasGauche' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="brasGauche"/>
@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="sante-torse">
-        <label> 9-10 : torse</label>
+        <label>Torse</label>
         <div class="circles-container">    
             {{#times (nbCasesSante actor 'torse')}}    
                 <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'torse' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'torse' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="torse"/>
@@ -53,7 +53,7 @@
         </div>        
     </div>
     <div class="sante-jambe-droite">
-        <label> 11 : jambe droite</label>
+        <label>Jambe droite</label>
         <div class="circles-container">         
             {{#times (nbCasesSante actor 'jambeDroite')}} 
                 <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'jambeDroite' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'jambeDroite' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="jambeDroite"/>
@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="sante-jambe-gauche">
-        <label> 12 : jambe gauche</label>
+        <label>Jambe gauche</label>
         <div class="circles-container">      
             {{#times (nbCasesSante actor 'jambeGauche')}}
                 <input type="checkbox" class="case-sante circle-checkbox {{#if (seuilSante ../actor 'jambeGauche' @index)}}filled{{/if}} {{#if (estCocheeSante ../actor 'jambeGauche' @index)}}checked{{/if}}" id="circle{{@index}}" data-index="{{@index}}" data-zone="jambeGauche"/>

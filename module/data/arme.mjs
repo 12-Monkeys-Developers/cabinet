@@ -113,18 +113,19 @@ export default class CabinetArme extends foundry.abstract.TypeDataModel {
   async lancerDegats() {
     const formule = this.formuleDegats;
     const rollDegats = await new Roll(formule).roll();
-    const formuleLocalisation = "2d6[red]";
+    const formuleLocalisation = "1d12";
     const rollLocalisation = await new Roll(formuleLocalisation).roll();
 
     // Mapper les résultats du dé aux parties du corps
     const mapPartieDuCorps = {
-      2: "Tête",
+      1: "Tête",
+      2: "Bras droit",
       3: "Bras droit",
       4: "Bras droit",
-      5: "Bras droit",
+      5: "Bras gauche",
       6: "Bras gauche",
       7: "Bras gauche",
-      8: "Bras gauche",
+      8: "Torse",
       9: "Torse",
       10: "Torse",
       11: "Jambe droite",
@@ -134,7 +135,7 @@ export default class CabinetArme extends foundry.abstract.TypeDataModel {
     // Obtenir la partie du corps touchée
     let partieDuCorps = mapPartieDuCorps[rollLocalisation.total];
 
-    const localisationToolTip = `2d6 (${rollLocalisation.result})`;
+    const localisationToolTip = `1d12 (${rollLocalisation.result})`;
     const degatsToolTip = `${rollDegats.formula} (${rollDegats.result})`;
 
     return { rollDegats: rollDegats, degatsToolTip: degatsToolTip, rollLocalisation: rollLocalisation, localisationToolTip: localisationToolTip, partieDuCorps: partieDuCorps };
