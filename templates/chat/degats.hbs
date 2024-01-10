@@ -1,4 +1,19 @@
-{{log 'degats' this}}
-Jet de dégâts de {{nom}}<br>
-<div data-tooltip="{{localisationToolTip}}">Localisation : {{localisation}}</div>
-<div data-tooltip="{{degatsToolTip}}">Dégâts : {{degats}}</div>
+{{log "degats" this}}
+<div class="dice-roll {{cssClass}}">
+  <div class="intro-chat">
+    {{#if (ne actingCharImg "icons/svg/mystery-man.svg")}}
+      <div class="introImg">
+        <img src="{{actingCharImg}}" title="{{actingCharName}}" />
+      </div>
+    {{/if}}
+    <div class="intro_right">
+      <p class="introText">
+        Jet de dégâts de
+        {{actingCharName}} avec 
+        {{weaponName}}
+      </p>
+    </div>
+  </div>
+  <p class="dice-result" data-tooltip="{{degatsToolTip}}">Dégâts : {{degats}}</p>
+  <p class="dice-result" data-tooltip="{{localisationToolTip}}">Localisation : {{localisation}}</p>
+</div>
