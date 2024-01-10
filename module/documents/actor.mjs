@@ -147,7 +147,7 @@ export default class CabinetActor extends Actor {
       if (!arme) return ui.notifications.warn("L'arme n'a pas été trouvée.");
       const degats = await arme.system.lancerDegats();
       console.log("lanceDegats", armeId, degats);
-      let chatDegats = await new CdmChat(this).withTemplate("systems/cabinet/templates/chat/degats.hbs").withData({actingCharName: this.name, actingCharImg: this.img, weaponName: arme.name, degats: degats.rollDegats.total, degatsToolTip: degats.degatsToolTip, localisation: degats.partieDuCorps, localisationToolTip: degats.localisationToolTip}).withRolls([degats.rollLocalisation, degats.rollDegats]).create();
+      let chatDegats = await new CdmChat(this).withTemplate("systems/cabinet/templates/chat/degats.hbs").withData({actingCharName: this.name, actingCharImg: this.img, weaponName: arme.name, degats: degats.rollDegats.total, degatsToolTip: degats.degatsToolTip, localisation: degats.partieDuCorps}).withRolls([degats.rollLocalisation, degats.rollDegats]).create();
       await chatDegats.display();
     }
   }
