@@ -58,4 +58,15 @@ export const registerHandlebarsHelpers = function () {
     if (valeur < actor.system.sante[zone].seuil) return index <= valeur - 1;
     else return index <= valeur;
   });
+
+  Handlebars.registerHelper("peutPasFaireAction", function (actor, actionId) {
+    const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
+    if (!cabinet) return true;
+    if (actor._id === cabinet.system.comedien) return false;
+    else {
+      const action = actor.items.get(actionId);
+      if (!action) return true;
+      return action.system.controle;
+    }
+  });
 };

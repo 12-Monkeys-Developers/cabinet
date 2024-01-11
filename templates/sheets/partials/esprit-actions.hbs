@@ -3,7 +3,7 @@
         <div class="titre2">Agir</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "agir")}}
-                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
+                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
             {{/if}}
         {{/each}}
     </div>
@@ -11,7 +11,7 @@
         <div class="titre2">Communiquer</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "communiquer")}}
-                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
+                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
             {{/if}}
         {{/each}}
     </div>
@@ -19,13 +19,13 @@
         <div class="titre2">Attaquer au corps à corps</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "corpsacorps")}}
-                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
+                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
             {{/if}}
         {{/each}}
         <div class="titre2">Attaquer à distance</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "distance")}}
-                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
+                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
             {{/if}}
         {{/each}}        
     </div>  
@@ -33,13 +33,13 @@
         <div class="titre2">Percevoir</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "percevoir")}}
-                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
+                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
             {{/if}}
         {{/each}}
           <div class="titre2">Savoir</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "savoir")}}
-              {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
+              {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
             {{/if}}
         {{/each}}
     </div>
@@ -47,13 +47,13 @@
         <div class="titre2">Se défendre</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "sedefendre")}}
-                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
+                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
             {{/if}}
         {{/each}}
           <div class="titre2">Se protéger</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "seproteger")}}
-              {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action}}
+              {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
             {{/if}}
         {{/each}}
     </div>    

@@ -1,6 +1,6 @@
 <div class="actions-ligne">
   <div class="nom-action item-contextmenu" data-item-id="{{action._id}}">
-    <i class="logo_action" data-field="{{action._id}}"></i> {{action.name}}</div>
+    <i class="logo_action {{#if (peutPasFaireAction actor action._id)}}lowopacity{{/if}}" data-field="{{action._id}}"></i> {{action.name}}</div>
   <details>
     <summary class="resolution" data-tooltip="{{action.formulaTooltip}}">
     {{{action.formulaHtml}}}

@@ -1858,6 +1858,9 @@ i.logo_embellie {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+.cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .lowopacity {
+  opacity: 0.33;
+}
 .cabinet.sheet.actor.esprit .esprit-sheet .grid-tab-actions .categorie {
   display: flex;
   flex-direction: column;
