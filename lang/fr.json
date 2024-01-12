@@ -218,7 +218,11 @@
       "titreJet": "{nom} : jet de {jet}"
     },
     "WARNING": {
-      "actionReserveeComedien": "Votre esprit doit avoir le contrôle du corps pour réaliser cette action."
+      "actionReserveeComedien": "Votre esprit doit avoir le contrôle du corps pour réaliser cette action.",
+      "comedienInexistant": "Le comédien n'existe pas.", 
+      "comedienPasEsprit": "Le comédien n'est pas un esprit.",
+      "comedienPasDansCabinet": "Le comédien n'est pas dans le cabinet.",
+      "comedienJardin": "Le comédien est dans le jardin."
     },
     "SETTINGS": {
       "appComedien": {

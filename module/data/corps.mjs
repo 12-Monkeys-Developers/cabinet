@@ -1,3 +1,5 @@
+import { ComedienUtils } from "../utils.mjs";
+
 export default class CabinetCorps extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -53,7 +55,7 @@ export default class CabinetCorps extends foundry.abstract.TypeDataModel {
 
   prepareBaseData() {
     // Malus total : pour chaque partie du corps, lorque la blessure est supérieure au seuil
-    // le malus est égal à la blessure - le seuil + 1
+    // L malus est égal à la blessure - le seuil + 1
     let malusTotal = 0;
     for (const partie of Object.values(this.sante)) {
       if (partie.valeur >= partie.seuil) {
@@ -61,5 +63,12 @@ export default class CabinetCorps extends foundry.abstract.TypeDataModel {
       }
     }
     this.malus = malusTotal;
+
+    // Comédien
+    const comedien = ComedienUtils.actuel();
+    if (comedien) {
+      this.comedien = comedien.id;
+    }
+    else this.comedien = null;
   }
 }

@@ -1,4 +1,5 @@
 import { SYSTEM } from "./config/system.mjs";
+import { ComedienUtils } from "./utils.mjs";
 
 export const registerHandlebarsHelpers = function () {
   Handlebars.registerHelper("getQualiteProperty", function (actor, qualite, prop) {
@@ -20,16 +21,6 @@ export const registerHandlebarsHelpers = function () {
   Handlebars.registerHelper("positionArbre", function (actor, qualite) {
     if (actor.system.positionArbre === SYSTEM.QUALITES[qualite].sphere) return "position-arbre";
     else return "";
-  });
-
-  Handlebars.registerHelper("getBackgroundCss", function (actor) {
-    if (actor.type === "esprit") {
-      if (actor.system.comedien) return "var(--background_esprit_header_comedien)";
-      // Pour un esprit nouvellement créé, la positionArbre n'est pas encore définie
-      if (actor.system.positionArbre === undefined) return "var(--background_esprit_header)";
-      if (actor.system.jardin) return "var(--background_esprit_header_jardin)";
-      return "var(--background_esprit_header)";
-    }
   });
 
   Handlebars.registerHelper("testlog", function (data) {
@@ -60,9 +51,8 @@ export const registerHandlebarsHelpers = function () {
   });
 
   Handlebars.registerHelper("peutPasFaireAction", function (actor, actionId) {
-    const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
-    if (!cabinet) return true;
-    if (actor._id === cabinet.system.comedien) return false;
+    const comedien = ComedienUtils.actuel();
+    if (comedien && actor._id === comedien._id) return false;
     else {
       const action = actor.items.get(actionId);
       if (!action) return true;

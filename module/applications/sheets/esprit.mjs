@@ -1,11 +1,11 @@
 import { SYSTEM } from "../../config/system.mjs";
-import CabinetAction from "../../data/action.mjs";
 import CabinetActorSheet from "./actor.mjs";
 
 export default class EspritSheet extends CabinetActorSheet {
   constructor(object, options = {}) {
     super(object, options);
     Hooks.on("cabinet.updateCorps", async (corpsId) => this.render());
+    Hooks.on("cabinet.majComedien", async (comedien) => this.render());
   }
 
   /** @inheritdoc */
@@ -66,15 +66,16 @@ export default class EspritSheet extends CabinetActorSheet {
     context.profilprivatehtml = TextEditor.enrichHTML(this.actor.system.profil.private, { async: false });
     context.routinehtml = TextEditor.enrichHTML(this.actor.system.routine, { async: false });
 
-    context.backgroundColor = this.actor.system.backgroundColor;
-
+    context.estDansCabinet = this.actor.system.estDansCabinet;
     context.comedien = this.actor.system.comedien;
     context.jardin = this.actor.system.jardin;
 
-    if(this.actor.system.positionArbre){
-    let positionQual = SYSTEM.SPHERES[this.actor.system.positionArbre].qualiteSmall;
-    context.comportement = ("CDM.SPHERE."+ this.actor.system.positionArbre) + (this.actor.system.qualites[positionQual].qlipha ? ".defaut" : ".qualite");
-    }else context.comportement ="";
+    context.backgroundColor = this.actor.system.backgroundColor;
+
+    if (this.actor.system.positionArbre) {
+      let positionQual = SYSTEM.SPHERES[this.actor.system.positionArbre].qualiteSmall;
+      context.comportement = "CDM.SPHERE." + this.actor.system.positionArbre + (this.actor.system.qualites[positionQual].qlipha ? ".defaut" : ".qualite");
+    } else context.comportement = "";
 
     return context;
   }
@@ -82,7 +83,7 @@ export default class EspritSheet extends CabinetActorSheet {
   /** @override */
   async _onDropItem(event, data) {
     const item = await fromUuid(data.uuid);
-    if(["arme", "armure", "grace"].includes(item.type)) return false;    
+    if (["arme", "armure", "grace"].includes(item.type)) return false;
     await super._onDropItem(event, data);
     if (item.type === "corruption") Hooks.callAll("cabinet.dropCorruptionOnEsprit", data.uuid);
   }
@@ -164,6 +165,7 @@ export default class EspritSheet extends CabinetActorSheet {
         name: `Aller dans mon Jardin Secret`,
         icon: `<i class="fa-regular fa-face-clouds"></i>`,
         condition: () => {
+          if (!this.actor.system.estDansCabinet) return false;
           return !this.actor.system.jardin;
         },
         callback: () => this._onAllerJardin(),
@@ -172,6 +174,7 @@ export default class EspritSheet extends CabinetActorSheet {
         name: `Revenir dans le cabinet`,
         icon: `<i class="fa-regular fa-loveseat"></i>`,
         condition: () => {
+          if (!this.actor.system.estDansCabinet) return false;
           return this.actor.system.jardin;
         },
         callback: () => this._onQuitterJardin(),
@@ -180,6 +183,7 @@ export default class EspritSheet extends CabinetActorSheet {
         name: `Demander le contrôle`,
         icon: `<i class="fa-solid fa-person-simple"></i>`,
         condition: () => {
+          if (!this.actor.system.estDansCabinet) return false;
           return !this.actor.system.comedien;
         },
         callback: () => this._devenirComedien(),
@@ -232,9 +236,6 @@ export default class EspritSheet extends CabinetActorSheet {
     this.render();
   }
 
-  /**
-   *
-   */
   async _devenirComedien() {
     const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
     let comedien = game.actors.get(cabinet.system.comedien);
@@ -247,7 +248,7 @@ export default class EspritSheet extends CabinetActorSheet {
         actingCharName: this.actor.name,
         nomComedien: comedien.name,
         actingCharImg: this.actor.img,
-        introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName:  this.actor.name }),
+        introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName: this.actor.name }),
       });
       const chatData = {
         speaker: ChatMessage.getSpeaker({

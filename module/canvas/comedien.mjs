@@ -1,23 +1,16 @@
-import CabinetActor from "../documents/actor.mjs";
-export default class ComedienApp extends Application {
-  constructor(comedien, options = {}) {
-    super(options);
+import { ComedienUtils } from "../utils.mjs";
+
+export default class ComedienApp extends FormApplication {
+  constructor(cabinet, options = {}) {
+    super(cabinet, options);
     // Pour suivre le mouvement de la sidebar
     Hooks.on("collapseSidebar", async (sidebar, collapsed) => this.setPosition());
-
-    // Pour détecter un changement de comédien
-    Hooks.on("cabinet.majComedien", async (comedien) => {
-      this.comedien = comedien;
-      this.render(true);
-    });
 
     // Pour détecter quand une corruption est retirée d'un esprit
     Hooks.on("cabinet.deleteCorruptionOnEsprit", async (uuid) => this.render());
 
     // Pour détecter quand une corruption est ajoutée à un esprit
     Hooks.on("cabinet.dropCorruptionOnEsprit", async (uuid) => this.render());
-
-    this.comedien = comedien;
   }
 
   /** @inheritdoc */
@@ -56,9 +49,13 @@ export default class ComedienApp extends Application {
   async getData(options = {}) {
     let context = {};
 
-    context.comedienDefini = this.comedien === null ? false : true;
-    context.corruptions = context.comedienDefini ? this.infos.corruptions : [];
-    context.comedien = context.comedienDefini ? this.comedien : null;
+    //context.comedienDefini = this.comedien === null ? false : true;
+    context.comedienDefini = this.object.system.hasComedien;
+
+    const infos = this.infos;
+    context.corruptions = context.comedienDefini ? infos.corruptions : [];
+    context.nom = context.comedienDefini ? this.infos.nom : null;
+    context.image = context.comedienDefini ? this.infos.image : null;
 
     return context;
   }
@@ -84,9 +81,20 @@ export default class ComedienApp extends Application {
    * @returns {Object} {nbCorruptions, corruptions}
    */
   get infos() {
-    if (this.comedien) {
-      let corruptions = this.comedien.items.filter((i) => i.type === "corruption");
-      return { nbCorruptions: corruptions.length, corruptions };
-    } else return null;
+    if (this.object) {
+      const comedien = ComedienUtils.actuel();
+      if (comedien) {
+        let corruptions = comedien.items.filter((i) => i.type === "corruption");
+        return { nbCorruptions: corruptions.length, corruptions, image: comedien.img, nom: comedien.name };
+      }
+    }
+    return null;
   }
+
+    /** @inheritdoc */
+    render(force = false, options = {}) {
+      // Register the active OrgDevEditor with the referenced Documents
+      this.object.apps[this.appId] = this;
+      return super.render(force, options);
+    }
 }

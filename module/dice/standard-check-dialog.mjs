@@ -27,7 +27,7 @@ export default class StandardCheckDialog extends Dialog {
   async getData(options = {}) {
     const data = this.roll.data;
 
-    const estComedien = data.actorData.comedien;
+    const comedien = data.actorData.comedien;
     const position = data.actorData.positionArbre; // tieferet
     const qualite = data.qualite;
     const sphere = SYSTEM.QUALITES[qualite].sphere;
@@ -42,7 +42,7 @@ export default class StandardCheckDialog extends Dialog {
 
     const optionsPerisprit = Array.from({ length: data.actorData.perisprit }, (_, index) => ({ indice: index + 1, label: index + 1 }));
 
-    data.estComedien = estComedien;
+    data.comedien = comedien;
 
     data.attributs = [];
     data.malus = 0;
@@ -51,7 +51,7 @@ export default class StandardCheckDialog extends Dialog {
     const corps = game.actors.get(corpsId);
     if (corps) {
       // Attribut ?
-      if (estComedien) {
+      if (comedien) {
         data.attributs = corps.system.attributs;
         data.malus = corps.system.malus;
       } else {

@@ -1,9 +1,8 @@
-<form class="{{cssClass}} {{backgroundColor}}" autocomplete="off">
-
-  {{!log "esprit" this}}
+{{!log "esprit" this}}
+<form class="{{cssClass}}" autocomplete="off">
   {{! Main Content }}
   <section class="sheet-body esprit-sheet">
-    <header class="esprit-header" style='background: {{getBackgroundCss actor}}'>
+    <header class="esprit-header" style='background: {{backgroundColor}}'>
       <div class="titre_feuille">Esprit&nbsp;&nbsp;
         <span class="middle-size"><a class="sheet-change-lock" title="{{localize 'CDM.TOOLTIP.unlockSheet'}}">
           {{#if editable}}<i class="fas fa-lock-open"></i>{{else}}<i class="fas fa-lock" ></i>{{/if}}</a>

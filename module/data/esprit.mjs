@@ -1,3 +1,5 @@
+import { CabinetUtils } from "../utils.mjs";
+
 /**
  * Qualités, Aspects, Acquis, Profil, Périsprit, Contacts, Routine, Adversaires, Pouvoirs, Objets, Corruption et expérience
  */
@@ -17,7 +19,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
           valeur: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 5 }),
         }),
         sphere: new fields.StringField({ required: true, initial: sphere, blank: false }),
-        qlipha: new fields.BooleanField({ initial: false })
+        qlipha: new fields.BooleanField({ initial: false }),
       };
       return new fields.SchemaField(schema, { label });
     };
@@ -52,18 +54,17 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     );
 
     // Acquis : Embedded items de type acquis
-    
-    //position sur l'Arbre de Vie : null = non positionné
+
+    // Position sur l'Arbre de Vie : la sphère ou null si l'esprit n'est pas positionné
     schema.positionArbre = new fields.StringField({ required: false, blank: true, choices: SYSTEM.SPHERES, initial: undefined });
 
     schema.perisprit = new fields.NumberField({ ...requiredInteger, initial: 9, min: 0, max: 9 });
-    schema.routine = new fields.HTMLField({textSearch: true});
+    schema.routine = new fields.HTMLField({ textSearch: true });
 
-    schema.contacts = new fields.HTMLField({textSearch: true});
-    schema.adversaires = new fields.HTMLField({textSearch: true});
-    
+    schema.contacts = new fields.HTMLField({ textSearch: true });
+    schema.adversaires = new fields.HTMLField({ textSearch: true });
+
     schema.notes = new fields.HTMLField();
-
 
     // pouvoirs : Embedded items de type pouvoir
 
@@ -76,7 +77,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
       totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
     });
 
-    schema.comedien = new fields.BooleanField({ initial: false });  
+    schema.comedien = new fields.BooleanField({ initial: false });
 
     return schema;
   }
@@ -84,20 +85,21 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
   /** @override */
   prepareBaseData() {
     for (const qualite of Object.values(this.qualites)) {
-      qualite.qlipha = qualite.defaut.valeur >= qualite.valeur ? true : false;     
+      qualite.qlipha = qualite.defaut.valeur >= qualite.valeur ? true : false;
     }
   }
 
   /**
    * Retourne true si l'esprit est le comédien
-   */
-  get estComedien() {
-    return this.comedien;
-  }
+   
+  get comedien() {
+    const cabinet = CabinetUtils.actuel();
+    return cabinet && cabinet.system.comedien === this.parent.id ? true : false;
+  }*/
 
   /*
-  * Retourne true si l'esprit est dans le jardin
-  */
+   * Retourne true si l'esprit est dans le jardin
+   */
   get jardin() {
     return !this.estDansLesSpheres;
   }
@@ -106,6 +108,33 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
    * Retourne true si l'esprit est dans une sphère
    */
   get estDansLesSpheres() {
-    return Object.values(SYSTEM.SPHERES).some(sphere => sphere.id === this.positionArbre);
+    return Object.values(SYSTEM.SPHERES).some((sphere) => sphere.id === this.positionArbre);
+  }
+
+  /**
+   * Retourne true si l'esprit est dans le cabinet
+   */
+  get estDansCabinet() {
+    const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
+    if (!cabinet) {
+      return false;
+    }
+    else {
+      if (cabinet.system.esprits.includes(this.parent.id)) {
+        return true;
+      }
+      else return false;
+    }
+  }
+
+  /**
+   * Retourne la couleur de fond du header de l'esprit
+   */
+  get backgroundColor() {
+    if (this.comedien) return "var(--background_esprit_header_comedien)";
+    // Pour un esprit nouvellement créé, la positionArbre n'est pas encore définie
+    if (this.positionArbre === undefined) return "var(--background_esprit_header)";
+    if (this.jardin) return "var(--background_esprit_header_jardin)";
+    return "var(--background_esprit_header)";
   }
 }

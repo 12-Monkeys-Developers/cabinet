@@ -11,6 +11,7 @@ import * as applications from "./module/applications/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as models from "./module/data/_module.mjs";
+import { CabinetUtils, ComedienUtils } from "./module/utils.mjs";
 
 Hooks.once("init", async function () {
   console.log(`CABINET DES MURMURES | Initialisation du système...`);
@@ -94,14 +95,6 @@ Hooks.once("init", async function () {
   //configuration Handlebars
   registerHandlebarsHelpers();
 
-  game.settings.register("cabinet", "cabinet", {
-    name: "Cabinet",
-    hint: "Id du cabinet.",
-    scope: "world",
-    config: false,
-    type: String,
-  });
-
   game.settings.register("cabinet", "appComedien", {
     name: "Comédien",
     hint: "Utilisation du médaillon Comédien",
@@ -124,25 +117,23 @@ Hooks.once("i18nInit", function () {
 
 Hooks.once("ready", async function () {
   if (game.settings.get("cabinet", "appComedien") !== "aucun") {
-    let comedien = null;
-    let cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+    let cabinet = CabinetUtils.actuel();
 
     if (cabinet) {
-      const comedienId = cabinet.system.comedien;
-
-      if (comedienId) {
-        comedien = await game.actors.get(comedienId);
-      }
+      const comedienApp = new ComedienApp(cabinet);
+      comedienApp.render(true);
+      console.log("renderApplication - comedienApp", comedienApp);
     }
-    const comedienApp = new ComedienApp(comedien);
-    comedienApp.render(true);
-    console.log("renderApplication - comedienApp", comedienApp);
   }
-
   console.log("CABINET DES MURMURES | Initialisation du système fini.");
 });
 
 Hooks.on("deleteActor", async (document, options, userId) => {
+  // Suppression du comédien
+  if (document.type === "esprit" && document.system.comedien) {
+    ComedienUtils.reset();
+  }
+  // Mise à jour du cabinet
   const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
   if (cabinet) {
     if (document.type === "corps" && cabinet.system.corps === document.id) cabinet.update({ "system.corps": null });
@@ -150,8 +141,6 @@ Hooks.on("deleteActor", async (document, options, userId) => {
       // Mise à jour des esprits
       let esprits = cabinet.system.esprits.filter((esprit) => esprit !== document.id);
       await cabinet.update({ "system.esprits": esprits });
-      // Mise à jour du comédien si nécessaire
-      if (cabinet.system.comedien === document.id) cabinet.update({ "system.comedien": null });
     }
   }
 });

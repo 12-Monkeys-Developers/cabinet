@@ -107,12 +107,12 @@
     <div class="col-droite-bloc3">
       <div class="medaillon_cab cabinet-contextmenu">
         {{#if jardin}}
-          <img src={{images.ICONE_JARDIN}} data-tooltip="Clic droit pour le menu de l'esprit dans le jardin" />
+          <img src={{images.ICONE_JARDIN}} {{#if estDansCabinet}}data-tooltip="Clic droit pour le menu de l'esprit dans le jardin"{{/if}} />
         {{else}}
           {{#if comedien}}
-            <img src={{images.ICONE_COMEDIEN}} data-tooltip="Clic droit pour le menu du comédien" />
+            <img src={{images.ICONE_COMEDIEN}} {{#if estDansCabinet}}data-tooltip="Clic droit pour le menu du comédien"{{/if}} />
           {{else}}
-            <img src={{images.ICONE_CABINET}} data-tooltip="Clic droit pour le menu du murmure" />
+            <img src={{images.ICONE_CABINET}} {{#if estDansCabinet}}data-tooltip="Clic droit pour le menu du murmure"{{/if}} />
           {{/if}}
         {{/if}}
       </div>

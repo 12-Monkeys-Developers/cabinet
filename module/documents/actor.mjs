@@ -1,18 +1,10 @@
 import StandardCheck from "../dice/standard-check.mjs";
 import CdmChat from "../chat.mjs";
+import { ComedienUtils } from "../utils.mjs";
 
 export default class CabinetActor extends Actor {
   constructor(data, context) {
     super(data, context);
-    if (this.type === "corps") {
-      // Pour détecter un changement de comédien
-      Hooks.on("cabinet.majComedien", async (comedien) => {
-        const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
-        if (this.system.cabinet === cabinet.id) {
-          this.update({ "system.comedien": comedien.id });
-        }
-      });
-    }
   }
 
   /** @override */
@@ -70,16 +62,16 @@ export default class CabinetActor extends Actor {
 
         // La position dans l'arbre est null (par défaut l'esprit est dans le jardin)
         // L'esprit n'est pas le comédien
-        this.updateSource({ items: actions, "system.positionArbre": null, "system.comedien": false });
+        this.updateSource({ items: actions, "system.positionArbre": null });
         break;
     }
   }
 
   /**
    * Jet d'action
-   * @param {*} actionId 
-   * @param {*} armeId 
-   * @returns 
+   * @param {*} actionId
+   * @param {*} armeId
+   * @returns
    */
   async rollAction(actionId, armeId = null) {
     const action = this.items.get(actionId);
@@ -112,10 +104,9 @@ export default class CabinetActor extends Actor {
     // Si l'action est une arme, on récupère les valeurs de l'arme
     if (armeId) {
       const armeNom = corps.items.get(armeId).name;
-      const arme = {"id": armeId, "nom": armeNom};
+      const arme = { id: armeId, nom: armeNom };
       return this.rollSkill(qualite, { dialog: true, defaultValues: defaultValues, arme: arme });
-    }
-    else return this.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
+    } else return this.rollSkill(qualite, { dialog: true, defaultValues: defaultValues });
   }
 
   /**
@@ -123,7 +114,7 @@ export default class CabinetActor extends Actor {
    * @param {string} armeId      The ID of the action to roll a check for, for example "courage"
    * @param {string} nomAction   The name of the action
    * @return {StandardCheck}      The StandardCheck roll instance which was produced.
-   * 
+   *
    */
   async utiliserArme(armeId, nomAction) {
     console.log("utiliserArme", armeId, nomAction);
@@ -132,22 +123,30 @@ export default class CabinetActor extends Actor {
     if (this.type === "corps") {
       const cabinetId = this.system.cabinet;
       if (!cabinetId) return ui.notifications.warn("Il faut d'abord attribuer le corps à un cabinet.");
-      const comedienId = this.system.comedien;
-      if (!comedienId) return ui.notifications.warn("Il faut d'abord choisir un comédien.");
-      const comedien = game.actors.get(comedienId);
+      const comedien = ComedienUtils.actuel();
+      if (!comedien) return ui.notifications.warn("Il faut d'abord choisir un comédien.");
       const action = comedien.items.find((item) => item.type === "action" && item.name === nomAction);
-      if (!action) return ui.notifications.warn(`L'action ${nomAction} n'a pas été trouvée dans les actions du comédien.`);      
+      if (!action) return ui.notifications.warn(`L'action ${nomAction} n'a pas été trouvée dans les actions du comédien.`);
       return await comedien.rollAction(action.id, armeId);
-    } 
+    }
   }
 
+  /**
+   * Lance les dégats d'une arme
+   * @param {string} armeId  l'id de l'arme
+   * @returns un objet avec les données du jet de dégats
+   */
   async lancerDegats(armeId) {
     if (this.type === "corps" || this.type === "pnj") {
       const arme = this.items.get(armeId);
       if (!arme) return ui.notifications.warn("L'arme n'a pas été trouvée.");
       const degats = await arme.system.lancerDegats();
       console.log("lanceDegats", armeId, degats);
-      let chatDegats = await new CdmChat(this).withTemplate("systems/cabinet/templates/chat/degats.hbs").withData({nom: this.name, degats: degats.rollDegats.total, degatsToolTip: degats.degatsToolTip, localisation: degats.partieDuCorps}).withRolls([degats.rollDegats]).create();
+      let chatDegats = await new CdmChat(this)
+        .withTemplate("systems/cabinet/templates/chat/degats.hbs")
+        .withData({ nom: this.name, degats: degats.rollDegats.total, degatsToolTip: degats.degatsToolTip, localisation: degats.partieDuCorps })
+        .withRolls([degats.rollDegats])
+        .create();
       await chatDegats.display();
     }
   }
@@ -181,7 +180,7 @@ export default class CabinetActor extends Actor {
       diff: diff,
       type: "classique",
       rollMode: rollMode,
-      arme: arme
+      arme: arme,
     };
 
     if (defaultValues !== null) {
@@ -251,15 +250,14 @@ export default class CabinetActor extends Actor {
     // Déplacement vers le jardin
     if (!newPosition) {
       if (!this.system.comedien || forcer) {
-        this.update({ "system.positionArbre": null, "system.comedien": false });
+        this.update({ "system.positionArbre": null });
         cabinet.deplacerEsprit(this.id, oldPosition, null);
-      } else if (this.system.estComedien) {
+      } else if (this.system.comedien) {
         return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
       }
       // Le MJ peut forcer depuis le cabinet
       if (this.system.comedien && forcer) {
         cabinet.majComedien(null);
-        Hooks.callAll("cabinet.majComedien", null);
       }
     } else if (newPosition === "auto") {
       //cas déplacement vers meilleure sphere dispo
@@ -300,25 +298,13 @@ export default class CabinetActor extends Actor {
     }
   }
 
-  /**
-   * change le controle pour cet esprit
-   * !!! Agit uniquement sur l'objet esprit, ne pas appllquer directement.
-   * Pour eviter desynchro cabinet/esprits appellez uniquement cabinet.majComedien
-   * @param {*} valeur    true si prise de controle, false si liberation
-   * @returns
-   */
-  async changeControle(valeur) {
-    if (this.type !== "esprit") return;
-    await this.update({ "system.comedien": valeur });
-  }
-
   /** --------*/
   /* CABINET  */
   /** --------*/
 
   /**
    * Liste des esprits d'un cabinet
-   * id, nom, img, token, estComedien, dansJardin
+   * id, nom, img, token, comedien, dansJardin
    */
   get listeEsprits() {
     if (this.type !== "cabinet") return undefined;
@@ -332,7 +318,7 @@ export default class CabinetActor extends Actor {
           nom: esprit.name,
           img: esprit.img,
           token: esprit.prototypeToken.texture.src,
-          estComedien: esprit.system.comedien,
+          comedien: esprit.system.comedien,
           dansJardin: esprit.system.jardin,
           sphere: esprit.system.positionArbre,
         };
@@ -411,20 +397,13 @@ export default class CabinetActor extends Actor {
    */
   async majComedien(comedienId) {
     if (this.type !== "cabinet") return;
-    const newComedien = game.actors.get(comedienId);
-    // si l'esprit est dans son jardin, le remettre d'abord dans l'arbre
+
     if (comedienId) {
+      const newComedien = game.actors.get(comedienId);
       if (!newComedien) return;
-      if (newComedien.system.jardin) await newComedien.deplacerPosition("auto", true);
+      return ComedienUtils.set(newComedien);
     }
-    let oldComedien = game.actors.get(this.system.comedien);
-    if (oldComedien) oldComedien.changeControle(false);
-    if (!comedienId) await this.update({ "system.comedien": null });
-    else if (newComedien) {
-      newComedien.changeControle(true);
-      await this.update({ "system.comedien": comedienId });
-    }
-    Hooks.callAll("cabinet.majComedien", newComedien);
+    return ComedienUtils.set(null);
   }
 
   /**

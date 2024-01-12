@@ -17,15 +17,18 @@ export default class CabinetPlayerList extends PlayerList {
     html.find(".fa-solid.fa-person").click(this._onDesignerComedien.bind(this));
   }
 
+  /**
+   * Designe un esprit comme comédien
+   * @param {*} event 
+   */
   async _onDesignerComedien(event) {
-    console.log("Comedien :", event);
+    console.log("Cabinet | Designer un comédien", event);
     const li = $(event.currentTarget).closest(".player");
     const id = li.data("userId");
-    console.log("User : ", id);
+    console.log("Cabinet | Utilisateur : ", id);
     const character = game.users.get(id).character;
 
     if (character) {
-      // Comedien actuel
       let cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
       if (cabinet) {
         cabinet.majComedien(character.id);

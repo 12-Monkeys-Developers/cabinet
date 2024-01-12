@@ -1,3 +1,4 @@
+import { ComedienUtils } from "../../utils.mjs";
 import CabinetActorSheet from "./actor.mjs";
 
 export default class CorpsSheet extends CabinetActorSheet {
@@ -36,9 +37,8 @@ export default class CorpsSheet extends CabinetActorSheet {
     const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
 
     if (cabinet) {
-      let comedienId = cabinet.system.comedien;
-      if (comedienId) {
-        let comedien = game.actors.get(comedienId);
+      const comedien = ComedienUtils.actuel();
+      if (comedien) {
         context.comedien.name = comedien.name;
         context.comedien.img = comedien.img;
         context.corruptions = comedien.items.filter((item) => item.type == "corruption");

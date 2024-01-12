@@ -97,7 +97,7 @@ export default class CabinetSheet extends CabinetActorSheet {
         condition: (li) => {
           const actorId = li.data("actorId");
           const actor = game.actors.get(actorId);
-          if (!actor) return false;
+          if (!actor) return false;          
           return actor.system.jardin;
         },
         callback: (li) => {
@@ -126,6 +126,8 @@ export default class CabinetSheet extends CabinetActorSheet {
         callback: (li) => {
           const actorPosition = li.data("index");
           const actorId = li.data("actorId");
+          const actor = game.actors.get(actorId);
+          if (!actor) return false;
           this._onEnleverMembre(actorId, actorPosition);
         },
       },
@@ -173,27 +175,19 @@ export default class CabinetSheet extends CabinetActorSheet {
       this.actor.ajouterEsprit(actor);
     }
 
-    // Drop de corps
+    // Drop d'un corps
     if (actor.type === "corps") {
       // S'il y a déjà un corps dans le cabinet
       if (this.actor.system.corps) {
         // Récupère le corps déjà dans le cabinet et casse le lien avec le cabinet
         // Récupère le comédien s'il y en a
-        if (this.actor.system.comedien) {
-          actor.update({ "system.comedien": this.actor.system.comedien });
-        }
         const corps = game.actors.get(this.actor.system.corps);
-        corps.update({ "system.cabinet": null, "system.comedien": null });
+        corps.update({ "system.cabinet": null});
       }
       // Ajout du nouveau corps dans le cabinet
       await this.actor.update({ "system.corps": actorId });
       // Ajout du lien du cabinet dans le corps
       await actor.update({ "system.cabinet": this.actor._id });
-      // Si un comédien existe déjà, ajout du comédien dans le nouveau corps
-      if (this.actor.system.comedien) {
-        await actor.update({ "system.comedien": this.actor.system.comedien });
-      }
-
     }
 
     this.render();

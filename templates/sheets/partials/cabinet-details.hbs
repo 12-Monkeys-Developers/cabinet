@@ -21,12 +21,12 @@
             </div>
           <div class="medaillon_cab {{#if ../isgm}}membre-contextmenu{{/if}}" data-actor-id="{{membre.id}}" data-index="{{index}}">
             {{#if membre.dansJardin}}
-              <img src={{../images.ICONE_JARDIN}} data-tooltip="Clic droit pour le menu de l'esprit dans le jardin" />
+              <img src={{../images.ICONE_JARDIN}} {{#if ../isgm}}data-tooltip="Clic droit pour le menu de l'esprit dans le jardin"{{/if}} />
             {{else}}
-              {{#if membre.estComedien}}
-                <img src={{../images.ICONE_COMEDIEN}} data-tooltip="Clic droit pour le menu du comédien" />
+              {{#if membre.comedien}}
+                <img src={{../images.ICONE_COMEDIEN}} {{#if ../isgm}}data-tooltip="Clic droit pour le menu du comédien"{{/if}} />
               {{else}}
-                <img src={{../images.ICONE_CABINET}} data-tooltip="Clic droit pour le menu du murmure" />
+                <img src={{../images.ICONE_CABINET}} {{#if ../isgm}}data-tooltip="Clic droit pour le menu du murmure"{{/if}} />
               {{/if}}
             {{/if}}
           </div>
@@ -40,7 +40,7 @@
               {{corps.name}}
             </div>
             <div class="medaillon_cab {{#if isgm}}corps-contextmenu{{/if}}" data-actor-id="{{corps.id}}">
-              <img src={{images.ICONE_CORPS}} data-tooltip="Clic droit pour le menu du corps" />
+              <img src={{images.ICONE_CORPS}} {{#if isgm}}data-tooltip="Clic droit pour le menu du corps"{{/if}}/>
             </div>
           {{/if}}
         </div>

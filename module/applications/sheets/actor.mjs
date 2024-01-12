@@ -227,6 +227,7 @@ export default class CabinetActorSheet extends ActorSheet {
     const item = this.actor.items.get(itemId);
     if (item) item.sheet.render(true);
   }
+  
   async _supprimerItem(itemId) {
     let item = this.actor.items.get(itemId);
     if (item === null) {
