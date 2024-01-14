@@ -1,4 +1,4 @@
-export { ComedienUtils, CabinetUtils };
+export { ComedienUtils, CabinetUtils, SocketUtils };
 
 class ComedienUtils {
   /**
@@ -6,7 +6,7 @@ class ComedienUtils {
    * @returns {Esprit} l'esprit comédien ou null si pas de comédien
    */
   static actuel() {
-    const cabinet = CabinetUtils.actuel();
+    const cabinet = CabinetUtils.cabinet();
     if (!cabinet) return null;
 
     const comedienId = cabinet.system.comedien;
@@ -51,9 +51,9 @@ class ComedienUtils {
    * Supprime l'esprit comédien
    */
   static async reset() {
-    const cabinet = CabinetUtils.actuel();
+    const cabinet = CabinetUtils.cabinet();
     if (!cabinet) return;
-    await cabinet.update({ "system.comedien": null });
+    await cabinet.majComedien(null);
   }
 
   /**
@@ -61,24 +61,10 @@ class ComedienUtils {
    * @param {Esprit} comedien ou null
    */
   static async set(comedien) {
-    const cabinet = CabinetUtils.actuel();
+    const cabinet = CabinetUtils.cabinet();
     if (!cabinet) return;
-
-    if (comedien) {
-      // Si l'esprit est dans son jardin, le remettre d'abord dans l'arbre
-      if (comedien.system.jardin) await comedien.deplacerPosition("auto", true);
-
-      await cabinet.update({ "system.comedien": comedien.id });
-      let autresEsprits = cabinet.system.esprits.filter((esprit) => esprit !== comedien.id);
-      for (const espritId of autresEsprits) {
-        const esprit = game.actors.get(espritId);
-        await esprit.update({ "system.comedien": false });
-      }
-      await comedien.update({ "system.comedien": true });
-      await cabinet.update({ "system.comedien": comedien.id });
-    } else this.reset();
-    console.log("Cabinet | Comédien défini : ", comedien);
-    Hooks.callAll("cabinet.majComedien", comedien);
+    if (comedien) await cabinet.majComedien(comedien.id);
+    else await cabinet.majComedien(null);
   }
 }
 
@@ -87,10 +73,26 @@ class CabinetUtils {
    * Retourne le cabinet
    * @returns {Cabinet} le cabinet ou null si pas de cabinet
    */
-  static actuel() {
+  static cabinet() {
     const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
     if (!cabinet) {
       return null;
     } else return cabinet;
+  }
+}
+
+class SocketUtils {
+  static performSocketMesssage(socketMsg) {
+    console.log("SocketUtils | performSocketMesssage", socketMsg);
+
+    if (socketMsg.msg === "updateChatMessage") {
+      if (game.user.isGM) {
+        console.log("SocketUtils | updateChatMessage by GM", socketMsg);
+        const messageId = socketMsg.data.messageId;
+        const newContent = socketMsg.data.content;
+        const message = game.messages.get(messageId);
+        message.update({ content: newContent });
+      }
+    }
   }
 }

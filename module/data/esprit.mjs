@@ -77,7 +77,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
       totale: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
     });
 
-    schema.comedien = new fields.BooleanField({ initial: false });
+    // schema.comedien = new fields.BooleanField({ initial: false });
 
     return schema;
   }
@@ -91,11 +91,12 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
 
   /**
    * Retourne true si l'esprit est le comédien
-   
+   */
   get comedien() {
-    const cabinet = CabinetUtils.actuel();
-    return cabinet && cabinet.system.comedien === this.parent.id ? true : false;
-  }*/
+    const cabinet = CabinetUtils.cabinet();
+    if (cabinet && cabinet.system.comedien === this.parent.id) return true;
+    return false;
+  }
 
   /*
    * Retourne true si l'esprit est dans le jardin
@@ -118,12 +119,10 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
     if (!cabinet) {
       return false;
-    }
-    else {
+    } else {
       if (cabinet.system.esprits.includes(this.parent.id)) {
         return true;
-      }
-      else return false;
+      } else return false;
     }
   }
 

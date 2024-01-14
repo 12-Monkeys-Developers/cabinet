@@ -1,6 +1,6 @@
 import StandardCheck from "../dice/standard-check.mjs";
-import CdmChat from "../chat.mjs";
-import { ComedienUtils } from "../utils.mjs";
+import { CdmChat } from "../chat.mjs";
+import { ComedienUtils, CabinetUtils } from "../utils.mjs";
 
 export default class CabinetActor extends Actor {
   constructor(data, context) {
@@ -90,7 +90,7 @@ export default class CabinetActor extends Actor {
     let corps = null;
     // Information du corps si l'esprit est le comédien
     if (this.system.comedien) {
-      const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+      const cabinet = CabinetUtils.cabinet();
       if (cabinet) {
         const corpsId = cabinet.system.corps;
         corps = game.actors.get(corpsId);
@@ -165,7 +165,7 @@ export default class CabinetActor extends Actor {
   async rollSkill(qualiteId, { diff, rollMode, dialog = false, defaultValues = null, arme = null } = {}) {
     // Acquis de l'acteur et acquis collectifs
     let listeAcquis = this.getlisteAcquis();
-    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+    const cabinet = CabinetUtils.cabinet();
     if (cabinet) {
       const listeAcquisCollectifs = cabinet.getlisteAcquis(listeAcquis.length);
       listeAcquis = listeAcquis.concat(listeAcquisCollectifs);
@@ -239,7 +239,7 @@ export default class CabinetActor extends Actor {
    */
   async deplacerPosition(newPosition, forcer = false) {
     if (this.type !== "esprit") return;
-    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+    const cabinet = CabinetUtils.cabinet();
     if (!cabinet) {
       return ui.notifications.warn("Créez et attribuez d'abord un cabinet.");
     }
@@ -284,7 +284,7 @@ export default class CabinetActor extends Actor {
     }
     qualites.sort((a, b) => b.valeur - a.valeur);
 
-    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+    const cabinet = CabinetUtils.cabinet();
     let arbre;
     if (cabinet) {
       arbre = cabinet.system.arbre;
@@ -365,13 +365,12 @@ export default class CabinetActor extends Actor {
     let esprits = this.system.esprits;
     if (esprits.includes(esprit.id)) return false;
 
-    // Mise à jour de la liste des esprits du cabinet
+    // Mise à jour du cabinet : mise à jour de la liste des esprits du cabinet et de l'id du comédien
     esprits.push(esprit.id);
-    await this.update({ "system.esprits": esprits });
+    await this.update({ "system.esprits": esprits, "system.comedien": esprit.id});
 
     // Mise à jour de l'esprit
     await esprit.update({ "system.positionArbre": null });
-    await esprit.update({ "system.comedien": false });
   }
 
   /**
@@ -401,9 +400,13 @@ export default class CabinetActor extends Actor {
     if (comedienId) {
       const newComedien = game.actors.get(comedienId);
       if (!newComedien) return;
-      return ComedienUtils.set(newComedien);
+      // Si l'esprit est dans son jardin, le remettre d'abord dans l'arbre
+      if (newComedien.system.jardin) await newComedien.deplacerPosition("auto", true);
+      await this.update({ "system.comedien": newComedien.id });
     }
-    return ComedienUtils.set(null);
+    else await cabinet.update({ "system.comedien": null });
+    console.log("Cabinet | Changement de comédien : ", comedien);
+    Hooks.callAll("cabinet.majComedien", comedien);
   }
 
   /**

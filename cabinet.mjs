@@ -11,7 +11,8 @@ import * as applications from "./module/applications/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as models from "./module/data/_module.mjs";
-import { CabinetUtils, ComedienUtils } from "./module/utils.mjs";
+import { CabinetUtils, ComedienUtils, SocketUtils } from "./module/utils.mjs";
+import { CdmChat } from "./module/chat.mjs";
 
 Hooks.once("init", async function () {
   console.log(`CABINET DES MURMURES | Initialisation du système...`);
@@ -108,6 +109,11 @@ Hooks.once("init", async function () {
     },
     requiresReload: true,
   });
+
+  // Define socket
+  game.socket.on("system.cabinet", (data) => {
+    SocketUtils.performSocketMesssage(data);
+  });
 });
 
 Hooks.once("i18nInit", function () {
@@ -117,7 +123,7 @@ Hooks.once("i18nInit", function () {
 
 Hooks.once("ready", async function () {
   if (game.settings.get("cabinet", "appComedien") !== "aucun") {
-    let cabinet = CabinetUtils.actuel();
+    let cabinet = CabinetUtils.cabinet();
 
     if (cabinet) {
       const comedienApp = new ComedienApp(cabinet);
@@ -136,12 +142,32 @@ Hooks.on("deleteActor", async (document, options, userId) => {
   // Mise à jour du cabinet
   const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
   if (cabinet) {
-    if (document.type === "corps" && cabinet.system.corps === document.id) cabinet.update({ "system.corps": null });
+    if (document.type === "corps" && cabinet.system.corps === document.id) await cabinet.update({ "system.corps": null });
     if (document.type === "esprit" && cabinet.system.esprits.includes(document.id)) {
       // Mise à jour des esprits
       let esprits = cabinet.system.esprits.filter((esprit) => esprit !== document.id);
       await cabinet.update({ "system.esprits": esprits });
     }
+  }
+});
+
+Hooks.on("renderChatMessage", (message, html, data) => {
+  console.log("renderChatMessage", data);
+
+  const isDestinataire = data.message.flags.world && data.message.flags.world.idComedien === game.user.character?.id;
+
+  // Si c'est le MJ ou le joueur qui est comédien
+  if (game.user.isGM || isDestinataire) {
+    html.find("#demander-comedien-accepter").click((event) => {
+      CdmChat.demanderComedienAccepter(event, data.message);
+    });
+    html.find("#demander-comedien-refuser").click((event) => {
+      CdmChat.demanderComedienRefuser(event, data.message);
+    });
+  }
+  else {
+    const chatActions = html.find(".comedien-actions");    
+    chatActions[0].style.display = "none";
   }
 });
 

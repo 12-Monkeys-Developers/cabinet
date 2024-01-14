@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    .introImg {
+    .intro-img {
       padding: 5px;
       width: 60px;
       height: 60px;
@@ -19,7 +19,7 @@
       object-position: center;
       align-self: center;
     }
-    .intro_right {
+    .intro-right {
       display: flex;
       flex-direction: column;
       .introText {
@@ -42,7 +42,7 @@
     text-align: center;
   }
 }
-.cabinet_chat {
+.cabinet-chat {
   background-color: #394e55;
   background: var(--background_chat);
   font-family: "garamondpro";
@@ -60,5 +60,36 @@
   .content-link {
     background: none;
     border: 0px;
+  }
+  .intro-chat {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .intro-img {
+      padding: 5px;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      object-position: center;
+      align-self: center;
+    }
+    .intro-right {
+      display: flex;
+      flex-direction: column;
+      .introText {
+        font-family: "alexbrush";
+        font-size: 1.8em;
+        width: 210px;
+        padding-top: 0.5em;
+        text-align: center;
+      }
+    }
+  }
+  .reponse {
+    font-family: "alexbrush";
+    font-size: 1.2em;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }

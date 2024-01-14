@@ -738,7 +738,7 @@
   flex-direction: row;
   justify-content: center;
 }
-.dice-roll .intro-chat .introImg {
+.dice-roll .intro-chat .intro-img {
   padding: 5px;
   width: 60px;
   height: 60px;
@@ -746,11 +746,11 @@
   object-position: center;
   align-self: center;
 }
-.dice-roll .intro-chat .intro_right {
+.dice-roll .intro-chat .intro-right {
   display: flex;
   flex-direction: column;
 }
-.dice-roll .intro-chat .intro_right .introText {
+.dice-roll .intro-chat .intro-right .introText {
   font-family: "alexbrush";
   font-size: 1.8em;
   width: 210px;
@@ -767,25 +767,56 @@
   font-size: 1.2em;
   text-align: center;
 }
-.cabinet_chat {
+.cabinet-chat {
   background-color: #394e55;
   background: var(--background_chat);
   font-family: "garamondpro";
   font-size: 1.2em;
 }
-.cabinet_chat h3 {
+.cabinet-chat h3 {
   margin: 10px;
   font-family: "garamondpro";
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
 }
-.cabinet_chat .motif {
+.cabinet-chat .motif {
   margin: 10px;
 }
-.cabinet_chat .content-link {
+.cabinet-chat .content-link {
   background: none;
   border: 0px;
+}
+.cabinet-chat .intro-chat {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.cabinet-chat .intro-chat .intro-img {
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+  align-self: center;
+}
+.cabinet-chat .intro-chat .intro-right {
+  display: flex;
+  flex-direction: column;
+}
+.cabinet-chat .intro-chat .intro-right .introText {
+  font-family: "alexbrush";
+  font-size: 1.8em;
+  width: 210px;
+  padding-top: 0.5em;
+  text-align: center;
+}
+.cabinet-chat .reponse {
+  font-family: "alexbrush";
+  font-size: 1.2em;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 #comedien {
   display: grid;

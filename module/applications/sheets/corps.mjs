@@ -1,4 +1,4 @@
-import { ComedienUtils } from "../../utils.mjs";
+import { ComedienUtils, CabinetUtils } from "../../utils.mjs";
 import CabinetActorSheet from "./actor.mjs";
 
 export default class CorpsSheet extends CabinetActorSheet {
@@ -34,7 +34,7 @@ export default class CorpsSheet extends CabinetActorSheet {
       name: "Pas de contrôle",
       img: null,
     };
-    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+    const cabinet = CabinetUtils.cabinet();
 
     if (cabinet) {
       const comedien = ComedienUtils.actuel();

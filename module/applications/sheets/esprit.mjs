@@ -1,5 +1,7 @@
+import { CdmChat } from "../../chat.mjs";
 import { SYSTEM } from "../../config/system.mjs";
 import CabinetActorSheet from "./actor.mjs";
+import { CabinetUtils } from "../../utils.mjs";
 
 export default class EspritSheet extends CabinetActorSheet {
   constructor(object, options = {}) {
@@ -237,37 +239,27 @@ export default class EspritSheet extends CabinetActorSheet {
   }
 
   async _devenirComedien() {
-    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+    const cabinet = CabinetUtils.cabinet();
     let comedien = game.actors.get(cabinet.system.comedien);
 
     if (!comedien) {
       await cabinet.majComedien(this.actor.id);
     } else {
-      // Informer le MJ
-      const html = await renderTemplate("systems/cabinet/templates/chat/demanderComedienButton.hbs", {
-        actingCharName: this.actor.name,
-        nomComedien: comedien.name,
+      let chatData = {
+        actingId: this.actor.id,
+        actingCharName: this.actor.name,        
         actingCharImg: this.actor.img,
-        introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName: this.actor.name }),
-      });
-      const chatData = {
-        speaker: ChatMessage.getSpeaker({
-          alias: game.user.name,
-          actor: this.actor.id,
-        }),
-        content: html,
+        idComedien: comedien.id,
+        nomComedien: comedien.name,
+        introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName: this.actor.name, comedienName: comedien.name }),
+        demande: true,
+        accepte: false,
+        refuse: false,
+        userId: game.user.id
       };
-      ChatMessage.create(chatData);
 
-      // send data message to the player session
-      /* const emitData = {
-        espritDemandeur: this.actor.id,
-      };
-      game.socket.emit({
-        type: "demandeComedien",
-        data: emitData,
-      });
-      */
+      let chatMessage = await new CdmChat(this.actor).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).withFlags({world: {idComedien: comedien.id}}).create();
+      chatMessage.display();
     }
   }
 }

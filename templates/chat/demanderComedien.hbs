@@ -1,0 +1,27 @@
+{{log "cabinet-chat" this}}
+<div class="cabinet-chat">
+  <div class="foreground">
+    <div class="intro-chat">
+      {{#if (ne actingCharImg "icons/svg/mystery-man.svg")}}
+        <div class="intro-img">
+          <img src="{{actingCharImg}}" title="{{actingCharName}}" />
+        </div>
+      {{/if}}
+      <div class="intro-right">
+        <p class="introText">{{{introText}}}</p>
+      </div>
+    </div>
+    <div class="comedien-actions">
+      {{#if demande}}
+        <p> <button id="demander-comedien-accepter" data-id-user="{{userId}}" data-id-esprit="{{actingId}}" data-id-comedien="{{idComedien}}">Accepter</button></p>
+        <p> <button id="demander-comedien-refuser" data-id-user="{{userId}}" data-id-esprit="{{actingId}}" data-id-comedien="{{idComedien}}">Refuser</button></p>
+      {{/if}}
+    </div>
+    {{#if accepte}}
+      <p class="reponse"> {{nomComedien}} a accepté votre demande</p>
+    {{/if}}
+    {{#if refuse}}
+      <p class="reponse"> {{nomComedien}} a refusé votre demande</p>
+    {{/if}}
+  </div>
+</div>

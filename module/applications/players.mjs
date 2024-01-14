@@ -29,7 +29,7 @@ export default class CabinetPlayerList extends PlayerList {
     const character = game.users.get(id).character;
 
     if (character) {
-      let cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+      let cabinet = CabinetUtils.cabinet();
       if (cabinet) {
         cabinet.majComedien(character.id);
       }

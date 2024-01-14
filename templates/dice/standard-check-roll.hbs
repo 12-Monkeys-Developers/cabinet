@@ -2,11 +2,11 @@
 <div class="dice-roll {{cssClass}}">
   <div class="intro-chat">
     {{#if (ne data.actingCharImg "icons/svg/mystery-man.svg")}}
-      <div class="introImg">
+      <div class="intro-img">
         <img src="{{data.actingCharImg}}" title="{{data.actingCharName}}" />
       </div>
     {{/if}}
-    <div class="intro_right">
+    <div class="intro-right">
       <p class="introText">
         {{#if data.attaque}}
           Attaque avec {{data.attaqueNom}}<br />

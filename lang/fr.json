@@ -235,7 +235,7 @@
       "introText": "Jet de {activite} de {actingCharName}"
     },
     "COMEDIENCHATMESSAGE": {
-      "introText": "{actingCharName} réclame le contrôle."
+      "introText": "{actingCharName} réclame le contrôle à {comedienName}"
     },
     "SEARCHTOOL": {
       "window_title": "Rechercher",

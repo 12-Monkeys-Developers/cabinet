@@ -1,4 +1,5 @@
 import { SYSTEM } from "../config/system.mjs";
+import { CabinetUtils } from "../utils.mjs";
 
 /**
  * Prompt the user to perform a Standard Check.
@@ -46,7 +47,7 @@ export default class StandardCheckDialog extends Dialog {
 
     data.attributs = [];
     data.malus = 0;
-    const cabinet = await game.actors.filter((actor) => actor.type === "cabinet")[0];
+    const cabinet = CabinetUtils.cabinet();
     const corpsId = cabinet.system.corps;
     const corps = game.actors.get(corpsId);
     if (corps) {
