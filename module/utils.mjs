@@ -90,8 +90,9 @@ class SocketUtils {
         console.log("SocketUtils | updateChatMessage by GM", socketMsg);
         const messageId = socketMsg.data.messageId;
         const newContent = socketMsg.data.content;
+        const newFlags = socketMsg.data.flags;
         const message = game.messages.get(messageId);
-        message.update({ content: newContent });
+        message.update({ content: newContent, flags: newFlags });
       }
     }
   }

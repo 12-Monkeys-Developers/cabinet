@@ -222,7 +222,8 @@
       "comedienInexistant": "Le comédien n'existe pas.", 
       "comedienPasEsprit": "Le comédien n'est pas un esprit.",
       "comedienPasDansCabinet": "Le comédien n'est pas dans le cabinet.",
-      "comedienJardin": "Le comédien est dans le jardin."
+      "comedienJardin": "Le comédien est dans le jardin.",
+      "cabinetInexistant": "Le cabinet n'existe pas."
     },
     "SETTINGS": {
       "appComedien": {
@@ -235,7 +236,9 @@
       "introText": "Jet de {activite} de {actingCharName}"
     },
     "COMEDIENCHATMESSAGE": {
-      "introText": "{actingCharName} réclame le contrôle à {comedienName}"
+      "introText": "{actingCharName} réclame le contrôle à {comedienName}",
+      "accepte": "{comedienName} a accepté la demande",
+      "refuse": "{comedienName} a refusé la demande"
     },
     "SEARCHTOOL": {
       "window_title": "Rechercher",

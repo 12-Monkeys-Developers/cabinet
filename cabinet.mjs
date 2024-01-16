@@ -152,22 +152,42 @@ Hooks.on("deleteActor", async (document, options, userId) => {
 });
 
 Hooks.on("renderChatMessage", (message, html, data) => {
-  console.log("renderChatMessage", data);
+  console.log("renderChatMessage", message, html, data);
 
-  const isDestinataire = data.message.flags.world && data.message.flags.world.idComedien === game.user.character?.id;
+  const typeMessage = data.message.flags.world?.type;
+  // Demande comédien
+  if (typeMessage === "demandeComedien") {
+    const estDestinataire = data.message.flags.world && data.message.flags.world.idComedien === game.user.character?.id;
 
-  // Si c'est le MJ ou le joueur qui est comédien
-  if (game.user.isGM || isDestinataire) {
-    html.find("#demander-comedien-accepter").click((event) => {
-      CdmChat.demanderComedienAccepter(event, data.message);
-    });
-    html.find("#demander-comedien-refuser").click((event) => {
-      CdmChat.demanderComedienRefuser(event, data.message);
-    });
+    // Boutons d'action
+    // Si c'est le MJ ou le joueur qui est comédien
+    if (game.user.isGM || estDestinataire) {
+      html.find("#demander-comedien-accepter").click((event) => {
+        CdmChat.demanderComedienAccepter(event, data.message);
+      });
+      html.find("#demander-comedien-refuser").click((event) => {
+        CdmChat.demanderComedienRefuser(event, data.message);
+      });
+    } else {
+      const chatActions = html.find(".comedien-actions");
+      chatActions[0].style.display = "none";
+    }
   }
-  else {
-    const chatActions = html.find(".comedien-actions");    
-    chatActions[0].style.display = "none";
+
+  // Réponse comédien
+  if (typeMessage === "reponseComedien") {
+    const estDestinataire = data.message.flags.world && data.message.flags.world.idComedien === game.user.character?.id;
+
+    // Bouton de discorde
+    // Si c'est le MJ, le joueur qui est comédien ou le joueur qui a envoyé le message
+    if (estDestinataire || data.message.flags.world.userIdDemandeur === game.user.id) {
+      html.find("#demander-comedien-discorde").click((event) => {
+        CdmChat.demanderComedienDiscorde(event, data.message);
+      });
+    } else {
+      const chatActions = html.find(".comedien-discorde");
+      chatActions[0].style.display = "none";
+    }
   }
 });
 

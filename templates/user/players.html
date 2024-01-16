@@ -15,14 +15,15 @@
         <li class="player {{#if user.isGM}}gm{{/if}} flexrow" data-user-id="{{user._id}}">
 			<span class="player-active {{#if user.active}}active{{else}}inactive{{/if}}"
                   style="background: {{user.color}}; border: 1px solid {{user.border.css}}"></span>
-            <span class="player-name {{#if user.isSelf}}self{{/if}}" data-tooltip="{{user.displayName}}">
+            <span class="player-name {{#if user.isSelf}}self{{/if}}" data-tooltip="{{user.displayName}}" data-tooltip-direction="UP">
 				{{user.displayName}}
+                {{#if @root.isGM}}
+                    {{#unless (or user.isGM user.isComedien)}}
+                        &nbsp;&nbsp;<i class="fa-solid fa-person" data-tooltip="Désigner comme comédien" data-tooltip-direction="RIGHT"></i>
+                    {{/unless}}
+                {{/if}}
 			</span>
-            {{#if @root.isGM}}
-                {{#unless user.isGM}}
-                        <span class="menu-comedien"><i class="fa-solid fa-person" data-tooltip="Désigner comme comédien" data-tooltip-direction="RIGHT"></i></span>
-                {{/unless}}
-            {{/if}}
+     
         </li>
         {{/each}}
     </ol>

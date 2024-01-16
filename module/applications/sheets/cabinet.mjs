@@ -240,10 +240,10 @@ export default class CabinetSheet extends CabinetActorSheet {
    * @param {*} id
    */
   async _onEnleverMembre(actorId, actorPosition) {
-    //remet d'abord l'esprit dans son jardin pour tout nettoyer
+    // Remet d'abord l'esprit dans son jardin pour tout nettoyer
     let esprit = game.actors.get(actorId);
     await esprit.deplacerPosition(null, true);
-    //puis supprime l'esprit du cabinet
+    // Puis supprime l'esprit du cabinet
     let esprits = this.actor.system.esprits;
     const x = esprits.splice(actorPosition, 1);
     await this.actor.update({ "system.esprits": esprits });

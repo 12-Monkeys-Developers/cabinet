@@ -7,7 +7,7 @@ export default class EspritSheet extends CabinetActorSheet {
   constructor(object, options = {}) {
     super(object, options);
     Hooks.on("cabinet.updateCorps", async (corpsId) => this.render());
-    Hooks.on("cabinet.majComedien", async (comedien) => this.render());
+    Hooks.on("updateActor", async (document, change, options, userId) => this.render());
   }
 
   /** @inheritdoc */
@@ -228,16 +228,33 @@ export default class EspritSheet extends CabinetActorSheet {
     return await this.actor.rollAction(actionId);
   }
 
+  /**
+   * Menu de l'esprit pour aller dans le jardin
+   * Met la position dans l'arbre à null
+   */
   async _onAllerJardin() {
     await this.actor.deplacerPosition(null);
     this.render();
   }
 
+  /**
+   * Menu de l'esprit pour quitter le jardin
+   * Met la position dans l'arbre à auto
+   * L'esprit se positionne automatiquement en fonction de ses qualités et de la place disponible
+   */
   async _onQuitterJardin() {
     await this.actor.deplacerPosition("auto");
     this.render();
   }
 
+  /**
+   * Menu de l'esprit pour demander à devenir comédien
+   * S'il n'y a pas de comédien, il devient comédien
+   * S'il y a un comédien, il envoie une demande au comédien visible par l'esprit, le comédien et le MJ
+   * Le comédien peut accepter ou refuser la demande
+   * S'il accepte, l'esprit devient comédien
+   * S'il refuse, une proposition de discorde est envoyée à l'esprit et au comédien
+   */
   async _devenirComedien() {
     const cabinet = CabinetUtils.cabinet();
     let comedien = game.actors.get(cabinet.system.comedien);
@@ -255,10 +272,10 @@ export default class EspritSheet extends CabinetActorSheet {
         demande: true,
         accepte: false,
         refuse: false,
-        userId: game.user.id
+        userIdDemandeur: game.user.id
       };
 
-      let chatMessage = await new CdmChat(this.actor).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).withFlags({world: {idComedien: comedien.id}}).create();
+      let chatMessage = await new CdmChat(this.actor).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).withFlags({world: {type: "demandeComedien", idComedien: comedien.id}}).create();
       chatMessage.display();
     }
   }

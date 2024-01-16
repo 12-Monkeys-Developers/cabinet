@@ -1,7 +1,8 @@
+import { CabinetUtils } from "../utils.mjs";
 export default class CabinetPlayerList extends PlayerList {
-
   constructor(options) {
     super(options);
+    Hooks.on("cabinet.majComedien", async (comedien) => this.render());
   }
 
   /** @override */
@@ -19,20 +20,22 @@ export default class CabinetPlayerList extends PlayerList {
 
   /**
    * Designe un esprit comme comédien
-   * @param {*} event 
+   * @param {*} event
    */
   async _onDesignerComedien(event) {
-    console.log("Cabinet | Designer un comédien", event);
+    console.log("Cabinet | Designer un comédien par le menu MJ", event);
     const li = $(event.currentTarget).closest(".player");
     const id = li.data("userId");
-    console.log("Cabinet | Utilisateur : ", id);
+    console.log("Cabinet | Désigner le personnage de l'utilisateur : ", id);
     const character = game.users.get(id).character;
 
     if (character) {
       let cabinet = CabinetUtils.cabinet();
-      if (cabinet) {
-        cabinet.majComedien(character.id);
+      if (!cabinet) {
+        return ui.notifications.info(game.i18n.localize("CDM.WARNING.cabinetInexistant"));
       }
+      if (!character.system.estDansCabinet) return ui.notifications.info(game.i18n.localize("CDM.WARNING.comedienPasDansCabinet"));
+      cabinet.majComedien(character.id);
     }
   }
 
@@ -40,6 +43,13 @@ export default class CabinetPlayerList extends PlayerList {
   getData(options = {}) {
     let context = super.getData((options = {}));
     context.isGM = game.user.isGM;
+
+    context.users = context.users.map((user) => {
+      user.isComedien = false;
+      user.isComedien = user.character ? game.actors.get(user.character).system.comedien : false;
+      return user;
+    });
+
     return context;
   }
 }

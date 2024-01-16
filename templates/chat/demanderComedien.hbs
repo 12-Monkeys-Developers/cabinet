@@ -13,15 +13,18 @@
     </div>
     <div class="comedien-actions">
       {{#if demande}}
-        <p> <button id="demander-comedien-accepter" data-id-user="{{userId}}" data-id-esprit="{{actingId}}" data-id-comedien="{{idComedien}}">Accepter</button></p>
-        <p> <button id="demander-comedien-refuser" data-id-user="{{userId}}" data-id-esprit="{{actingId}}" data-id-comedien="{{idComedien}}">Refuser</button></p>
+        <p> <button id="demander-comedien-accepter" data-id-esprit="{{actingId}}" data-id-comedien="{{idComedien}}">Accepter</button></p>
+        <p> <button id="demander-comedien-refuser" data-id-user-demandeur="{{userIdDemandeur}}" data-id-esprit="{{actingId}}" data-id-comedien="{{idComedien}}">Refuser</button></p>
       {{/if}}
     </div>
     {{#if accepte}}
-      <p class="reponse"> {{nomComedien}} a accepté votre demande</p>
+      <p class="reponse"> {{ localize "CDM.COMEDIENCHATMESSAGE.accepte" comedienName=nomComedien }}</p> 
     {{/if}}
     {{#if refuse}}
-      <p class="reponse"> {{nomComedien}} a refusé votre demande</p>
+      <p class="reponse"> {{ localize "CDM.COMEDIENCHATMESSAGE.refuse" comedienName=nomComedien }}</p>
+      <div class="comedien-discorde">
+        <p> <button id="demander-comedien-discorde" data-id-user-demandeur="{{userIdDemandeur}}" data-id-comedien="{{idComedien}}">Discorde</button></p>
+      </div>
     {{/if}}
   </div>
 </div>

@@ -403,10 +403,13 @@ export default class CabinetActor extends Actor {
       // Si l'esprit est dans son jardin, le remettre d'abord dans l'arbre
       if (newComedien.system.jardin) await newComedien.deplacerPosition("auto", true);
       await this.update({ "system.comedien": newComedien.id });
+      console.log("Cabinet | Changement de comédien : ", comedien); 
+      Hooks.callAll("cabinet.majComedien", newComedien);
     }
-    else await cabinet.update({ "system.comedien": null });
-    console.log("Cabinet | Changement de comédien : ", comedien);
-    Hooks.callAll("cabinet.majComedien", comedien);
+    else {      
+      await cabinet.update({ "system.comedien": null });
+      Hooks.callAll("cabinet.majComedien", null);
+    }    
   }
 
   /**

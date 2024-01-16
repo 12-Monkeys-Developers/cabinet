@@ -132,7 +132,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
   get backgroundColor() {
     if (this.comedien) return "var(--background_esprit_header_comedien)";
     // Pour un esprit nouvellement créé, la positionArbre n'est pas encore définie
-    if (this.positionArbre === undefined) return "var(--background_esprit_header)";
+    if (this.positionArbre === undefined || this.positionArbre === "") return "var(--background_esprit_header)";
     if (this.jardin) return "var(--background_esprit_header_jardin)";
     return "var(--background_esprit_header)";
   }

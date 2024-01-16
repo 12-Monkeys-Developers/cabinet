@@ -165,12 +165,10 @@ export class CdmChat {
     const idComedien = element.dataset.idComedien;
     const comedien = game.actors.get(idComedien);
 
-    const idUser = element.dataset.idUser;
-    
     await ComedienUtils.set(esprit);
 
     // Get the message
-    const messageId = message._id;
+    const messageId = message._id;    
 
     let chatData = {
       actingCharName: esprit.name,        
@@ -183,15 +181,56 @@ export class CdmChat {
       refuse: false,
     };
 
-    let newChatMessage = await new CdmChat(esprit).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).withFlags({world: {idComedien: comedien.id}}).create();
-    game.socket.emit("system.cabinet", {msg: "updateChatMessage", data: {messageId: messageId, content: newChatMessage.content}});
+    let newChatMessage = await new CdmChat(esprit).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).create();
+
+    if (game.user.isGM) { 
+      const message = game.messages.get(messageId);
+      message.update({ content: newChatMessage.content });
+    }
+    else game.socket.emit("system.cabinet", {msg: "updateChatMessage", data: {messageId: messageId, content: newChatMessage.content}});
    
   }
 
+  /**
+   * Refuser la demande de comédien
+   * Remplace le message initial par un message de refus et un bouton de discorde
+   * @param {*} event 
+   * @param {*} message 
+   */
   static async demanderComedienRefuser(event, message) {
-    //TODO
     event.preventDefault();
-    console.log("demanderComedienRefuser");
+    console.log("demanderComedienRefuser", event, message);
+    const element = event.currentTarget;
+
+    const idEsprit = element.dataset.idEsprit;    
+    const esprit = game.actors.get(idEsprit);
+
+    const idComedien = element.dataset.idComedien;
+    const comedien = game.actors.get(idComedien);
+
+    // Get the message
+    const messageId = message._id;
+    const userIdDemandeur = element.dataset.idUserDemandeur; 
+
+    let chatData = {
+      actingCharName: esprit.name,        
+      actingCharImg: esprit.img,
+      idComedien: comedien.id,
+      nomComedien: game.user.isGM ? "Le MJ ": comedien.name,
+      introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName: esprit.name, comedienName: comedien.name }),      
+      demande: false,
+      accepte: false,
+      refuse: true,
+      userIdDemandeur: userIdDemandeur
+    };
+
+    let newChatMessage = await new CdmChat(esprit).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).withFlags({world: {type: "reponseComedien", userIdDemandeur: userIdDemandeur}}).create();
+
+    if (game.user.isGM) { 
+      const message = game.messages.get(messageId);
+      message.update({ content: newChatMessage.content });
+    }
+    else game.socket.emit("system.cabinet", {msg: "updateChatMessage", data: {messageId: messageId, content: newChatMessage.content, flags: newChatMessage.flags}});
   }
 
   static async demanderComedienDiscorde(event, message) {

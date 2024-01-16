@@ -124,13 +124,13 @@ export class ArbreVieForm extends FormApplication {
 
     // Vérifier si la sphère d'arrivée est occupée
     if (spheresInatteignables.has(arrivee)) {
-      console.log(`La sphère d'arrivée '${arrivee}' est occupée.`);
+      console.debug(`La sphère d'arrivée '${arrivee}' est occupée.`);
       return false;
     }
 
     // Vérifier si la sphère d'arrivée n'est pas bloqué par la Qlipha d'un autre esprit
     if (spheresReservees.has(arrivee)) {
-      console.log(`La sphère d'arrivée '${arrivee}' est bloquée par la Qlipha d'un autre esprit.`);
+      console.debug(`La sphère d'arrivée '${arrivee}' est bloquée par la Qlipha d'un autre esprit.`);
       return false;
     }
     //en cas de départ jardin, c'est suffisant
