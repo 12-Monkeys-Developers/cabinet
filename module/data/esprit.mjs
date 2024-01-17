@@ -136,4 +136,8 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     if (this.jardin) return "var(--background_esprit_header_jardin)";
     return "var(--background_esprit_header)";
   }
+
+  async resetPositionArbre() {
+    await this.parent.update({ 'system.positionArbre': '' });
+  }
 }

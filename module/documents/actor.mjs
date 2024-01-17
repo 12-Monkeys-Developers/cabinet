@@ -9,10 +9,10 @@ export default class CabinetActor extends Actor {
 
   /** @override */
   _onUpdate(data, options, userId) {
+    super._onUpdate(data, options, userId);
     if (this.type === "corps") {
       Hooks.callAll("cabinet.updateCorps", this.id);
-    }
-    super._onUpdate(data, options, userId);
+    }    
   }
 
   get isUnlocked() {
@@ -250,8 +250,8 @@ export default class CabinetActor extends Actor {
     // Déplacement vers le jardin
     if (!newPosition) {
       if (!this.system.comedien || forcer) {
-        this.update({ "system.positionArbre": null });
         cabinet.deplacerEsprit(this.id, oldPosition, null);
+        return await this.update({ "system.positionArbre": '' });        
       } else if (this.system.comedien) {
         return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
       }
@@ -367,10 +367,10 @@ export default class CabinetActor extends Actor {
 
     // Mise à jour du cabinet : mise à jour de la liste des esprits du cabinet et de l'id du comédien
     esprits.push(esprit.id);
-    await this.update({ "system.esprits": esprits, "system.comedien": esprit.id});
+    await this.update({ "system.esprits": esprits});
 
     // Mise à jour de l'esprit
-    await esprit.update({ "system.positionArbre": null });
+    await esprit.update({ "system.positionArbre": '' });
   }
 
   /**
@@ -386,6 +386,12 @@ export default class CabinetActor extends Actor {
     if (this.type !== "cabinet") return;
     if (newPosition) await this.update({ [`system.arbre.${newPosition}.idEsprit`]: espritId });
     if (oldPosition) await this.update({ [`system.arbre.${oldPosition}.idEsprit`]: null });
+
+    // Si l'esprit était le comédien, le retirer
+    const cabinet = CabinetUtils.cabinet();;
+    if (cabinet && cabinet.system.comedien === espritId) {
+      await cabinet.majComedien(null);
+    }
   }
 
   /**
@@ -403,11 +409,11 @@ export default class CabinetActor extends Actor {
       // Si l'esprit est dans son jardin, le remettre d'abord dans l'arbre
       if (newComedien.system.jardin) await newComedien.deplacerPosition("auto", true);
       await this.update({ "system.comedien": newComedien.id });
-      console.log("Cabinet | Changement de comédien : ", comedien); 
+      console.log("Cabinet | Changement de comédien : ", newComedien); 
       Hooks.callAll("cabinet.majComedien", newComedien);
     }
     else {      
-      await cabinet.update({ "system.comedien": null });
+      await this.update({ "system.comedien": null });
       Hooks.callAll("cabinet.majComedien", null);
     }    
   }

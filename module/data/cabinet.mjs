@@ -53,4 +53,15 @@ export default class CabinetCabinet extends foundry.abstract.TypeDataModel {
   get hasComedien() {
     return !!this.comedien;
   }
+
+  /**
+   * Reset l'arbre de vie
+   */
+  async resetArbre() {
+    const arbre = Object.values(SYSTEM.SPHERES).reduce((obj, sphere) => {
+      obj[sphere.id] = { idEsprit: null, idQlipha: null };
+      return obj;
+    }, {});
+    await this.parent.update({ 'system.arbre': arbre });
+  }
 }

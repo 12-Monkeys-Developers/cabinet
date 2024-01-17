@@ -137,7 +137,7 @@ Hooks.once("ready", async function () {
 Hooks.on("deleteActor", async (document, options, userId) => {
   // Suppression du comédien
   if (document.type === "esprit" && document.system.comedien) {
-    ComedienUtils.reset();
+    await ComedienUtils.reset();
   }
   // Mise à jour du cabinet
   const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
@@ -147,6 +147,14 @@ Hooks.on("deleteActor", async (document, options, userId) => {
       // Mise à jour des esprits
       let esprits = cabinet.system.esprits.filter((esprit) => esprit !== document.id);
       await cabinet.update({ "system.esprits": esprits });
+      // Suppression de l'esprit de l'arbre du cabinet s'il était dans l'arbre de vie
+      const positionArbre = document.system.positionArbre;
+      if (positionArbre !== undefined && positionArbre !== "") {
+        const arbre = cabinet.system.arbre;
+        arbre[positionArbre].idEsprit = null;
+        await cabinet.update({ "system.arbre": arbre });
+      }
+
     }
   }
 });
