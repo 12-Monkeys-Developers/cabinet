@@ -233,9 +233,19 @@ export class CdmChat {
     else game.socket.emit("system.cabinet", {msg: "updateChatMessage", data: {messageId: messageId, content: newChatMessage.content, flags: newChatMessage.flags}});
   }
 
+  /**
+   * Cliquer sur le bouton de discorde dans le chat 
+   * @param {*} event 
+   * @param {*} message 
+   */
   static async demanderComedienDiscorde(event, message) {
-    //TODO
     event.preventDefault();
-    console.log("demanderComedienDiscorde");
+    console.log("demanderComedienDiscorde", event, message);
+    
+    const user = game.user.id;
+    const actor = game.actors.get(game.user.character?.id);
+    if (actor) {
+      return actor.rollSkill('autorite', { dialog: true, title: "Jet de discorde", defaultValues: {action: 'Discorde', aspect: 'rouah'} });
+    }
   }
 }
