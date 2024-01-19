@@ -1,19 +1,41 @@
+<div class="niveaux-pouvoirs">
+  {{#if editable}}
+    <div class="editable">
+      <label>Niveau 1 : </label>
+      <input type="number" name="system.pouvoirs.niveau1" value="{{system.pouvoirs.niveau1}}" />
+      <label>Niveau 2 : </label>
+      <input type="number" name="system.pouvoirs.niveau2" value="{{system.pouvoirs.niveau2}}" />
+      <label>Niveau 3 : </label>
+      <input type="number" name="system.pouvoirs.niveau3" value="{{system.pouvoirs.niveau3}}" />
+    </div>
+  {{else}}
+    <div class="display">
+      POUVOIRS :
+      {{system.pouvoirs.niveau1}}
+      Niveau 1, 
+      {{system.pouvoirs.niveau2}}
+      Niveau 2, 
+      {{system.pouvoirs.niveau3}}
+      Niveau 3
+    </div>
+  {{/if}}
+</div>
 <div class="grid-pouvoirs">
-    {{#each pouvoirs as |pouvoir|}}
-        <div class="bloc-pouvoir item-contextmenu" data-item-id="{{pouvoir._id}}">
-            <div class="nom">{{pouvoir.name}}</div>
-            <div class="description">
-                <div class="inner-desc">
-                    <div class="info-line">
-                        <span class="neoclassic">x&nbsp;</span>
-                        <span class="niveau">{{pouvoir.system.niveau}}&nbsp;</span>
-                        <span class="niveau"> {{pouvoir.system.spherelabel}}&nbsp;</span>
-                        <span class="niveau"> {{pouvoir.system.perisprit}} pt</span>
-                        <span class="neoclassic">&nbsp;m</span>
-                    </div>
-                    {{{pouvoir.system.descriptionhtml}}}
-                </div>
-            </div>
+  {{#each pouvoirs as |pouvoir|}}
+    <div class="bloc-pouvoir item-contextmenu" data-item-id="{{pouvoir._id}}">
+      <div class="nom">{{pouvoir.name}}</div>
+      <div class="description">
+        <div class="inner-desc">
+          <div class="info-line">
+            <span class="neoclassic">x&nbsp;</span>
+            <span class="niveau">{{pouvoir.system.niveau}}&nbsp;</span>
+            <span class="niveau"> {{pouvoir.system.spherelabel}}&nbsp;</span>
+            <span class="niveau"> {{pouvoir.system.perisprit}} pt</span>
+            <span class="neoclassic">&nbsp;m</span>
+          </div>
+          {{{pouvoir.system.descriptionhtml}}}
         </div>
-    {{/each}}
+      </div>
+    </div>
+  {{/each}}
 </div>
