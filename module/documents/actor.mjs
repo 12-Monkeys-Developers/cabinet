@@ -144,7 +144,7 @@ export default class CabinetActor extends Actor {
       console.log("lanceDegats", armeId, degats);
       let chatDegats = await new CdmChat(this)
         .withTemplate("systems/cabinet/templates/chat/degats.hbs")
-        .withData({ nom: this.name, degats: degats.rollDegats.total, degatsToolTip: degats.degatsToolTip, localisation: degats.partieDuCorps })
+        .withData({ nom: this.name, actingCharImg: this.img, actingCharName:this.name, weaponName:arme.name, degats: degats.rollDegats.total, degatsToolTip: degats.degatsToolTip, localisation: degats.partieDuCorps })
         .withRolls([degats.rollDegats])
         .create();
       await chatDegats.display();

@@ -26,7 +26,7 @@
 <p>Toutes les marques, logo et illustrations utilisés sont la propriété de ReSpell SAR et utilisés avec autorisation.</p>
 
 <h2>Contributors</h2>
-<p>This sytem has been designed and coded by Kristov et Khaali, and permitted by the editing company ReSpell SARL.
+<p>This system has been designed and coded by Kristov et Khaali, and permitted by the editing company ReSpell SARL.
 <p>Ce système est développé par Kristov et Khaali, et publié avec l'accord des auteurs et ayants droits.</p>
 
 <h2>Community</h2>
