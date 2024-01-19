@@ -31,16 +31,16 @@
           <input type="text" name="system.energie.totale" value="{{system.energie.totale}}" {{disabled uneditable}}/>
         </div>
         {{#if editable}}
-        <div class="controle-fields" style="margin-left:10px;" data-tooltip="Le PnJ peut tenter des embellies">
+        <div class="controle-fields" style="margin-left:10px;" data-tooltip="Le PNJ peut tenter des embellies">
           <label class="checkbox">Embellie
             <input type="checkbox" name="system.peutEmbellie" {{checked system.peutEmbellie}} />
           </label>
         </div>
         {{else}}
           {{#if system.peutEmbellie}}
-        <div class="controle-fields" style="margin-left:10px;" data-tooltip="Le PnJ peut tenter des embellies">
-          <i class="logo_embellie"></i>
-        </div>
+            <div class="controle-fields" style="margin-left:10px;" data-tooltip="Le PNJ peut tenter des embellies">
+              <i class="logo_embellie"></i>
+            </div>
           {{/if}}
         {{/if}}
       </div>

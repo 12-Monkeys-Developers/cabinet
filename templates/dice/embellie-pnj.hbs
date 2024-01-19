@@ -1,0 +1,19 @@
+{{log "chat embellie roll" this}}
+<div class="dice-roll {{cssClass}}">
+  <div class="intro-chat">
+    {{#if (ne actingCharImg "icons/svg/mystery-man.svg")}}
+      <div class="intro-img">
+        <img src="{{actingCharImg}}" title="{{actingCharName}}" />
+      </div>
+    {{/if}}
+    <div class="intro-right">
+      <p class="introText">
+        {{{introText}}}
+      </p>
+    </div>
+  </div>
+    <div class="dice-result">
+        <p data-tooltip="{{tooltip}}">Total de l'embellie : {{{total}}}</p>
+        <p>{{details}}</p>
+    </div>
+</div>

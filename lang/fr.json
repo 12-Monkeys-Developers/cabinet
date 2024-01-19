@@ -233,7 +233,8 @@
       }
     },
     "DICECHATMESSAGE": {
-      "introText": "Jet de {activite} de {actingCharName}"
+      "introText": "Jet de {activite} de {actingCharName}",
+      "embellie": "Jet d'embellie de {actingCharName}"
     },
     "COMEDIENCHATMESSAGE": {
       "introText": "{actingCharName} réclame le contrôle à {comedienName}",

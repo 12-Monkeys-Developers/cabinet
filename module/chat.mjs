@@ -118,7 +118,7 @@ export class CdmChat {
 
     // Create the chat
     this.chatData = data;
-    console.log("chat create", this);
+    console.log("CABINET | Chat created and saved", this);
     return this;
   }
 

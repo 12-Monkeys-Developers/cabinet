@@ -1,4 +1,6 @@
+import { CdmChat } from "../../chat.mjs";
 import { SYSTEM } from "../../config/system.mjs";
+import { PnjUtils } from "../../utils.mjs";
 import CabinetActorSheet from "./actor.mjs";
 
 export default class PnjSheet extends CabinetActorSheet {
@@ -17,6 +19,20 @@ export default class PnjSheet extends CabinetActorSheet {
    * @type {string}
    */
   static actorType = "pnj";
+
+  /** @override */
+  activateListeners(html) {
+    super.activateListeners(html);
+
+    html.find(".logo_embellie").click(this._onEmbellieRoll.bind(this));
+  }
+
+  /** @override */
+  async _onDropItem(event, data) {
+    const item = await fromUuid(data.uuid);
+    if (["action"].includes(item.type)) return false;
+    else return super._onDropItem(event, data);
+  }
 
   /** @override */
   async getData(options) {
@@ -56,13 +72,6 @@ export default class PnjSheet extends CabinetActorSheet {
     context.opinions = SYSTEM.OPINIONS;
 
     return context;
-  }
-
-  /** @override */
-  async _onDropItem(event, data) {
-    const item = await fromUuid(data.uuid);
-    if (["action"].includes(item.type)) return false;
-    else return super._onDropItem(event, data);
   }
 
   /**
@@ -109,5 +118,30 @@ export default class PnjSheet extends CabinetActorSheet {
       } else combat.afficherAction = false;
       return combat;
     });
+  }
+
+  /**
+   * Jet d'embellie pour les PNJs spéciaux
+   * @param {*} event
+   */
+  async _onEmbellieRoll(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const roll = await new Roll("2d6").roll();
+    const embellie = PnjUtils.detailsEmbellie(roll);
+    const data = {
+      actingCharName: this.actor.name,
+      actingCharImg: this.actor.img,
+      introText: game.i18n.format("CDM.DICECHATMESSAGE.embellie", { actingCharName: this.actor.name }),
+      total : embellie.total,
+      details: embellie.details,    
+      explosiveRoll: embellie.explosiveRoll,
+      tooltip: embellie.tooltip,
+      rollMode: "gmroll"  
+    };
+    const rolls = [roll];
+    if (embellie.explosiveRoll != null) rolls.push(embellie.explosiveRoll);
+    let message = await new CdmChat(this.actor).withTemplate("systems/cabinet/templates/dice/embellie-pnj.hbs").withData(data).withRolls(rolls).create();
+    await message.display();
   }
 }
