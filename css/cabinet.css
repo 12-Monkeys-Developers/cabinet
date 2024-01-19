@@ -1940,6 +1940,11 @@ i.logo_embellie {
   max-height: 30px;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .niveaux-pouvoirs {
+  background: rgba(33, 42, 24, 0.8);
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   font-family: "arrusbt";
   font-weight: bold;
   font-size: 0.9em;
@@ -1948,6 +1953,7 @@ i.logo_embellie {
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .niveaux-pouvoirs input {
   color: white;
+  width: 2em;
 }
 .cabinet.sheet.actor.esprit .esprit-sheet .tab-pouvoirs .grid-pouvoirs {
   display: grid;
