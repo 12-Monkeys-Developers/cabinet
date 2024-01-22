@@ -2,7 +2,8 @@
     "id": "cabinet",
     "title": "Cabinet des murmures",
     "description": "Cabinet des murmures",
-    "version": "0.1.0",
+    "url": "#{URL}#",
+    "version": "#{VERSION}#",
     "compatibility": {
       "minimum": "11",
       "verified": "11"
@@ -50,8 +51,7 @@
     "gridUnits": "m",
     "primaryTokenAttribute": "",
     "initiative": "",
-    "url": "",
-    "manifest": "",
-    "download": "",
+    "manifest": "#{MANIFEST}#",
+    "download": "#{DOWNLOAD}#",
     "license": ""
   }

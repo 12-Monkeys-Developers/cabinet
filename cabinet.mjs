@@ -108,7 +108,7 @@ Hooks.once("init", async function () {
       bas: "CDM.SETTINGS.appComedien.bas",
     },
     requiresReload: true,
-    default: "aucun"
+    default: "haut"
   });
 
   // Define socket
@@ -171,7 +171,7 @@ Hooks.on("createActor", async (document, options, userId) => {
 
 
 Hooks.on("renderChatMessage", (message, html, data) => {
-  console.log("renderChatMessage", message, html, data);
+  console.debug("renderChatMessage", message, html, data);
 
   const typeMessage = data.message.flags.world?.type;
   // Demande comédien

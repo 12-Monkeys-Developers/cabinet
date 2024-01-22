@@ -159,8 +159,9 @@ export class ArbreVieForm extends FormApplication {
       }
     }
 
-    console.log(`Il n'y a pas de chemin de '${depart}' à '${arrivee}'.`);
-    return false; // Aucun chemin possible
+    // Aucun chemin possible
+    console.debug(`CABINET DES MURMURES | Il n'y a pas de chemin de '${depart}' à '${arrivee}'.`);
+    return false; 
   }
 
   /**

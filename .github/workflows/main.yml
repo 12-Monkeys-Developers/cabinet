@@ -84,7 +84,7 @@ jobs:
         uses: battila7/get-version-action@v2
 
 
-      # Modify "module.json" with values specific to the release.
+      # Modify "system.json" with values specific to the release.
       # Since the values for the "version" and "url" keys aren't known ahead of
       # time, the manifest file in the repository is updated with these values.
       #
@@ -116,13 +116,13 @@ jobs:
             `# The files that will be included.` \
             system.json                          \
             template.json                        \
-            cabinet.mjs                          \            
             README.md                            \
             CHANGELOG.md                         \
+            cabinet.mjs                          \
             templates/                           \
             module/                              \
             css/                                 \
-            assets/                              \            
+            assets/                              \
             lang/
           # Don't forget to add a backslash at the end of the line for any
           # additional files or directories!
@@ -149,5 +149,5 @@ jobs:
           method: 'POST'
           contentType: 'application/json'
           customHeaders: '{"Authorization": "${{ secrets.FVTT_PACKAGE_RELEASE_TOKEN }}"}'
-          data: '{"id": "cthack","dry-run":true,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/cthulhuhack/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/cthulhuhack/blob/main/CHANGELOG","compatibility":{"minimum":"11","verified":"11"}}}'
+          data: '{"id": "cabinet","dry-run":false,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/cabinet/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/cabinet/blob/main/CHANGELOG.md","compatibility":{"minimum":"11","verified":"11"}}}'
       
