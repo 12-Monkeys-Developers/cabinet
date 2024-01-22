@@ -108,6 +108,7 @@ Hooks.once("init", async function () {
       bas: "CDM.SETTINGS.appComedien.bas",
     },
     requiresReload: true,
+    default: "haut"
   });
 
   // Define socket
@@ -128,7 +129,7 @@ Hooks.once("ready", async function () {
     if (cabinet) {
       const comedienApp = new ComedienApp(cabinet);
       comedienApp.render(true);
-      console.log("renderApplication - comedienApp", comedienApp);
+      console.debug("renderApplication - comedienApp", comedienApp);
     }
   }
   console.log("CABINET DES MURMURES | Initialisation du système fini.");
@@ -140,7 +141,7 @@ Hooks.on("deleteActor", async (document, options, userId) => {
     await ComedienUtils.reset();
   }
   // Mise à jour du cabinet
-  const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
+  const cabinet = CabinetUtils.cabinet();
   if (cabinet) {
     if (document.type === "corps" && cabinet.system.corps === document.id) await cabinet.update({ "system.corps": null });
     if (document.type === "esprit" && cabinet.system.esprits.includes(document.id)) {
@@ -149,12 +150,11 @@ Hooks.on("deleteActor", async (document, options, userId) => {
       await cabinet.update({ "system.esprits": esprits });
       // Suppression de l'esprit de l'arbre du cabinet s'il était dans l'arbre de vie
       const positionArbre = document.system.positionArbre;
-      if (positionArbre !== undefined && positionArbre !== "") {
+      if (positionArbre !== "aucune" && positionArbre !== "jardin") {
         const arbre = cabinet.system.arbre;
         arbre[positionArbre].idEsprit = null;
         await cabinet.update({ "system.arbre": arbre });
       }
-
     }
   }
 });

@@ -56,7 +56,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
     // Acquis : Embedded items de type acquis
 
     // Position sur l'Arbre de Vie : la sphère ou null si l'esprit n'est pas positionné
-    schema.positionArbre = new fields.StringField({ required: false, blank: true, choices: SYSTEM.SPHERES, initial: undefined });
+    schema.positionArbre = new fields.StringField({ required: true, choices: SYSTEM.POSITION, initial: 'aucune' });
 
     schema.perisprit = new fields.NumberField({ ...requiredInteger, initial: 9, min: 0, max: 9 });
     schema.routine = new fields.HTMLField({ textSearch: true });
@@ -107,14 +107,7 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
    * Retourne true si l'esprit est dans le jardin
    */
   get jardin() {
-    return !this.estDansLesSpheres;
-  }
-
-  /**
-   * Retourne true si l'esprit est dans une sphère
-   */
-  get estDansLesSpheres() {
-    return Object.values(SYSTEM.SPHERES).some((sphere) => sphere.id === this.positionArbre);
+    return this.positionArbre === "jardin";
   }
 
   /**
@@ -136,13 +129,11 @@ export default class CabinetEsprit extends foundry.abstract.TypeDataModel {
    */
   get backgroundColor() {
     if (this.comedien) return "var(--background_esprit_header_comedien)";
-    // Pour un esprit nouvellement créé, la positionArbre n'est pas encore définie
-    if (this.positionArbre === undefined || this.positionArbre === "") return "var(--background_esprit_header)";
     if (this.jardin) return "var(--background_esprit_header_jardin)";
     return "var(--background_esprit_header)";
   }
 
   async resetPositionArbre() {
-    await this.parent.update({ 'system.positionArbre': '' });
+    await this.parent.update({ 'system.positionArbre': 'aucune' });
   }
 }

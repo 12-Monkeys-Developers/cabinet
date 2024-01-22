@@ -74,7 +74,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
     context.backgroundColor = this.actor.system.backgroundColor;
 
-    if (this.actor.system.positionArbre) {
+    if (this.actor.system.positionArbre !== "aucune" && this.actor.system.positionArbre !== "jardin") {
       let positionQual = SYSTEM.SPHERES[this.actor.system.positionArbre].qualiteSmall;
       context.comportement = "CDM.SPHERE." + this.actor.system.positionArbre + (this.actor.system.qualites[positionQual].qlipha ? ".defaut" : ".qualite");
     } else context.comportement = "";

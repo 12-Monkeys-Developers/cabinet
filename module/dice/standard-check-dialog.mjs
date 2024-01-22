@@ -29,7 +29,7 @@ export default class StandardCheckDialog extends Dialog {
     const data = this.roll.data;
 
     const comedien = data.actorData.comedien;
-    const position = data.actorData.positionArbre; // tieferet
+    const position = data.actorData.positionArbre; // une sphère, aucune ou jardin
     const qualite = data.qualite;
     const sphere = SYSTEM.QUALITES[qualite].sphere;
     const jardin = data.actorData.jardin;

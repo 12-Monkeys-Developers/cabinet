@@ -134,7 +134,7 @@ export class ArbreVieForm extends FormApplication {
       return false;
     }
     //en cas de départ jardin, c'est suffisant
-    if(!depart) return(true);
+    if(depart === "jardin") return(true);
 
     // Vérifier si le déplacement est possible en parcourant le graphe
     const queue = [depart];
@@ -176,7 +176,7 @@ export class ArbreVieForm extends FormApplication {
       let actor = game.actors.get(element);
 
       // L'esprit est sur une sphère
-      if (actor.system.positionArbre) {
+      if (actor.system.positionArbre != "aucune" && actor.system.positionArbre != "jardin"){
         contenuArbre[actor.system.positionArbre].id = actor.id;
         contenuArbre[actor.system.positionArbre].nom = actor.name;
         contenuArbre[actor.system.positionArbre].token = actor.prototypeToken.texture.src;

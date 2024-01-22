@@ -103,6 +103,7 @@ export const DIFFICULTES = {
     seuil: 21 
   },
 }
+
 export const MEMBRES = ["brasDroit","brasGauche","tete","torse","jambeGauche","jambeDroite"];
 
 export const IMAGES= {
@@ -133,6 +134,8 @@ export const IMAGES= {
   presentation_esprit_com: "systems/cabinet/assets/images/presentation/esprit_com.webp",
 }
 
+export const POSITION = ["aucune","jardin","binah","chokmah","chesed","geburah","hod","kether","malkuth","netzach","tiferet","yesod"];
+
 /**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
@@ -149,6 +152,7 @@ export const SYSTEM = {
   ACTION_CATEGORIES: ACTION.ACTION_CATEGORIES,
   DIFFICULTES,
   IMAGES,
-  MEMBRES
+  MEMBRES,
+  POSITION
 };
 

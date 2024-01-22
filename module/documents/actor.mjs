@@ -60,9 +60,9 @@ export default class CabinetActor extends Actor {
           actions.push(item.toObject());
         }
 
-        // La position dans l'arbre est null (par défaut l'esprit est dans le jardin)
+        // La position dans l'arbre est 'aucune'
         // L'esprit n'est pas le comédien
-        this.updateSource({ items: actions, "system.positionArbre": null });
+        this.updateSource({ items: actions, "system.positionArbre": "aucune" });
         break;
     }
   }
@@ -249,15 +249,14 @@ export default class CabinetActor extends Actor {
 
     // Déplacement vers le jardin
     if (!newPosition) {
+      // Il n'est pas comédien ou c'est un déplacement forcé par le MJ depuis le cabinet
       if (!this.system.comedien || forcer) {
         cabinet.deplacerEsprit(this.id, oldPosition, null);
-        return await this.update({ "system.positionArbre": '' });        
+        // Si c'est le comédien, il ne l'est plus
+        if (this.system.comedien) cabinet.majComedien(null);
+        return await this.update({ "system.positionArbre": 'jardin' });
       } else if (this.system.comedien) {
         return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
-      }
-      // Le MJ peut forcer depuis le cabinet
-      if (this.system.comedien && forcer) {
-        cabinet.majComedien(null);
       }
     } else if (newPosition === "auto") {
       //cas déplacement vers meilleure sphere dispo
@@ -370,7 +369,7 @@ export default class CabinetActor extends Actor {
     await this.update({ "system.esprits": esprits});
 
     // Mise à jour de l'esprit
-    await esprit.update({ "system.positionArbre": '' });
+    await esprit.update({ "system.positionArbre": 'jardin' });
   }
 
   /**
@@ -386,12 +385,6 @@ export default class CabinetActor extends Actor {
     if (this.type !== "cabinet") return;
     if (newPosition) await this.update({ [`system.arbre.${newPosition}.idEsprit`]: espritId });
     if (oldPosition) await this.update({ [`system.arbre.${oldPosition}.idEsprit`]: null });
-
-    // Si l'esprit était le comédien, le retirer
-    const cabinet = CabinetUtils.cabinet();;
-    if (cabinet && cabinet.system.comedien === espritId) {
-      await cabinet.majComedien(null);
-    }
   }
 
   /**
