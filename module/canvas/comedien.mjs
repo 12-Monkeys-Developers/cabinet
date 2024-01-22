@@ -35,7 +35,8 @@ export default class ComedienApp extends FormApplication {
     let top = 0;
     if (game.settings.get("cabinet", "appComedien") === "bas") {
       const hauteur = document.body.scrollHeight;
-      top = hauteur - (250 + 20 * this.infos.nbCorruptions);
+      const nbCorruptions = this.infos !== null ? this.infos.nbCorruptions : 0;
+      top = hauteur - (250 + 20 * nbCorruptions);
     }
 
     // Left

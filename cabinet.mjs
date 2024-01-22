@@ -108,7 +108,7 @@ Hooks.once("init", async function () {
       bas: "CDM.SETTINGS.appComedien.bas",
     },
     requiresReload: true,
-    default: "haut"
+    default: "aucun"
   });
 
   // Define socket
@@ -158,6 +158,17 @@ Hooks.on("deleteActor", async (document, options, userId) => {
     }
   }
 });
+
+Hooks.on("createActor", async (document, options, userId) => {
+  if (document.type === "cabinet") {
+    if (game.settings.get("cabinet", "appComedien") !== "aucun") {
+        const comedienApp = new ComedienApp(document);
+        comedienApp.render(true);
+        console.debug("renderApplication - comedienApp", comedienApp);
+    }
+  }
+});
+
 
 Hooks.on("renderChatMessage", (message, html, data) => {
   console.log("renderChatMessage", message, html, data);
