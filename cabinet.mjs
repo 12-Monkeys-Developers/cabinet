@@ -111,6 +111,14 @@ Hooks.once("init", async function () {
     default: "haut"
   });
 
+  game.settings.register("cabinet", "worldKey", {
+    name: "Unique world key",
+    scope: "world",
+    config: false,
+    type: String,
+    default: "",
+  });
+
   // Define socket
   game.socket.on("system.cabinet", (data) => {
     SocketUtils.performSocketMesssage(data);
@@ -122,6 +130,36 @@ Hooks.once("i18nInit", function () {
   preLocalizeConfig();
 });
 
+// Register world usage statistics
+function registerWorldCount(registerKey) {
+  if (game.user.isGM) {
+    let worldKey = game.settings.get(registerKey,"worldKey");
+    if (worldKey == undefined || worldKey == "") {
+      worldKey = randomID(32);
+      game.settings.set(registerKey, "worldKey", worldKey);
+    }
+
+    // Simple API counter
+	const worldData = {
+		"register_key": registerKey,
+		"world_key": worldKey,
+		"foundry_version": `${game.release.generation}.${game.release.build}`,
+		"system_name": game.system.id,
+		"system_version": game.system.version
+	}
+
+    let apiURL = "https://worlds.qawstats.info/worlds-counter";
+    $.ajax({
+		url: apiURL,
+		type: 'POST',
+		data: JSON.stringify(worldData),
+		contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+		async: false
+	  });
+  }
+}
+
 Hooks.once("ready", async function () {
   if (game.settings.get("cabinet", "appComedien") !== "aucun") {
     let cabinet = CabinetUtils.cabinet();
@@ -132,6 +170,8 @@ Hooks.once("ready", async function () {
       console.debug("renderApplication - comedienApp", comedienApp);
     }
   }
+  registerWorldCount('cabinet');
+
   console.log("CABINET DES MURMURES | Initialisation du système fini.");
 });
 
