@@ -243,6 +243,8 @@ export default class CabinetSheet extends CabinetActorSheet {
     // Remet d'abord l'esprit dans son jardin pour tout nettoyer
     let esprit = game.actors.get(actorId);
     await esprit.deplacerPosition(null, true);
+    // Supprime la position de l'esprit
+    await esprit.update({ "system.positionArbre": "aucune" });
     // Puis supprime l'esprit du cabinet
     let esprits = this.actor.system.esprits;
     const x = esprits.splice(actorPosition, 1);
