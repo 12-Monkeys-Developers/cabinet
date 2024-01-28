@@ -47,6 +47,7 @@
       }
     ],
     "socket": true,
+    "background":"systems/cabinet/assets/couvertures/thumb.webp",
     "gridDistance": 1.5,
     "gridUnits": "m",
     "primaryTokenAttribute": "",

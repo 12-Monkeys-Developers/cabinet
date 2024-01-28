@@ -206,6 +206,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
     let element = event.currentTarget;
     let qualite = element.dataset.field;
+    if(!CabinetUtils.cabinet()) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.cabinetInexistant"));
 
     return this.actor.rollSkill(qualite, { dialog: true, title: SYSTEM.QUALITES[qualite].label });
   }
@@ -220,6 +221,8 @@ export default class EspritSheet extends CabinetActorSheet {
     event.stopPropagation();
     // Ne pas déclencher de jet si la feuille est déverrouillée
     if (this.actor.isUnlocked) return;
+    
+    if(!CabinetUtils.cabinet()) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.cabinetInexistant"));
 
     let element = event.currentTarget;
     console.log("_onActionRoll", element);
