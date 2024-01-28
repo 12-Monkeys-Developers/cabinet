@@ -954,10 +954,10 @@ i.logo_embellie {
   grid-template-columns: 105px 4fr 1fr;
 }
 .corps-sheet .corps-header .titre2 {
-  text-align: center;
   font-family: "posterbodoni";
   font-size: 1.1em;
   color: #497180;
+  text-align: center;
   text-transform: uppercase;
 }
 .corps-sheet .corps-header .titre_feuille {
@@ -1099,6 +1099,19 @@ i.logo_embellie {
 .corps-sheet .corps-combat {
   margin-left: 15px;
   justify-content: center;
+}
+.corps-sheet .corps-combat .actions-ligne {
+  margin-top: 6px;
+}
+.corps-sheet .corps-combat .actions-ligne .logo_action:hover {
+  box-shadow: 0px 0px 5px #ea2b58;
+}
+.corps-sheet .corps-combat .actions-ligne .nom-action {
+  font-family: "trajan";
+  font-size: 0.8em;
+  color: #6a7980;
+  text-indent: 4px;
+  text-transform: uppercase;
 }
 .corps-sheet .corps-combat .armes-grid {
   display: grid;

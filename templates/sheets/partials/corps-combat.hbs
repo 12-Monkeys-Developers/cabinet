@@ -1,5 +1,24 @@
 
+{{log 'combat' this}}
 <div class="corps-combat">
+  <div class="grid-tab-actions">
+    <div class="categorie categorie-agir">
+        <div class="titre2">Combat</div>
+        {{#each combat as |action|}}
+          <div class="actions-ligne">
+            <div class="nom-action item-contextmenu" data-item-id="{{action._id}}">
+              <i class="logo_action" data-field="{{action._id}}"></i> {{action.name}}
+            </div>
+          <details>
+            <summary class="resolution" data-tooltip="{{action.formulaTooltip}}">
+              {{{action.formulaHtml}}}
+            </summary>
+            <div>{{{action.system.circonstances}}}</div>
+          </details>
+          </div>
+        {{/each}}
+    </div>
+    </div>
   <div class="armes-col"> 
     <div class="titre2">Armes et armures</div>
     <div class="armes-col">

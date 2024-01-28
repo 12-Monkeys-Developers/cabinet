@@ -91,7 +91,7 @@ export default class EspritSheet extends CabinetActorSheet {
   }
 
   /**
-   * Format les qualités pour les afficher sur la fiche
+   * Formate les qualités pour les afficher sur la fiche
    * @param {object} qualites
    * @return {object[]}
    */
@@ -103,7 +103,7 @@ export default class EspritSheet extends CabinetActorSheet {
   }
 
   /**
-   * Format les aspects por les afficher sur la fiche
+   * Formae les aspects por les afficher sur la fiche
    * @param {object} aspects
    * @return {object[]}
    */
@@ -118,9 +118,9 @@ export default class EspritSheet extends CabinetActorSheet {
   }
 
   /**
-   * Format les actions por les afficher sur la fiche
+   * Formate les actions por les afficher sur la fiche
    * _id, name, formulaHtml, formulaTooltip, circonstances
-   * @param {object[]} les embedded items de type action
+   * @param {object[]} actions les embedded items de type action
    * @return {object[]}
    */
   #formatActions(actions) {
@@ -225,7 +225,10 @@ export default class EspritSheet extends CabinetActorSheet {
     console.log("_onActionRoll", element);
     const actionId = element.dataset.field;
 
-    return await this.actor.rollAction(actionId);
+    const action = this.actor.items.get(actionId);
+    if (!action) return false;
+
+    return await this.actor.rollAction(action);
   }
 
   /**

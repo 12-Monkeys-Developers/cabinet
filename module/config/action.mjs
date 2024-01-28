@@ -15,6 +15,10 @@ export const ACTION_CATEGORIES = Object.freeze({
     id: "savoir",
     label: "CDM.ACTION.categorie.savoir",
   },
+  combat: {
+    id: "combat",
+    label: "CDM.ACTION.categorie.combat",
+  },
   corpsacorps: {
     id: "corpsacorps",
     label: "CDM.ACTION.categorie.corpsacorps",

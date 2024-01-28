@@ -12,7 +12,7 @@ export default class CabinetActor extends Actor {
     super._onUpdate(data, options, userId);
     if (this.type === "corps") {
       Hooks.callAll("cabinet.updateCorps", this.id);
-    }    
+    }
   }
 
   get isUnlocked() {
@@ -49,12 +49,14 @@ export default class CabinetActor extends Actor {
     }
     await super._preCreate(data, options, userId);
 
+    let actionsParDefaut = [];
+    let actions = [];
+    // Création d'un cabinet
     switch (data.type) {
       case "esprit":
         // Création de la liste des actions par défaut
         // Les actions qui ont l'attribut parDefaut a true sont ajoutées à l'esprit
-        const actionsParDefaut = game.items.filter((item) => item.type === "action" && item.system.parDefaut);
-        let actions = [];
+         actionsParDefaut = game.items.filter((item) => item.type === "action" && item.system.parDefaut);
         for (const action of actionsParDefaut) {
           const item = await fromUuid(action.uuid);
           actions.push(item.toObject());
@@ -64,17 +66,26 @@ export default class CabinetActor extends Actor {
         // L'esprit n'est pas le comédien
         this.updateSource({ items: actions, "system.positionArbre": "aucune" });
         break;
+
+      case "corps":
+        // Création de la liste des actions de combat par défaut
+        actionsParDefaut = game.items.filter((item) => item.type === "action" && item.system.parDefaut && item.system.categorie === "combat");
+        for (const action of actionsParDefaut) {
+          const item = await fromUuid(action.uuid);
+          actions.push(item.toObject());
+        }
+        this.updateSource({ items: actions });
+        break;
     }
   }
 
   /**
    * Jet d'action
-   * @param {*} actionId
+   * @param {*} action
    * @param {*} armeId
    * @returns
    */
-  async rollAction(actionId, armeId = null) {
-    const action = this.items.get(actionId);
+  async rollAction(action, armeId = null) {    
     const actionSystem = action.system;
 
     // Si l'action n'est possible que pour le comédien et que l'esprit n'est pas le comédien, message d'avertissement
@@ -127,7 +138,7 @@ export default class CabinetActor extends Actor {
       if (!comedien) return ui.notifications.warn("Il faut d'abord choisir un comédien.");
       const action = comedien.items.find((item) => item.type === "action" && item.name === nomAction);
       if (!action) return ui.notifications.warn(`L'action ${nomAction} n'a pas été trouvée dans les actions du comédien.`);
-      return await comedien.rollAction(action.id, armeId);
+      return await comedien.rollAction(action, armeId);
     }
   }
 
@@ -144,7 +155,15 @@ export default class CabinetActor extends Actor {
       console.log("lanceDegats", armeId, degats);
       let chatDegats = await new CdmChat(this)
         .withTemplate("systems/cabinet/templates/chat/degats.hbs")
-        .withData({ nom: this.name, actingCharImg: this.img, actingCharName:this.name, weaponName:arme.name, degats: degats.rollDegats.total, degatsToolTip: degats.degatsToolTip, localisation: degats.partieDuCorps })
+        .withData({
+          nom: this.name,
+          actingCharImg: this.img,
+          actingCharName: this.name,
+          weaponName: arme.name,
+          degats: degats.rollDegats.total,
+          degatsToolTip: degats.degatsToolTip,
+          localisation: degats.partieDuCorps,
+        })
         .withRolls([degats.rollDegats])
         .create();
       await chatDegats.display();
@@ -254,7 +273,7 @@ export default class CabinetActor extends Actor {
         cabinet.deplacerEsprit(this.id, oldPosition, null);
         // Si c'est le comédien, il ne l'est plus
         if (this.system.comedien) cabinet.majComedien(null);
-        return await this.update({ "system.positionArbre": 'jardin' });
+        return await this.update({ "system.positionArbre": "jardin" });
       } else if (this.system.comedien) {
         return ui.notifications.warn("Le Comédien ne peut pas aller dans son jardin secret.");
       }
@@ -366,10 +385,10 @@ export default class CabinetActor extends Actor {
 
     // Mise à jour du cabinet : mise à jour de la liste des esprits du cabinet et de l'id du comédien
     esprits.push(esprit.id);
-    await this.update({ "system.esprits": esprits});
+    await this.update({ "system.esprits": esprits });
 
     // Mise à jour de l'esprit
-    await esprit.update({ "system.positionArbre": 'jardin' });
+    await esprit.update({ "system.positionArbre": "jardin" });
   }
 
   /**
@@ -402,13 +421,12 @@ export default class CabinetActor extends Actor {
       // Si l'esprit est dans son jardin, le remettre d'abord dans l'arbre
       if (newComedien.system.jardin) await newComedien.deplacerPosition("auto", true);
       await this.update({ "system.comedien": newComedien.id });
-      console.log("Cabinet | Changement de comédien : ", newComedien); 
+      console.log("Cabinet | Changement de comédien : ", newComedien);
       Hooks.callAll("cabinet.majComedien", newComedien);
-    }
-    else {      
+    } else {
       await this.update({ "system.comedien": null });
       Hooks.callAll("cabinet.majComedien", null);
-    }    
+    }
   }
 
   /**
