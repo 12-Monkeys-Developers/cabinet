@@ -51,6 +51,11 @@ export default class CabinetActor extends Actor {
 
     let actionsParDefaut = [];
     let actions = [];
+    const prototypeToken = {
+      vision: true,
+      actorLink: true,
+      disposition: 1, // Friendly
+    };
     // Création d'un cabinet
     switch (data.type) {
       case "esprit":
@@ -64,7 +69,7 @@ export default class CabinetActor extends Actor {
 
         // La position dans l'arbre est 'aucune'
         // L'esprit n'est pas le comédien
-        this.updateSource({ items: actions, "system.positionArbre": "aucune" });
+        this.updateSource({ items: actions, prototypeToken, "system.positionArbre": "aucune" });
         break;
 
       case "corps":
@@ -74,8 +79,12 @@ export default class CabinetActor extends Actor {
           const item = await fromUuid(action.uuid);
           actions.push(item.toObject());
         }
-        this.updateSource({ items: actions });
+        this.updateSource({ items: actions, prototypeToken});
         break;
+
+        case "cabinet":
+          this.updateSource({prototypeToken});
+          break;
     }
   }
 
