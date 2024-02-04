@@ -49,7 +49,6 @@ export default class CorpsSheet extends CabinetActorSheet {
         context.combat = this.#formatCombat(this.actor.items.filter((item) => item.type == "action" && item.system.categorie === "combat"));
       }
     }
-
     context.malus = context.actor.system.malus;
 
     context.noteshtml = TextEditor.enrichHTML(this.actor.system.notes, { async: false });

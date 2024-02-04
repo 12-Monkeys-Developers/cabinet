@@ -1,5 +1,5 @@
 {{!log 'sante' this}}
-<div class="sante-grid">
+<div class="sante-grid {{#if femme}}bck_f{{else}}bck_h{{/if}}">
     <div class="encart-malus">
           <img src={{images.encart_malus}} title="Malus dû aux blessures" />
             <div class="text-malus">{{malus}}</div>
@@ -81,6 +81,11 @@
             <label> Séquelles</label>
             {{editor sequellesHtml target="system.sequelles" button=true engine="prosemirror" editable=true}}
         </div>
+      <div class="change-sexe">
+        <span class="middle-size"><a class="sheet-change-sexe" title="{{localize 'CDM.TOOLTIP.changesexe'}}">
+          {{#if femme}}<i class="fas fa-female"></i>{{else}}<i class="fas fa-male"></i>{{/if}}</a>
+        </span>
+      </div>
     {{else}}
         <div class="sequelles">
             <label> Séquelles</label>

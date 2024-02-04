@@ -304,12 +304,17 @@
       }
     }
   }
+  .bck_h {
+    background: var(--background_sante_pnj_h);
+  }
+  .bck_f {
+    background: var(--background_sante_pnj_f);
+  }
   .sante-grid {
-    background: var(--background_sante_f);
-    background-position: 90% 50%;
+    background-position: 40% 50%;
     margin-left: 30px;
     display: grid;
-    grid-template-columns: repeat(3, 100px);
+    grid-template-columns: repeat(3, 100px) 50px;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 5px;
     min-height: 430px;
@@ -441,6 +446,13 @@
       flex-direction: column;
       text-align: center;
       justify-content: center;
+    }
+    .change-sexe {
+      grid-row: 4 / 5;
+      grid-column: 4 / 5;
+      text-align: center;
+      align-self: self-end;
+      font-size: 2em;
     }
   }
   .pnj-description {

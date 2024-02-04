@@ -20,6 +20,7 @@ export default class CabinetActorSheet extends ActorSheet {
     context.cssClass = isEditable ? "editable" : "locked";
     context.editable = isEditable;
     context.uneditable = !isEditable;
+    context.femme = this.actor.sexeIllustration;
 
     context.actor = this.document;
     context.system = this.document.system;
@@ -134,6 +135,7 @@ export default class CabinetActorSheet extends ActorSheet {
 
     // Lock/Unlock la fiche
     html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
+    html.find(".change-sexe").click(this._onSheetChangeSexe.bind(this));
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click((ev) => this._onItemEdit(ev));
     html.find(".item-delete").click((ev) => this._onItemDelete(ev));
@@ -165,6 +167,15 @@ export default class CabinetActorSheet extends ActorSheet {
     let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
     if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
     else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
+    this.actor.sheet.render(true);
+  }
+
+  async _onSheetChangeSexe(event) {
+    event.preventDefault();
+
+    let flagData = await this.actor.getFlag(game.system.id, "femme");
+    if (flagData) await this.actor.unsetFlag(game.system.id, "femme");
+    else await this.actor.setFlag(game.system.id, "femme", "femme");
     this.actor.sheet.render(true);
   }
 

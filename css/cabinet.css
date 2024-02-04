@@ -1188,8 +1188,13 @@ i.logo_embellie {
   margin: 0px 5px;
   font-size: 0.8em;
 }
-.corps-sheet .sante-grid {
+.corps-sheet .bck_h {
   background: var(--background_sante_h);
+}
+.corps-sheet .bck_f {
+  background: var(--background_sante_f);
+}
+.corps-sheet .sante-grid {
   background-position: 55% 0%;
   margin-left: 18px;
   display: grid;
@@ -1353,6 +1358,13 @@ i.logo_embellie {
   flex-direction: column;
   text-align: center;
   justify-content: center;
+}
+.corps-sheet .sante-grid .change-sexe {
+  grid-row: 4 / 5;
+  grid-column: 3 / 4;
+  text-align: center;
+  align-self: self-end;
+  font-size: 2em;
 }
 .corruption-sheet {
   background-color: white;
@@ -2609,12 +2621,17 @@ i.logo_embellie {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+.pnj-sheet .bck_h {
+  background: var(--background_sante_pnj_h);
+}
+.pnj-sheet .bck_f {
+  background: var(--background_sante_pnj_f);
+}
 .pnj-sheet .sante-grid {
-  background: var(--background_sante_f);
-  background-position: 90% 50%;
+  background-position: 40% 50%;
   margin-left: 30px;
   display: grid;
-  grid-template-columns: repeat(3, 100px);
+  grid-template-columns: repeat(3, 100px) 50px;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   gap: 5px;
   min-height: 430px;
@@ -2749,6 +2766,13 @@ i.logo_embellie {
   flex-direction: column;
   text-align: center;
   justify-content: center;
+}
+.pnj-sheet .sante-grid .change-sexe {
+  grid-row: 4 / 5;
+  grid-column: 4 / 5;
+  text-align: center;
+  align-self: self-end;
+  font-size: 2em;
 }
 .pnj-sheet .pnj-description {
   min-height: 550px;

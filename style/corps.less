@@ -37,7 +37,7 @@
       font-family: "posterbodoni";
       font-size: 1.1em;
       color: #497180;
-      text-align: center;      
+      text-align: center;
       text-transform: uppercase;
     }
     .titre_feuille {
@@ -207,7 +207,7 @@
         font-size: 1em;
         color: black;
         padding-left: 0.5em;
-        align-self: center;          
+        align-self: center;
       }
     }
     .armures-grid {
@@ -221,7 +221,7 @@
         font-size: 1em;
         color: black;
         padding-left: 0.5em;
-        align-self: center;          
+        align-self: center;
       }
       input[type="checkbox"] {
         height: 10px;
@@ -273,9 +273,13 @@
       }
     }
   }
-
-  .sante-grid {
+  .bck_h {
     background: var(--background_sante_h);
+  }
+  .bck_f {
+    background: var(--background_sante_f);
+  }
+  .sante-grid {
     background-position: 55% 0%;
     margin-left: 18px;
     display: grid;
@@ -434,6 +438,13 @@
       flex-direction: column;
       text-align: center;
       justify-content: center;
+    }
+    .change-sexe {
+      grid-row: 4 / 5;
+      grid-column: 3 / 4;
+      text-align: center;
+      align-self: self-end;
+      font-size: 2em;
     }
   }
 }

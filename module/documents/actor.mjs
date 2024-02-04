@@ -19,6 +19,10 @@ export default class CabinetActor extends Actor {
     if (this.getFlag(game.system.id, "SheetUnlocked")) return true;
     return false;
   }
+  get sexeIllustration() {
+    if (this.getFlag(game.system.id, "femme")) return true;
+    return false;
+  }
 
   /**
    * @description Tableau des aquis d'un esprit sous la forme [{nom, valeur}}] ou des acquis collectifs du cabinet
