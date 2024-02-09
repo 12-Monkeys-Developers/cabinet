@@ -826,10 +826,11 @@
 }
 #comedien .window-content {
   padding: 0;
-  border: solid 3px #605347;
+  border: none;
 }
-#comedien .window-content .comedien-img img {
-  border-bottom: solid 3px #605347;
+#comedien .window-content img {
+  border: solid 3px #605347;
+  border-radius: 0;
 }
 #comedien .window-content .comedien-corruption {
   font-family: "imfell";

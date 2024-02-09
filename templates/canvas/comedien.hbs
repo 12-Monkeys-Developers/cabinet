@@ -4,12 +4,10 @@
     <img src="{{image}}" data-tooltip="{{nom}}" />
   </div>
   {{#if (gt corruptions.length 0)}}
-    {{#each corruptions as |corruption|}}
-      <div class="comedien-corruption">{{corruption.name}}</div>
-    {{/each}}
+      {{#each corruptions as |corruption|}}
+        <div class="comedien-corruption">{{corruption.name}}</div>
+      {{/each}}
   {{/if}}
 {{else}}
-  <div class="comedien-img">
-    <img src="icons/svg/mystery-man.svg" title="Pas de comédien défini" />
-  </div>
+  <img src="icons/svg/mystery-man.svg" title="Pas de comédien défini" />
 {{/if}}
