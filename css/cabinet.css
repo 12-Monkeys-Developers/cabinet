@@ -822,7 +822,7 @@
   display: grid;
   grid-template-columns: 1fr;
   max-width: 150px;
-  max-height: 200px;
+  max-height: 100%;
 }
 #comedien .window-content {
   padding: 0;
@@ -1100,6 +1100,10 @@ i.logo_embellie {
 .corps-sheet .corps-combat {
   margin-left: 15px;
   justify-content: center;
+}
+.corps-sheet .corps-combat .actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .corps-sheet .corps-combat .actions-ligne {
   margin-top: 6px;

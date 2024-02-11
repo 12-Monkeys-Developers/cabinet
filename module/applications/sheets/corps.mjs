@@ -87,6 +87,12 @@ export default class CorpsSheet extends CabinetActorSheet {
       }
     }
 
+    // S'il y a un comédien, on ajoute les actions de l'esprit de type corpsacorps, distance, sedefendre, seproteger
+    if (comedien) {
+      const espritActions = comedien.items.filter((item) => item.type == "action" && ["corpsacorps", "distance", "sedefendre", "seproteger"].includes(item.system.categorie));
+      actions = actions.concat(espritActions.sort((a, b) => a.name.localeCompare(b.name)));
+    }
+
     return actions.map((cfg) => {
       const action = foundry.utils.deepClone(cfg);
       // formulaHtml
