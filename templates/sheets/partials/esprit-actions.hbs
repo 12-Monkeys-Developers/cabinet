@@ -16,6 +16,12 @@
         {{/each}}
     </div>
     <div class="categorie categorie-attaquer">
+        <div class="titre2">Combat</div>
+        {{#each actions as |action|}}
+            {{#if (eq action.system.categorie "combat")}}
+                {{> "systems/cabinet/templates/sheets/partials/esprit-actions-group.hbs" action=action actor=../actor}}
+            {{/if}}
+        {{/each}}
         <div class="titre2">Attaquer au corps à corps</div>
         {{#each actions as |action|}}
             {{#if (eq action.system.categorie "corpsacorps")}}
