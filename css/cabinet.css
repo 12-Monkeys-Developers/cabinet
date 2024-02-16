@@ -3042,6 +3042,38 @@ i.logo_embellie {
   border: 0px;
   max-height: 100px;
 }
+.cabinet-chat {
+  background-color: #394e55;
+  background: var(--background_chat);
+  font-family: "garamondpro";
+  font-size: 1.2em;
+}
+.cabinet-chat h3 {
+  margin: 10px;
+  font-family: "garamondpro";
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+.cabinet-chat h4 {
+  margin: 10px;
+  font-family: "garamondpro";
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+}
+.cabinet-chat .motif {
+  margin: 10px;
+}
+.cabinet-chat .content-link {
+  background: none;
+  border: 0px;
+}
+.cabinet-chat .btn-search button {
+  padding: 5px;
+  margin: 5px;
+  line-height: 18px;
+}
 .resolution {
   font-family: "imfellfrenchcanon";
   font-size: 1em;

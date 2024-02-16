@@ -3,6 +3,7 @@ import setupTextEnrichers from "./module/config/text-enrichers.mjs";
 import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
 import ComedienApp from "./module/canvas/comedien.mjs";
 import { registerHandlebarsHelpers } from "./module/helpers.mjs";
+import { SearchChat } from "./module/applications/search/research.mjs";
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -108,7 +109,7 @@ Hooks.once("init", async function () {
       bas: "CDM.SETTINGS.appComedien.bas",
     },
     requiresReload: true,
-    default: "haut"
+    default: "haut",
   });
 
   game.settings.register("cabinet", "worldKey", {
@@ -133,30 +134,30 @@ Hooks.once("i18nInit", function () {
 // Register world usage statistics
 function registerWorldCount(registerKey) {
   if (game.user.isGM) {
-    let worldKey = game.settings.get(registerKey,"worldKey");
+    let worldKey = game.settings.get(registerKey, "worldKey");
     if (worldKey == undefined || worldKey == "") {
       worldKey = randomID(32);
       game.settings.set(registerKey, "worldKey", worldKey);
     }
 
     // Simple API counter
-	const worldData = {
-		"register_key": registerKey,
-		"world_key": worldKey,
-		"foundry_version": `${game.release.generation}.${game.release.build}`,
-		"system_name": game.system.id,
-		"system_version": game.system.version
-	}
+    const worldData = {
+      register_key: registerKey,
+      world_key: worldKey,
+      foundry_version: `${game.release.generation}.${game.release.build}`,
+      system_name: game.system.id,
+      system_version: game.system.version,
+    };
 
     let apiURL = "https://worlds.qawstats.info/worlds-counter";
     $.ajax({
-		url: apiURL,
-		type: 'POST',
-		data: JSON.stringify(worldData),
-		contentType: 'application/json; charset=utf-8',
-    dataType: 'json',
-		async: false
-	  });
+      url: apiURL,
+      type: "POST",
+      data: JSON.stringify(worldData),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      async: false,
+    });
   }
 }
 
@@ -170,7 +171,7 @@ Hooks.once("ready", async function () {
       console.debug("renderApplication - comedienApp", comedienApp);
     }
   }
-  registerWorldCount('cabinet');
+  registerWorldCount("cabinet");
 
   console.log("CABINET DES MURMURES | Initialisation du système fini.");
 });
@@ -202,13 +203,12 @@ Hooks.on("deleteActor", async (document, options, userId) => {
 Hooks.on("createActor", async (document, options, userId) => {
   if (document.type === "cabinet") {
     if (game.settings.get("cabinet", "appComedien") !== "aucun") {
-        const comedienApp = new ComedienApp(document);
-        comedienApp.render(true);
-        console.debug("renderApplication - comedienApp", comedienApp);
+      const comedienApp = new ComedienApp(document);
+      comedienApp.render(true);
+      console.debug("renderApplication - comedienApp", comedienApp);
     }
   }
 });
-
 
 Hooks.on("renderChatMessage", (message, html, data) => {
   console.debug("renderChatMessage", message, html, data);
@@ -248,6 +248,11 @@ Hooks.on("renderChatMessage", (message, html, data) => {
       chatActions[0].style.display = "none";
     }
   }
+  // ******  CODE FOR SEARCH 
+  if (typeMessage === "searchPage") {
+    html.find("#ouvrirpage").click((event) => SearchChat.onOpenJournalPage(event, data.message.flags.world?.searchPattern));
+  }
+  // ******  END OF CODE FOR SEARCH 
 });
 
 function preLocalizeConfig() {

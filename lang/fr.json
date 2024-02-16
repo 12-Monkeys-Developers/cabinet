@@ -249,7 +249,8 @@
       "dialog_title": "Recherche de Texte dans les Journaux, Personnages, Objets...",
       "dialog_input": "Entrez ici le texte à rechercher :",
       "chat_intro": "Résultat de la recherche",
-      "chat_text": "Texte recherché : "
+      "chat_text": "Texte recherché : ",
+      "no_results": "Aucun résultat"
     }
   }
 }
