@@ -14,7 +14,7 @@ export class SearchChat {
       itemResultCollection: [],
       actorResultCollection: [],
     };
-    this.template = "systems/${SYSTEM.id}/templates/chat/searchResult.hbs";
+    this.template = `systems/${SYSTEM.id}/templates/chat/searchResult.hbs`;
   }
 
   /**
@@ -79,6 +79,7 @@ export class SearchChat {
     this.data.actorResultCollection = await game.actors.search({ query: this.searchPattern });
     this.data.actorresults = this.data.actorResultCollection.length;
     this.data.hasresults = this.data.pageresults + this.data.itemresults + this.data.actorresults;
+    this.data.tooMuchResults = (this.data.hasresults > 20);
     return;
   }
 

@@ -250,7 +250,8 @@
       "dialog_input": "Entrez ici le texte à rechercher :",
       "chat_intro": "Résultat de la recherche",
       "chat_text": "Texte recherché : ",
-      "no_results": "Aucun résultat"
+      "no_results": "Aucun résultat",
+      "too_much_results": "Plus de 20 résultats, affinez votre recherche."
     }
   }
 }
