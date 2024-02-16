@@ -14,7 +14,7 @@ export class SearchChat {
       itemResultCollection: [],
       actorResultCollection: [],
     };
-    this.template = "systems/cabinet/templates/chat/searchResult.hbs";
+    this.template = "systems/${SYSTEM.id}/templates/chat/searchResult.hbs";
   }
 
   /**
