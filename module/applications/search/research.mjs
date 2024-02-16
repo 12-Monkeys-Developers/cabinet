@@ -104,8 +104,8 @@ export class SearchChat {
     }
     //cas texte
     let originalText = journalPage.text.content;
-    const regexPattern = new RegExp(searchPattern, "gi"); //g pour global, remplacement multiples, i pour case insensitive
-    const modifiedText = originalText.replace(regexPattern, "<mark>$&</mark>");
+    const regexPattern = new RegExp("("+searchPattern+")(?![^<]*>)", "gi"); //g pour global, remplacement multiples, i pour case insensitive ; le reste est pour ne pas remplacer le contenu des balises quand le pattern y apparait
+    const modifiedText = await originalText.replace(regexPattern, "<mark>$1</mark>");
 
     const modifiedTexthtml = await TextEditor.enrichHTML(modifiedText, { async: false });
 
