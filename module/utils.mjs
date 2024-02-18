@@ -15,13 +15,13 @@ class ComedienUtils {
       // Vérifier que l'acteur existe
       const comedien = game.actors.get(comedienId);
       if (!comedien) {
-        ui.notifications.info(game.i18n.localize("CDM.WARNING.comedienInexistant"));
+        ui.notifications.info("CABINET DES MURMURES | " + game.i18n.localize("CDM.WARNING.comedienInexistant"));
         this.reset();
         return null;
       }
       // Vérifier que l'acteur est un esprit
       if (comedien.type !== "esprit") {
-        ui.notifications.info(game.i18n.localize("CDM.WARNING.comedienPasEsprit"));
+        ui.notifications.info("CABINET DES MURMURES | " + game.i18n.localize("CDM.WARNING.comedienPasEsprit"));
         this.reset();
         return null;
       }
@@ -29,14 +29,14 @@ class ComedienUtils {
       const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
       if (cabinet) {
         if (!cabinet.system.esprits.includes(comedienId)) {
-          ui.notifications.info(game.i18n.localize("CDM.WARNING.comedienPasDansCabinet"));
+          ui.notifications.info("CABINET DES MURMURES | " + game.i18n.localize("CDM.WARNING.comedienPasDansCabinet"));
           this.reset();
           return null;
         }
       }
       // Vérifier que l'esprit n'est pas dans le jardin
       if (comedien.jardin) {
-        ui.notifications.info(game.i18n.localize("CDM.WARNING.comedienJardin"));
+        ui.notifications.info("CABINET DES MURMURES | " + game.i18n.localize("CDM.WARNING.comedienJardin"));
         this.reset();
         return null;
       }

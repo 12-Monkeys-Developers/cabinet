@@ -50,13 +50,12 @@ export default class ComedienApp extends FormApplication {
   async getData(options = {}) {
     let context = {};
 
-    //context.comedienDefini = this.comedien === null ? false : true;
     context.comedienDefini = this.object.system.hasComedien;
 
     const infos = this.infos;
-    context.corruptions = context.comedienDefini ? infos.corruptions : [];
-    context.nom = context.comedienDefini ? this.infos.nom : null;
-    context.image = context.comedienDefini ? this.infos.image : null;
+    context.corruptions = context.comedienDefini ? infos?.corruptions : [];
+    context.nom = context.comedienDefini ? infos?.nom : null;
+    context.image = context.comedienDefini ? infos?.image : null;
 
     return context;
   }

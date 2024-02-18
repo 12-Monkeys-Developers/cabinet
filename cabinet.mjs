@@ -177,10 +177,6 @@ Hooks.once("ready", async function () {
 });
 
 Hooks.on("deleteActor", async (document, options, userId) => {
-  // Suppression du comédien
-  if (document.type === "esprit" && document.system.comedien) {
-    await ComedienUtils.reset();
-  }
   // Mise à jour du cabinet
   const cabinet = CabinetUtils.cabinet();
   if (cabinet) {
@@ -195,6 +191,10 @@ Hooks.on("deleteActor", async (document, options, userId) => {
         const arbre = cabinet.system.arbre;
         arbre[positionArbre].idEsprit = null;
         await cabinet.update({ "system.arbre": arbre });
+      }
+      // Suppression du comédien
+      if (document.system.comedien) {
+        await cabinet.update({ "system.comedien": null });
       }
     }
   }

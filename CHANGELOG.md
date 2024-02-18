@@ -1,3 +1,8 @@
+0.9.5
+- Correction de la suppression d'un esprit du monde alors qu'il est comédien
+- Ajouts dans la présentation du système
+- Fonctionnalité de recherche de texte
+
 0.9.0
 - Jet d'embellie pour les PNJs spéciaux
 - Action Initiative pour le corps
