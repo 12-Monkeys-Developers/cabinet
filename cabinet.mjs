@@ -120,6 +120,20 @@ Hooks.once("init", async function () {
     default: "",
   });
 
+  game.settings.register("cabinet", "visibiliteJetsPNJ", {
+    name: "Visibilité des jets de dés des PNJs",
+    hint: "Détermine si les jets de dés du MJ sont visibles par les joueurs : toujours, jamais, ou selon le paramétrage du chat du MJ.",
+    scope: "world",
+    config: true,
+    type: String,
+    choices: {
+      private: "Toujours privés : seul le MJ les voit",
+      public: "Toujours publics : tout le monde les voit",      
+      depends: "Selon le réglage dans le chat",
+    },
+    default: "private",
+  });
+
   // Define socket
   game.socket.on("system.cabinet", (data) => {
     SocketUtils.performSocketMesssage(data);

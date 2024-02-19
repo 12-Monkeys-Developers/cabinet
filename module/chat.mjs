@@ -10,7 +10,7 @@ export class CdmChat {
     this.chat = null;
     this.content = null;
     this.template = null;
-    this.data = null;     // data to provide to the template
+    this.data = null; // data to provide to the template
     this.chatData = null; // data to create the chat message to display
     this.flags = null;
     this.rolls = null;
@@ -106,19 +106,34 @@ export class CdmChat {
       data.flags = this.flags;
     }
 
+    // Si rollMode n'est pas défini, on prend celui par défaut (celui du chat)
     let visibilityMode = this.data.rollMode ?? game.settings.get("core", "rollMode");
 
-    // Jet des PNJs
-    if (this.actor.type === "pnj" && game.user.isGM) visibilityMode = "gmroll";
+    // Visibilité des jet des PNJs en fonction de l'option choisie
+    if (this.actor.type === "pnj" && game.user.isGM) {
+      let visibilityChoice = game.settings.get("cabinet", "visibiliteJetsPNJ");
+      if (visibilityChoice === "public") visibilityMode = "publicroll";
+      else if (visibilityChoice === "private") visibilityMode = "gmroll";
+    }
 
-    // Le joueur a choisi de chuchoter au MJ
-    if (this.data.isWhisper) visibilityMode = "gmroll";
+    switch (visibilityMode) {
+      case "gmroll":
+        data.whisper = ChatMessage.getWhisperRecipients("GM").map((u) => u.id);
+        break;
+      case "blindroll":
+        data.whisper = ChatMessage.getWhisperRecipients("GM").map((u) => u.id);
+        data.blind = true;
+        break;
+      case "selfroll":
+        data.whisper = [game.user.id];
+        break;
+    }
 
-    ChatMessage.applyRollMode(data, visibilityMode);
+    data.rollMode = visibilityMode;
 
     // Create the chat
     this.chatData = data;
-    console.log("CABINET | Chat created and saved", this);
+    // console.log("CABINET | Chat created and saved", this);
     return this;
   }
 
@@ -146,20 +161,19 @@ export class CdmChat {
     return this;
   }
 
-
   /*** Fonctions utilisées dans le chat ***/
 
   /**
-   * Accepter la demande de comédien 
-   * @param {*} event 
-   * @param {*} message 
+   * Accepter la demande de comédien
+   * @param {*} event
+   * @param {*} message
    */
   static async demanderComedienAccepter(event, message) {
     event.preventDefault();
     console.log("demanderComedienAccepter", event, message);
     const element = event.currentTarget;
 
-    const idEsprit = element.dataset.idEsprit;    
+    const idEsprit = element.dataset.idEsprit;
     const esprit = game.actors.get(idEsprit);
 
     const idComedien = element.dataset.idComedien;
@@ -168,14 +182,14 @@ export class CdmChat {
     await ComedienUtils.set(esprit);
 
     // Get the message
-    const messageId = message._id;    
+    const messageId = message._id;
 
     let chatData = {
-      actingCharName: esprit.name,        
+      actingCharName: esprit.name,
       actingCharImg: esprit.img,
       idComedien: comedien.id,
       introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName: esprit.name, comedienName: comedien.name }),
-      nomComedien: game.user.isGM ? "Le MJ ": comedien.name,
+      nomComedien: game.user.isGM ? "Le MJ " : comedien.name,
       demande: false,
       accepte: true,
       refuse: false,
@@ -183,26 +197,24 @@ export class CdmChat {
 
     let newChatMessage = await new CdmChat(esprit).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).create();
 
-    if (game.user.isGM) { 
+    if (game.user.isGM) {
       const message = game.messages.get(messageId);
       message.update({ content: newChatMessage.content });
-    }
-    else game.socket.emit("system.cabinet", {msg: "updateChatMessage", data: {messageId: messageId, content: newChatMessage.content}});
-   
+    } else game.socket.emit("system.cabinet", { msg: "updateChatMessage", data: { messageId: messageId, content: newChatMessage.content } });
   }
 
   /**
    * Refuser la demande de comédien
    * Remplace le message initial par un message de refus et un bouton de discorde
-   * @param {*} event 
-   * @param {*} message 
+   * @param {*} event
+   * @param {*} message
    */
   static async demanderComedienRefuser(event, message) {
     event.preventDefault();
     console.log("demanderComedienRefuser", event, message);
     const element = event.currentTarget;
 
-    const idEsprit = element.dataset.idEsprit;    
+    const idEsprit = element.dataset.idEsprit;
     const esprit = game.actors.get(idEsprit);
 
     const idComedien = element.dataset.idComedien;
@@ -210,42 +222,45 @@ export class CdmChat {
 
     // Get the message
     const messageId = message._id;
-    const userIdDemandeur = element.dataset.idUserDemandeur; 
+    const userIdDemandeur = element.dataset.idUserDemandeur;
 
     let chatData = {
-      actingCharName: esprit.name,        
+      actingCharName: esprit.name,
       actingCharImg: esprit.img,
       idComedien: comedien.id,
-      nomComedien: game.user.isGM ? "Le MJ ": comedien.name,
-      introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName: esprit.name, comedienName: comedien.name }),      
+      nomComedien: game.user.isGM ? "Le MJ " : comedien.name,
+      introText: game.i18n.format("CDM.COMEDIENCHATMESSAGE.introText", { actingCharName: esprit.name, comedienName: comedien.name }),
       demande: false,
       accepte: false,
       refuse: true,
-      userIdDemandeur: userIdDemandeur
+      userIdDemandeur: userIdDemandeur,
     };
 
-    let newChatMessage = await new CdmChat(esprit).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).withFlags({world: {type: "reponseComedien", userIdDemandeur: userIdDemandeur}}).create();
+    let newChatMessage = await new CdmChat(esprit)
+      .withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs")
+      .withData(chatData)
+      .withFlags({ world: { type: "reponseComedien", userIdDemandeur: userIdDemandeur } })
+      .create();
 
-    if (game.user.isGM) { 
+    if (game.user.isGM) {
       const message = game.messages.get(messageId);
       message.update({ content: newChatMessage.content });
-    }
-    else game.socket.emit("system.cabinet", {msg: "updateChatMessage", data: {messageId: messageId, content: newChatMessage.content, flags: newChatMessage.flags}});
+    } else game.socket.emit("system.cabinet", { msg: "updateChatMessage", data: { messageId: messageId, content: newChatMessage.content, flags: newChatMessage.flags } });
   }
 
   /**
-   * Cliquer sur le bouton de discorde dans le chat 
-   * @param {*} event 
-   * @param {*} message 
+   * Cliquer sur le bouton de discorde dans le chat
+   * @param {*} event
+   * @param {*} message
    */
   static async demanderComedienDiscorde(event, message) {
     event.preventDefault();
     console.log("demanderComedienDiscorde", event, message);
-    
+
     const user = game.user.id;
     const actor = game.actors.get(game.user.character?.id);
     if (actor) {
-      return actor.rollSkill('autorite', { dialog: true, title: "Jet de discorde", defaultValues: {action: 'Discorde', aspect: 'rouah'} });
+      return actor.rollSkill("autorite", { dialog: true, title: "Jet de discorde", defaultValues: { action: "Discorde", aspect: "rouah" } });
     }
   }
 }

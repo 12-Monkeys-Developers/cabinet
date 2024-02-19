@@ -165,7 +165,7 @@ export default class CabinetActor extends Actor {
       const arme = this.items.get(armeId);
       if (!arme) return ui.notifications.warn("L'arme n'a pas été trouvée.");
       const degats = await arme.system.lancerDegats();
-      console.log("lanceDegats", armeId, degats);
+      // console.log("lanceDegats", armeId, degats);
       let chatDegats = await new CdmChat(this)
         .withTemplate("systems/cabinet/templates/chat/degats.hbs")
         .withData({

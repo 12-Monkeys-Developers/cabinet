@@ -1,3 +1,6 @@
+0.9.6
+- Ajout d'une option de visibilité des jets de dés des PNJs (Toujours privés, toujours publiques, selon le paramétrage du chat du MJ)
+
 0.9.5
 - Correction de la suppression d'un esprit du monde alors qu'il est comédien
 - Ajouts dans la présentation du système
