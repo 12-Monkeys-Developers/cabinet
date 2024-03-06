@@ -40,8 +40,8 @@ export default class EspritSheet extends CabinetActorSheet {
       .sort(function (a, b) {
         return a.name.localeCompare(b.name);
       });
-    context.acquis.forEach((element) => {
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    context.acquis.forEach(async (element) => {
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
     // Pouvoirs par ordre niveau et mise en forme de la description
@@ -50,23 +50,23 @@ export default class EspritSheet extends CabinetActorSheet {
       .sort(function (a, b) {
         return a.system.niveau > b.system.niveau;
       });
-    context.pouvoirs.forEach((element) => {
+    context.pouvoirs.forEach(async (element) => {
       element.system.spherelabel = SYSTEM.SPHERES[element.system.sphere].label;
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
     // corruptions par ordre niveau et mise en forme de la description
     context.corruptions = this.actor.items.filter((item) => item.type == "corruption");
-    context.corruptions.forEach((element) => {
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    context.corruptions.forEach(async (element) => {
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
-    context.adversaireshtml = TextEditor.enrichHTML(this.actor.system.adversaires, { async: false });
-    context.contactshtml = TextEditor.enrichHTML(this.actor.system.contacts, { async: false });
-    context.noteshtml = TextEditor.enrichHTML(this.actor.system.notes, { async: false });
-    context.objetshtml = TextEditor.enrichHTML(this.actor.system.objets, { async: false });
-    context.profilprivatehtml = TextEditor.enrichHTML(this.actor.system.profil.private, { async: false });
-    context.routinehtml = TextEditor.enrichHTML(this.actor.system.routine, { async: false });
+    context.adversaireshtml = await TextEditor.enrichHTML(this.actor.system.adversaires, { async: false });
+    context.contactshtml = await TextEditor.enrichHTML(this.actor.system.contacts, { async: false });
+    context.noteshtml = await TextEditor.enrichHTML(this.actor.system.notes, { async: false });
+    context.objetshtml = await TextEditor.enrichHTML(this.actor.system.objets, { async: false });
+    context.profilprivatehtml = await TextEditor.enrichHTML(this.actor.system.profil.private, { async: false });
+    context.routinehtml = await TextEditor.enrichHTML(this.actor.system.routine, { async: false });
 
     context.estDansCabinet = this.actor.system.estDansCabinet;
     context.comedien = this.actor.system.comedien;

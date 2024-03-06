@@ -33,8 +33,8 @@ export default class CabinetSheet extends CabinetActorSheet {
       .sort(function (a, b) {
         return a.name.localeCompare(b.name);
       });
-    context.acquis.forEach((element) => {
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    context.acquis.forEach(async (element) => {
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
     context.corps = game.actors.get(this.actor.system.corps);
     context.isgm = game.user.isGM;
@@ -44,14 +44,14 @@ export default class CabinetSheet extends CabinetActorSheet {
       .sort(function (a, b) {
         return a.name.localeCompare(b.name);
       });
-    context.graces.forEach((element) => {
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    context.graces.forEach(async (element) => {
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
-    context.adversaireshtml = TextEditor.enrichHTML(this.actor.system.adversaires, { async: false });
-    context.contactshtml = TextEditor.enrichHTML(this.actor.system.contacts, { async: false });
-    context.descriptionhtml = TextEditor.enrichHTML(this.actor.system.description, { async: false });
-    context.noteshtml = TextEditor.enrichHTML(this.actor.system.notes, { async: false });
+    context.adversaireshtml = await TextEditor.enrichHTML(this.actor.system.adversaires, { async: false });
+    context.contactshtml = await TextEditor.enrichHTML(this.actor.system.contacts, { async: false });
+    context.descriptionhtml = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.noteshtml = await TextEditor.enrichHTML(this.actor.system.notes, { async: false });
 
     return context;
   }

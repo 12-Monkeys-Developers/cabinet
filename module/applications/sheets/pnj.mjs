@@ -41,7 +41,7 @@ export default class PnjSheet extends CabinetActorSheet {
     context.aspects = this.#formatAspects(context.actor.system.aspects);
 
     context.attributs = this.#formatAttributs(context.actor.system.attributs);
-    context.descriptionhtml = TextEditor.enrichHTML(context.actor.system.description, { async: false });
+    context.descriptionhtml = await TextEditor.enrichHTML(context.actor.system.description, { async: false });
 
     // Acquis par ordre alpha et mise en forme de la description
     context.acquis = this.actor.items
@@ -49,12 +49,12 @@ export default class PnjSheet extends CabinetActorSheet {
       .sort(function (a, b) {
         return a.name.localeCompare(b.name);
       });
-    context.acquis.forEach((element) => {
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    context.acquis.forEach(async (element) => {
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
     context.armes = this.actor.items.filter((item) => item.type == "arme");
-    context.armes.forEach((element) => {
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    context.armes.forEach(async (element) => {
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
     context.armures = this.actor.items.filter((item) => item.type == "armure");
     context.prot = {};
@@ -62,8 +62,8 @@ export default class PnjSheet extends CabinetActorSheet {
       context.prot[element] = this.actor.getProtection(element);
     });
     context.speciaux = this.actor.items.filter((item) => item.type == "grace" || item.type == "corruption" || item.type == "pouvoir");
-    context.speciaux.forEach((element) => {
-      element.system.descriptionhtml = TextEditor.enrichHTML(element.system.description, { async: false });
+    context.speciaux.forEach(async (element) => {
+      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
     });
 
     context.combat = this.#formatCombat(context.actor.system.combat);

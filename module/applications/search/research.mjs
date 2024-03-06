@@ -107,7 +107,7 @@ export class SearchChat {
     const regexPattern = new RegExp("("+searchPattern+")(?![^<]*>)", "gi"); //g pour global, remplacement multiples, i pour case insensitive ; le reste est pour ne pas remplacer le contenu des balises quand le pattern y apparait
     const modifiedText = await originalText.replace(regexPattern, "<mark>$1</mark>");
 
-    const modifiedTexthtml = await TextEditor.enrichHTML(modifiedText, { async: false });
+    const modifiedTexthtml = await TextEditor.enrichHTML(modifiedText, { documents: true, async: false });
 
     let highlightedPage = new Dialog({
       content: modifiedTexthtml,
