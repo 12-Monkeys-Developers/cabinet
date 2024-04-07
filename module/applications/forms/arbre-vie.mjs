@@ -117,7 +117,7 @@ export class ArbreVieForm extends FormApplication {
    */
   validerDeplacement(idEsprit, depart, arrivee) {
     const spheresOccupees = this.cabinet.spheresOccupees;
-    const spheresReservees = this.cabinet.getSpheresReservees(idEsprit)
+    //FIXME const spheresReservees = this.cabinet.getSpheresReservees(idEsprit)
 
     //const spheresInatteignables = new Set([...spheresOccupees, ...spheresReservees]);
     const spheresInatteignables = new Set([...spheresOccupees]);
@@ -129,10 +129,11 @@ export class ArbreVieForm extends FormApplication {
     }
 
     // Vérifier si la sphère d'arrivée n'est pas bloqué par la Qlipha d'un autre esprit
-    if (spheresReservees.has(arrivee)) {
+    //FIXME 
+    /*if (spheresReservees.has(arrivee)) {
       console.debug(`La sphère d'arrivée '${arrivee}' est bloquée par la Qlipha d'un autre esprit.`);
       return false;
-    }
+    }*/
     //en cas de départ jardin, c'est suffisant
     if(depart === "jardin") return(true);
 
@@ -189,6 +190,7 @@ export class ArbreVieForm extends FormApplication {
           const sphere = SYSTEM.QUALITES[qualite].sphere;
           contenuArbre[sphere].qliphaNom = actor.name;
           contenuArbre[sphere].qliphaToken = actor.prototypeToken.texture.src;          
+          //FIXME Gère uniquement lorsque le défaut est plus grand que la qualité, pas s'il revient en-dessous
           await this.cabinet.update({[`system.arbre.${sphere}.idQlipha`]: actor.id});
         }
       }

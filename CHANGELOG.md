@@ -1,3 +1,6 @@
+0.9.7
+- Arbre de vie : désactive le fait de vérifier si la sphère d'arrivée n'est pas bloquée par la Qlipha d'un autre esprit
+
 0.9.6
 - Ajout d'une option de visibilité des jets de dés des PNJs (Toujours privés, toujours publiques, selon le paramétrage du chat du MJ)
 
