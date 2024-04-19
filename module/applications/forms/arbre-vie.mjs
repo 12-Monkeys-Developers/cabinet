@@ -117,7 +117,7 @@ export class ArbreVieForm extends FormApplication {
    */
   validerDeplacement(idEsprit, depart, arrivee) {
     const spheresOccupees = this.cabinet.spheresOccupees;
-    //FIXME const spheresReservees = this.cabinet.getSpheresReservees(idEsprit)
+    const spheresReservees = this.cabinet.getSpheresReservees(idEsprit)
 
     //const spheresInatteignables = new Set([...spheresOccupees, ...spheresReservees]);
     const spheresInatteignables = new Set([...spheresOccupees]);
@@ -129,11 +129,10 @@ export class ArbreVieForm extends FormApplication {
     }
 
     // Vérifier si la sphère d'arrivée n'est pas bloqué par la Qlipha d'un autre esprit
-    //FIXME 
-    /*if (spheresReservees.has(arrivee)) {
+    if (spheresReservees.has(arrivee)) {
       console.debug(`La sphère d'arrivée '${arrivee}' est bloquée par la Qlipha d'un autre esprit.`);
       return false;
-    }*/
+    }
     //en cas de départ jardin, c'est suffisant
     if(depart === "jardin") return(true);
 
@@ -186,13 +185,15 @@ export class ArbreVieForm extends FormApplication {
 
       // Mise à jour des qliphoth
       for (const [qualite, value] of Object.entries(actor.system.qualites)) {
+        const sphere = SYSTEM.QUALITES[qualite].sphere;
         if (value.qlipha) {
-          const sphere = SYSTEM.QUALITES[qualite].sphere;
           contenuArbre[sphere].qliphaNom = actor.name;
-          contenuArbre[sphere].qliphaToken = actor.prototypeToken.texture.src;          
-          //FIXME Gère uniquement lorsque le défaut est plus grand que la qualité, pas s'il revient en-dessous
+          contenuArbre[sphere].qliphaToken = actor.prototypeToken.texture.src;
           await this.cabinet.update({[`system.arbre.${sphere}.idQlipha`]: actor.id});
         }
+        else if (this.cabinet.system.arbre[sphere].idQlipha === actor.id){
+          //Situation ou le defaut est redevenu inférieur à la qualité -> remise à null
+          await this.cabinet.update({[`system.arbre.${sphere}.idQlipha`]: null});}
       }
     });
     return contenuArbre;

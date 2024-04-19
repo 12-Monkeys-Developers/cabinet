@@ -1,3 +1,5 @@
+0.9.8
+- Corrige le bug Qlipha. Le fonctionnement est rétabli comme attendu.
 0.9.7
 - Arbre de vie : désactive le fait de vérifier si la sphère d'arrivée n'est pas bloquée par la Qlipha d'un autre esprit
 
