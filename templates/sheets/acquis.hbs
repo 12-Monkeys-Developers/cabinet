@@ -9,11 +9,7 @@
         <div class="valeur-group">
           <div class="field-name">Valeur</div>
           <select name="system.valeur">
-            {{#select system.valeur}}
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            {{/select}}
+              {{selectOptions selectValeur selected=system.valeur}}
           </select>
         </div>
         <div class="description-group">

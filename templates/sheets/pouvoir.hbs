@@ -12,11 +12,7 @@
         <div class="niveau-name">Niveau</div>
         <div class="niveau-val">
           <select name="system.niveau">
-            {{#select system.niveau}}
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            {{/select}}
+            {{selectOptions selectNiveau selected=system.niveau}}
           </select>
         </div>
         <div class="description-group">

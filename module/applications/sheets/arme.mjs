@@ -20,6 +20,14 @@ export default class ArmeSheet extends CabinetItemSheet {
     const context = await super.getData(options);
 
     context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
+    context.selectPrecision = {
+      "-2": "-2",
+      "-1": "-1",
+      0: "0",
+      1: "1",
+      2: "2",
+      3: "3",
+    };
     return context;
   }
 }

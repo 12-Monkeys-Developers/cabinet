@@ -8,7 +8,7 @@ export default class CabinetArme extends foundry.abstract.TypeDataModel {
     schema.precision = new fields.NumberField({ ...requiredNullableInteger });
     schema.portee = new fields.NumberField({ ...requiredNullableInteger });
     schema.munitions = new fields.NumberField({ ...requiredNullableInteger });
-    schema.degats = new fields.StringField({ required: true, nullable: false, initial: "" });
+    schema.degats = new fields.StringField({ required: true, nullable: false, initial: "2" });
     schema.puissance = new fields.BooleanField({ initial: false });
     schema.cadence = new fields.NumberField({ ...requiredNullableInteger });
 

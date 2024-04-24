@@ -20,6 +20,11 @@ export default class AcquisSheet extends CabinetItemSheet {
     const context = await super.getData(options);
 
     context.spheres = SYSTEM.SPHERES;
+    context.selectValeur = {
+      1: "1",
+      2: "2",
+      3: "3",
+    };
     context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
     return context;
   }

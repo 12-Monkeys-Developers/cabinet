@@ -16,7 +16,7 @@ export default class PouvoirSheet extends CabinetItemSheet {
       template: `systems/${SYSTEM.id}/templates/sheets/${this.itemType}.hbs`,
       resizable: false,
       tabs: [],
-      scrollY: []
+      scrollY: [],
     });
   }
 
@@ -26,9 +26,13 @@ export default class PouvoirSheet extends CabinetItemSheet {
 
     context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
     context.spheres = SYSTEM.SPHERES;
-    context.imgsphere = SYSTEM.IMAGES[this.item.system.sphere+"_logo"];
-    
+    context.imgsphere = SYSTEM.IMAGES[this.item.system.sphere + "_logo"];
+    context.selectNiveau = {
+      1: "1",
+      2: "2",
+      3: "3",
+    };
+
     return context;
   }
 }
-

@@ -8,14 +8,7 @@
     <div class="arme-content">
       <div class="field-name" style="grid-row: 3 / 4; grid-column: 1 / 2;">Précision</div>
       <select style="grid-row: 3 / 4; grid-column: 2 / 3;width: 4em;" name="system.precision">
-        {{#select system.precision}}
-          <option value="-2">-2</option>
-          <option value="-1">-1</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        {{/select}}
+        {{selectOptions selectPrecision selected=system.precision}}
       </select>
       <div class="field-name" style="grid-row: 3 / 4; grid-column: 3 / 4;">Portée</div>
       <div class="data-group" style="grid-row: 3 / 4; grid-column: 4 / 5;">

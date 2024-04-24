@@ -1,3 +1,5 @@
+0.9.9
+- code pour v12
 0.9.8
 - Corrige le bug Qlipha. Le fonctionnement est rétabli comme attendu.
 0.9.7
