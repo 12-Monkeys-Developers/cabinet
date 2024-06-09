@@ -241,17 +241,6 @@
       "introText": "{actingCharName} réclame le contrôle à {comedienName}",
       "accepte": "{comedienName} a accepté la demande",
       "refuse": "{comedienName} a refusé la demande"
-    },
-    "SEARCHTOOL": {
-      "window_title": "Rechercher",
-      "button_search": "Rechercher",
-      "button_cancel": "Annuler",
-      "dialog_title": "Recherche de Texte dans les Journaux, Personnages, Objets...",
-      "dialog_input": "Entrez ici le texte à rechercher :",
-      "chat_intro": "Résultat de la recherche",
-      "chat_text": "Texte recherché : ",
-      "no_results": "Aucun résultat",
-      "too_much_results": "Plus de 20 résultats, affinez votre recherche."
     }
   }
 }

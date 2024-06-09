@@ -3,7 +3,6 @@ import setupTextEnrichers from "./module/config/text-enrichers.mjs";
 import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
 import ComedienApp from "./module/canvas/comedien.mjs";
 import { registerHandlebarsHelpers } from "./module/helpers.mjs";
-import { SearchChat } from "./module/applications/search/research.mjs";
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -85,7 +84,6 @@ Hooks.once("init", async function () {
     `systems/${SYSTEM.id}/templates/sheets/partials/pnj-description.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/tab-notes.hbs`,
     `systems/${SYSTEM.id}/templates/forms/arbre-vie.hbs`,
-    `systems/${SYSTEM.id}/templates/chat/searchResult.hbs`,
   ]);
 
   // Configuration text enrichers
@@ -262,11 +260,6 @@ Hooks.on("renderChatMessage", (message, html, data) => {
       chatActions[0].style.display = "none";
     }
   }
-  // ******  CODE FOR SEARCH 
-  if (typeMessage === "searchPage") {
-    html.find("#ouvrirpage").click((event) => SearchChat.onOpenJournalPage(event, data.message.flags.world?.searchPattern));
-  }
-  // ******  END OF CODE FOR SEARCH 
 });
 
 function preLocalizeConfig() {
