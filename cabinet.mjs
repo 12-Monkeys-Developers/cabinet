@@ -180,7 +180,7 @@ Hooks.once("ready", async function () {
     if (cabinet) {
       const comedienApp = new ComedienApp(cabinet);
       comedienApp.render(true);
-      console.debug("renderApplication - comedienApp", comedienApp);
+      //console.debug("renderApplication - comedienApp", comedienApp);
     }
   }
   registerWorldCount("cabinet");
@@ -217,13 +217,13 @@ Hooks.on("createActor", async (document, options, userId) => {
     if (game.settings.get("cabinet", "appComedien") !== "aucun") {
       const comedienApp = new ComedienApp(document);
       comedienApp.render(true);
-      console.debug("renderApplication - comedienApp", comedienApp);
+     // console.debug("renderApplication - comedienApp", comedienApp);
     }
   }
 });
 
 Hooks.on("renderChatMessage", (message, html, data) => {
-  console.debug("renderChatMessage", message, html, data);
+ // console.debug("renderChatMessage", message, html, data);
 
   const typeMessage = data.message.flags.world?.type;
   // Demande comédien

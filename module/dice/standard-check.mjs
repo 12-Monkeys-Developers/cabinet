@@ -35,7 +35,7 @@ export default class StandardCheck extends Roll {
       formula = "";
     }
     super(formula, data);
-    console.debug("StandardCheck - constructor", data);
+    // console.debug("StandardCheck - constructor", data);
   }
 
   /**
@@ -121,14 +121,14 @@ export default class StandardCheck extends Roll {
 
   /** @override */
   _prepareData(data = {}) {
-    console.debug("StandardCheck - _prepareData", data);
+    //console.debug("StandardCheck - _prepareData", data);
     const current = this.data || foundry.utils.deepClone(this.constructor.defaultData);
     for (let [k, v] of Object.entries(data)) {
       if (v === undefined) delete data[k];
     }
     data = foundry.utils.mergeObject(current, data, { insertKeys: false });
     StandardCheck.#configureData(data);
-    console.debug("StandardCheck - _prepareData - data", data);
+    //console.debug("StandardCheck - _prepareData - data", data);
     return data;
   }
 
@@ -245,7 +245,7 @@ export default class StandardCheck extends Roll {
    * @param {object} data
    */
   initialize(data) {
-    console.debug("StandardCheck - initialize", data);
+   // console.debug("StandardCheck - initialize", data);
     this.data = this._prepareData(data);
     this.terms = this.constructor.parse("", this.data);
   }
@@ -286,7 +286,7 @@ export default class StandardCheck extends Roll {
   }
 
   /** @override */
-  async evaluate({ minimize = false, maximize = false, async = true } = {}) {
+  async evaluate({ minimize = false, maximize = false} = {}) {
     /*
      * Jet d'embellie
      * Chaque 6 annule un 1
@@ -301,7 +301,7 @@ export default class StandardCheck extends Roll {
       let deConserveQualite;
       let desEmbellie;
 
-      await super.evaluate({ minimize, maximize, async });
+      await super.evaluate({ minimize, maximize });
 
       // Difficulte
       if (this.data.difficulte) this.data.difficulteValeur = SYSTEM.DIFFICULTES[this.data.difficulte].seuil;
@@ -354,7 +354,7 @@ export default class StandardCheck extends Roll {
       this._total = this._evaluateTotalEmbellie();
       return this;
     } else {
-      await super.evaluate({ minimize: false, maximize: false, async: true });
+      await super.evaluate({ minimize: false, maximize: false });
       console.debug("Evaluate - Jet normal", this);
       this.data.deQualite = this.dice[0].total;
       return this;

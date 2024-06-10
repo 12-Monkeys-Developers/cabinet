@@ -96,8 +96,8 @@ export class CdmChat {
     // Set the roll parameter if necessary
     if (this.rolls) {
       data.rollMode = this.data.rollMode;
-      data.type = CONST.CHAT_MESSAGE_TYPES.ROLL;
-      const pool = PoolTerm.fromRolls(this.rolls);
+      data.type = CONST.CHAT_MESSAGE_STYLES.ROLL;
+      const pool = foundry.dice.terms.PoolTerm.fromRolls(this.rolls);
       data.roll = Roll.fromTerms([pool]);
     }
 
@@ -143,7 +143,7 @@ export class CdmChat {
    */
   async _createContent() {
     // Update the data to provide to the template
-    const data = duplicate(this.data);
+    const data = foundry.utils.duplicate(this.data);
     //TODO owner pour faire quoi ?
     data.owner = this.actor.id;
 

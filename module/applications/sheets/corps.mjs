@@ -120,7 +120,6 @@ export default class CorpsSheet extends CabinetActorSheet {
     if (this.actor.isUnlocked) return;
 
     let element = event.currentTarget;
-    console.log("_onActionRoll", element);
     const actionId = element.dataset.field;
     const action = this.actor.items.get(actionId);
     if (!action) return false;

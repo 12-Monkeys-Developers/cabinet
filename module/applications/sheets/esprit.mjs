@@ -225,7 +225,6 @@ export default class EspritSheet extends CabinetActorSheet {
     if(!CabinetUtils.cabinet()) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.cabinetInexistant"));
 
     let element = event.currentTarget;
-    console.log("_onActionRoll", element);
     const actionId = element.dataset.field;
 
     const action = this.actor.items.get(actionId);

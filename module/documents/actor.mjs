@@ -123,7 +123,7 @@ export default class CabinetActor extends Actor {
       }
     }
 
-    console.log("rollAction defaultValues", defaultValues);
+    //console.log("rollAction defaultValues", defaultValues);
 
     // Si l'action est une arme, on récupère les valeurs de l'arme
     if (armeId) {
@@ -141,7 +141,6 @@ export default class CabinetActor extends Actor {
    *
    */
   async utiliserArme(armeId, nomAction) {
-    console.log("utiliserArme", armeId, nomAction);
 
     // Si c'est le corps qui utilise l'arme
     if (this.type === "corps") {
