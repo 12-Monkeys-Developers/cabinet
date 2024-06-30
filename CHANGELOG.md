@@ -1,8 +1,13 @@
+1.0.0
+- Compatibilité V12
+
 0.9.9
 - code pour v12
 - suppression de la fonctionnalité de recherche de texte - merci d'installer à la place le module "Search and Highlight", plus complet
+
 0.9.8
 - Corrige le bug Qlipha. Le fonctionnement est rétabli comme attendu.
+
 0.9.7
 - Arbre de vie : désactive le fait de vérifier si la sphère d'arrivée n'est pas bloquée par la Qlipha d'un autre esprit
 

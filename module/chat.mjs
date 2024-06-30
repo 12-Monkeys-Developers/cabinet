@@ -96,7 +96,6 @@ export class CdmChat {
     // Set the roll parameter if necessary
     if (this.rolls) {
       data.rollMode = this.data.rollMode;
-      data.type = CONST.CHAT_MESSAGE_STYLES.ROLL;
       const pool = foundry.dice.terms.PoolTerm.fromRolls(this.rolls);
       data.roll = Roll.fromTerms([pool]);
     }
