@@ -1,4 +1,4 @@
-export default class CabinetItemSheet extends ItemSheet {
+export default class CabinetItemSheet extends foundry.appv1.sheets.ItemSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;

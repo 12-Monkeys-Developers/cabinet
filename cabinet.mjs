@@ -35,11 +35,11 @@ Hooks.once("init", async function () {
     pnj: models.CabinetPnj,
   };
 
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
-  Actors.registerSheet(SYSTEM.id, applications.CorpsSheet, { types: ["corps"], makeDefault: true });
-  Actors.registerSheet(SYSTEM.id, applications.CabinetSheet, { types: ["cabinet"], makeDefault: true });
-  Actors.registerSheet(SYSTEM.id, applications.PnjSheet, { types: ["pnj"], makeDefault: true });
+  foundry.documents.collections.Actors.unregisterSheet("core", ActorSheet);
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.CorpsSheet, { types: ["corps"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.CabinetSheet, { types: ["cabinet"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.PnjSheet, { types: ["pnj"], makeDefault: true });
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.CabinetItem;
@@ -54,19 +54,19 @@ Hooks.once("init", async function () {
     pouvoir: models.CabinetPouvoir,
   };
 
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet(SYSTEM.id, applications.AcquisSheet, { types: ["acquis"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.ActionSheet, { types: ["action"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.ArmeSheet, { types: ["arme"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.ArmureSheet, { types: ["armure"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.CorruptionSheet, { types: ["corruption"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.GraceSheet, { types: ["grace"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
+  foundry.documents.collections.Items.unregisterSheet("core", ItemSheet);
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.AcquisSheet, { types: ["acquis"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ActionSheet, { types: ["action"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ArmeSheet, { types: ["arme"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ArmureSheet, { types: ["armure"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.CorruptionSheet, { types: ["corruption"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.GraceSheet, { types: ["grace"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
 
   // Dice system configuration
   CONFIG.Dice.rolls.push(dice.StandardCheck);
 
-  loadTemplates([
+  foundry.applications.handlebars.loadTemplates([
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-qualites.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-qualite-group.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-actions.hbs`,
