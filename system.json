@@ -1,61 +1,61 @@
 {
-    "id": "cabinet",
-    "title": "Cabinet des murmures",
-    "description": "Cabinet des murmures",
-    "url": "#{URL}#",
-    "version": "#{VERSION}#",
-    "compatibility": {
-      "minimum": "13",
-      "maximum": "13",
-      "verified": "13"
+  "id": "cabinet",
+  "title": "Cabinet des murmures",
+  "description": "Cabinet des murmures",
+  "url": "#{URL}#",
+  "version": "#{VERSION}#",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13",
+    "maximum": "13"
+  },
+  "authors": [
+    {
+      "name": "Khaali"
     },
-    "authors": [
-      {
-        "name": "Khaali"
-      },
-      {
-        "name": "Kristov"
-      }
-    ],
-    "esmodules": ["cabinet.mjs"],
-    "scripts": [],
-    "styles": ["css/cabinet.css"],
-    "packs": [],
-    "languages": [
-       {
-        "lang": "fr",
-        "name": "French",
-        "path": "lang/fr.json"
-      },
-      {
-        "lang": "en",
-        "name": "English",
-        "path": "lang/fr.json"
-      }
-    ],
-    "media": [
-      {
-        "type": "cover",
-        "thumbnail": "systems/cabinet/assets/couvertures/thumb_cdm.webp",
-        "loop": false,
-        "flags": {}
-      },
-      {
-        "type": "setup",
-        "loop": false,
-        "thumbnail": "systems/cabinet/assets/couvertures/thumb_cdm.webp",
-        "flags": {}
-      }
-    ],
-    "socket": true,
-    "background":"systems/cabinet/assets/couvertures/thumb.webp",
-    "grid": {
-      "distance": 1.5,
-      "units": "m"
+    {
+      "name": "Kristov"
+    }
+  ],
+  "esmodules": ["cabinet.mjs"],
+  "scripts": [],
+  "styles": ["css/cabinet.css"],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "French",
+      "path": "lang/fr.json"
     },
-    "primaryTokenAttribute": "",
-    "initiative": "",
-    "manifest": "#{MANIFEST}#",
-    "download": "#{DOWNLOAD}#",
-    "license": ""
-  }
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/fr.json"
+    }
+  ],
+  "media": [
+    {
+      "type": "cover",
+      "thumbnail": "systems/cabinet/assets/couvertures/thumb_cdm.webp",
+      "loop": false,
+      "flags": {}
+    },
+    {
+      "type": "setup",
+      "loop": false,
+      "thumbnail": "systems/cabinet/assets/couvertures/thumb_cdm.webp",
+      "flags": {}
+    }
+  ],
+  "socket": true,
+  "background": "systems/cabinet/assets/couvertures/thumb.webp",
+  "grid": {
+    "distance": 1.5,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "",
+  "initiative": "",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
+  "license": ""
+}

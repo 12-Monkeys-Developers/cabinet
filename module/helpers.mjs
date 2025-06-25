@@ -59,4 +59,8 @@ export const registerHandlebarsHelpers = function () {
       return action.system.controle;
     }
   });
+
+  Handlebars.registerHelper("gmTest", function (gmOnly) {
+    return game.user.isGM || !gmOnly
+  });
 };

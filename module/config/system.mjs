@@ -136,6 +136,24 @@ export const IMAGES= {
 
 export const POSITION = ["aucune","jardin","binah","chokmah","chesed","geburah","hod","kether","malkuth","netzach","tiferet","yesod"];
 
+export const SIDEBAR_ACTIONS = {
+  suiviap: {
+    action: "openForm",
+    setting: "presentationform",
+    icon: "fas fa-question",
+    tooltip: "CDM.gmtools.presentation",
+    section: "system",
+    gmOnly: false,
+  },
+  openArbre: {
+    action: "openArbre",
+    icon: "logo_defaut",
+    tooltip: "CDM.gmtools.arbreVie",
+    section: "system",
+    gmOnly: false,
+  },
+};
+
 /**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
@@ -153,6 +171,7 @@ export const SYSTEM = {
   DIFFICULTES,
   IMAGES,
   MEMBRES,
-  POSITION
+  POSITION,
+  SIDEBAR_ACTIONS
 };
 

@@ -1,6 +1,5 @@
 import { SYSTEM } from "./module/config/system.mjs";
 import setupTextEnrichers from "./module/config/text-enrichers.mjs";
-import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
 import ComedienApp from "./module/canvas/comedien.mjs";
 import { registerHandlebarsHelpers } from "./module/helpers.mjs";
 
@@ -35,7 +34,7 @@ Hooks.once("init", async function () {
     pnj: models.CabinetPnj,
   };
 
-  foundry.documents.collections.Actors.unregisterSheet("core", ActorSheet);
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
   foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
   foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.CorpsSheet, { types: ["corps"], makeDefault: true });
   foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.CabinetSheet, { types: ["cabinet"], makeDefault: true });
@@ -54,7 +53,7 @@ Hooks.once("init", async function () {
     pouvoir: models.CabinetPouvoir,
   };
 
-  foundry.documents.collections.Items.unregisterSheet("core", ItemSheet);
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
   foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.AcquisSheet, { types: ["acquis"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ActionSheet, { types: ["action"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ArmeSheet, { types: ["arme"], makeDefault: true });
@@ -88,9 +87,6 @@ Hooks.once("init", async function () {
 
   // Configuration text enrichers
   setupTextEnrichers();
-
-  // menu de gauche
-  initControlButtons();
 
   //configuration Handlebars
   registerHandlebarsHelpers();
@@ -126,16 +122,32 @@ Hooks.once("init", async function () {
     type: String,
     choices: {
       private: "Toujours privés : seul le MJ les voit",
-      public: "Toujours publics : tout le monde les voit",      
+      public: "Toujours publics : tout le monde les voit",
       depends: "Selon le réglage dans le chat",
     },
     default: "private",
+  });
+
+  game.settings.register("cabinet", "presentationform", {
+    name: "presentation",
+    type: applications.PresentationForm,
+    config: false,
+    default: false,
+    scope: "world",
   });
 
   // Define socket
   game.socket.on("system.cabinet", (data) => {
     SocketUtils.performSocketMesssage(data);
   });
+
+  // Add a custom sidebar tab
+    CONFIG.ui.sidebar.TABS.cabinet = {
+      icon: "fas fa-skull",
+      tooltip: "Cabinet",
+    }
+    CONFIG.ui.cabinet = applications.CabinetSidebarMenu;
+
 });
 
 Hooks.once("i18nInit", function () {
@@ -217,13 +229,13 @@ Hooks.on("createActor", async (document, options, userId) => {
     if (game.settings.get("cabinet", "appComedien") !== "aucun") {
       const comedienApp = new ComedienApp(document);
       comedienApp.render(true);
-     // console.debug("renderApplication - comedienApp", comedienApp);
+      // console.debug("renderApplication - comedienApp", comedienApp);
     }
   }
 });
 
 Hooks.on("renderChatMessage", (message, html, data) => {
- // console.debug("renderChatMessage", message, html, data);
+  // console.debug("renderChatMessage", message, html, data);
 
   const typeMessage = data.message.flags.world?.type;
   // Demande comédien

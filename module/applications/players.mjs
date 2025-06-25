@@ -1,5 +1,5 @@
 import { CabinetUtils } from "../utils.mjs";
-export default class CabinetPlayerList extends PlayerList {
+export default class CabinetPlayerList extends foundry.applications.ui.Players {
   constructor(options) {
     super(options);
     Hooks.on("cabinet.majComedien", async (comedien) => this.render());

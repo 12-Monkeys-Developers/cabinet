@@ -241,6 +241,21 @@
       "introText": "{actingCharName} réclame le contrôle à {comedienName}",
       "accepte": "{comedienName} a accepté la demande",
       "refuse": "{comedienName} a refusé la demande"
+    },
+    "gmtools": {
+      "presentation": "Présentation du système",
+      "arbreVie": "Arbre de Vie"
+    },
+    "sidebar": {
+      "title":"Cabinet",
+      "system": "Système",
+      "modules": "Modules",
+      "support": "Support",
+      "discordSinges": "Discord des XII Singes",
+      "discordSingesTooltip": "Rejoignez le Discord des XII Singes pour discuter du système Cthulhu Hack et trouver du support dans le canal Foundry.",
+      "discordLaFonderie": "Discord de la Fonderie",
+      "discordLaFonderieTooltip": "Rejoignez le serveur francophone dédié à Foundry VTT et son canal Cthulhu Hack"
     }
+
   }
 }

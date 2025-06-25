@@ -1,26 +1,38 @@
-export class PresentationForm extends FormApplication {
-  /** @override */
-  constructor(object, options = {}) {
-    super(object, options);
-  }
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      title: "Présentation du système",
-      id: "guide-systeme",
-      template: "systems/cabinet/templates/forms/guide-systeme.hbs",
-      width: 800,
-      height: 700,
+export default class PresentationForm extends HandlebarsApplicationMixin(ApplicationV2) {
+  static DEFAULT_OPTIONS = {
+    classes: ["cabinet","scrollable"],
+    tag: "form",
+    form: {
+      submitOnChange: false,
+      closeOnSubmit: true,
+    },
+    window: {
       resizable: true,
-      closeOnSubmit: false,
-    });
+      icon: "fas fa-gear",
+    },
+    position: { width: 800, height: 700 },
+    id: "guide-systeme",
+    actions: {
+      toggleLockMode: this._toggleLockMode,
+    },
+  };
+
+  static PARTS = {
+    presentation: {
+      template: "systems/cabinet/templates/forms/guide-systeme.hbs",
+    },
+  };
+  get title() {
+    return this.settingTitle;
   }
-  async getData(options) {
-    const context = {};
+  //settingName = "suiviRef";
+  settingTitle = game.i18n.localize("CDM.gmtools.presentation");
 
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
     context.images = SYSTEM.IMAGES;
-
     return context;
   }
 }

@@ -5,7 +5,7 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
     return Object.assign(options, {
       width: 800,
       height: 600,
-      classes: [SYSTEM.id, "sheet", "actor", this.actorType],
+      classes: ["cabinet", "sheet", "actor", this.actorType],
       template: `systems/${SYSTEM.id}/templates/sheets/${this.actorType}.hbs`,
       resizable: false,
       scrollY: [],
@@ -152,7 +152,7 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
 
   /** @inheritdoc */
   _contextMenu(html) {
-    ContextMenu.create(this, html, ".item-contextmenu", this._getItemEntryContextOptions());
+    foundry.applications.ux.ContextMenu.create(this, html, ".item-contextmenu", this._getItemEntryContextOptions());
   }
 
   /**
