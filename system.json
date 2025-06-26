@@ -21,6 +21,23 @@
   "scripts": [],
   "styles": ["css/cabinet.css"],
   "packs": [],
+  "documentTypes": {
+    "Actor": {
+      "cabinet": { "htmlFields": ["description", "contacts", "adversaires", "notes"] },
+      "corps": { "htmlFields": ["description", "equipement", "sequelles", "notes"] },
+      "esprit": { "htmlFields": ["profil.public", "profil.private", "routine", "contacts", "adversaires", "objets", "notes"] },
+      "pnj": { "htmlFields": ["description", "notes"] }
+    },
+    "Item": {
+      "acquis": { "htmlFields": ["description"] },
+      "action": { "htmlFields": ["controle", "desastre"] },
+      "arme": { "htmlFields": ["description"] },
+      "armure": { "htmlFields": ["description"] },
+      "corruption": { "htmlFields": ["description"] },
+      "grace": { "htmlFields": ["description"] },
+      "pouvoir": { "htmlFields": ["description"] }
+    }
+  },
   "languages": [
     {
       "lang": "fr",
