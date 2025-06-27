@@ -244,6 +244,7 @@
     },
     "gmtools": {
       "presentation": "Présentation du système",
+      "regles": "Règles",
       "arbreVie": "Arbre de Vie"
     },
     "sidebar": {
