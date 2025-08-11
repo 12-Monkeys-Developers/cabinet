@@ -1,3 +1,6 @@
+1.0.2
+- Dernière version compatible V12
+
 1.0.1
 - Suppression deprecated warning
 
