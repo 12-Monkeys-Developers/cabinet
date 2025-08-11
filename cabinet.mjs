@@ -234,42 +234,49 @@ Hooks.on("createActor", async (document, options, userId) => {
   }
 });
 
-Hooks.on("renderChatMessage", (message, html, data) => {
-  // console.debug("renderChatMessage", message, html, data);
-
-  const typeMessage = data.message.flags.world?.type;
+Hooks.on("renderChatMessageHTML", (message, html, context) => {
+  const typeMessage = context.message.flags.world?.type;
   // Demande comédien
   if (typeMessage === "demandeComedien") {
-    const estDestinataire = data.message.flags.world && data.message.flags.world.idComedien === game.user.character?.id;
+    const estDestinataire = context.message.flags.world && context.message.flags.world.idComedien === game.user.character?.id;
 
     // Boutons d'action
     // Si c'est le MJ ou le joueur qui est comédien
     if (game.user.isGM || estDestinataire) {
-      html.find("#demander-comedien-accepter").click((event) => {
-        CdmChat.demanderComedienAccepter(event, data.message);
-      });
-      html.find("#demander-comedien-refuser").click((event) => {
-        CdmChat.demanderComedienRefuser(event, data.message);
-      });
+      const accepterBtn = html.querySelector("#demander-comedien-accepter");
+      if (accepterBtn) {
+        accepterBtn.addEventListener("click", (event) => {
+          CdmChat.demanderComedienAccepter(event, context.message);
+        });
+      }
+      const refuserBtn = html.querySelector("#demander-comedien-refuser");
+      if (refuserBtn) {
+        refuserBtn.addEventListener("click", (event) => {
+          CdmChat.demanderComedienRefuser(event, context.message);
+        });
+      }
     } else {
-      const chatActions = html.find(".comedien-actions");
-      chatActions[0].style.display = "none";
+      const chatActions = html.querySelector(".comedien-actions");
+      if (chatActions) chatActions.style.display = "none";
     }
   }
 
   // Réponse comédien
   if (typeMessage === "reponseComedien") {
-    const estDestinataire = data.message.flags.world && data.message.flags.world.idComedien === game.user.character?.id;
+    const estDestinataire = context.message.flags.world && context.message.flags.world.idComedien === game.user.character?.id;
 
     // Bouton de discorde
     // Si c'est le MJ, le joueur qui est comédien ou le joueur qui a envoyé le message
-    if (estDestinataire || data.message.flags.world.userIdDemandeur === game.user.id) {
-      html.find("#demander-comedien-discorde").click((event) => {
-        CdmChat.demanderComedienDiscorde(event, data.message);
-      });
+    if (estDestinataire || context.message.flags.world.userIdDemandeur === game.user.id) {
+      const discordeBtn = html.querySelector("#demander-comedien-discorde");
+      if (discordeBtn) {
+        discordeBtn.addEventListener("click", (event) => {
+          CdmChat.demanderComedienDiscorde(event, context.message);
+        });
+      }
     } else {
-      const chatActions = html.find(".comedien-discorde");
-      chatActions[0].style.display = "none";
+      const chatActions = html.querySelector(".comedien-discorde");
+      if (chatActions) chatActions.style.display = "none";
     }
   }
 });
