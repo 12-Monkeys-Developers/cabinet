@@ -1,6 +1,6 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class PresentationForm extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class PresentationForm extends HandlebarsApplicationMixin(ApplicationV2) {  
   static DEFAULT_OPTIONS = {
     classes: ["cabinet","scrollable"],
     tag: "form",

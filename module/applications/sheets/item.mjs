@@ -1,7 +1,10 @@
 export default class CabinetItemSheet extends foundry.appv1.sheets.ItemSheet {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true
+
   /** @inheritdoc */
   static get defaultOptions() {
-    const options = super.defaultOptions;
+    const options = super.defaultOptions
     return Object.assign(options, {
       width: 400,
       height: 800,
@@ -9,22 +12,22 @@ export default class CabinetItemSheet extends foundry.appv1.sheets.ItemSheet {
       template: `systems/${SYSTEM.id}/templates/sheets/${this.itemType}.hbs`,
       resizable: false,
       tabs: [],
-      scrollY: []
-    });
+      scrollY: [],
+    })
   }
 
   /** @override */
   async getData(options) {
-    const context = {};
+    const context = {}
 
-    const isEditable = this.isEditable;
-    context.cssClass = isEditable ? "editable" : "locked";
-    context.editable = isEditable;
+    const isEditable = this.isEditable
+    context.cssClass = isEditable ? "editable" : "locked"
+    context.editable = isEditable
 
-    context.item = this.document;
-    context.system = this.document.system;
-    context.images=SYSTEM.IMAGES;
+    context.item = this.document
+    context.system = this.document.system
+    context.images = SYSTEM.IMAGES
 
-    return context;
+    return context
   }
 }

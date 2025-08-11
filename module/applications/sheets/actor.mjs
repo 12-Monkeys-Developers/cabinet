@@ -1,4 +1,7 @@
 export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true
+
   /** @inheritdoc */
   static get defaultOptions() {
     const options = super.defaultOptions;
