@@ -27,7 +27,7 @@ export default class PnjSheet extends CabinetActorSheet {
   activateListeners(html) {
     super.activateListeners(html)
 
-    html.find(".logo_embellie").click(this._onEmbellieRoll.bind(this))
+    html[0].querySelectorAll(".logo_embellie").forEach((el) => el.addEventListener("click", this._onEmbellieRoll.bind(this)))
   }
 
   /** @override */

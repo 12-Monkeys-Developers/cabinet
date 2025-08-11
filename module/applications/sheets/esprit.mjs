@@ -147,8 +147,8 @@ export default class EspritSheet extends CabinetActorSheet {
   activateListeners(html) {
     super.activateListeners(html)
 
-    html.find(".qualite-group").click(this._onQualiteRoll.bind(this))
-    html.find(".logo_action").click(this._onActionRoll.bind(this))
+    html[0].querySelectorAll(".qualite-group").forEach((el) => el.addEventListener("click", this._onQualiteRoll.bind(this)))
+    html[0].querySelectorAll(".logo_action").forEach((el) => el.addEventListener("click", this._onActionRoll.bind(this)))
 
     // Activate context menu
     this._contextCabMenu(html)
@@ -156,7 +156,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
   /** @inheritdoc */
   _contextCabMenu(html) {
-    ContextMenu.create(this, html, ".cabinet-contextmenu", this._getEntryContextOptions())
+    foundry.applications.ux.ContextMenu.implementation.create(this, html[0], ".cabinet-contextmenu", this._getEntryContextOptions(), { jQuery: false })
   }
 
   /**

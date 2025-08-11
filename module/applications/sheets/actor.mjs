@@ -4,7 +4,7 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
-    const options = super.defaultOptions;
+    const options = super.defaultOptions
     return Object.assign(options, {
       width: 800,
       height: 600,
@@ -12,25 +12,25 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
       template: `systems/${SYSTEM.id}/templates/sheets/${this.actorType}.hbs`,
       resizable: false,
       scrollY: [],
-    });
+    })
   }
 
   /** @override */
   async getData(options) {
-    const context = {};
+    const context = {}
 
-    const isEditable = this.actor.isUnlocked;
-    context.cssClass = isEditable ? "editable" : "locked";
-    context.editable = isEditable;
-    context.uneditable = !isEditable;
-    context.femme = this.actor.sexeIllustration;
+    const isEditable = this.actor.isUnlocked
+    context.cssClass = isEditable ? "editable" : "locked"
+    context.editable = isEditable
+    context.uneditable = !isEditable
+    context.femme = this.actor.sexeIllustration
 
-    context.actor = this.document;
-    context.system = this.document.system;
+    context.actor = this.document
+    context.system = this.document.system
 
-    context.images = SYSTEM.IMAGES;
+    context.images = SYSTEM.IMAGES
 
-    return context;
+    return context
   }
 
   /**
@@ -44,72 +44,72 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
         name: `Frapper`,
         icon: `<i class="fa-regular fa-hand-fist"></i>`,
         condition: (li) => {
-          const itemId = li.data("itemId");
-          const item = this.actor.items.get(itemId);
-          if (!item) return false;
-          return item.type === "arme" && item.system.estCorpsACorps && this.actor.type === "corps";
+          const itemId = li.dataset.itemId
+          const item = this.actor.items.get(itemId)
+          if (!item) return false
+          return item.type === "arme" && item.system.estCorpsACorps && this.actor.type === "corps"
         },
         callback: (li) => {
-          const armeId = li.data("itemId");
-          this.actor.utiliserArme(armeId, "Frapper");
+          const armeId = li.dataset.itemId
+          this.actor.utiliserArme(armeId, "Frapper")
         },
       },
       {
         name: `Se bagarrer`,
         icon: `<i class="fa-regular fa-hand-back-fist"></i>`,
         condition: (li) => {
-          const itemId = li.data("itemId");
-          const item = this.actor.items.get(itemId);
-          if (!item) return false;
-          return item.type === "arme" && item.system.estCorpsACorps && this.actor.type === "corps";
+          const itemId = li.dataset.itemId
+          const item = this.actor.items.get(itemId)
+          if (!item) return false
+          return item.type === "arme" && item.system.estCorpsACorps && this.actor.type === "corps"
         },
         callback: (li) => {
-          const armeId = li.data("itemId");
-          this.actor.utiliserArme(armeId, "Se bagarrer");
+          const armeId = li.dataset.itemId
+          this.actor.utiliserArme(armeId, "Se bagarrer")
         },
       },
       {
         name: `Tirer`,
         icon: `<i class="fa-solid fa-gun"></i>`,
         condition: (li) => {
-          const itemId = li.data("itemId");
-          const item = this.actor.items.get(itemId);
-          if (!item) return false;
-          return item.type === "arme" && item.system.estDistance && this.actor.type === "corps";
+          const itemId = li.dataset.itemId
+          const item = this.actor.items.get(itemId)
+          if (!item) return false
+          return item.type === "arme" && item.system.estDistance && this.actor.type === "corps"
         },
         callback: (li) => {
-          const armeId = li.data("itemId");
-          this.actor.utiliserArme(armeId, "Tirer");
+          const armeId = li.dataset.itemId
+          this.actor.utiliserArme(armeId, "Tirer")
         },
       },
       {
         name: `Lancer`,
         icon: `<i class="fa-regular fa-hand"></i>`,
         condition: (li) => {
-          const itemId = li.data("itemId");
-          const item = this.actor.items.get(itemId);
-          if (!item) return false;
-          return item.type === "arme" && item.system.estDistance && this.actor.type === "corps";
+          const itemId = li.dataset.itemId
+          const item = this.actor.items.get(itemId)
+          if (!item) return false
+          return item.type === "arme" && item.system.estDistance && this.actor.type === "corps"
         },
         callback: (li) => {
-          const armeId = li.data("itemId");
-          this.actor.utiliserArme(armeId, "Lancer");
+          const armeId = li.dataset.itemId
+          this.actor.utiliserArme(armeId, "Lancer")
         },
       },
       {
         name: `Calculer les dégâts`,
         icon: `<i class="fa-solid fa-dice"></i>`,
         condition: (li) => {
-          const itemId = li.data("itemId");
-          const item = this.actor.items.get(itemId);
-          if (!item) return false;
-          return item.type === "arme";
+          const itemId = li.dataset.itemId
+          const item = this.actor.items.get(itemId)
+          if (!item) return false
+          return item.type === "arme"
         },
         callback: async (li) => {
-          const armeId = li.data("itemId");
-          const arme = this.actor.items.get(armeId);
-          if (!arme) return false;
-          return this.actor.lancerDegats(armeId);
+          const armeId = li.dataset.itemId
+          const arme = this.actor.items.get(armeId)
+          if (!arme) return false
+          return this.actor.lancerDegats(armeId)
         },
       },
       {
@@ -117,8 +117,8 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
         icon: `<i class="fa-regular fa-cogs"></i>`,
         condition: true,
         callback: (li) => {
-          const itemId = li.data("itemId");
-          this._ouvrirItem(itemId);
+          const itemId = li.dataset.itemId
+          this._ouvrirItem(itemId)
         },
       },
       {
@@ -126,36 +126,36 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
         icon: `<i class="fa-solid fa-trash"></i>`,
         condition: true,
         callback: (li) => {
-          const itemId = li.data("itemId");
-          this._supprimerItem(itemId);
+          const itemId = li.dataset.itemId
+          this._supprimerItem(itemId)
         },
       },
-    ];
+    ]
   }
 
   activateListeners(html) {
-    super.activateListeners(html);
+    super.activateListeners(html)
 
     // Lock/Unlock la fiche
-    html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
-    html.find(".change-sexe").click(this._onSheetChangeSexe.bind(this));
-    html.find(".item-create").click(this._onItemCreate.bind(this));
-    html.find(".item-edit").click((ev) => this._onItemEdit(ev));
-    html.find(".item-delete").click((ev) => this._onItemDelete(ev));
-    html.find(".inline-edit").change(this._onEmbeddedItemEdit.bind(this));
+    html[0].querySelectorAll(".sheet-change-lock").forEach((el) => el.addEventListener("click", this._onSheetChangelock.bind(this)))
+    html[0].querySelectorAll(".change-sexe").forEach((el) => el.addEventListener("click", this._onSheetChangeSexe.bind(this)))
+    html[0].querySelectorAll(".item-create").forEach((el) => el.addEventListener("click", this._onItemCreate.bind(this)))
+    html[0].querySelectorAll(".item-edit").forEach((el) => el.addEventListener("click", (ev) => this._onItemEdit(ev)))
+    html[0].querySelectorAll(".item-delete").forEach((el) => el.addEventListener("click", (ev) => this._onItemDelete(ev)))
+    html[0].querySelectorAll(".inline-edit").forEach((el) => el.addEventListener("change", this._onEmbeddedItemEdit.bind(this)))
 
     // Activate context menu
-    this._contextMenu(html);
+    this._contextMenu(html)
 
     // Santé pour le corps et les PNJs
     if (this.actor.type === "corps" || this.actor.type === "pnj") {
-      html.find(".case-sante").click(this._onCocherCaseSante.bind(this));
+      html[0].querySelectorAll(".case-sante").forEach((el) => el.addEventListener("click", this._onCocherCaseSante.bind(this)))
     }
   }
 
   /** @inheritdoc */
   _contextMenu(html) {
-    foundry.applications.ux.ContextMenu.create(this, html, ".item-contextmenu", this._getItemEntryContextOptions());
+    foundry.applications.ux.ContextMenu.implementation.create(this, html[0], ".item-contextmenu", this._getItemEntryContextOptions(), { jQuery: false })
   }
 
   /**
@@ -165,21 +165,21 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
    * @param {*} event
    */
   async _onSheetChangelock(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
-    if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
-    else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
-    this.actor.sheet.render(true);
+    let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked")
+    if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked")
+    else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked")
+    this.actor.sheet.render(true)
   }
 
   async _onSheetChangeSexe(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    let flagData = await this.actor.getFlag(game.system.id, "femme");
-    if (flagData) await this.actor.unsetFlag(game.system.id, "femme");
-    else await this.actor.setFlag(game.system.id, "femme", "femme");
-    this.actor.sheet.render(true);
+    let flagData = await this.actor.getFlag(game.system.id, "femme")
+    if (flagData) await this.actor.unsetFlag(game.system.id, "femme")
+    else await this.actor.setFlag(game.system.id, "femme", "femme")
+    this.actor.sheet.render(true)
   }
 
   /**
@@ -189,26 +189,26 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
    * @param {*} event
    */
   _onItemCreate(event) {
-    event.preventDefault();
-    let element = event.currentTarget;
+    event.preventDefault()
+    let element = event.currentTarget
     let itemData = {
       type: element.dataset.type,
-    };
+    }
     switch (element.dataset.type) {
       case "acquis":
-        itemData.name = game.i18n.localize("CDM.NOUVEAU.acquis");
-        break;
-        case "arme":
-          itemData.name = game.i18n.localize("CDM.NOUVEAU.arme");
-        break;
-        case "armure":
-          itemData.name = game.i18n.localize("CDM.NOUVEAU.armure");
-          break;
+        itemData.name = game.i18n.localize("CDM.NOUVEAU.acquis")
+        break
+      case "arme":
+        itemData.name = game.i18n.localize("CDM.NOUVEAU.arme")
+        break
+      case "armure":
+        itemData.name = game.i18n.localize("CDM.NOUVEAU.armure")
+        break
       case "corruption":
-        itemData.name = game.i18n.localize("CDM.NOUVEAU.corruption");
-        break;
+        itemData.name = game.i18n.localize("CDM.NOUVEAU.corruption")
+        break
     }
-    return this.actor.createEmbeddedDocuments("Item", [itemData]);
+    return this.actor.createEmbeddedDocuments("Item", [itemData])
   }
 
   /**
@@ -218,10 +218,10 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
    * @param {*} event
    */
   _onItemEdit(event) {
-    event.preventDefault();
-    let element = event.currentTarget;
-    let itemId = element.dataset.field;
-    this._ouvrirItem(itemId);
+    event.preventDefault()
+    let element = event.currentTarget
+    let itemId = element.dataset.field
+    this._ouvrirItem(itemId)
   }
 
   /**
@@ -231,25 +231,25 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
    * @param {*} event
    */
   async _onItemDelete(event) {
-    event.preventDefault();
-    let element = event.currentTarget;
-    let itemId = element.dataset.field;
-    await this._supprimerItem(itemId);
+    event.preventDefault()
+    let element = event.currentTarget
+    let itemId = element.dataset.field
+    await this._supprimerItem(itemId)
   }
 
   _ouvrirItem(itemId) {
-    const item = this.actor.items.get(itemId);
-    if (item) item.sheet.render(true);
+    const item = this.actor.items.get(itemId)
+    if (item) item.sheet.render(true)
   }
-  
+
   async _supprimerItem(itemId) {
-    let item = this.actor.items.get(itemId);
+    let item = this.actor.items.get(itemId)
     if (item === null) {
-      return;
+      return
     }
-    await this.actor.deleteEmbeddedDocuments("Item", [item.id], { render: true });
+    await this.actor.deleteEmbeddedDocuments("Item", [item.id], { render: true })
     if (this.actor.type === "esprit" && item.type === "corruption") {
-      Hooks.callAll("cabinet.deleteCorruptionOnEsprit", item.uuid);
+      Hooks.callAll("cabinet.deleteCorruptionOnEsprit", item.uuid)
     }
   }
 
@@ -258,17 +258,17 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
    * @param {Event} event
    */
   async _onCocherCaseSante(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
+    event.preventDefault()
+    const element = event.currentTarget
 
-    let index = parseInt(element.dataset.index);
-    let zone = element.dataset.zone;
-    let nouvelleValeur = index < this.actor.system.sante[zone].seuil - 1 ? index + 1 : index;
+    let index = parseInt(element.dataset.index)
+    let zone = element.dataset.zone
+    let nouvelleValeur = index < this.actor.system.sante[zone].seuil - 1 ? index + 1 : index
 
     if (index == this.actor.system.sante[zone].seuil - 1) {
-      return;
-    } else if (nouvelleValeur == this.actor.system.sante[zone].valeur) await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur - 1 });
-    else await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur });
+      return
+    } else if (nouvelleValeur == this.actor.system.sante[zone].valeur) await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur - 1 })
+    else await this.actor.update({ [`system.sante.${zone}.valeur`]: nouvelleValeur })
   }
   /**
    *
@@ -276,16 +276,16 @@ export default class CabinetActorSheet extends foundry.appv1.sheets.ActorSheet {
    * @returns
    */
   _onEmbeddedItemEdit(event) {
-    event.preventDefault();
-    const itemId = $(event.currentTarget).data("itemId");
-    let item = this.actor.items.get(itemId);
+    event.preventDefault()
+    const itemId = event.currentTarget.dataset.itemId;
+    let item = this.actor.items.get(itemId)
 
-    const element = event.currentTarget;
-    let field = element.dataset.field;
-    let newValue;
-    if (element.type === "checkbox") newValue = element.checked;
-    else if (element.type === "number") newValue = element.valueAsNumber;
-    else newValue = element.value;
-    return item.update({ [field]: newValue });
+    const element = event.currentTarget
+    let field = element.dataset.field
+    let newValue
+    if (element.type === "checkbox") newValue = element.checked
+    else if (element.type === "number") newValue = element.valueAsNumber
+    else newValue = element.value
+    return item.update({ [field]: newValue })
   }
 }

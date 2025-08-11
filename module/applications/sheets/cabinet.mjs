@@ -69,8 +69,8 @@ export default class CabinetSheet extends CabinetActorSheet {
 
   /** @inheritdoc */
   _contextCabMenu(html) {
-    ContextMenu.create(this, html, ".membre-contextmenu", this._getMembreEntryContextOptions())
-    ContextMenu.create(this, html, ".corps-contextmenu", this._getCorpsEntryContextOptions())
+    foundry.applications.ux.ContextMenu.implementation.create(this, html[0], ".membre-contextmenu", this._getMembreEntryContextOptions(), { jQuery: false })
+    foundry.applications.ux.ContextMenu.implementation.create(this, html[0], ".corps-contextmenu", this._getCorpsEntryContextOptions(), { jQuery: false })
   }
 
   /**
@@ -84,13 +84,13 @@ export default class CabinetSheet extends CabinetActorSheet {
         name: `Aller dans son Jardin Secret`,
         icon: `<i class="fa-regular fa-face-clouds"></i>`,
         condition: (li) => {
-          const actorId = li.data("actorId")
+          const actorId = li.dataset.actorId
           const actor = game.actors.get(actorId)
           if (!actor) return false
           return !actor.system.jardin
         },
         callback: (li) => {
-          const actorId = li.data("actorId")
+          const actorId = li.dataset.actorId
           this._onAllerJardin(actorId)
         },
       },
@@ -98,13 +98,13 @@ export default class CabinetSheet extends CabinetActorSheet {
         name: `Revenir dans le cabinet`,
         icon: `<i class="fa-regular fa-loveseat"></i>`,
         condition: (li) => {
-          const actorId = li.data("actorId")
+          const actorId = li.dataset.actorId
           const actor = game.actors.get(actorId)
           if (!actor) return false
           return actor.system.jardin
         },
         callback: (li) => {
-          const actorId = li.data("actorId")
+          const actorId = li.dataset.actorId
           this._onQuitterJardin(actorId)
         },
       },
@@ -112,13 +112,13 @@ export default class CabinetSheet extends CabinetActorSheet {
         name: `Nommer comédien`,
         icon: `<i class="fa-solid fa-person-simple"></i>`,
         condition: (li) => {
-          const actorId = li.data("actorId")
+          const actorId = li.dataset.actorId
           const actor = game.actors.get(actorId)
           if (!actor) return false
           return !actor.system.comedien
         },
         callback: (li) => {
-          const actorId = li.data("actorId")
+          const actorId = li.dataset.actorId
           this._onNommerComedien(actorId)
         },
       },
@@ -127,8 +127,8 @@ export default class CabinetSheet extends CabinetActorSheet {
         icon: `<i class="fa-solid fa-trash"></i>`,
         condition: true,
         callback: (li) => {
-          const actorPosition = li.data("index")
-          const actorId = li.data("actorId")
+          const actorPosition = li.dataset.index
+          const actorId = li.dataset.actorId
           const actor = game.actors.get(actorId)
           if (!actor) return false
           this._onEnleverMembre(actorId, actorPosition)
@@ -159,7 +159,7 @@ export default class CabinetSheet extends CabinetActorSheet {
         icon: `<i class="fa-solid fa-trash"></i>`,
         condition: true,
         callback: (li) => {
-          const actorId = li.data("actorId")
+          const actorId = li.dataset.actorId
           this._enleverCorps(actorId)
         },
       },

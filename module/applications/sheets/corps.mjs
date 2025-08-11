@@ -108,7 +108,7 @@ export default class CorpsSheet extends CabinetActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html)
-    html.find(".logo_action").click(this._onActionRoll.bind(this))
+    html[0].querySelectorAll(".logo_action").forEach((el) => el.addEventListener("click", this._onActionRoll.bind(this)))
   }
 
   /**
