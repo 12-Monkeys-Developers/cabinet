@@ -83,7 +83,7 @@ export class ArbreVieForm extends FormApplication {
   async _onDrop(event) {
     event.preventDefault()
     // Récupère le type et l'uuid
-    const data = TextEditor.getDragEventData(event)
+    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
     if (data.type !== "Actor") return false
 
     const actor = await fromUuid(data.uuid)

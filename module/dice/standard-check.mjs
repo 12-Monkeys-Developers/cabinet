@@ -183,7 +183,7 @@ export default class StandardCheck extends Roll {
 
     let formula = terms.join(" + ");
     if (data.malus > 0) formula = formula + " - " + data.malus;
-    console.debug("formula", formula);
+    // console.debug("formula", formula);
 
     return super.parse(formula, data);
   }
@@ -194,7 +194,7 @@ export default class StandardCheck extends Roll {
   async render(chatOptions = {}) {
     if (chatOptions.isPrivate) return "";
     this.data.diceTooltip = await this.getTooltip();
-    return renderTemplate(this.constructor.htmlTemplate, this._getChatCardData());
+    return foundry.applications.handlebars.renderTemplate(this.constructor.htmlTemplate, this._getChatCardData());
   }
 
   /**

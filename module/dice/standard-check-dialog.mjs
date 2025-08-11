@@ -6,6 +6,8 @@ import { CabinetUtils } from "../utils.mjs"
  * @extends {Dialog}
  */
 export default class StandardCheckDialog extends Dialog {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true
   /**
    * A StandardCheck dice instance which organizes the data for this dialog
    * @type {StandardCheck}
