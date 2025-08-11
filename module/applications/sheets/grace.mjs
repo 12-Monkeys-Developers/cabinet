@@ -27,7 +27,7 @@ export default class GraceSheet extends CabinetItemSheet {
   async getData(options) {
     const context = await super.getData(options)
 
-    context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false })
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, { async: false })
     return context
   }
 }

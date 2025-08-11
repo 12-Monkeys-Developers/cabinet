@@ -46,7 +46,7 @@ export default class CorpsSheet extends CabinetActorSheet {
         context.comedien.img = comedien.img
         context.corruptions = comedien.items.filter((item) => item.type == "corruption")
         context.corruptions.forEach(async (element) => {
-          element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false })
+          element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false })
         })
         // Les actions de combat sont sur le corps mais visible uniquement s'il y a un comédien
         context.combat = this.#formatCombat(this.actor.items.filter((item) => item.type == "action" && item.system.categorie === "combat"))
@@ -54,13 +54,13 @@ export default class CorpsSheet extends CabinetActorSheet {
     }
     context.malus = context.actor.system.malus
 
-    context.noteshtml = await TextEditor.enrichHTML(this.actor.system.notes, { async: false })
-    context.equipementhtml = await TextEditor.enrichHTML(this.actor.system.equipement, { async: false })
-    context.descriptionhtml = await TextEditor.enrichHTML(this.actor.system.description, { async: false })
+    context.noteshtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes, { async: false })
+    context.equipementhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.equipement, { async: false })
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.description, { async: false })
 
     context.armes = this.actor.items.filter((item) => item.type == "arme")
     context.armes.forEach(async (element) => {
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false })
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false })
     })
     context.armures = this.actor.items.filter((item) => item.type == "armure")
     context.prot = {}

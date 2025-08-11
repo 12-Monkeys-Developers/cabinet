@@ -44,7 +44,7 @@ export default class PnjSheet extends CabinetActorSheet {
     context.aspects = this.#formatAspects(context.actor.system.aspects)
 
     context.attributs = this.#formatAttributs(context.actor.system.attributs)
-    context.descriptionhtml = await TextEditor.enrichHTML(context.actor.system.description, { async: false })
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.actor.system.description, { async: false })
 
     // Acquis par ordre alpha et mise en forme de la description
     context.acquis = this.actor.items
@@ -53,11 +53,11 @@ export default class PnjSheet extends CabinetActorSheet {
         return a.name.localeCompare(b.name)
       })
     context.acquis.forEach(async (element) => {
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false })
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false })
     })
     context.armes = this.actor.items.filter((item) => item.type == "arme")
     context.armes.forEach(async (element) => {
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false })
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false })
     })
     context.armures = this.actor.items.filter((item) => item.type == "armure")
     context.prot = {}
@@ -66,7 +66,7 @@ export default class PnjSheet extends CabinetActorSheet {
     })
     context.speciaux = this.actor.items.filter((item) => item.type == "grace" || item.type == "corruption" || item.type == "pouvoir")
     context.speciaux.forEach(async (element) => {
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false })
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false })
     })
 
     context.combat = this.#formatCombat(context.actor.system.combat)

@@ -27,7 +27,7 @@ export default class PouvoirSheet extends CabinetItemSheet {
   async getData(options) {
     const context = await super.getData(options)
 
-    context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false })
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, { async: false })
     context.spheres = SYSTEM.SPHERES
     context.imgsphere = SYSTEM.IMAGES[this.item.system.sphere + "_logo"]
     context.selectNiveau = {

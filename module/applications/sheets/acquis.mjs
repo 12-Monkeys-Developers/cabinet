@@ -28,7 +28,7 @@ export default class AcquisSheet extends CabinetItemSheet {
       2: "2",
       3: "3",
     }
-    context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false })
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, { async: false })
     return context
   }
 }

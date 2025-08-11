@@ -3,7 +3,7 @@ import CabinetItemSheet from "./item.mjs"
 export default class CorruptionSheet extends CabinetItemSheet {
   // TODO A passer en AppV2 avant Foundry V16
   static _warnedAppV1 = true
-  
+
   /**
    * Le type d'Item qu'affiche cette Sheet
    * @type {string}
@@ -27,7 +27,7 @@ export default class CorruptionSheet extends CabinetItemSheet {
   async getData(options) {
     const context = await super.getData(options)
 
-    context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false })
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, { async: false })
     return context
   }
 }

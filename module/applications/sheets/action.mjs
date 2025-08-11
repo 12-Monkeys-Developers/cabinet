@@ -28,8 +28,8 @@ export default class ActionSheet extends CabinetItemSheet {
     context.aspects = SYSTEM.ASPECTS
     context.attributs = SYSTEM.ATTRIBUTS
     context.categories = SYSTEM.ACTION_CATEGORIES
-    context.circonstancesHtml = await TextEditor.enrichHTML(this.item.system.circonstances, { async: false })
-    context.desastreHtml = await TextEditor.enrichHTML(this.item.system.desastre, { async: false })
+    context.circonstancesHtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.circonstances, { async: false })
+    context.desastreHtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.desastre, { async: false })
 
     return context
   }
