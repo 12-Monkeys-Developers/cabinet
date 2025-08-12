@@ -4,10 +4,12 @@ export default class ComedienApp extends FormApplication {
   // TODO A passer en AppV2 avant Foundry V16
   static _warnedAppV1 = true
 
+  #collapsed = true
+
   constructor(cabinet, options = {}) {
     super(cabinet, options)
     // Pour suivre le mouvement de la sidebar
-    Hooks.on("collapseSidebar", async (sidebar, collapsed) => this.setPosition())
+    Hooks.on("collapseSidebar", async (sidebar, collapsed) => this._changePosition(collapsed))
 
     // Pour détecter quand une corruption est retirée d'un esprit
     Hooks.on("cabinet.deleteCorruptionOnEsprit", async (uuid) => this.render())
@@ -33,19 +35,20 @@ export default class ComedienApp extends FormApplication {
    * Positionnement de la fenêtre en fonction du paramètrage et de l'état de la sidebar
    * @returns {int, int} top et left en pixels
    */
-  _getCoord() {
+  _getCoord(collapsed) {
     // Top
     let top = 0
     if (game.settings.get("cabinet", "appComedien") === "bas") {
       const hauteur = document.body.scrollHeight
       const nbCorruptions = this.infos !== null ? this.infos.nbCorruptions : 0
-      top = hauteur - (250 + 20 * nbCorruptions)
+      top = hauteur - (300 + 20 * nbCorruptions)
     }
 
     // Left
     const sidebar = document.getElementById("sidebar")
     const sidebarBounding = sidebar.getBoundingClientRect()
-    let left = sidebarBounding.left - 160
+    let left = collapsed ? sidebarBounding.left + 130 : sidebarBounding.left - 435
+    if (game.settings.get("cabinet", "appComedien") === "haut") left = left - 20
     return { top, left }
   }
 
@@ -70,11 +73,18 @@ export default class ComedienApp extends FormApplication {
     return buttons
   }
 
+  _changePosition(collapsed) {
+    this.#collapsed = collapsed;
+    this.setPosition();
+  }
+
   /** @override */
   setPosition({ left, top } = {}) {
+    // Si collapsed = true, alors la sidebar droite est repliée
+    const collapsed = this.#collapsed;
     const position = {
-      left: this._getCoord().left,
-      top: this._getCoord().top,
+      left: this._getCoord(collapsed).left,
+      top: this._getCoord(collapsed).top,
     }
     this.element.css(position)
   }
