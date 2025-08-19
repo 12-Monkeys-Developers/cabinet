@@ -1,16 +1,18 @@
-import { SYSTEM } from "../config/system.mjs";
-import { CabinetUtils } from "../utils.mjs";
+import { SYSTEM } from "../config/system.mjs"
+import { CabinetUtils } from "../utils.mjs"
 
 /**
  * Prompt the user to perform a Standard Check.
  * @extends {Dialog}
  */
 export default class StandardCheckDialog extends Dialog {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true
   /**
    * A StandardCheck dice instance which organizes the data for this dialog
    * @type {StandardCheck}
    */
-  roll = this.options.roll;
+  roll = this.options.roll
 
   /** @override */
   static get defaultOptions() {
@@ -21,40 +23,40 @@ export default class StandardCheckDialog extends Dialog {
       template: `systems/${SYSTEM.id}/templates/dice/standard-check-dialog.hbs`,
       submitOnChange: true,
       closeOnSubmit: false,
-    });
+    })
   }
 
   /** @override */
   async getData(options = {}) {
-    const data = this.roll.data;
+    const data = this.roll.data
 
-    const comedien = data.actorData.comedien;
-    const position = data.actorData.positionArbre; // une sphère, aucune ou jardin
-    const qualite = data.qualite;
-    const sphere = SYSTEM.QUALITES[qualite].sphere;
-    const jardin = data.actorData.jardin;
-    let rollMode= data.rollMode ?? game.settings.get("core", "rollMode");
+    const comedien = data.actorData.comedien
+    const position = data.actorData.positionArbre // une sphère, aucune ou jardin
+    const qualite = data.qualite
+    const sphere = SYSTEM.QUALITES[qualite].sphere
+    const jardin = data.actorData.jardin
+    let rollMode = data.rollMode ?? game.settings.get("core", "rollMode")
 
-    let peutEmbellie = false;
+    let peutEmbellie = false
     // Si positionné sur la qualité utilisée : embellie possible
-    if (!jardin && position === sphere) peutEmbellie = true;
-    data.peutEmbellie = peutEmbellie;
-    const optionsEmbellie = Array.from({ length: data.qualiteValeur }, (_, index) => ({ indice: index + 1, label: (index + 1).toString()+"D" }));
+    if (!jardin && position === sphere) peutEmbellie = true
+    data.peutEmbellie = peutEmbellie
+    const optionsEmbellie = Array.from({ length: data.qualiteValeur }, (_, index) => ({ indice: index + 1, label: (index + 1).toString() + "D" }))
 
-    const optionsPerisprit = Array.from({ length: data.actorData.perisprit }, (_, index) => ({ indice: index + 1, label: index + 1 }));
+    const optionsPerisprit = Array.from({ length: data.actorData.perisprit }, (_, index) => ({ indice: index + 1, label: index + 1 }))
 
-    data.comedien = comedien;
+    data.comedien = comedien
 
-    data.attributs = [];
-    data.malus = 0;
-    const cabinet = CabinetUtils.cabinet();
-    const corpsId = cabinet.system.corps;
-    const corps = game.actors.get(corpsId);
+    data.attributs = []
+    data.malus = 0
+    const cabinet = CabinetUtils.cabinet()
+    const corpsId = cabinet.system.corps
+    const corps = game.actors.get(corpsId)
     if (corps) {
       // Attribut ?
       if (comedien) {
-        data.attributs = corps.system.attributs;
-        data.malus = corps.system.malus;
+        data.attributs = corps.system.attributs
+        data.malus = corps.system.malus
       } else {
       }
     }
@@ -72,8 +74,8 @@ export default class StandardCheckDialog extends Dialog {
       listeAcquis: data.listeAcquis,
       optionsEmbellie: optionsEmbellie,
       optionsPerisprit: optionsPerisprit,
-      rollMode:rollMode,
-    });
+      rollMode: rollMode,
+    })
   }
 
   /**
@@ -99,41 +101,40 @@ export default class StandardCheckDialog extends Dialog {
 
   /** @override */
   activateListeners(html) {
-    html.find('select[name="qualite"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="aspect"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="acquis"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="attribut"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="perisprit"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="embellie"]').change(this._onChangeAction.bind(this));
-    html.find('input[name="bonus"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="rollMode"]').change(this._onChangeAction.bind(this));
-    html.find('select[name="difficulte"]').change(this._onChangeDifficulte.bind(this));
-    super.activateListeners(html);
+    html[0].querySelectorAll('select[name="qualite"]').forEach((el) => el.addEventListener("change", this._onChangeAction.bind(this)))
+    html[0].querySelectorAll('select[name="aspect"]').forEach((el) => el.addEventListener("change", this._onChangeAction.bind(this)))
+    html[0].querySelectorAll('select[name="acquis"]').forEach((el) => el.addEventListener("change", this._onChangeAction.bind(this)))
+    html[0].querySelectorAll('select[name="attribut"]').forEach((el) => el.addEventListener("change", this._onChangeAction.bind(this)))
+    html[0].querySelectorAll('select[name="perisprit"]').forEach((el) => el.addEventListener("change", this._onChangeAction.bind(this)))
+    html[0].querySelectorAll('select[name="embellie"]').forEach((el) => el.addEventListener("change", this._onChangeAction.bind(this)))
+    html[0].querySelectorAll('input[name="bonus"]').forEach((el) => el.addEventListener("change", this._onChangeAction.bind(this)))
+    html[0].querySelectorAll('select[name="rollMode"]').forEach((el) => el.addEventListener("change", this._onChangeAction.bind(this)))
+    html[0].querySelectorAll('select[name="difficulte"]').forEach((el) => el.addEventListener("change", this._onChangeDifficulte.bind(this)))
+    super.activateListeners(html)
   }
-
   /**
    * Handle execution of one of the dialog roll actions
    * @private
    */
   _onChangeAction(event) {
-    event.preventDefault();
-    const action = event.currentTarget.dataset.action;
-    const newValue = event.currentTarget.value;
-  
+    event.preventDefault()
+    const action = event.currentTarget.dataset.action
+    const newValue = event.currentTarget.value
+
     const actionMap = {
       "qualite-change": () => ({ qualite: newValue, qualiteValeur: this.roll.data.actorData.qualites[newValue].valeur }),
       "aspect-change": () => ({ aspect: newValue, aspectValeur: this.roll.data.actorData.aspects[newValue].valeur }),
-      "acquis-change": () => newValue !== "" ? { acquis: newValue, acquisValeur: this.roll.data.listeAcquis[newValue].valeur } : { acquis: newValue, acquisValeur: 0 },
-      "attribut-change": () => newValue !== "" ? { attribut: newValue, attributValeur: this.roll.data.attributs[newValue].valeur } : { attribut: newValue, attributValeur: 0 },
+      "acquis-change": () => (newValue !== "" ? { acquis: newValue, acquisValeur: this.roll.data.listeAcquis[newValue].valeur } : { acquis: newValue, acquisValeur: 0 }),
+      "attribut-change": () => (newValue !== "" ? { attribut: newValue, attributValeur: this.roll.data.attributs[newValue].valeur } : { attribut: newValue, attributValeur: 0 }),
       "perisprit-change": () => ({ perisprit: newValue }),
       "embellie-change": () => ({ tenterEmbellie: true, embellieValeur: newValue }),
       "bonus-change": () => ({ bonus: newValue }),
       "rollMode-change": () => ({ rollMode: newValue }),
-    };
-  
+    }
+
     if (actionMap[action]) {
-      this.roll.initialize(actionMap[action]());
-      this.render(false, { height: "auto" });
+      this.roll.initialize(actionMap[action]())
+      this.render(false, { height: "auto" })
     }
   }
 
@@ -143,21 +144,21 @@ export default class StandardCheckDialog extends Dialog {
    * @private
    */
   _onChangeDifficulte(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const newDifficulte = event.currentTarget.value;
-    this.roll.initialize({ difficulte: newDifficulte });
-    return this.render(false, { height: "auto" });
+    event.preventDefault()
+    event.stopPropagation()
+    const newDifficulte = event.currentTarget.value
+    this.roll.initialize({ difficulte: newDifficulte })
+    return this.render(false, { height: "auto" })
   }
 
   /*  Factory Methods                             */
 
   /** @inheritdoc */
   static async prompt(config = {}) {
-    config.callback = this.prototype._onSubmit;
-    config.options.jQuery = false;
-    config.rejectClose = false;
-    return super.prompt(config);
+    config.callback = this.prototype._onSubmit
+    config.options.jQuery = false
+    config.rejectClose = false
+    return super.prompt(config)
   }
 
   /**
@@ -167,9 +168,9 @@ export default class StandardCheckDialog extends Dialog {
    * @private
    */
   _onSubmit(html) {
-    const form = html.querySelector("form");
-    const fd = new FormDataExtended(form);
-    this.roll.initialize(fd.object);
-    return this.roll;
+    const form = html.querySelector("form")
+    const fd = new FormDataExtended(form)
+    this.roll.initialize(fd.object)
+    return this.roll
   }
 }

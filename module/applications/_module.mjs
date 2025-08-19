@@ -1,3 +1,5 @@
+export {default as CabinetSidebarMenu } from "./sidebar/sidebar-menu.mjs";
+export {default as PresentationForm} from "./forms/presentation.mjs";
 export {default as EspritSheet} from "./sheets/esprit.mjs";
 export {default as CorpsSheet} from "./sheets/corps.mjs";
 export {default as CabinetSheet} from "./sheets/cabinet.mjs";

@@ -1,3 +1,6 @@
+2.0.0
+- compatibility Foundry v13
+
 1.0.2
 - Dernière version compatible V12
 

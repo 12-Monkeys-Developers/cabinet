@@ -1,0 +1,41 @@
+<section class="cabinet-sidebar info flexcol">
+  <h1 class="title">{{moduleName}}</h1>
+  <p class="subtitle version">{{version}}</p>
+</section>
+
+<section class="cabinet-sidebar support flexcol">
+  <h4 class="divider">{{localize "CDM.sidebar.support"}}</h4>
+  <a class="button" href="https://discord.gg/rXSJTuY" rel="nofollow noopener" target="_blank" data-tooltip="{{localize 'CDM.sidebar.discordSingesTooltip'}}">
+    <i class="fa-solid fa-landmark" inert></i>
+    {{localize "CDM.sidebar.discordSinges"}}
+  </a>
+  <a class="button" href="https://discord.gg/pPSDNJk" rel="nofollow noopener" target="_blank" data-tooltip="{{localize 'CDM.sidebar.discordLaFonderieTooltip'}}">
+    <i class="fa-solid fa-landmark" inert></i>
+    {{localize "CDM.sidebar.discordLaFonderie"}}
+  </a>
+</section>
+
+  <section class="cabinet-sidebar system flexcol">
+    <h4 class="divider">{{localize "CDM.sidebar.system"}}</h4>
+    <div class="flexrow justifycenter">
+      {{#each sidebarActions as |sidebarAction| }}
+      {{#if (eq sidebarAction.section "system")}}
+        {{#if (gmTest sidebarAction.gmOnly)}}
+          <a class="icon button" data-action="{{sidebarAction.action}}" data-setting="{{sidebarAction.setting}}" data-journal="{{sidebarAction.journalId}}" data-page="{{sidebarAction.pageId}}" data-tooltip="{{sidebarAction.tooltip}}"><i class="{{sidebarAction.icon}} fa-xl" inert></i></a>
+        {{/if}}
+      {{/if}}
+      {{/each}}
+    </div>
+    </section>
+  <section class="cabinet-sidebar system flexcol">
+    <h4 class="divider">{{localize "CDM.sidebar.modules"}}</h4>
+    <div class="flexrow justifycenter">
+      {{#each sidebarActions as |sidebarAction| }}
+      {{#if (eq sidebarAction.section "modules")}}
+        {{#if (gmTest sidebarAction.gmOnly)}}
+          <a class="icon button" data-action="{{sidebarAction.action}}" data-setting="{{sidebarAction.setting}}" data-journal="{{sidebarAction.journalId}}" data-page="{{sidebarAction.pageId}}" data-tooltip="{{sidebarAction.tooltip}}"><i class="{{sidebarAction.icon}} fa-xl" inert></i></a>
+        {{/if}}
+      {{/if}}
+      {{/each}}
+    </div>
+    </section>

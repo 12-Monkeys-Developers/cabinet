@@ -1,70 +1,73 @@
-import { ComedienUtils, CabinetUtils } from "../../utils.mjs";
-import CabinetActorSheet from "./actor.mjs";
+import { ComedienUtils, CabinetUtils } from "../../utils.mjs"
+import CabinetActorSheet from "./actor.mjs"
 
 export default class CorpsSheet extends CabinetActorSheet {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true
+
   /** @override */
   constructor(object, options = {}) {
-    super(object, options);
-    Hooks.on("updateActor", async (document, change, options, userId) => this.render());
+    super(object, options)
+    Hooks.on("updateActor", async (document, change, options, userId) => this.render())
   }
 
   /** @inheritdoc */
   static get defaultOptions() {
-    const options = super.defaultOptions;
+    const options = super.defaultOptions
     return Object.assign(options, {
       width: 550,
       height: 600,
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "details" }],
-    });
+    })
   }
 
   /**
    * Le type d'Actor qu'affiche cette Sheet
    * @type {string}
    */
-  static actorType = "corps";
+  static actorType = "corps"
 
   /** @override */
   async getData(options) {
-    const context = await super.getData(options);
+    const context = await super.getData(options)
 
-    context.attributs = this.#formatAttributs(context.actor.system.attributs);
+    context.attributs = this.#formatAttributs(context.actor.system.attributs)
 
     context.comedien = {
       name: "Pas de contrôle",
       img: null,
-    };
-    const cabinet = CabinetUtils.cabinet();
+    }
+    const cabinet = CabinetUtils.cabinet()
 
     if (cabinet) {
-      const comedien = ComedienUtils.actuel();
+      const comedien = ComedienUtils.actuel()
       if (comedien) {
-        context.comedien.name = comedien.name;
-        context.comedien.img = comedien.img;
-        context.corruptions = comedien.items.filter((item) => item.type == "corruption");
+        context.comedien.name = comedien.name
+        context.comedien.img = comedien.img
+        context.corruptions = comedien.items.filter((item) => item.type == "corruption")
         context.corruptions.forEach(async (element) => {
-          element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
-        });
+          element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false })
+        })
         // Les actions de combat sont sur le corps mais visible uniquement s'il y a un comédien
-        context.combat = this.#formatCombat(this.actor.items.filter((item) => item.type == "action" && item.system.categorie === "combat"));
+        context.combat = this.#formatCombat(this.actor.items.filter((item) => item.type == "action" && item.system.categorie === "combat"))
       }
     }
-    context.malus = context.actor.system.malus;
+    context.malus = context.actor.system.malus
 
-    context.noteshtml = await TextEditor.enrichHTML(this.actor.system.notes, { async: false });
-    context.equipementhtml = await TextEditor.enrichHTML(this.actor.system.equipement, { async: false });
-    context.descriptionhtml = await TextEditor.enrichHTML(this.actor.system.description, { async: false });
+    context.noteshtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes, { async: false })
+    context.equipementhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.equipement, { async: false })
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.description, { async: false })
 
-    context.armes = this.actor.items.filter((item) => item.type == "arme");
+    context.armes = this.actor.items.filter((item) => item.type == "arme")
     context.armes.forEach(async (element) => {
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
-    });
-    context.armures = this.actor.items.filter((item) => item.type == "armure");
-    context.prot = {};
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false })
+    })
+    context.armures = this.actor.items.filter((item) => item.type == "armure")
+    context.prot = {}
     SYSTEM.MEMBRES.forEach((element) => {
-      context.prot[element] = this.actor.getProtection(element);
-    });
-    return context;
+      context.prot[element] = this.actor.getProtection(element)
+    })
+    return context
   }
 
   /**
@@ -74,38 +77,38 @@ export default class CorpsSheet extends CabinetActorSheet {
    * @return {object[]}
    */
   #formatCombat(actions) {
-    let corps;
-    let comedien;
-    const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0];
+    let corps
+    let comedien
+    const cabinet = game.actors.filter((actor) => actor.type === "cabinet")[0]
     if (cabinet) {
-      const corpsId = cabinet.system.corps;
-      if (corpsId !== this.actor.id) return [];
-      corps = this.actor;
-      const comedienId = cabinet.system.comedien;
+      const corpsId = cabinet.system.corps
+      if (corpsId !== this.actor.id) return []
+      corps = this.actor
+      const comedienId = cabinet.system.comedien
       if (comedienId) {
-        comedien = game.actors.get(comedienId);
+        comedien = game.actors.get(comedienId)
       }
     }
 
     // S'il y a un comédien, on ajoute les actions de l'esprit de type corpsacorps, distance, sedefendre, seproteger
     if (comedien) {
-      const espritActions = comedien.items.filter((item) => item.type == "action" && ["corpsacorps", "distance", "sedefendre", "seproteger"].includes(item.system.categorie));
-      actions = actions.concat(espritActions.sort((a, b) => a.name.localeCompare(b.name)));
+      const espritActions = comedien.items.filter((item) => item.type == "action" && ["corpsacorps", "distance", "sedefendre", "seproteger"].includes(item.system.categorie))
+      actions = actions.concat(espritActions.sort((a, b) => a.name.localeCompare(b.name)))
     }
 
     return actions.map((cfg) => {
-      const action = foundry.utils.deepClone(cfg);
+      const action = foundry.utils.deepClone(cfg)
       // formulaHtml
-      action.formulaHtml = action.system.formulaHtml;
-      action.formulaTooltip = action.system.getFormulatTooltip(comedien?.system, corps ? corps.system.attributs : null);
-      return action;
-    });
+      action.formulaHtml = action.system.formulaHtml
+      action.formulaTooltip = action.system.getFormulatTooltip(comedien?.system, corps ? corps.system.attributs : null)
+      return action
+    })
   }
 
   /** @override */
   activateListeners(html) {
-    super.activateListeners(html);
-    html.find(".logo_action").click(this._onActionRoll.bind(this));
+    super.activateListeners(html)
+    html[0].querySelectorAll(".logo_action").forEach((el) => el.addEventListener("click", this._onActionRoll.bind(this)))
   }
 
   /**
@@ -114,29 +117,29 @@ export default class CorpsSheet extends CabinetActorSheet {
    * @returns
    */
   async _onActionRoll(event) {
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault()
+    event.stopPropagation()
     // Ne pas déclencher de jet si la feuille est déverrouillée
-    if (this.actor.isUnlocked) return;
+    if (this.actor.isUnlocked) return
 
-    let element = event.currentTarget;
-    const actionId = element.dataset.field;
-    const action = this.actor.items.get(actionId);
-    if (!action) return false;
+    let element = event.currentTarget
+    const actionId = element.dataset.field
+    const action = this.actor.items.get(actionId)
+    if (!action) return false
 
     // Une action du corps est réalisée par le comédien
-    const comedien = ComedienUtils.actuel();
-    if (!comedien) return ui.notifications.console.warn(game.i18n.localize("CABINET.WARNING.comedienInexistant"));
-    
-    return await comedien.rollAction(action);
+    const comedien = ComedienUtils.actuel()
+    if (!comedien) return ui.notifications.console.warn(game.i18n.localize("CABINET.WARNING.comedienInexistant"))
+
+    return await comedien.rollAction(action)
   }
 
   /** @override */
   async _onDropItem(event, data) {
-    const item = await fromUuid(data.uuid);
-    if (["acquis", "corruption", "grace", "pouvoir"].includes(item.type)) return false;
-    if (item.type === "action" && item.system.categorie !== "combat") return false;
-    return super._onDropItem(event, data);
+    const item = await fromUuid(data.uuid)
+    if (["acquis", "corruption", "grace", "pouvoir"].includes(item.type)) return false
+    if (item.type === "action" && item.system.categorie !== "combat") return false
+    return super._onDropItem(event, data)
   }
 
   /**
@@ -146,10 +149,10 @@ export default class CorpsSheet extends CabinetActorSheet {
    */
   #formatAttributs(attributs) {
     return Object.values(SYSTEM.ATTRIBUTS).map((cfg) => {
-      const attribut = foundry.utils.deepClone(cfg);
-      attribut.label = game.i18n.localize(attribut.label);
-      attribut.valeur = attributs[attribut.id].valeur;
-      return attribut;
-    });
+      const attribut = foundry.utils.deepClone(cfg)
+      attribut.label = game.i18n.localize(attribut.label)
+      attribut.valeur = attributs[attribut.id].valeur
+      return attribut
+    })
   }
 }

@@ -1,16 +1,21 @@
-import { ComedienUtils } from "../utils.mjs";
+import { ComedienUtils } from "../utils.mjs"
 
 export default class ComedienApp extends FormApplication {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true
+
+  #collapsed = true
+
   constructor(cabinet, options = {}) {
-    super(cabinet, options);
+    super(cabinet, options)
     // Pour suivre le mouvement de la sidebar
-    Hooks.on("collapseSidebar", async (sidebar, collapsed) => this.setPosition());
+    Hooks.on("collapseSidebar", async (sidebar, collapsed) => this._changePosition(collapsed))
 
     // Pour détecter quand une corruption est retirée d'un esprit
-    Hooks.on("cabinet.deleteCorruptionOnEsprit", async (uuid) => this.render());
+    Hooks.on("cabinet.deleteCorruptionOnEsprit", async (uuid) => this.render())
 
     // Pour détecter quand une corruption est ajoutée à un esprit
-    Hooks.on("cabinet.dropCorruptionOnEsprit", async (uuid) => this.render());
+    Hooks.on("cabinet.dropCorruptionOnEsprit", async (uuid) => this.render())
   }
 
   /** @inheritdoc */
@@ -23,57 +28,65 @@ export default class ComedienApp extends FormApplication {
       minimizable: false,
       classes: ["app-comedien"],
       title: "Comédien",
-    });
+    })
   }
 
   /**
    * Positionnement de la fenêtre en fonction du paramètrage et de l'état de la sidebar
    * @returns {int, int} top et left en pixels
    */
-  _getCoord() {
+  _getCoord(collapsed) {
     // Top
-    let top = 0;
+    let top = 0
     if (game.settings.get("cabinet", "appComedien") === "bas") {
-      const hauteur = document.body.scrollHeight;
-      const nbCorruptions = this.infos !== null ? this.infos.nbCorruptions : 0;
-      top = hauteur - (250 + 20 * nbCorruptions);
+      const hauteur = document.body.scrollHeight
+      const nbCorruptions = this.infos !== null ? this.infos.nbCorruptions : 0
+      top = hauteur - (300 + 20 * nbCorruptions)
     }
 
     // Left
-    const sidebar = document.getElementById("sidebar");
-    const sidebarBounding = sidebar.getBoundingClientRect();
-    let left = sidebarBounding.left - 160;
-    return { top, left };
+    const sidebar = document.getElementById("sidebar")
+    const sidebarBounding = sidebar.getBoundingClientRect()
+    let left = collapsed ? sidebarBounding.left + 130 : sidebarBounding.left - 435
+    if (game.settings.get("cabinet", "appComedien") === "haut") left = left - 20
+    return { top, left }
   }
 
   /** @inheritdoc */
   async getData(options = {}) {
-    let context = {};
+    let context = {}
 
-    context.comedienDefini = this.object.system.hasComedien;
+    context.comedienDefini = this.object.system.hasComedien
 
-    const infos = this.infos;
-    context.corruptions = context.comedienDefini ? infos?.corruptions : [];
-    context.nom = context.comedienDefini ? infos?.nom : null;
-    context.image = context.comedienDefini ? infos?.image : null;
+    const infos = this.infos
+    context.corruptions = context.comedienDefini ? infos?.corruptions : []
+    context.nom = context.comedienDefini ? infos?.nom : null
+    context.image = context.comedienDefini ? infos?.image : null
 
-    return context;
+    return context
   }
 
   /** @override */
   _getHeaderButtons() {
     // Suppression du bouton Close
-    const buttons = [];
-    return buttons;
+    const buttons = []
+    return buttons
+  }
+
+  _changePosition(collapsed) {
+    this.#collapsed = collapsed;
+    this.setPosition();
   }
 
   /** @override */
   setPosition({ left, top } = {}) {
+    // Si collapsed = true, alors la sidebar droite est repliée
+    const collapsed = this.#collapsed;
     const position = {
-      left: this._getCoord().left,
-      top: this._getCoord().top,
-    };
-    this.element.css(position);
+      left: this._getCoord(collapsed).left,
+      top: this._getCoord(collapsed).top,
+    }
+    this.element.css(position)
   }
 
   /**
@@ -82,19 +95,19 @@ export default class ComedienApp extends FormApplication {
    */
   get infos() {
     if (this.object) {
-      const comedien = ComedienUtils.actuel();
+      const comedien = ComedienUtils.actuel()
       if (comedien) {
-        let corruptions = comedien.items.filter((i) => i.type === "corruption");
-        return { nbCorruptions: corruptions.length, corruptions, image: comedien.img, nom: comedien.name };
+        let corruptions = comedien.items.filter((i) => i.type === "corruption")
+        return { nbCorruptions: corruptions.length, corruptions, image: comedien.img, nom: comedien.name }
       }
     }
-    return null;
+    return null
   }
 
-    /** @inheritdoc */
-    render(force = false, options = {}) {
-      // Register the active OrgDevEditor with the referenced Documents
-      this.object.apps[this.appId] = this;
-      return super.render(force, options);
-    }
+  /** @inheritdoc */
+  render(force = false, options = {}) {
+    // Register the active OrgDevEditor with the referenced Documents
+    this.object.apps[this.appId] = this
+    return super.render(force, options)
+  }
 }

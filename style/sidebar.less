@@ -1,0 +1,44 @@
+.cabinet-sidebar {
+  flex-direction: column;
+  overflow-y: auto;
+  margin: 20px 0;
+  section {
+    gap: 0.5rem;
+    h4 {
+      margin: 0;
+      font: var(--sidebar-h4);
+    }
+    .icon {
+      flex-basis: 2rem;
+      margin: 12px 10px;
+      text-align: center;
+    }
+    .justifycenter{
+      justify-content: center;
+    }
+  }
+
+  // Info Section
+  .info {
+    font-size: var(--font-size-13);
+    .title {
+      margin: 0;
+      font: var(--sidebar-title);
+      text-align: center;
+    }
+    .subtitle {
+      margin: -0.5rem 0 0;
+      color: var(--color-text-subtle);
+      text-align: center;
+    }
+  }
+}
+
+.cthack.module {
+  .buttons {
+    margin: 0 10px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -77,8 +77,14 @@ export default class CabinetActor extends Actor {
         break;
 
       case "corps":
-        // Création de la liste des actions de combat par défaut
-        actionsParDefaut = game.items.filter((item) => item.type === "action" && item.system.parDefaut && item.system.categorie === "combat");
+        // Création de la liste des actions de combat par défaut : catégories combat, corpsacorps, distance, sefendre et seproteger
+        const combatCategories = ["combat", "corpsacorps", "distance", "sedefendre", "seproteger"];
+        actionsParDefaut = game.items.filter(
+          (item) =>
+            item.type === "action" &&
+            item.system.parDefaut &&
+            combatCategories.includes(item.system.categorie)
+        );
         for (const action of actionsParDefaut) {
           const item = await fromUuid(action.uuid);
           actions.push(item.toObject());

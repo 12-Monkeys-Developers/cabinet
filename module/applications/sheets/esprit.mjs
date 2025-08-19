@@ -4,6 +4,9 @@ import CabinetActorSheet from "./actor.mjs";
 import { CabinetUtils } from "../../utils.mjs";
 
 export default class EspritSheet extends CabinetActorSheet {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true;
+
   constructor(object, options = {}) {
     super(object, options);
     Hooks.on("cabinet.updateCorps", async (corpsId) => this.render());
@@ -41,7 +44,10 @@ export default class EspritSheet extends CabinetActorSheet {
         return a.name.localeCompare(b.name);
       });
     context.acquis.forEach(async (element) => {
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false });
+    });
+    context.actions.forEach(async (element) => {
+      element.system.circonstanceshtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.circonstances, { async: false });
     });
 
     // Pouvoirs par ordre niveau et mise en forme de la description
@@ -52,21 +58,21 @@ export default class EspritSheet extends CabinetActorSheet {
       });
     context.pouvoirs.forEach(async (element) => {
       element.system.spherelabel = SYSTEM.SPHERES[element.system.sphere].label;
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false });
     });
 
     // corruptions par ordre niveau et mise en forme de la description
     context.corruptions = this.actor.items.filter((item) => item.type == "corruption");
     context.corruptions.forEach(async (element) => {
-      element.system.descriptionhtml = await TextEditor.enrichHTML(element.system.description, { async: false });
+      element.system.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(element.system.description, { async: false });
     });
 
-    context.adversaireshtml = await TextEditor.enrichHTML(this.actor.system.adversaires, { async: false });
-    context.contactshtml = await TextEditor.enrichHTML(this.actor.system.contacts, { async: false });
-    context.noteshtml = await TextEditor.enrichHTML(this.actor.system.notes, { async: false });
-    context.objetshtml = await TextEditor.enrichHTML(this.actor.system.objets, { async: false });
-    context.profilprivatehtml = await TextEditor.enrichHTML(this.actor.system.profil.private, { async: false });
-    context.routinehtml = await TextEditor.enrichHTML(this.actor.system.routine, { async: false });
+    context.adversaireshtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.adversaires, { async: false });
+    context.contactshtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.contacts, { async: false });
+    context.noteshtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes, { async: false });
+    context.objetshtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.objets, { async: false });
+    context.profilprivatehtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.profil.private, { async: false });
+    context.routinehtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.routine, { async: false });
 
     context.estDansCabinet = this.actor.system.estDansCabinet;
     context.comedien = this.actor.system.comedien;
@@ -144,8 +150,8 @@ export default class EspritSheet extends CabinetActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".qualite-group").click(this._onQualiteRoll.bind(this));
-    html.find(".logo_action").click(this._onActionRoll.bind(this));
+    html[0].querySelectorAll(".qualite-group").forEach((el) => el.addEventListener("click", this._onQualiteRoll.bind(this)));
+    html[0].querySelectorAll(".logo_action").forEach((el) => el.addEventListener("click", this._onActionRoll.bind(this)));
 
     // Activate context menu
     this._contextCabMenu(html);
@@ -153,7 +159,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
   /** @inheritdoc */
   _contextCabMenu(html) {
-    ContextMenu.create(this, html, ".cabinet-contextmenu", this._getEntryContextOptions());
+    foundry.applications.ux.ContextMenu.implementation.create(this, html[0], ".cabinet-contextmenu", this._getEntryContextOptions(), { jQuery: false });
   }
 
   /**
@@ -206,7 +212,7 @@ export default class EspritSheet extends CabinetActorSheet {
 
     let element = event.currentTarget;
     let qualite = element.dataset.field;
-    if(!CabinetUtils.cabinet()) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.cabinetInexistant"));
+    if (!CabinetUtils.cabinet()) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.cabinetInexistant"));
 
     return this.actor.rollSkill(qualite, { dialog: true, title: SYSTEM.QUALITES[qualite].label });
   }
@@ -221,8 +227,8 @@ export default class EspritSheet extends CabinetActorSheet {
     event.stopPropagation();
     // Ne pas déclencher de jet si la feuille est déverrouillée
     if (this.actor.isUnlocked) return;
-    
-    if(!CabinetUtils.cabinet()) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.cabinetInexistant"));
+
+    if (!CabinetUtils.cabinet()) return ui.notifications.warn(game.i18n.localize("CDM.WARNING.cabinetInexistant"));
 
     let element = event.currentTarget;
     const actionId = element.dataset.field;
@@ -269,7 +275,7 @@ export default class EspritSheet extends CabinetActorSheet {
     } else {
       let chatData = {
         actingId: this.actor.id,
-        actingCharName: this.actor.name,        
+        actingCharName: this.actor.name,
         actingCharImg: this.actor.img,
         idComedien: comedien.id,
         nomComedien: comedien.name,
@@ -277,10 +283,14 @@ export default class EspritSheet extends CabinetActorSheet {
         demande: true,
         accepte: false,
         refuse: false,
-        userIdDemandeur: game.user.id
+        userIdDemandeur: game.user.id,
       };
 
-      let chatMessage = await new CdmChat(this.actor).withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs").withData(chatData).withFlags({world: {type: "demandeComedien", idComedien: comedien.id}}).create();
+      let chatMessage = await new CdmChat(this.actor)
+        .withTemplate("systems/cabinet/templates/chat/demanderComedien.hbs")
+        .withData(chatData)
+        .withFlags({ world: { type: "demandeComedien", idComedien: comedien.id } })
+        .create();
       chatMessage.display();
     }
   }

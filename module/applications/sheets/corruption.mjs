@@ -1,14 +1,17 @@
-import CabinetItemSheet from "./item.mjs";
+import CabinetItemSheet from "./item.mjs"
 
 export default class CorruptionSheet extends CabinetItemSheet {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true
+
   /**
    * Le type d'Item qu'affiche cette Sheet
    * @type {string}
    */
-  static itemType = "corruption";
+  static itemType = "corruption"
 
   static get defaultOptions() {
-    const options = super.defaultOptions;
+    const options = super.defaultOptions
     return Object.assign(options, {
       width: 600,
       height: 420,
@@ -16,16 +19,15 @@ export default class CorruptionSheet extends CabinetItemSheet {
       template: `systems/${SYSTEM.id}/templates/sheets/${this.itemType}.hbs`,
       resizable: false,
       tabs: [],
-      scrollY: []
-    });
+      scrollY: [],
+    })
   }
 
   /** @override */
   async getData(options) {
-    const context = await super.getData(options);
+    const context = await super.getData(options)
 
-    context.descriptionhtml = await TextEditor.enrichHTML(this.item.system.description, { async: false });
-    return context;
+    context.descriptionhtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, { async: false })
+    return context
   }
 }
-

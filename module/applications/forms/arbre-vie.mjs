@@ -1,8 +1,11 @@
 export class ArbreVieForm extends FormApplication {
+  // TODO A passer en AppV2 avant Foundry V16
+  static _warnedAppV1 = true
+
   /** @override */
   constructor(object, options = {}) {
-    super(object, options);
-    Hooks.on("updateActor", async (document, change, options, userId) => this.render());
+    super(object, options)
+    Hooks.on("updateActor", async (document, change, options, userId) => this.render())
   }
 
   /** @override */
@@ -16,7 +19,7 @@ export class ArbreVieForm extends FormApplication {
       resizable: false,
       dragDrop: [{ dragSelector: ".draggable", dropSelector: ".droppable" }],
       closeOnSubmit: false,
-    });
+    })
   }
 
   /**
@@ -24,7 +27,7 @@ export class ArbreVieForm extends FormApplication {
    * @type {CabinetCabinet}
    */
   get cabinet() {
-    return this.object;
+    return this.object
   }
 
   static GRAPH = {
@@ -38,165 +41,165 @@ export class ArbreVieForm extends FormApplication {
     hod: ["tiferet", "malkuth", "netzach", "yesod", "geburah"],
     yesod: ["tiferet", "malkuth", "netzach", "hod"],
     malkuth: ["netzach", "yesod", "hod"],
-  };
+  }
 
   /** @override */
   async getData(options) {
-    let context = {};
+    let context = {}
 
     // Jardin
-    context.membresJardin = this.cabinet.listeEsprits.filter((e) => e.dansJardin);
+    context.membresJardin = this.cabinet.listeEsprits.filter((e) => e.dansJardin)
 
     // Arbre
-    context.contenuArbre = await this.remplirArbre();
+    context.contenuArbre = await this.remplirArbre()
 
-    return context;
+    return context
   }
 
   /** Define whether a user is able to begin a dragstart workflow for a given drag selector */
   /** @inheritdoc */
   _canDragStart(selector) {
-    return true;
+    return true
   }
 
   /** Define whether a user is able to conclude a drag-and-drop workflow for a given drop selector */
   /** @inheritdoc */
   _canDragDrop(selector) {
-    return true;
+    return true
   }
 
   /** @override */
   _onDragStart(event) {
-    let actorId = event.target.dataset.field;
-    const actor = game.actors.get(actorId);
-    if (!actor) return;
+    let actorId = event.target.dataset.field
+    const actor = game.actors.get(actorId)
+    if (!actor) return
     // console.log("ownership", actor.ownership);
     // Uniquement pour le GM ou un user qui a les droits sur l'actor
-    if (!game.user.isGM && !actor.ownership[game.userId]) return;
-    event.dataTransfer.setData("text/plain", JSON.stringify(actor.toDragData()));
+    if (!game.user.isGM && !actor.ownership[game.userId]) return
+    event.dataTransfer.setData("text/plain", JSON.stringify(actor.toDragData()))
   }
 
   /** @override */
   async _onDrop(event) {
-    event.preventDefault();
+    event.preventDefault()
     // Récupère le type et l'uuid
-    const data = TextEditor.getDragEventData(event);
-    if (data.type !== "Actor") return false;
+    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
+    if (data.type !== "Actor") return false
 
-    const actor = await fromUuid(data.uuid);
-    if (actor.type !== "esprit") return false;
+    const actor = await fromUuid(data.uuid)
+    if (actor.type !== "esprit") return false
 
-    let li = event.currentTarget.closest(".jardin");
+    let li = event.currentTarget.closest(".jardin")
     // Dans le jardin
     if (li) {
-      await actor.deplacerPosition(null, false);
+      await actor.deplacerPosition(null, false)
     }
     // Sur une sphère
     else {
-      li = event.target.closest(".sphere");
-      if (!li) return;
-      if (!li.dataset.field) return;
+      li = event.target.closest(".sphere")
+      if (!li) return
+      if (!li.dataset.field) return
 
-      let oldPosition = actor.system.positionArbre;
-      let newPosition = li.dataset.field;
+      let oldPosition = actor.system.positionArbre
+      let newPosition = li.dataset.field
 
       if (await this.validerDeplacement(actor.id, oldPosition, newPosition)) {
-        await actor.deplacerPosition(newPosition, false);
+        await actor.deplacerPosition(newPosition, false)
       }
     }
-    this.render();
+    this.render()
   }
 
   /**
    * Valide le déplacement entre 2 noeuds de l'arbre
-   * via une approche de parcours en largeur (BFS) du graphe 
+   * via une approche de parcours en largeur (BFS) du graphe
    * @param {uuid}  idEsprit
    * @param {*} depart      Sphère de départ
    * @param {*} arrivee     Sphère d'arrivée
    * @returns {boolean}     true si c'est possible, false sinon
    */
   validerDeplacement(idEsprit, depart, arrivee) {
-    const spheresOccupees = this.cabinet.spheresOccupees;
+    const spheresOccupees = this.cabinet.spheresOccupees
     const spheresReservees = this.cabinet.getSpheresReservees(idEsprit)
 
     //const spheresInatteignables = new Set([...spheresOccupees, ...spheresReservees]);
-    const spheresInatteignables = new Set([...spheresOccupees]);
+    const spheresInatteignables = new Set([...spheresOccupees])
 
     // Vérifier si la sphère d'arrivée est occupée
     if (spheresInatteignables.has(arrivee)) {
-      console.debug(`La sphère d'arrivée '${arrivee}' est occupée.`);
-      return false;
+      console.debug(`La sphère d'arrivée '${arrivee}' est occupée.`)
+      return false
     }
 
     // Vérifier si la sphère d'arrivée n'est pas bloqué par la Qlipha d'un autre esprit
     if (spheresReservees.has(arrivee)) {
-      console.debug(`La sphère d'arrivée '${arrivee}' est bloquée par la Qlipha d'un autre esprit.`);
-      return false;
+      console.debug(`La sphère d'arrivée '${arrivee}' est bloquée par la Qlipha d'un autre esprit.`)
+      return false
     }
     //en cas de départ jardin, c'est suffisant
-    if(depart === "jardin") return(true);
+    if (depart === "jardin") return true
 
     // Vérifier si le déplacement est possible en parcourant le graphe
-    const queue = [depart];
-    const visited = new Set();
+    const queue = [depart]
+    const visited = new Set()
 
     while (queue.length > 0) {
-      const currentSphere = queue.shift();
+      const currentSphere = queue.shift()
 
       if (currentSphere === arrivee) {
-        return true; // Déplacement possible
+        return true // Déplacement possible
       }
 
       if (!visited.has(currentSphere)) {
-        visited.add(currentSphere);
-        const adjacentSpheres = ArbreVieForm.GRAPH[currentSphere];
+        visited.add(currentSphere)
+        const adjacentSpheres = ArbreVieForm.GRAPH[currentSphere]
 
         for (const adjacent of adjacentSpheres) {
           if (!spheresInatteignables.has(adjacent)) {
-            queue.push(adjacent);
+            queue.push(adjacent)
           }
         }
       }
     }
 
     // Aucun chemin possible
-    console.debug(`CABINET DES MURMURES | Il n'y a pas de chemin de '${depart}' à '${arrivee}'.`);
-    return false; 
+    console.debug(`CABINET DES MURMURES | Il n'y a pas de chemin de '${depart}' à '${arrivee}'.`)
+    return false
   }
 
   /**
    * Crée l'arbre à afficher
-   * @returns 
+   * @returns
    */
   async remplirArbre() {
     // Création de l'arbre vierge
-    let contenuArbre = this.creerArbre();
+    let contenuArbre = this.creerArbre()
 
     // Mise à jour de l'arbre avec les esprits
     this.cabinet.system.esprits.forEach(async (element) => {
-      let actor = game.actors.get(element);
+      let actor = game.actors.get(element)
 
       // L'esprit est sur une sphère
-      if (actor.system.positionArbre != "aucune" && actor.system.positionArbre != "jardin"){
-        contenuArbre[actor.system.positionArbre].id = actor.id;
-        contenuArbre[actor.system.positionArbre].nom = actor.name;
-        contenuArbre[actor.system.positionArbre].token = actor.prototypeToken.texture.src;
+      if (actor.system.positionArbre != "aucune" && actor.system.positionArbre != "jardin") {
+        contenuArbre[actor.system.positionArbre].id = actor.id
+        contenuArbre[actor.system.positionArbre].nom = actor.name
+        contenuArbre[actor.system.positionArbre].token = actor.prototypeToken.texture.src
       }
 
       // Mise à jour des qliphoth
       for (const [qualite, value] of Object.entries(actor.system.qualites)) {
-        const sphere = SYSTEM.QUALITES[qualite].sphere;
+        const sphere = SYSTEM.QUALITES[qualite].sphere
         if (value.qlipha) {
-          contenuArbre[sphere].qliphaNom = actor.name;
-          contenuArbre[sphere].qliphaToken = actor.prototypeToken.texture.src;
-          await this.cabinet.update({[`system.arbre.${sphere}.idQlipha`]: actor.id});
-        }
-        else if (this.cabinet.system.arbre[sphere].idQlipha === actor.id){
+          contenuArbre[sphere].qliphaNom = actor.name
+          contenuArbre[sphere].qliphaToken = actor.prototypeToken.texture.src
+          await this.cabinet.update({ [`system.arbre.${sphere}.idQlipha`]: actor.id })
+        } else if (this.cabinet.system.arbre[sphere].idQlipha === actor.id) {
           //Situation ou le defaut est redevenu inférieur à la qualité -> remise à null
-          await this.cabinet.update({[`system.arbre.${sphere}.idQlipha`]: null});}
+          await this.cabinet.update({ [`system.arbre.${sphere}.idQlipha`]: null })
+        }
       }
-    });
-    return contenuArbre;
+    })
+    return contenuArbre
   }
 
   /**
@@ -215,7 +218,7 @@ export class ArbreVieForm extends FormApplication {
       netzach: this._creerNoeud(),
       yesod: this._creerNoeud(),
       malkuth: this._creerNoeud(),
-    };
+    }
   }
 
   /**
@@ -229,7 +232,6 @@ export class ArbreVieForm extends FormApplication {
       token: null,
       qliphaToken: null,
       qliphaNom: null,
-    };
+    }
   }
 }
-

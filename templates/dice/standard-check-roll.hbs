@@ -1,5 +1,5 @@
 {{!log "chat standard check roll" this}}
-<div class="dice-roll {{cssClass}}">
+<div class="dice-roll {{cssClass}}" data-action="expandRoll">
   <div class="intro-chat">
     {{#if (ne data.actingCharImg "icons/svg/mystery-man.svg")}}
       <div class="intro-img">
@@ -9,68 +9,69 @@
     <div class="intro-right">
       <p class="introText">
         {{#if data.attaque}}
-          Attaque avec {{data.attaqueNom}}<br />
+          Attaque avec
+          {{data.attaqueNom}}<br />
         {{/if}}
         {{{data.introText}}}
-        </p>
+      </p>
     </div>
   </div>
   <img style="width: 60%; align-self: center;" src={{images.deco_chat}} />
   <div class="dice-result">
     <p>Total de l'action : {{{total}}}</p>
     <span class="tooltiptext">{{{data.diceTooltip}}}</span>
-    {{#if (ne resultText '')}}
+    {{#if (ne resultText "")}}
       <p class="resultText">{{{resultText}}}</p>
     {{/if}}
-  </div>
-  {{#unless data.estDesastre}}
-    <div class="dice-result">
+
+    {{#unless data.estDesastre}}
       <div class="dice-tooltip">
-        <div class="dice-formula">{{formula}}</div>
-        {{#unless data.estEmbellie}}
+        <div class="wrapper">
+          <div class="dice-formula">{{formula}}</div>
+          {{#unless data.estEmbellie}}
+            <div class="counter">
+              <label>{{localize "CDM.DE.qualite"}}</label>
+              <span>{{data.qualiteValeur}}</span>
+            </div>
+          {{/unless}}
           <div class="counter">
-            <label>{{localize "CDM.DE.qualite"}}</label>
-            <span>{{data.qualiteValeur}}</span>
+            <label>{{localize "CDM.DE.deQualite"}}</label>
+            <span>{{data.deQualite}}</span>
           </div>
-        {{/unless}}
-        <div class="counter">
-          <label>{{localize "CDM.DE.deQualite"}}</label>
-          <span>{{data.deQualite}}</span>
-        </div>
-        {{#if data.estEmbellie}}
+          {{#if data.estEmbellie}}
+            <div class="counter">
+              <label>{{localize "CDM.DE.embellie"}}</label>
+              <span>{{data.embellieValeur}}</span>
+            </div>
+            <div class="counter">
+              <label>{{localize "CDM.DE.deEmbellie"}}</label>
+              <span>{{data.totalEmbellie}}</span>
+            </div>
+          {{/if}}
           <div class="counter">
-            <label>{{localize "CDM.DE.embellie"}}</label>
-            <span>{{data.embellieValeur}}</span>
+            <label>{{localize "CDM.DE.aspect"}}</label>
+            <span>{{data.aspectValeur}}</span>
           </div>
           <div class="counter">
-            <label>{{localize "CDM.DE.deEmbellie"}}</label>
-            <span>{{data.totalEmbellie}}</span>
+            <label>{{localize "CDM.DE.acquis"}}</label>
+            <span>{{data.acquisValeur}}</span>
           </div>
-        {{/if}}
-        <div class="counter">
-          <label>{{localize "CDM.DE.aspect"}}</label>
-          <span>{{data.aspectValeur}}</span>
-        </div>
-        <div class="counter">
-          <label>{{localize "CDM.DE.acquis"}}</label>
-          <span>{{data.acquisValeur}}</span>
-        </div>
-        <div class="counter">
-          <label>{{localize "CDM.DE.attribut"}}</label>
-          <span>{{data.attributValeur}}</span>
-        </div>
-        <div class="counter">
-          <label>{{localize "CDM.DE.perisprit"}}</label>
-          <span>{{data.perispritValeur}}</span>
-        </div>
-        <div class="counter">
-          <label>{{localize "CDM.DE.malus"}}</label>
-          <span>{{data.malus}}</span>
-        </div>
-        <div class="counter">
-          <label>{{localize "CDM.DE.bonus"}}</label>
-          <span>{{data.bonus}}</span>
-        </div>
+          <div class="counter">
+            <label>{{localize "CDM.DE.attribut"}}</label>
+            <span>{{data.attributValeur}}</span>
+          </div>
+          <div class="counter">
+            <label>{{localize "CDM.DE.perisprit"}}</label>
+            <span>{{data.perispritValeur}}</span>
+          </div>
+          <div class="counter">
+            <label>{{localize "CDM.DE.malus"}}</label>
+            <span>{{data.malus}}</span>
+          </div>
+          <div class="counter">
+            <label>{{localize "CDM.DE.bonus"}}</label>
+            <span>{{data.bonus}}</span>
+          </div>
       </div>
       {{#if difficulty}}
         <h4>Difficulté : {{difficulty}}</h4>
@@ -78,6 +79,6 @@
       <h4 class="dice-total check-result">
         <span>{{total}}</span>
       </h4>
-    </div>
-  {{/unless}}
+    {{/unless}}
+  </div>
 </div>

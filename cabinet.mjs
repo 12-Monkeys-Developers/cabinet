@@ -1,6 +1,5 @@
 import { SYSTEM } from "./module/config/system.mjs";
 import setupTextEnrichers from "./module/config/text-enrichers.mjs";
-import initControlButtons from "./module/applications/sidebar/control-buttons.mjs";
 import ComedienApp from "./module/canvas/comedien.mjs";
 import { registerHandlebarsHelpers } from "./module/helpers.mjs";
 
@@ -35,11 +34,11 @@ Hooks.once("init", async function () {
     pnj: models.CabinetPnj,
   };
 
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
-  Actors.registerSheet(SYSTEM.id, applications.CorpsSheet, { types: ["corps"], makeDefault: true });
-  Actors.registerSheet(SYSTEM.id, applications.CabinetSheet, { types: ["cabinet"], makeDefault: true });
-  Actors.registerSheet(SYSTEM.id, applications.PnjSheet, { types: ["pnj"], makeDefault: true });
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.EspritSheet, { types: ["esprit"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.CorpsSheet, { types: ["corps"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.CabinetSheet, { types: ["cabinet"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(SYSTEM.id, applications.PnjSheet, { types: ["pnj"], makeDefault: true });
 
   // Configuration document Item
   CONFIG.Item.documentClass = documents.CabinetItem;
@@ -54,19 +53,19 @@ Hooks.once("init", async function () {
     pouvoir: models.CabinetPouvoir,
   };
 
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet(SYSTEM.id, applications.AcquisSheet, { types: ["acquis"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.ActionSheet, { types: ["action"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.ArmeSheet, { types: ["arme"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.ArmureSheet, { types: ["armure"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.CorruptionSheet, { types: ["corruption"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.GraceSheet, { types: ["grace"], makeDefault: true });
-  Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.AcquisSheet, { types: ["acquis"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ActionSheet, { types: ["action"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ArmeSheet, { types: ["arme"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.ArmureSheet, { types: ["armure"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.CorruptionSheet, { types: ["corruption"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.GraceSheet, { types: ["grace"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(SYSTEM.id, applications.PouvoirSheet, { types: ["pouvoir"], makeDefault: true });
 
   // Dice system configuration
   CONFIG.Dice.rolls.push(dice.StandardCheck);
 
-  loadTemplates([
+  foundry.applications.handlebars.loadTemplates([
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-qualites.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-qualite-group.hbs`,
     `systems/${SYSTEM.id}/templates/sheets/partials/esprit-actions.hbs`,
@@ -88,9 +87,6 @@ Hooks.once("init", async function () {
 
   // Configuration text enrichers
   setupTextEnrichers();
-
-  // menu de gauche
-  initControlButtons();
 
   //configuration Handlebars
   registerHandlebarsHelpers();
@@ -126,16 +122,32 @@ Hooks.once("init", async function () {
     type: String,
     choices: {
       private: "Toujours privés : seul le MJ les voit",
-      public: "Toujours publics : tout le monde les voit",      
+      public: "Toujours publics : tout le monde les voit",
       depends: "Selon le réglage dans le chat",
     },
     default: "private",
+  });
+
+  game.settings.register("cabinet", "presentationform", {
+    name: "presentation",
+    type: applications.PresentationForm,
+    config: false,
+    default: false,
+    scope: "world",
   });
 
   // Define socket
   game.socket.on("system.cabinet", (data) => {
     SocketUtils.performSocketMesssage(data);
   });
+
+  // Add a custom sidebar tab
+    CONFIG.ui.sidebar.TABS.cabinet = {
+      icon: "fas fa-skull",
+      tooltip: "Cabinet",
+    }
+    CONFIG.ui.cabinet = applications.CabinetSidebarMenu;
+
 });
 
 Hooks.once("i18nInit", function () {
@@ -217,47 +229,54 @@ Hooks.on("createActor", async (document, options, userId) => {
     if (game.settings.get("cabinet", "appComedien") !== "aucun") {
       const comedienApp = new ComedienApp(document);
       comedienApp.render(true);
-     // console.debug("renderApplication - comedienApp", comedienApp);
+      // console.debug("renderApplication - comedienApp", comedienApp);
     }
   }
 });
 
-Hooks.on("renderChatMessage", (message, html, data) => {
- // console.debug("renderChatMessage", message, html, data);
-
-  const typeMessage = data.message.flags.world?.type;
+Hooks.on("renderChatMessageHTML", (message, html, context) => {
+  const typeMessage = context.message.flags.world?.type;
   // Demande comédien
   if (typeMessage === "demandeComedien") {
-    const estDestinataire = data.message.flags.world && data.message.flags.world.idComedien === game.user.character?.id;
+    const estDestinataire = context.message.flags.world && context.message.flags.world.idComedien === game.user.character?.id;
 
     // Boutons d'action
     // Si c'est le MJ ou le joueur qui est comédien
     if (game.user.isGM || estDestinataire) {
-      html.find("#demander-comedien-accepter").click((event) => {
-        CdmChat.demanderComedienAccepter(event, data.message);
-      });
-      html.find("#demander-comedien-refuser").click((event) => {
-        CdmChat.demanderComedienRefuser(event, data.message);
-      });
+      const accepterBtn = html.querySelector("#demander-comedien-accepter");
+      if (accepterBtn) {
+        accepterBtn.addEventListener("click", (event) => {
+          CdmChat.demanderComedienAccepter(event, context.message);
+        });
+      }
+      const refuserBtn = html.querySelector("#demander-comedien-refuser");
+      if (refuserBtn) {
+        refuserBtn.addEventListener("click", (event) => {
+          CdmChat.demanderComedienRefuser(event, context.message);
+        });
+      }
     } else {
-      const chatActions = html.find(".comedien-actions");
-      chatActions[0].style.display = "none";
+      const chatActions = html.querySelector(".comedien-actions");
+      if (chatActions) chatActions.style.display = "none";
     }
   }
 
   // Réponse comédien
   if (typeMessage === "reponseComedien") {
-    const estDestinataire = data.message.flags.world && data.message.flags.world.idComedien === game.user.character?.id;
+    const estDestinataire = context.message.flags.world && context.message.flags.world.idComedien === game.user.character?.id;
 
     // Bouton de discorde
     // Si c'est le MJ, le joueur qui est comédien ou le joueur qui a envoyé le message
-    if (estDestinataire || data.message.flags.world.userIdDemandeur === game.user.id) {
-      html.find("#demander-comedien-discorde").click((event) => {
-        CdmChat.demanderComedienDiscorde(event, data.message);
-      });
+    if (estDestinataire || context.message.flags.world.userIdDemandeur === game.user.id) {
+      const discordeBtn = html.querySelector("#demander-comedien-discorde");
+      if (discordeBtn) {
+        discordeBtn.addEventListener("click", (event) => {
+          CdmChat.demanderComedienDiscorde(event, context.message);
+        });
+      }
     } else {
-      const chatActions = html.find(".comedien-discorde");
-      chatActions[0].style.display = "none";
+      const chatActions = html.querySelector(".comedien-discorde");
+      if (chatActions) chatActions.style.display = "none";
     }
   }
 });
